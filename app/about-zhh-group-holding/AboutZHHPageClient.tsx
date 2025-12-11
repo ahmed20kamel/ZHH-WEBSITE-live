@@ -33,9 +33,9 @@ export default function AboutZHHPageClient() {
     <div className="pt-20">
       {/* Premium Hero Section */}
       <section 
-        className="relative h-[50vh] min-h-[450px] max-h-[600px] flex items-center justify-center overflow-hidden bg-primary-dark"
+        className="relative h-[50vh] min-h-[450px] max-h-[600px] flex items-center justify-center overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, #032D46 0%, #001A2F 50%, #003057 100%)',
+          background: 'linear-gradient(135deg, #1a2332 0%, #0f1419 50%, #1a2332 100%)',
         }}
       >
         {/* Subtle Background Texture */}

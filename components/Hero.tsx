@@ -124,7 +124,177 @@ export default function Hero() {
       {/* Hero Content */}
       <div className="relative z-20 w-full h-full flex items-center pt-20 md:pt-0">
         <div className="container-unified">
-          <div className="w-full">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* Left Column - Main Content */}
+            <div className="space-y-6 md:space-y-8">
+              {/* Tagline with Animation */}
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center gap-2 md:gap-3 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm border border-white/10"
+              >
+                <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-white flex-shrink-0" />
+                <span className="body-small-unified text-white" style={{ fontWeight: 500, fontSize: 'clamp(11px, 1.3vw, 14px)' }}>
+                  Emirati Sovereign-Style Investor
+                </span>
+              </motion.div>
+
+              {/* Main Headline */}
+              <motion.h1
+                initial={{ y: 30, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="h1-unified text-white"
+                style={{
+                  fontSize: 'clamp(36px, 5.1vw, 72px)',
+                  lineHeight: 1.15,
+                  fontWeight: 300,
+                  letterSpacing: '-0.5px'
+                }}
+              >
+                Building a Legacy of
+                <span className="block mt-2">
+                  <span className="font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+                    Trust & Growth
+                  </span>
+                </span>
+              </motion.h1>
+
+              {/* Description */}
+              <motion.p
+                initial={{ y: 30, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="body-large-unified text-white/80"
+                style={{ 
+                  maxWidth: '600px',
+                  fontSize: 'clamp(16px, 1.8vw, 20px)',
+                  lineHeight: 1.6
+                }}
+              >
+                ZHH Group Holding is a diversified Emirati conglomerate managing strategic investments 
+                across construction, real estate, global trading, and precious metals.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4"
+              >
+                <Link href="/divisions" className="w-full sm:w-auto">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl text-white flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transition-all duration-300"
+                    style={{
+                      fontFamily: 'var(--font-primary)',
+                      fontSize: 'clamp(14px, 1.5vw, 16px)',
+                      fontWeight: 600
+                    }}
+                  >
+                    Explore Our Divisions
+                    <ChevronRight className="w-5 h-5" />
+                  </motion.button>
+                </Link>
+                
+                <Link href="/about" className="w-full sm:w-auto">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white flex items-center justify-center gap-3 hover:bg-white/20 transition-all duration-300"
+                    style={{
+                      fontFamily: 'var(--font-primary)',
+                      fontSize: 'clamp(14px, 1.5vw, 16px)',
+                      fontWeight: 600
+                    }}
+                  >
+                    <Play className="w-5 h-5" />
+                    Watch Our Story
+                  </motion.button>
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Right Column - Stats Cards */}
+            <motion.div
+              initial={{ x: 50, opacity: 0 }}
+              animate={isInView ? { x: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="space-y-4 md:space-y-6 mt-8 lg:mt-0"
+            >
+              {stats.map((stat, index) => {
+                const Icon = stat.icon;
+                
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={isInView ? { x: 0, opacity: 1 } : {}}
+                    transition={{ duration: 0.5, delay: 0.6 + (index * 0.2) }}
+                    whileHover={{ y: -5 }}
+                    className="group"
+                  >
+                    <div className="relative">
+                      {/* Card */}
+                      <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/10 shadow-2xl overflow-hidden">
+                        {/* Animated Gradient Border */}
+                        <div className="absolute inset-0 rounded-2xl p-[1px] bg-gradient-to-r from-white/20 to-transparent -z-10">
+                          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 via-cyan-500/10 to-emerald-500/10" />
+                        </div>
+
+                        <div className="flex items-center gap-4">
+                          {/* Icon with Animation */}
+                          <motion.div
+                            whileHover={{ rotate: 360 }}
+                            transition={{ duration: 0.6 }}
+                            className={`w-12 h-12 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center shadow-lg`}
+                          >
+                            <Icon className="w-6 h-6 text-white" />
+                          </motion.div>
+
+                          {/* Content */}
+                          <div className="flex-1">
+                            <div className="text-stats-number text-white mb-1">
+                              {stat.value}
+                            </div>
+                            <div className="body-small-unified text-white/70">
+                              {stat.label}
+                            </div>
+                          </div>
+
+                          {/* Animated Arrow */}
+                          <motion.div
+                            animate={{ x: [0, 4, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          >
+                            <ChevronRight className="w-5 h-5 text-white/50" />
+                          </motion.div>
+                        </div>
+
+                        {/* Animated Progress Bar */}
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={isInView ? { width: "100%" } : {}}
+                          transition={{ duration: 1.5, delay: 0.8 + (index * 0.2) }}
+                          className="h-0.5 bg-gradient-to-r from-blue-500 via-cyan-500 to-emerald-500 rounded-full mt-4"
+                        />
+                      </div>
+
+                      {/* Hover Glow Effect */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 0.3 }}
+                        className={`absolute inset-0 ${stat.color.replace('500', '200')} rounded-2xl blur-xl -z-10`}
+                      />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
           </div>
         </div>
       </div>

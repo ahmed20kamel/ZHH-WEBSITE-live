@@ -699,6 +699,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(135deg, #1a2332 0%, #0f1419 50%, #1a2332 100%);
 }
 
 .hero-content {
