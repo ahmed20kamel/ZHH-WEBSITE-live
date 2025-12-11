@@ -11,9 +11,7 @@ interface Slide {
 }
 
 const slides: Slide[] = [
-  { type: 'video', src: '/assets/media/hero.mp4' },
-  { type: 'image', src: '/assets/media/2.jpg', alt: 'ZHH Group Holding' },
-  { type: 'image', src: '/assets/media/3.jpg', alt: 'ZHH Group Holding' },
+  { type: 'image', src: '/assets/media/1.jpg', alt: 'ZHH Group Holding' },
 ];
 
 export default function HeroSlider() {

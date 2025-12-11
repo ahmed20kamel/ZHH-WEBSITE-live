@@ -239,58 +239,6 @@ export default function AboutPageClient() {
               </div>
             </motion.div>
 
-            {/* Main Title */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-lg"
-            >
-              Building Tomorrow
-              <span className="block mt-4">
-                <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-300 bg-clip-text text-transparent">
-                  Since 2003
-                </span>
-              </span>
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="text-base md:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed mb-lg"
-            >
-              From local construction to global conglomerate — a journey of vision, integrity, and sustainable growth.
-            </motion.p>
-
-            {/* Action Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-              className="button-group mb-xl"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-600 rounded-xl text-white font-semibold flex items-center gap-3 shadow-2xl hover:shadow-blue-500/30 transition-all"
-                onClick={() => document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <TrendingUp className="w-6 h-6" />
-                Explore Our Journey
-              </motion.button>
-              
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white/10 backdrop-blur-lg border border-white/30 rounded-xl text-white font-semibold flex items-center gap-3 hover:bg-white/20 transition-all"
-                onClick={() => document.getElementById('board')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <Users className="w-6 h-6" />
-                Meet Our Leadership
-              </motion.button>
-            </motion.div>
 
             {/* Company Stats */}
             <div className="stats-grid max-w-4xl mx-auto">

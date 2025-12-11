@@ -61,7 +61,7 @@ export default function InvestorsPageClient() {
   return (
     <div style={{ paddingTop: '80px' }}>
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-[#1a2332] to-[#0f1419] text-white">
+      <section className="hero-internal bg-gradient-to-br from-[#1a2332] to-[#0f1419] text-white">
         <div className="container-unified">
           <motion.div
             initial="hidden"

@@ -13,7 +13,7 @@ export default function RealEstatePageClient() {
 
   return (
     <div style={{ paddingTop: '80px' }}>
-      <section className="section-unified bg-unified-dark text-white">
+      <section className="hero-internal bg-unified-dark text-white">
         <div className="container-unified">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="section-title-wrapper">
             <motion.h1 variants={fadeInUp} className="h1-unified text-white">{division.name}</motion.h1>

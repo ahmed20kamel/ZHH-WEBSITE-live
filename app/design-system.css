@@ -681,12 +681,24 @@
 /* Hero Section Styles */
 .hero-section {
   position: relative;
-  min-height: 100vh;
+  height: 50vh;
+  min-height: 450px;
+  max-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   width: 100%;
+}
+
+/* Unified Hero Section for Internal Pages */
+.hero-internal {
+  height: 50vh;
+  min-height: 450px;
+  max-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-content {

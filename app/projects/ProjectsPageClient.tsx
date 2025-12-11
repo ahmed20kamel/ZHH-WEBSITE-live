@@ -17,7 +17,7 @@ export default function ProjectsPageClient() {
   return (
     <div style={{ paddingTop: '80px' }}>
       {/* Hero Section */}
-      <section className="section-unified bg-unified-dark text-white">
+      <section className="hero-internal bg-unified-dark text-white">
         <div className="container-unified">
           <motion.div
             initial="hidden"
