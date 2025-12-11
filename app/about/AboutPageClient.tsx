@@ -138,15 +138,40 @@ export default function AboutPageClient() {
     }
   }, [pathname, searchParams]);
 
+  // Auto-play video on mount
+  useEffect(() => {
+    if (videoRef.current) {
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsVideoPlaying(true);
+          })
+          .catch(() => {
+            // Autoplay was prevented, user interaction required
+            setIsVideoPlaying(false);
+          });
+      }
+    }
+  }, []);
 
   const handleVideoPlay = () => {
     if (videoRef.current) {
       if (isVideoPlaying) {
         videoRef.current.pause();
+        setIsVideoPlaying(false);
       } else {
-        videoRef.current.play();
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setIsVideoPlaying(true);
+            })
+            .catch(() => {
+              setIsVideoPlaying(false);
+            });
+        }
       }
-      setIsVideoPlaying(!isVideoPlaying);
     }
   };
 
@@ -155,45 +180,49 @@ export default function AboutPageClient() {
   return (
     <div className="pt-20">
       {/* Hero Section مع فيديو */}
-      <section className="hero-section">
+      <section className="hero-section relative">
         {/* Video Background */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 z-0">
           <video
             ref={videoRef}
             className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
             loop
             muted
             playsInline
+            preload="auto"
           >
-            <source src="/assets/videos/company-video.mp4" type="video/mp4" />
-            {/* Fallback image if video doesn't load */}
-            <img src="/assets/images/hero-background.jpg" alt="ZHH Group Holding" className="w-full h-full object-cover" />
+            <source src="/assets/media/hero.mp4" type="video/mp4" />
+            <source src="/hero.mp4" type="video/mp4" />
+            {/* Fallback gradient if video doesn't load */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-teal-900/70" />
           </video>
-          <div className="video-overlay" />
+          <div className="video-overlay absolute inset-0 z-1" />
         </div>
 
-        {/* Video Play Button */}
+        {/* Video Play/Pause Button */}
         <button
           onClick={handleVideoPlay}
-          className="absolute top-8 right-8 z-30 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center hover:bg-white/30 transition-all"
+          className="absolute top-8 right-8 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center hover:bg-white/30 transition-all"
+          aria-label={isVideoPlaying ? "Pause video" : "Play video"}
         >
           {isVideoPlaying ? (
-            <div className="flex items-center justify-center w-6 h-6">
-              <div className="w-2 h-6 bg-white mx-0.5" />
-              <div className="w-2 h-6 bg-white mx-0.5" />
+            <div className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6">
+              <div className="w-1.5 h-4 md:h-6 bg-white mx-0.5" />
+              <div className="w-1.5 h-4 md:h-6 bg-white mx-0.5" />
             </div>
           ) : (
-            <PlayCircle className="w-6 h-6 text-white" />
+            <PlayCircle className="w-5 h-5 md:w-6 md:h-6 text-white" />
           )}
         </button>
 
         {/* Hero Content */}
-        <div className="container-unified">
+        <div className="container-unified relative z-20 h-full flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="hero-content"
+            className="hero-content w-full"
           >
             {/* Company Logo */}
             <motion.div
@@ -215,7 +244,7 @@ export default function AboutPageClient() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-lg"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-lg"
             >
               Building Tomorrow
               <span className="block mt-4">
@@ -230,7 +259,7 @@ export default function AboutPageClient() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
-              className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed mb-lg"
+              className="text-base md:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed mb-lg"
             >
               From local construction to global conglomerate — a journey of vision, integrity, and sustainable growth.
             </motion.p>
