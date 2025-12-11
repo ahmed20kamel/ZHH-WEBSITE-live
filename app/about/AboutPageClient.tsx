@@ -8,8 +8,8 @@ import OrgChart from '@/components/OrgChart';
 import { 
   Building2, Users, Globe, Gem, 
   TrendingUp, Award, Target, Shield,
-  ChevronRight, Sparkles, MapPin, BarChart3,
-  Linkedin, Twitter, ExternalLink, PlayCircle,
+  ChevronRight, Sparkles, MapPin,
+  Linkedin, Twitter, ExternalLink,
   Briefcase, Eye, Zap, Crown,
   Coffee, Cpu, Package, Home,
   Flag, ChevronDown
@@ -86,20 +86,10 @@ const timelineData = [
   }
 ];
 
-// إحصائيات الشركة
-const companyStats = [
-  { value: '100+', label: 'Assets Under Management', suffix: 'M AED', icon: BarChart3, color: 'text-blue-500' },
-  { value: '20+', label: 'Years of Excellence', icon: Award, color: 'text-emerald-500' },
-  { value: '10+', label: 'Countries of Operations', icon: Globe, color: 'text-amber-500' },
-  { value: '500+', label: 'Professional Team', icon: Users, color: 'text-violet-500' },
-];
-
 export default function AboutPageClient() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const videoRef = useRef<HTMLVideoElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [activeYear, setActiveYear] = useState('2003');
   const [expandedBios, setExpandedBios] = useState<Set<string>>(new Set());
 
@@ -138,83 +128,22 @@ export default function AboutPageClient() {
     }
   }, [pathname, searchParams]);
 
-  // Auto-play video on mount
-  useEffect(() => {
-    if (videoRef.current) {
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsVideoPlaying(true);
-          })
-          .catch(() => {
-            // Autoplay was prevented, user interaction required
-            setIsVideoPlaying(false);
-          });
-      }
-    }
-  }, []);
-
-  const handleVideoPlay = () => {
-    if (videoRef.current) {
-      if (isVideoPlaying) {
-        videoRef.current.pause();
-        setIsVideoPlaying(false);
-      } else {
-        const playPromise = videoRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              setIsVideoPlaying(true);
-            })
-            .catch(() => {
-              setIsVideoPlaying(false);
-            });
-        }
-      }
-    }
-  };
-
   const activeItem = timelineData.find(item => item.year === activeYear) || timelineData[0];
 
   return (
     <div className="pt-20">
-      {/* Hero Section مع فيديو */}
+      {/* Hero Section */}
       <section className="hero-section relative">
-        {/* Video Background */}
-        <div className="absolute inset-0 z-0">
-          <video
-            ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-          >
-            <source src="/assets/media/hero.mp4" type="video/mp4" />
-            <source src="/hero.mp4" type="video/mp4" />
-            {/* Fallback gradient if video doesn't load */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-teal-900/70" />
-          </video>
-          <div className="video-overlay absolute inset-0 z-1" />
-        </div>
-
-        {/* Video Play/Pause Button */}
-        <button
-          onClick={handleVideoPlay}
-          className="absolute top-8 right-8 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center hover:bg-white/30 transition-all"
-          aria-label={isVideoPlaying ? "Pause video" : "Play video"}
-        >
-          {isVideoPlaying ? (
-            <div className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6">
-              <div className="w-1.5 h-4 md:h-6 bg-white mx-0.5" />
-              <div className="w-1.5 h-4 md:h-6 bg-white mx-0.5" />
-            </div>
-          ) : (
-            <PlayCircle className="w-5 h-5 md:w-6 md:h-6 text-white" />
-          )}
-        </button>
+        {/* Background Image (same as internal hero) */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(/assets/back%20ground/bg.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
 
         {/* Hero Content */}
         <div className="container-unified relative z-20 h-full flex items-center justify-center">
@@ -239,47 +168,25 @@ export default function AboutPageClient() {
               </div>
             </motion.div>
 
-
-            {/* Company Stats */}
-            <div className="stats-grid max-w-4xl mx-auto">
-              {companyStats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.1 + index * 0.1 }}
-                    className="text-center group"
-                  >
-                    <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform mb-sm">
-                      <Icon className={`w-7 h-7 ${stat.color}`} />
+            {/* Headline & Subtitle */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-hero-title text-white text-center mb-md"
+            >
+              About ZHH Group Holding
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="text-hero-subtitle text-white/90 text-center max-w-3xl mx-auto"
+            >
+              Building Value Across Construction, Real Estate, Trading & Precious Metals
+            </motion.p>
+            </motion.div>
                     </div>
-                    <div className="text-2xl font-bold text-white mb-xs">
-                      {stat.value}
-                      {stat.suffix && <span className="text-lg">{stat.suffix}</span>}
-                    </div>
-                    <div className="text-sm text-gray-300">{stat.label}</div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
-        >
-          <div className="text-center">
-            <div className="text-sm text-gray-300 mb-2">Scroll to Explore</div>
-            <div className="w-6 h-10 border border-white/30 rounded-full flex items-start justify-center p-1 mx-auto">
-              <div className="w-1.5 h-3 bg-gradient-to-b from-blue-400 to-teal-400 rounded-full" />
-            </div>
-          </div>
-        </motion.div>
       </section>
 
       {/* Timeline Section - Vertical Timeline */}

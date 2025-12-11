@@ -60,25 +60,52 @@ const miningInvestments = [
 export default function InvestorsPageClient() {
   return (
     <div style={{ paddingTop: '80px' }}>
-      {/* Hero Section */}
-      <section className="hero-internal bg-gradient-to-br from-[#1a2332] to-[#0f1419] text-white">
-        <div className="container-unified">
+      {/* Hero Section with Background Image & Overlay */}
+      <section className="relative h-[55vh] min-h-[480px] max-h-[620px] flex items-center justify-center overflow-hidden text-white">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url(/assets/back%20ground/bg.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+        {/* Dark Overlay */}
+        <div 
+          className="absolute inset-0 z-1"
+          style={{
+            background: 'linear-gradient(135deg, rgba(15, 32, 45, 0.88) 0%, rgba(40, 60, 80, 0.7) 100%)'
+          }}
+        />
+        {/* Pattern Overlay */}
+        <div 
+          className="absolute inset-0 z-1 opacity-6"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0)`,
+            backgroundSize: '36px 36px'
+          }}
+        />
+
+        <div className="container-unified relative z-10">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="text-center w-full"
-            style={{ width: '100%' }}
+            className="text-center max-w-3xl mx-auto"
           >
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl md:text-6xl font-bold mb-6"
+              className="text-5xl md:text-6xl font-semibold mb-5 tracking-tight"
+              style={{ fontFamily: "'Playfair Display', serif" }}
             >
               For Investors
             </motion.h1>
             <motion.p
               variants={fadeInUp}
-              className="text-xl text-gray-300 leading-relaxed"
+              className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto"
+              style={{ fontFamily: "'Inter', sans-serif" }}
             >
               Diversified portfolio across construction, real estate, gold, and trading. Strong governance & sustainable returns.
             </motion.p>
@@ -98,13 +125,13 @@ export default function InvestorsPageClient() {
           >
             <motion.h2
               variants={fadeInUp}
-              className="text-4xl md:text-5xl font-bold text-[#1a2332] mb-4"
+              className="text-4xl md:text-5xl font-bold text-[#1a2332] mb-3"
             >
               Investment Highlights
             </motion.h2>
             <motion.p
               variants={fadeInUp}
-              className="text-lg text-gray-600 w-full"
+              className="text-base lg:text-lg text-gray-600 w-full"
               style={{ width: '100%' }}
             >
               Building value through strategic investments and operational excellence
@@ -116,11 +143,11 @@ export default function InvestorsPageClient() {
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           >
             {investmentHighlights.map((highlight, index) => (
               <motion.div key={index} variants={fadeInUp}>
-                <Card className="h-full p-8 text-center">
+                <Card className="h-full p-7 lg:p-8 text-center">
                   <motion.div
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
@@ -130,10 +157,10 @@ export default function InvestorsPageClient() {
                   >
                     {highlight.value}
                   </motion.div>
-                  <h3 className="text-xl font-semibold text-[#1a2332] mb-2">
+                  <h3 className="text-lg lg:text-xl font-semibold text-[#1a2332] mb-2">
                     {highlight.label}
                   </h3>
-                  <p className="text-gray-600 text-sm">{highlight.description}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{highlight.description}</p>
                 </Card>
               </motion.div>
             ))}

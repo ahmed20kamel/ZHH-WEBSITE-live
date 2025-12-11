@@ -9,22 +9,22 @@ const divisions = [
   {
     name: 'ZHH Construction',
     description: 'As one of the leading entities in the region\'s construction sector, ZHH Construction specializes in delivering high-quality infrastructure, residential, and commercial projects. We build with precision and passion, shaping skylines and creating lasting landmarks.',
-    icon: '🏗️',
+    logo: '/assets/logos/zhh-construction-logo.svg',
   },
   {
     name: 'ZHH Real Estate',
     description: 'Our real estate division focuses on creating long-term value through strategic property development and diversified investment portfolios. We identify opportunities that promote sustainable growth and strengthen community living.',
-    icon: '🏢',
+    logo: '/assets/logos/zhh-real-estate-logo.svg',
   },
   {
     name: 'ZHH General Trading',
     description: 'ZHH General Trading serves as a global bridge for sourcing and supplying premium raw materials and products from around the world — including rice, flour, spices, coffee, frozen meat, poultry, cosmetics, toys, groceries, oil, sugar, and gold. With trusted networks in the USA, Belgium, Australia, India, Pakistan, China, Spain, Thailand, and beyond, we ensure quality and reliability in every trade.',
-    icon: '🌍',
+    logo: '/assets/logos/zhh-general-trading-logo.svg',
   },
   {
     name: 'Jewelust',
     description: 'Established in Dubai, Jewelust is the crown jewel of our group — a brand that celebrates the art of fine jewelry and gold bullion trading. With branches across Turkey, Uganda, Mali, and Congo, Jewelust is recognized for its craftsmanship, heritage designs, and secure international gold trading operations.',
-    icon: '💎',
+    logo: '/assets/logos/jewelust-logo.svg',
   },
 ];
 
@@ -34,10 +34,25 @@ export default function AboutZHHPageClient() {
       {/* Premium Hero Section */}
       <section 
         className="relative h-[50vh] min-h-[450px] max-h-[600px] flex items-center justify-center overflow-hidden"
-        style={{
-          background: 'linear-gradient(135deg, #1a2332 0%, #0f1419 50%, #1a2332 100%)',
-        }}
       >
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0"
+        style={{
+            // Space in folder name requires encoding
+            backgroundImage: 'url(/assets/back%20ground/bg.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+        {/* Overlay for better text visibility */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, rgba(3, 45, 70, 0.7) 0%, rgba(15, 20, 25, 0.6) 50%, rgba(3, 45, 70, 0.7) 100%)'
+        }}
+        />
         {/* Subtle Background Texture */}
         <div 
           className="absolute inset-0 opacity-10"
@@ -71,7 +86,7 @@ export default function AboutZHHPageClient() {
       </section>
 
       {/* CEO Message Section */}
-      <section className="section-unified bg-white scroll-margin-top" id="ceo-message">
+      <section className="section-unified bg-off-white scroll-margin-top" id="ceo-message">
         <div className="container-unified">
           <motion.div
             initial="hidden"
@@ -82,56 +97,147 @@ export default function AboutZHHPageClient() {
           >
             <motion.h2
               variants={fadeInUp}
-              className="h2-unified text-primary text-center-unified"
+              className="h2-unified text-primary-color text-center-unified mb-xl"
             >
               CEO Message
             </motion.h2>
             
+            {/* Premium CEO Card with Image */}
             <motion.div 
               variants={fadeInUp} 
-              className="space-y-6 body-regular-unified text-secondary mb-xl"
+              className="bg-white rounded-2xl shadow-xl overflow-hidden"
+              style={{
+                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08)',
+                border: '1px solid #E5E7EB'
+              }}
             >
+              {/* CEO Header with Image & Text Side-by-Side */}
               <div 
-                className="bg-off-white p-lg rounded-lg border-l-4 border-gold"
+                className="relative"
                 style={{
-                  border: '1px solid #E5E5E5'
+                  background: 'linear-gradient(135deg, #032D46 0%, #01B2B2 100%)',
+                  padding: 'clamp(28px, 4vw, 48px)'
                 }}
               >
-                <p
-                  className="h4-unified text-primary-color mb-content"
+                <div
+                  className="flex flex-col md:flex-row items-center md:items-center gap-6 md:gap-8"
+                  style={{ position: 'relative', zIndex: 1 }}
+                >
+                  {/* CEO Image (single use) */}
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    style={{
+                      width: 'clamp(120px, 16vw, 170px)',
+                      height: 'clamp(120px, 16vw, 170px)',
+                      borderRadius: '50%',
+                      overflow: 'hidden',
+                      border: '4px solid rgba(255, 255, 255, 0.25)',
+                      boxShadow: '0 6px 24px rgba(0, 0, 0, 0.18)',
+                      flexShrink: 0
+                }}
+              >
+                    <img
+                      src="/assets/board img/Mohamed Al Hammadi.jpg"
+                      alt="Mohamed Al Hammadi - Chairman & CEO"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center'
+                      }}
+                    />
+                  </motion.div>
+
+                  {/* CEO Name and Title */}
+                  <div className="text-center md:text-left">
+                    <h3
+                      style={{
+                        fontFamily: 'var(--font-english-heading)',
+                        fontSize: 'clamp(26px, 3vw, 36px)',
+                        fontWeight: 700,
+                        color: '#FFFFFF',
+                        marginBottom: 'clamp(6px, 0.8vw, 10px)',
+                        textShadow: '0 2px 6px rgba(0, 0, 0, 0.18)'
+                      }}
                 >
                   Mohamed Al Hammadi
-                </p>
+                    </h3>
                 <p
-                  className="body-small-unified text-tertiary-color"
+                      style={{
+                        fontFamily: '"Montserrat", sans-serif',
+                        fontSize: 'clamp(14px, 1.6vw, 17px)',
+                        color: 'rgba(255, 255, 255, 0.94)',
+                        fontWeight: 500,
+                        lineHeight: 1.5
+                      }}
                 >
-                  Founder, Owner & Chairman – ZHH Group Holding & Subsidiaries
+                      Founder, Owner & Chairman<br />
+                      ZHH Group Holding & Subsidiaries
                 </p>
+                  </div>
+                </div>
               </div>
               
+              {/* CEO Message Content */}
+              <div 
+                className="p-lg md:p-xl"
+                style={{
+                  padding: 'clamp(32px, 4.5vw, 54px)'
+                }}
+              >
+                <div 
+                  className="space-y-6 body-regular-unified text-secondary-color"
+                  style={{
+                    fontFamily: '"Montserrat", sans-serif',
+                    fontSize: 'clamp(15px, 1.8vw, 18px)',
+                    lineHeight: 1.8,
+                    color: '#333333'
+                  }}
+                >
               <p>
                 ZHH Group Holding stands as a proud symbol of Emirati ambition and excellence. Founded in the United Arab Emirates, our Group was built on a vision to contribute to the nation's economic growth through innovation, integrity, and world-class performance across every sector we operate in.
               </p>
               <p>
-                From construction and real estate to global trading and precious metals, each of our subsidiaries — including Jewelust, our flagship in gold bullion and jewelry — reflects our commitment to sustainable development and long-term value creation. We are not only expanding our presence across regions but also reinforcing the UAE's position as a hub for reliability and opportunity.
+                    From construction and real estate to global trading and precious metals, each of our subsidiaries — including Jewelust, our flagship in gold bullion and jewelry — reflects our commitment to sustainable development and long-term value creation. We are not only expanding our presence across regions but also reinforcing the UAE's position as a hub for reliability, and opportunity.
               </p>
               <p>
                 Our mission is to grow with purpose — to build, trade, and invest responsibly while maintaining the trust of our partners, the strength of our nation, and the legacy of Emirati leadership for generations to come.
               </p>
+                </div>
+              </div>
             </motion.div>
 
-            {/* Signature Block */}
+            {/* Signature Block (text only) */}
             <motion.div
               variants={fadeInUp}
-              className="mt-xl pt-lg border-t border-gray-200 text-right"
+              className="mt-xl pt-xl border-t"
+              style={{
+                borderTop: '2px solid #E5E7EB',
+                paddingTop: 'clamp(40px, 5vw, 56px)',
+                textAlign: 'right'
+              }}
             >
               <p
-                className="body-regular-unified text-primary-color font-semibold mb-xs"
+                style={{
+                  fontFamily: '"Montserrat\", sans-serif',
+                  fontSize: 'clamp(18px, 2.2vw, 24px)',
+                  fontWeight: 700,
+                  color: '#032D46',
+                  marginBottom: 'clamp(6px, 0.8vw, 10px)'
+                }}
               >
                 Mohamed Al Hammadi
               </p>
               <p
-                className="body-small-unified text-tertiary-color"
+                style={{
+                  fontFamily: '"Montserrat\", sans-serif',
+                  fontSize: 'clamp(14px, 1.6vw, 16px)',
+                  color: '#666666',
+                  lineHeight: 1.6
+                }}
               >
                 Chairman & CEO<br />
                 ZHH Group Holding
@@ -142,7 +248,7 @@ export default function AboutZHHPageClient() {
       </section>
 
       {/* Company Overview Section */}
-      <section className="section-unified bg-off-white scroll-margin-top">
+      <section className="section-unified bg-white scroll-margin-top">
         <div className="container-unified">
           <motion.div
             initial="hidden"
@@ -159,12 +265,40 @@ export default function AboutZHHPageClient() {
               Company Overview
             </motion.h2>
             
-            <motion.p
+            <motion.div
               variants={fadeInUp}
-              className="body-large-unified text-secondary-color text-center-unified max-w-3xl mx-auto"
+              className="relative overflow-hidden rounded-2xl"
+              style={{
+                background: 'linear-gradient(135deg, #F7FBFD 0%, #E9F4F8 100%)',
+                padding: 'clamp(32px, 4.5vw, 56px)',
+                border: '1px solid #E5E7EB',
+                boxShadow: '0 10px 32px rgba(0, 0, 0, 0.06)'
+              }}
+            >
+              {/* Decorative orbs */}
+              <div
+                className="absolute -top-16 -left-10 w-48 h-48 rounded-full"
+                style={{ background: 'radial-gradient(circle, rgba(1,178,178,0.18), transparent 55%)' }}
+              />
+              <div
+                className="absolute -bottom-20 -right-12 w-56 h-56 rounded-full"
+                style={{ background: 'radial-gradient(circle, rgba(3,45,70,0.12), transparent 60%)' }}
+              />
+              
+              <div className="relative text-center max-w-4xl mx-auto space-y-4">
+                <p
+                  className="body-large-unified text-secondary-color"
+                  style={{
+                    fontFamily: '"Montserrat", sans-serif',
+                    fontSize: 'clamp(15px, 1.9vw, 18px)',
+                    lineHeight: 1.9,
+                    color: '#2F3A45'
+                  }}
             >
               ZHH Group Holding is a leading Emirati holding company established in 2003, with a diversified portfolio spanning construction, real estate, global trading, and precious metals. Headquartered in Abu Dhabi, we operate across multiple continents, building lasting value through strategic investments and operational excellence.
-            </motion.p>
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -193,15 +327,79 @@ export default function AboutZHHPageClient() {
                   variants={fadeInUp}
                   className="card-unified card-hover-lift"
                 >
-                  <div className="flex items-start gap-4 mb-4">
-                    <span style={{ fontSize: '32px' }}>{division.icon}</span>
+                  <div className="flex flex-col items-center mb-6">
+                    {/* Video Background */}
+                    <div 
+                  style={{
+                        height: 'clamp(80px, 10vw, 120px)',
+                        width: '100%',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        borderRadius: '12px',
+                        marginBottom: 'clamp(16px, 2vw, 24px)',
+                        backgroundColor: '#f0f0f0'
+                  }}
+                    >
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="auto"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          position: 'absolute',
+                          top: 0,
+                          left: 0
+                        }}
+                      >
+                        <source src="/assets/videos/global-stats-bg.mp4" type="video/mp4" />
+                      </video>
+                      {/* Overlay for better text visibility */}
+                      <div 
+                        style={{
+                          position: 'absolute',
+                          inset: 0,
+                          background: 'linear-gradient(to right, rgba(3, 45, 70, 0.6) 0%, rgba(1, 178, 178, 0.5) 100%)',
+                          zIndex: 1
+                        }}
+                      />
+                      {/* Logo on top of video */}
+                      <div 
+                        style={{
+                          position: 'relative',
+                          zIndex: 2,
+                          width: '100%',
+                          height: '100%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          padding: 'clamp(10px, 1.5vw, 15px)'
+                  }}
+                >
+                        <img
+                          src={division.logo}
+                          alt={`${division.name} Logo`}
+                          className="h-full w-auto object-contain"
+                          style={{ 
+                            maxWidth: 'min(100%, 250px)',
+                            height: 'auto',
+                            maxHeight: '100%'
+                          }}
+                        />
+                      </div>
+                    </div>
+                    {/* Title */}
                     <h3
                       style={{
                         fontFamily: '"Montserrat", sans-serif',
                         fontSize: 'clamp(20px, 2.2vw, 24px)',
                         fontWeight: 600,
                         color: '#032D46',
-                        margin: 0
+                        margin: 0,
+                        textAlign: 'center'
                       }}
                     >
                       {division.name}
@@ -213,7 +411,8 @@ export default function AboutZHHPageClient() {
                       fontSize: 'clamp(15px, 1.7vw, 17px)',
                       lineHeight: 1.7,
                       color: '#333333',
-                      margin: 0
+                      margin: 0,
+                      textAlign: 'center'
                     }}
                   >
                     {division.description}
