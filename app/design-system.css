@@ -1,0 +1,850 @@
+/* ============================================
+   ZHH GROUP HOLDING - UNIFIED DESIGN SYSTEM
+   ============================================ */
+
+/* ============================================
+   1. GLOBAL LAYOUT SYSTEM
+   ============================================ */
+
+/* Note: All CSS variables are defined in globals.css */
+/* This file uses those variables for component classes */
+
+/* Global Container */
+.container-unified {
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-mobile);
+  padding-right: var(--container-padding-mobile);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Large Desktop (1440px+) - Prevent excessive stretching */
+@media (min-width: 1440px) {
+  .container-unified {
+    max-width: 1320px;
+    padding-left: clamp(40px, 5vw, 80px);
+    padding-right: clamp(40px, 5vw, 80px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Desktop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .container-unified {
+    padding-left: var(--container-padding-desktop);
+    padding-right: var(--container-padding-desktop);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container-unified {
+    padding-left: var(--container-padding-tablet);
+    padding-right: var(--container-padding-tablet);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .container-unified {
+    padding-left: var(--container-padding-mobile);
+    padding-right: var(--container-padding-mobile);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Section Wrapper */
+.section-unified {
+  padding-top: var(--section-spacing-mobile);
+  padding-bottom: var(--section-spacing-mobile);
+}
+
+@media (min-width: 768px) {
+  .section-unified {
+    padding-top: var(--section-spacing-top);
+    padding-bottom: var(--section-spacing-bottom);
+  }
+}
+
+/* ============================================
+   2. TYPOGRAPHY SYSTEM
+   ============================================ */
+
+/* All typography variables are defined in globals.css */
+
+/* Unified Headings */
+.h1-unified {
+  font-family: var(--font-heading);
+  font-size: var(--h1-size);
+  line-height: var(--h1-line-height);
+  font-weight: var(--h1-weight);
+  margin-bottom: var(--h1-margin-bottom);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.h2-unified {
+  font-family: var(--font-heading);
+  font-size: var(--h2-size);
+  line-height: var(--h2-line-height);
+  font-weight: var(--h2-weight);
+  margin-bottom: var(--h2-margin-bottom);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.h3-unified {
+  font-family: var(--font-primary);
+  font-size: var(--h3-size);
+  line-height: var(--h3-line-height);
+  font-weight: var(--h3-weight);
+  margin-bottom: var(--h3-margin-bottom);
+}
+
+.h4-unified {
+  font-family: var(--font-primary);
+  font-size: var(--h4-size);
+  line-height: var(--h4-line-height);
+  font-weight: var(--h4-weight);
+  margin-bottom: var(--h4-margin-bottom);
+}
+
+/* Unified Body Text */
+.body-large-unified {
+  font-size: var(--body-large-size);
+  line-height: var(--body-large-line-height);
+  font-weight: 400;
+}
+
+.body-regular-unified {
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-line-height);
+  font-weight: 400;
+}
+
+.body-small-unified {
+  font-size: var(--body-small-size);
+  line-height: var(--body-small-line-height);
+  font-weight: 400;
+}
+
+/* Section Title Wrapper */
+.section-title-wrapper {
+  text-align: center;
+  margin-bottom: var(--title-content-gap-mobile);
+}
+
+@media (min-width: 768px) {
+  .section-title-wrapper {
+    margin-bottom: var(--title-content-gap);
+  }
+}
+
+.section-title-wrapper h2 {
+  margin-bottom: var(--content-spacing-md);
+}
+
+.section-title-wrapper p {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   3. COLOR SYSTEM
+   ============================================ */
+
+/* All color variables are defined in globals.css */
+
+/* Text Color Classes */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-tertiary { color: var(--color-text-tertiary); }
+.text-teal { color: var(--color-primary-teal); }
+.text-gold { color: var(--color-gold); }
+
+/* Background Color Classes */
+.bg-unified-white { background-color: var(--color-bg-white); }
+.bg-unified-light { background-color: var(--color-bg-light); }
+.bg-unified-off-white { background-color: var(--color-bg-off-white); }
+.bg-unified-dark { background-color: var(--color-bg-dark); }
+
+/* ============================================
+   4. CARD SYSTEM
+   ============================================ */
+
+/* All card variables are defined in globals.css */
+
+.card-unified {
+  background: var(--color-bg-white);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding-mobile);
+  box-shadow: var(--card-shadow);
+  border: var(--card-border);
+  transition: var(--card-transition);
+}
+
+@media (min-width: 768px) {
+  .card-unified {
+    padding: var(--card-padding);
+  }
+}
+
+.card-unified:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-4px);
+}
+
+/* Stats Card Hover Effects */
+.group:hover .stats-card-border-top {
+  opacity: 1 !important;
+}
+
+.group:hover .stats-card-glow {
+  opacity: 1 !important;
+  transform: scaleX(1) !important;
+}
+
+/* Card with Image - Reduced by 20% */
+.card-image-wrapper {
+  width: 100%;
+  height: 192px; /* Reduced from 240px by 20% */
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  margin-bottom: var(--content-spacing-md);
+  background: var(--color-bg-light);
+}
+
+.card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   5. IMAGE + TEXT LAYOUT SYSTEM
+   ============================================ */
+
+.image-text-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--content-spacing-lg);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .image-text-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--content-spacing-xl);
+  }
+}
+
+.image-text-layout.reverse {
+  direction: rtl;
+}
+
+.image-text-layout.reverse > * {
+  direction: ltr;
+}
+
+.image-text-layout .image-wrapper {
+  width: 100%;
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.image-text-layout .image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.image-text-layout .content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-spacing-md);
+}
+
+/* ============================================
+   6. BUTTON SYSTEM
+   ============================================ */
+
+/* All button variables are defined in globals.css */
+
+.btn-primary-unified {
+  display: inline-block;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  background-color: var(--color-gold);
+  color: var(--color-text-white);
+  border-radius: var(--button-border-radius);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  text-decoration: none;
+  transition: var(--button-transition);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary-unified:hover {
+  background-color: var(--color-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.btn-secondary-unified {
+  display: inline-block;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  background-color: transparent;
+  color: var(--color-primary-teal);
+  border: 2px solid var(--color-primary-teal);
+  border-radius: var(--button-border-radius);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  text-decoration: none;
+  transition: var(--button-transition);
+  cursor: pointer;
+}
+
+.btn-secondary-unified:hover {
+  background-color: var(--color-primary-teal);
+  color: var(--color-text-white);
+  transform: translateY(-2px);
+}
+
+.btn-primary-unified:active,
+.btn-secondary-unified:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   7. FEATURE LIST SYSTEM
+   ============================================ */
+
+.feature-list-unified {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-spacing-sm);
+}
+
+.feature-list-unified li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--content-spacing-sm);
+}
+
+.feature-list-unified li::before {
+  content: '✓';
+  color: var(--color-primary-teal);
+  font-weight: 600;
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ============================================
+   8. RESPONSIVE UTILITIES
+   ============================================ */
+
+/* Large Desktop (1440px+) - Prevent excessive stretching */
+@media (min-width: 1440px) {
+  .container-unified,
+  .container-custom {
+    max-width: 1320px;
+  }
+  
+  /* Limit grid items width */
+  .grid > * {
+    max-width: 100%;
+  }
+  
+  /* Ensure images don't stretch */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Desktop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .container-unified,
+  .container-custom {
+    max-width: 1320px;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container-unified,
+  .container-custom {
+    max-width: 100%;
+    padding-left: clamp(24px, 3vw, 40px);
+    padding-right: clamp(24px, 3vw, 40px);
+  }
+}
+
+/* Mobile (≤ 767px) */
+@media (max-width: 767px) {
+  .section-unified {
+    padding-top: var(--section-spacing-mobile);
+    padding-bottom: var(--section-spacing-mobile);
+  }
+  
+  .card-unified {
+    padding: var(--card-padding-mobile);
+  }
+  
+  .section-title-wrapper {
+    margin-bottom: var(--title-content-gap-mobile);
+  }
+  
+  .container-unified,
+  .container-custom {
+    padding-left: var(--container-padding-mobile);
+    padding-right: var(--container-padding-mobile);
+  }
+}
+
+/* ============================================
+   9. ANIMATION SYSTEM
+   ============================================ */
+
+/* All animation variables are defined in globals.css */
+
+.fade-in-up {
+  animation: fadeInUp var(--animation-duration-slow) var(--animation-ease);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   10. UTILITY CLASSES
+   ============================================ */
+
+.text-center-unified {
+  text-align: center;
+}
+
+.mb-section {
+  margin-bottom: var(--title-content-gap);
+}
+
+.mb-content {
+  margin-bottom: var(--content-spacing-md);
+}
+
+.gap-unified {
+  gap: var(--content-spacing-md);
+}
+
+/* Spacing Utilities */
+.mb-xs { margin-bottom: var(--content-spacing-xs); }
+.mb-sm { margin-bottom: var(--content-spacing-sm); }
+.mb-md { margin-bottom: var(--content-spacing-md); }
+.mb-lg { margin-bottom: var(--content-spacing-lg); }
+.mb-xl { margin-bottom: var(--content-spacing-xl); }
+
+.mt-xs { margin-top: var(--content-spacing-xs); }
+.mt-sm { margin-top: var(--content-spacing-sm); }
+.mt-md { margin-top: var(--content-spacing-md); }
+.mt-lg { margin-top: var(--content-spacing-lg); }
+.mt-xl { margin-top: var(--content-spacing-xl); }
+
+.p-xs { padding: var(--content-spacing-xs); }
+.p-sm { padding: var(--content-spacing-sm); }
+.p-md { padding: var(--content-spacing-md); }
+.p-lg { padding: var(--content-spacing-lg); }
+.p-xl { padding: var(--content-spacing-xl); }
+
+/* Flexbox Utilities */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Width Utilities */
+.w-full { width: 100%; }
+.max-w-full { max-width: 100%; }
+
+/* Text Utilities */
+.text-primary-color { color: var(--color-text-primary); }
+.text-secondary-color { color: var(--color-text-secondary); }
+.text-tertiary-color { color: var(--color-text-tertiary); }
+.text-white-color { color: var(--color-text-white); }
+
+/* Background Utilities */
+.bg-primary-dark { background-color: var(--color-primary-dark); }
+.bg-primary-teal { background-color: var(--color-primary-teal); }
+.bg-off-white { background-color: var(--color-off-white); }
+.bg-light { background-color: var(--color-bg-light); }
+
+/* Scroll Margin for Anchor Links */
+.scroll-margin-top {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 767px) {
+  .scroll-margin-top {
+    scroll-margin-top: 80px;
+  }
+}
+
+/* Gradient Text Utilities */
+.text-gradient-primary {
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-secondary {
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-primary-dark) 50%, var(--color-primary-gray) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section Header Decorator */
+.section-header-decorator {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: var(--content-spacing-md);
+}
+
+.section-header-decorator::before,
+.section-header-decorator::after {
+  content: '';
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-primary-dark), transparent);
+}
+
+/* Timeline Styles */
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-connector {
+  position: absolute;
+  left: 32px;
+  top: 64px;
+  width: 2px;
+  height: 40px;
+  border-left: 2px dashed var(--color-border-medium);
+  z-index: 0;
+}
+
+@media (min-width: 768px) {
+  .timeline-connector {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Card Hover Effects */
+.card-hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Responsive Image Container */
+.image-container-responsive {
+  width: 100%;
+  height: auto;
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+}
+
+.image-container-responsive img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Button Groups */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--content-spacing-sm);
+  justify-content: center;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--content-spacing-md);
+}
+
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--content-spacing-lg);
+  }
+}
+
+/* Person Card Styles */
+.person-card {
+  background: white;
+  border-radius: var(--card-border-radius);
+  border: 1px solid var(--color-border-light);
+  overflow: hidden;
+  transition: var(--card-transition);
+}
+
+.person-card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-4px);
+}
+
+.person-card-image {
+  width: 100%;
+  height: 192px; /* Reduced from 240px by 20% */
+  background: var(--color-bg-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.person-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.person-card-content {
+  padding: var(--content-spacing-md);
+}
+
+/* Video Background Overlay */
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(3, 45, 70, 0.8), rgba(1, 178, 178, 0.7));
+  z-index: 1;
+}
+
+/* Hero Section Styles */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  width: 100%;
+}
+
+/* Logo Container - Reduced by 20% */
+.logo-container {
+  width: 102px;
+  height: 102px;
+  margin: 0 auto;
+  border-radius: var(--border-radius-lg);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--content-spacing-md);
+}
+
+.logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Responsive Utilities */
+@media (max-width: 767px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* Loading States */
+.loading-skeleton {
+  background: linear-gradient(90deg, var(--color-bg-light) 25%, var(--color-bg-off-white) 50%, var(--color-bg-light) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================
+   11. ADDITIONAL TYPOGRAPHY CLASSES
+   ============================================ */
+
+/* Hero Title */
+.text-hero-title {
+  font-family: var(--font-heading);
+  font-size: var(--hero-title-size);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+/* Hero Subtitle */
+.text-hero-subtitle {
+  font-family: var(--font-primary);
+  font-size: var(--hero-subtitle-size);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Section Title (for non-centered titles) */
+.text-section-title {
+  font-family: var(--font-heading);
+  font-size: var(--section-title-size);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* Card Title */
+.text-card-title {
+  font-family: var(--font-primary);
+  font-size: var(--card-title-size);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+/* Stats Number */
+.text-stats-number {
+  font-family: var(--font-primary);
+  font-size: var(--stats-number-size);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* Stats Label */
+.text-stats-label {
+  font-family: var(--font-primary);
+  font-size: var(--stats-label-size);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* ============================================
+   12. ADDITIONAL SPACING UTILITIES
+   ============================================ */
+
+/* Padding Utilities */
+.p-hero-top { padding-top: var(--spacing-hero-top); }
+.p-hero-left { padding-left: var(--spacing-hero-left); }
+.p-section { padding: var(--section-spacing-top) 0; }
+.p-content { padding: var(--content-spacing-md); }
+
+/* Margin Utilities */
+.m-hero-top { margin-top: var(--spacing-hero-top); }
+.m-hero-left { margin-left: var(--spacing-hero-left); }
+.mb-hero { margin-bottom: var(--h1-margin-bottom); }
+
+/* Gap Utilities */
+.gap-hero { gap: var(--spacing-logo-gap); }
+.gap-nav { gap: var(--spacing-nav-gap); }
+.gap-content-sm { gap: var(--content-spacing-sm); }
+.gap-content-md { gap: var(--content-spacing-md); }
+.gap-content-lg { gap: var(--content-spacing-lg); }
+.gap-content-xl { gap: var(--content-spacing-xl); }
+
+/* ============================================
+   13. ADDITIONAL COLOR UTILITIES
+   ============================================ */
+
+.text-white { color: var(--color-text-white); }
+.text-dark { color: var(--color-primary-dark); }
+.bg-teal { background-color: var(--color-primary-teal); }
+.bg-gold { background-color: var(--color-gold); }
+.border-teal { border-color: var(--color-primary-teal); }
+.border-gold { border-color: var(--color-gold); }
+
+/* ============================================
+   14. RESPONSIVE TEXT CLASSES
+   ============================================ */
+
+/* Responsive text that adapts to screen size */
+.text-responsive {
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-line-height);
+}
+
+@media (min-width: 768px) {
+  .text-responsive {
+    font-size: var(--body-large-size);
+    line-height: var(--body-large-line-height);
+  }
+}
+
