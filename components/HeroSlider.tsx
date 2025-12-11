@@ -34,17 +34,15 @@ export default function HeroSlider() {
     }
   }, [currentSlide]);
 
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
+  // Auto-advance slides every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000); // Change slide every 5 seconds
 
-  const goToNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
+    return () => clearInterval(interval);
+  }, []);
 
-  const goToPrev = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
 
   return (
     <div className="relative w-full h-full">
@@ -104,99 +102,6 @@ export default function HeroSlider() {
         </AnimatePresence>
       </div>
 
-      {/* Navigation Arrows - Pulse Animation */}
-      <motion.button
-        onClick={goToPrev}
-        className="absolute top-1/2 -translate-y-1/2 z-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
-        style={{
-          left: 'clamp(16px, 2vw, 24px)',
-          width: 'clamp(40px, 5vw, 56px)',
-          height: 'clamp(40px, 5vw, 56px)'
-        }}
-        aria-label="Previous slide"
-        animate={{
-          scale: [1, 1.05, 1],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      >
-        <svg
-          className="text-white"
-          style={{
-            width: 'clamp(20px, 2.5vw, 28px)',
-            height: 'clamp(20px, 2.5vw, 28px)'
-          }}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-      </motion.button>
-
-      <motion.button
-        onClick={goToNext}
-        className="absolute top-1/2 -translate-y-1/2 z-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
-        style={{
-          right: 'clamp(16px, 2vw, 24px)',
-          width: 'clamp(40px, 5vw, 56px)',
-          height: 'clamp(40px, 5vw, 56px)'
-        }}
-        aria-label="Next slide"
-        animate={{
-          scale: [1, 1.05, 1],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      >
-        <svg
-          className="text-white"
-          style={{
-            width: 'clamp(20px, 2.5vw, 28px)',
-            height: 'clamp(20px, 2.5vw, 28px)'
-          }}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </motion.button>
-
-      {/* Slide Indicators */}
-      <div 
-        className="absolute left-1/2 -translate-x-1/2 z-20 flex gap-2"
-        style={{ bottom: 'clamp(16px, 2vw, 24px)' }}
-      >
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              index === currentSlide
-                ? 'w-8 bg-white'
-                : 'w-2 bg-white/50 hover:bg-white/75'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
     </div>
   );
 }

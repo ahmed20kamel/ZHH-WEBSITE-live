@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Link from 'next/link';
 import HeroSlider from './HeroSlider';
-import { TrendingUp, Globe, Award, ChevronRight, Play, Sparkles } from 'lucide-react';
+import { TrendingUp, Globe, Award, Sparkles } from 'lucide-react';
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -177,45 +177,6 @@ export default function Hero() {
                 across construction, real estate, global trading, and precious metals.
               </motion.p>
 
-              {/* CTA Buttons */}
-              <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                animate={isInView ? { y: 0, opacity: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4"
-              >
-                <Link href="/divisions" className="w-full sm:w-auto">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl text-white flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transition-all duration-300"
-                    style={{
-                      fontFamily: 'var(--font-primary)',
-                      fontSize: 'clamp(14px, 1.5vw, 16px)',
-                      fontWeight: 600
-                    }}
-                  >
-                    Explore Our Divisions
-                    <ChevronRight className="w-5 h-5" />
-                  </motion.button>
-                </Link>
-                
-                <Link href="/about" className="w-full sm:w-auto">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white flex items-center justify-center gap-3 hover:bg-white/20 transition-all duration-300"
-                    style={{
-                      fontFamily: 'var(--font-primary)',
-                      fontSize: 'clamp(14px, 1.5vw, 16px)',
-                      fontWeight: 600
-                    }}
-                  >
-                    <Play className="w-5 h-5" />
-                    Watch Our Story
-                  </motion.button>
-                </Link>
-              </motion.div>
             </div>
 
             {/* Right Column - Stats Cards */}
@@ -264,15 +225,6 @@ export default function Hero() {
                               {stat.label}
                             </div>
                           </div>
-
-                          {/* Animated Arrow */}
-                          <motion.div
-                            animate={{ x: [0, 4, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                          >
-                            <ChevronRight className="w-5 h-5 text-white/50" />
-                          </motion.div>
                         </div>
 
                         {/* Animated Progress Bar */}
