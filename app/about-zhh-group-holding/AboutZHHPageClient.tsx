@@ -354,8 +354,11 @@ export default function AboutZHHPageClient() {
                   key={division.name}
                   variants={fadeInUp}
                   className="card-unified card-hover-lift"
+                  style={{
+                    padding: 'clamp(24px, 3vw, 32px)'
+                  }}
                 >
-                  <div className="flex flex-col items-center mb-6">
+                  <div className="flex flex-col items-center" style={{ marginBottom: 'clamp(20px, 2.5vw, 28px)' }}>
                     {/* Image Background */}
                     <div 
                   style={{
@@ -463,7 +466,9 @@ export default function AboutZHHPageClient() {
                         fontWeight: 600,
                         color: '#032D46',
                         margin: 0,
-                        textAlign: 'center'
+                        marginBottom: 'clamp(12px, 1.5vw, 16px)',
+                        textAlign: 'center',
+                        lineHeight: '1.3'
                       }}
                     >
                       {division.name}
@@ -476,7 +481,8 @@ export default function AboutZHHPageClient() {
                       lineHeight: 1.7,
                       color: '#333333',
                       margin: 0,
-                      textAlign: 'center'
+                      textAlign: 'center',
+                      marginTop: 'clamp(8px, 1vw, 12px)'
                     }}
                   >
                     {division.description}

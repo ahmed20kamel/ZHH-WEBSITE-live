@@ -702,6 +702,41 @@
   background: linear-gradient(135deg, #1a2332 0%, #0f1419 50%, #1a2332 100%);
 }
 
+/* Responsive Hero Section - Unified */
+.hero-section-unified {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: clamp(400px, 50vh, 70vh);
+}
+
+@media (max-width: 767px) {
+  .hero-section-unified {
+    min-height: clamp(350px, 45vh, 50vh);
+  }
+}
+
+.hero-content-unified {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: clamp(60px, 6vh, 80px);
+  padding-bottom: clamp(40px, 4vh, 60px);
+}
+
+@media (max-width: 767px) {
+  .hero-content-unified {
+    padding-top: clamp(40px, 5vh, 60px);
+    padding-bottom: clamp(30px, 3vh, 40px);
+  }
+}
+
 .hero-content {
   position: relative;
   z-index: 20;

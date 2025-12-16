@@ -2,8 +2,8 @@
 
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { ChevronDown } from 'lucide-react';
 import { subsidiaries, premiumColors } from './types';
+import ShowMoreButton from '@/components/ui/ShowMoreButton';
 
 export default function SubsidiariesSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -270,37 +270,12 @@ export default function SubsidiariesSection() {
                   </AnimatePresence>
 
                   {/* Enhanced Show More/Less Button */}
-                  <div className="mt-8 flex justify-center">
-                    <motion.button
+                  <div className="mt-8">
+                    <ShowMoreButton
+                      isExpanded={isExpanded}
                       onClick={() => toggleCard(subsidiary.id)}
-                      className="flex items-center gap-2.5 px-6 py-3 rounded-xl font-semibold transition-all"
-                      style={{
-                        backgroundColor: isExpanded ? premiumColors.darkBlue : premiumColors.lightGray,
-                        border: `1.5px solid ${isExpanded ? premiumColors.darkBlue : premiumColors.borderGray}`,
-                        color: isExpanded ? 'white' : premiumColors.darkBlue,
-                        boxShadow: isExpanded 
-                          ? '0 4px 12px rgba(10, 61, 98, 0.2)'
-                          : '0 2px 6px rgba(0, 0, 0, 0.06)'
-                      }}
-                      whileHover={{ 
-                        scale: 1.05,
-                        backgroundColor: premiumColors.darkBlue,
-                        color: 'white',
-                        borderColor: premiumColors.darkBlue,
-                        boxShadow: '0 6px 16px rgba(10, 61, 98, 0.25)'
-                      }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <span className="text-sm md:text-base">
-                        {expandedCards.has(subsidiary.id) ? 'Show less' : 'Show more'}
-                      </span>
-                      <motion.div
-                        animate={{ rotate: expandedCards.has(subsidiary.id) ? 180 : 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                      >
-                        <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
-                      </motion.div>
-                    </motion.button>
+                      size="md"
+                    />
                   </div>
                 </div>
               </motion.div>

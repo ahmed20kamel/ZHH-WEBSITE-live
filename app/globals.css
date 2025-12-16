@@ -266,6 +266,9 @@ body {
   font-size: 13px; /* Reduced from 16px by 19% */
   line-height: 1.45; /* Reduced from 1.6 */
   overflow-x: hidden; /* Prevent horizontal scroll */
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
 }
 
 /* Prevent images and media from exceeding container width */

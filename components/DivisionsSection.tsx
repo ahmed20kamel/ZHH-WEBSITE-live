@@ -212,7 +212,7 @@ export default function DivisionsSection() {
                   <motion.div
                     className="card-unified h-full flex flex-col relative overflow-hidden cursor-pointer"
                     style={{
-                      padding: 'clamp(20px, 4vw, var(--content-spacing-xl))',
+                      padding: 'clamp(24px, 3.5vw, 32px)',
                       position: 'relative'
                     }}
                     whileHover={{ y: -4 }}
@@ -261,12 +261,26 @@ export default function DivisionsSection() {
                     </motion.div>
 
                     {/* Title */}
-                    <h3 className="h3-unified text-teal" style={{ marginBottom: 'var(--content-spacing-xs)' }}>
+                    <h3 
+                      className="h3-unified text-teal" 
+                      style={{ 
+                        marginBottom: 'clamp(12px, 1.5vw, 16px)',
+                        lineHeight: '1.3',
+                        fontSize: 'clamp(18px, 2vw, 22px)'
+                      }}
+                    >
                       {division.subtitle}
                     </h3>
 
                     {/* Description */}
-                    <p className="body-large-unified text-secondary flex-grow" style={{ marginBottom: 'var(--content-spacing-lg)' }}>
+                    <p 
+                      className="body-large-unified text-secondary flex-grow" 
+                      style={{ 
+                        marginBottom: 'clamp(20px, 2.5vw, 28px)',
+                        lineHeight: '1.7',
+                        fontSize: 'clamp(14px, 1.5vw, 16px)'
+                      }}
+                    >
                       {division.description}
                     </p>
 

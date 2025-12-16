@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { teamMembers } from '@/data/team';
 import OrgChart from '@/components/OrgChart';
+import ShowMoreButton from '@/components/ui/ShowMoreButton';
 import { 
   Building2, Users, Globe, Gem, 
   TrendingUp, Award, Target, Shield,
@@ -13,7 +14,7 @@ import {
   Linkedin, Twitter, ExternalLink,
   Briefcase, Eye, Zap, Crown,
   Coffee, Cpu, Package, Home,
-  Flag, ChevronDown
+  Flag
 } from 'lucide-react';
 
 // Premium Color Palette
@@ -409,7 +410,7 @@ export default function AboutPageClient() {
                       transition={{ duration: 0.4 }}
                     >
                       {/* Member Image */}
-                      <div className="h-48 bg-gray-50 relative overflow-hidden flex items-center justify-center" style={{ padding: '20px' }}>
+                      <div className="h-48 bg-gray-50 relative overflow-hidden flex items-center justify-center" style={{ padding: 'clamp(20px, 2.5vw, 28px)' }}>
                         <motion.div 
                           className="relative z-10 flex items-center justify-center h-full"
                           initial={{ opacity: 0, scale: 0.8 }}
@@ -449,11 +450,16 @@ export default function AboutPageClient() {
                       </div>
 
                       {/* Member Info */}
-                      <div style={{ padding: '20px' }}>
+                      <div style={{ padding: 'clamp(24px, 3vw, 32px)' }}>
                         <div className="text-center">
                           <motion.h3 
-                            className="text-2xl font-bold mb-1.5"
-                            style={{ color: premiumColors.textDark }}
+                            className="text-2xl font-bold"
+                            style={{ 
+                              color: premiumColors.textDark,
+                              marginBottom: 'clamp(12px, 1.5vw, 16px)',
+                              lineHeight: '1.3',
+                              fontSize: 'clamp(20px, 2.2vw, 24px)'
+                            }}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 0.2 }}
@@ -461,10 +467,11 @@ export default function AboutPageClient() {
                             {member.name}
                           </motion.h3>
                           <motion.div 
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-2.5"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
                             style={{ 
                               backgroundColor: premiumColors.lightGray,
-                              border: `1px solid ${premiumColors.slateGray}20`
+                              border: `1px solid ${premiumColors.slateGray}20`,
+                              marginBottom: 'clamp(16px, 2vw, 20px)'
                             }}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -472,8 +479,11 @@ export default function AboutPageClient() {
                           >
                             <Crown className="w-4 h-4" style={{ color: premiumColors.darkBlue }} />
                             <span 
-                              className="font-semibold text-sm"
-                              style={{ color: premiumColors.darkBlue }}
+                              className="font-semibold"
+                              style={{ 
+                                color: premiumColors.darkBlue,
+                                fontSize: 'clamp(13px, 1.4vw, 15px)'
+                              }}
                             >
                               {member.position}
                             </span>
@@ -484,14 +494,15 @@ export default function AboutPageClient() {
                             initial={false}
                             animate={{ height: 'auto' }}
                             transition={{ duration: 0.3 }}
+                            style={{ marginBottom: expandedBios.has(member.id) ? 'clamp(16px, 2vw, 20px)' : '0' }}
                           >
                             <p 
                               className="leading-relaxed"
                               style={{ 
                                 color: premiumColors.textGray,
-                                lineHeight: '1.6',
-                                fontSize: '15px',
-                                marginBottom: expandedBios.has(member.id) ? '10px' : '0'
+                                lineHeight: '1.7',
+                                fontSize: 'clamp(14px, 1.5vw, 16px)',
+                                marginBottom: '0'
                               }}
                             >
                               {expandedBios.has(member.id) ? member.bio : getShortBio(member.bio)}
@@ -500,27 +511,13 @@ export default function AboutPageClient() {
 
                           {/* Show More/Less Button */}
                           {member.bio.length > 120 && (
-                            <motion.button
-                              onClick={() => toggleBio(member.id)}
-                              className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all mx-auto mt-1.5"
-                              style={{
-                                backgroundColor: premiumColors.lightGray,
-                                border: `1px solid ${premiumColors.borderGray}`,
-                                color: premiumColors.darkBlue,
-                              }}
-                              whileHover={{ backgroundColor: premiumColors.borderGray, scale: 1.02 }}
-                              whileTap={{ scale: 0.95 }}
-                            >
-                              <span className="text-sm">
-                                {expandedBios.has(member.id) ? 'Show less' : 'Show more'}
-                              </span>
-                              <motion.div
-                                animate={{ rotate: expandedBios.has(member.id) ? 180 : 0 }}
-                                transition={{ duration: 0.3 }}
-                              >
-                                <ChevronDown className="w-4 h-4" />
-                              </motion.div>
-                            </motion.button>
+                            <div className="mt-6 mb-2">
+                              <ShowMoreButton
+                                isExpanded={expandedBios.has(member.id)}
+                                onClick={() => toggleBio(member.id)}
+                                size="md"
+                              />
+                            </div>
                           )}
                         </div>
                       </div>
@@ -553,7 +550,7 @@ export default function AboutPageClient() {
                     transition={{ duration: 0.3 }}
                   >
                     {/* Member Image */}
-                    <div className="h-44 bg-gray-50 relative overflow-hidden flex items-center justify-center" style={{ padding: '18px' }}>
+                    <div className="h-44 bg-gray-50 relative overflow-hidden flex items-center justify-center" style={{ padding: 'clamp(20px, 2.5vw, 28px)' }}>
                       <motion.div 
                         className="relative z-10 flex items-center justify-center h-full"
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -593,11 +590,16 @@ export default function AboutPageClient() {
                     </div>
 
                     {/* Member Info */}
-                    <div style={{ padding: '18px' }}>
+                    <div style={{ padding: 'clamp(24px, 3vw, 32px)' }}>
                       <div className="text-center">
                         <motion.h3 
-                          className="text-xl font-bold mb-1.5"
-                          style={{ color: premiumColors.textDark }}
+                          className="font-bold"
+                          style={{ 
+                            color: premiumColors.textDark,
+                            marginBottom: 'clamp(12px, 1.5vw, 16px)',
+                            lineHeight: '1.3',
+                            fontSize: 'clamp(18px, 2vw, 22px)'
+                          }}
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3, delay: 0.15 + index * 0.05 }}
@@ -607,10 +609,11 @@ export default function AboutPageClient() {
                         {item.member && (
                           <>
                             <motion.div 
-                              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-2.5"
+                              className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
                               style={{ 
                                 backgroundColor: premiumColors.lightGray,
-                                border: `1px solid ${premiumColors.slateGray}20`
+                                border: `1px solid ${premiumColors.slateGray}20`,
+                                marginBottom: 'clamp(16px, 2vw, 20px)'
                               }}
                               initial={{ opacity: 0, y: 8 }}
                               animate={{ opacity: 1, y: 0 }}
@@ -618,8 +621,11 @@ export default function AboutPageClient() {
                             >
                               <Crown className="w-3.5 h-3.5" style={{ color: premiumColors.darkBlue }} />
                               <span 
-                                className="font-semibold text-xs"
-                                style={{ color: premiumColors.darkBlue }}
+                                className="font-semibold"
+                                style={{ 
+                                  color: premiumColors.darkBlue,
+                                  fontSize: 'clamp(12px, 1.3vw, 14px)'
+                                }}
                               >
                                 {item.member.position}
                               </span>
@@ -630,13 +636,15 @@ export default function AboutPageClient() {
                               initial={false}
                               animate={{ height: 'auto' }}
                               transition={{ duration: 0.3 }}
+                              style={{ marginBottom: expandedBios.has(item.member.id) ? 'clamp(16px, 2vw, 20px)' : '0' }}
                             >
                               <p 
-                                className="leading-relaxed text-sm"
+                                className="leading-relaxed"
                                 style={{ 
                                   color: premiumColors.textGray,
-                                  lineHeight: '1.6',
-                                  marginBottom: expandedBios.has(item.member.id) ? '8px' : '0'
+                                  lineHeight: '1.7',
+                                  fontSize: 'clamp(14px, 1.5vw, 16px)',
+                                  marginBottom: '0'
                                 }}
                               >
                                 {expandedBios.has(item.member.id) ? item.member.bio : getShortBio(item.member.bio)}
@@ -645,28 +653,13 @@ export default function AboutPageClient() {
 
                             {/* Show More/Less Button */}
                             {item.member.bio.length > 120 && (
-                              <motion.button
-                                onClick={() => toggleBio(item.member!.id)}
-                                className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-medium transition-all mx-auto mt-1.5"
-                                style={{
-                                  backgroundColor: premiumColors.lightGray,
-                                  border: `1px solid ${premiumColors.borderGray}`,
-                                  color: premiumColors.darkBlue,
-                                  fontSize: '12px'
-                                }}
-                                whileHover={{ backgroundColor: premiumColors.borderGray, scale: 1.02 }}
-                                whileTap={{ scale: 0.95 }}
-                              >
-                                <span className="text-xs">
-                                  {expandedBios.has(item.member.id) ? 'Show less' : 'Show more'}
-                                </span>
-                                <motion.div
-                                  animate={{ rotate: expandedBios.has(item.member.id) ? 180 : 0 }}
-                                  transition={{ duration: 0.3 }}
-                                >
-                                  <ChevronDown className="w-3.5 h-3.5" />
-                                </motion.div>
-                              </motion.button>
+                              <div className="mt-6 mb-2">
+                                <ShowMoreButton
+                                  isExpanded={expandedBios.has(item.member.id)}
+                                  onClick={() => toggleBio(item.member!.id)}
+                                  size="md"
+                                />
+                              </div>
                             )}
                           </>
                         )}
@@ -727,27 +720,36 @@ export default function AboutPageClient() {
                     </div>
 
                     {/* Member Info */}
-                    <div style={{ padding: '20px' }}>
+                    <div style={{ padding: 'clamp(24px, 3vw, 32px)' }}>
                       <div className="text-center">
                         <h3 
-                          className="text-xl font-bold mb-2"
-                          style={{ color: premiumColors.textDark }}
+                          className="font-bold"
+                          style={{ 
+                            color: premiumColors.textDark,
+                            marginBottom: 'clamp(12px, 1.5vw, 16px)',
+                            lineHeight: '1.3',
+                            fontSize: 'clamp(18px, 2vw, 22px)'
+                          }}
                         >
                           {item.member?.name || item.name}
                         </h3>
                         {item.member && (
                           <>
                             <div 
-                              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-3"
+                              className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
                               style={{ 
                                 backgroundColor: premiumColors.lightGray,
-                                border: `1px solid ${premiumColors.slateGray}20`
+                                border: `1px solid ${premiumColors.slateGray}20`,
+                                marginBottom: 'clamp(16px, 2vw, 20px)'
                               }}
                             >
                               <Crown className="w-3.5 h-3.5" style={{ color: premiumColors.darkBlue }} />
                               <span 
-                                className="font-semibold text-xs"
-                                style={{ color: premiumColors.darkBlue }}
+                                className="font-semibold"
+                                style={{ 
+                                  color: premiumColors.darkBlue,
+                                  fontSize: 'clamp(12px, 1.3vw, 14px)'
+                                }}
                               >
                                 {item.member.position}
                               </span>
@@ -758,13 +760,15 @@ export default function AboutPageClient() {
                               initial={false}
                               animate={{ height: 'auto' }}
                               transition={{ duration: 0.3 }}
+                              style={{ marginBottom: expandedBios.has(item.member.id) ? 'clamp(16px, 2vw, 20px)' : '0' }}
                             >
                               <p 
-                                className="leading-relaxed text-sm"
+                                className="leading-relaxed"
                                 style={{ 
                                   color: premiumColors.textGray,
-                                  lineHeight: '1.6',
-                                  marginBottom: expandedBios.has(item.member.id) ? '8px' : '0'
+                                  lineHeight: '1.7',
+                                  fontSize: 'clamp(14px, 1.5vw, 16px)',
+                                  marginBottom: '0'
                                 }}
                               >
                                 {expandedBios.has(item.member.id) ? item.member.bio : getShortBio(item.member.bio)}
@@ -773,28 +777,13 @@ export default function AboutPageClient() {
 
                             {/* Show More/Less Button */}
                             {item.member.bio.length > 120 && (
-                              <motion.button
-                                onClick={() => toggleBio(item.member!.id)}
-                                className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-medium transition-all mx-auto mt-2"
-                                style={{
-                                  backgroundColor: premiumColors.lightGray,
-                                  border: `1px solid ${premiumColors.borderGray}`,
-                                  color: premiumColors.darkBlue,
-                                  fontSize: '12px'
-                                }}
-                                whileHover={{ backgroundColor: premiumColors.borderGray }}
-                                whileTap={{ scale: 0.95 }}
-                              >
-                                <span className="text-xs">
-                                  {expandedBios.has(item.member.id) ? 'Show less' : 'Show more'}
-                                </span>
-                                <motion.div
-                                  animate={{ rotate: expandedBios.has(item.member.id) ? 180 : 0 }}
-                                  transition={{ duration: 0.3 }}
-                                >
-                                  <ChevronDown className="w-3.5 h-3.5" />
-                                </motion.div>
-                              </motion.button>
+                              <div className="mt-6 mb-2">
+                                <ShowMoreButton
+                                  isExpanded={expandedBios.has(item.member.id)}
+                                  onClick={() => toggleBio(item.member!.id)}
+                                  size="md"
+                                />
+                              </div>
                             )}
                           </>
                         )}

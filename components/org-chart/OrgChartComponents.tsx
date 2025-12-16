@@ -5,9 +5,10 @@ import { useState } from 'react';
 import { 
   ChevronRight, Building, MapPin, Users2,
   Mail, Phone, UserCheck, Award, Target, MessageSquare,
-  Briefcase, ChevronDown
+  Briefcase
 } from 'lucide-react';
 import { Person, OrgLevel, premiumColors } from './types';
+import ShowMoreButton from '@/components/ui/ShowMoreButton';
 
 // Clean Avatar Component - Soft & Minimal Design
 export const Avatar = ({ person, size = 'lg' }: { person: Person; size?: 'sm' | 'lg' | 'xl' }) => {
@@ -111,16 +112,16 @@ export const OrgNode = ({ person, level, onSelect, isExpanded }: {
         <div 
           className="flex flex-col items-center text-center"
           style={{ 
-            padding: '32px 28px',
+            padding: 'clamp(28px, 3.5vw, 36px)',
             justifyContent: 'flex-start',
             minHeight: '300px',
             height: '100%'
           }}
         >
           {/* Top Section - Avatar, Name, Title */}
-          <div className="flex flex-col items-center w-full" style={{ gap: '14px' }}>
+          <div className="flex flex-col items-center w-full" style={{ gap: 'clamp(12px, 1.5vw, 16px)' }}>
             {/* Avatar - Centered with Consistent Size */}
-            <div className="flex justify-center">
+            <div className="flex justify-center" style={{ marginBottom: 'clamp(8px, 1vw, 12px)' }}>
               <Avatar person={person} size="sm" />
             </div>
 
@@ -130,10 +131,10 @@ export const OrgNode = ({ person, level, onSelect, isExpanded }: {
                 className="font-bold"
                 style={{ 
                   color: premiumColors.textDark,
-                  fontSize: '16px',
-                  lineHeight: '1.3',
+                  fontSize: 'clamp(15px, 1.7vw, 18px)',
+                  lineHeight: '1.4',
                   letterSpacing: '-0.01em',
-                  marginBottom: '6px'
+                  marginBottom: 'clamp(8px, 1vw, 12px)'
                 }}
               >
                 {person.name}
@@ -142,9 +143,9 @@ export const OrgNode = ({ person, level, onSelect, isExpanded }: {
                 className="font-semibold"
                 style={{ 
                   color: premiumColors.darkBlue,
-                  fontSize: '14px',
-                  lineHeight: '1.4',
-                  marginBottom: '12px'
+                  fontSize: 'clamp(13px, 1.5vw, 15px)',
+                  lineHeight: '1.5',
+                  marginBottom: 'clamp(12px, 1.5vw, 16px)'
                 }}
               >
                 {person.title}
@@ -152,17 +153,25 @@ export const OrgNode = ({ person, level, onSelect, isExpanded }: {
             </div>
 
             {/* Department & Location - Centered */}
-            <div className="w-full flex flex-col" style={{ gap: '6px' }}>
+            <div className="w-full flex flex-col" style={{ gap: 'clamp(6px, 0.8vw, 8px)', marginBottom: 'clamp(12px, 1.5vw, 16px)' }}>
               <div 
                 className="flex items-center justify-center gap-2"
-                style={{ color: premiumColors.textLight, fontSize: '12px', lineHeight: '1.4' }}
+                style={{ 
+                  color: premiumColors.textLight, 
+                  fontSize: 'clamp(11px, 1.2vw, 13px)', 
+                  lineHeight: '1.5' 
+                }}
               >
                 <Building className="w-3 h-3 flex-shrink-0" />
                 <span className="truncate max-w-full">{person.department}</span>
               </div>
               <div 
                 className="flex items-center justify-center gap-2"
-                style={{ color: premiumColors.textLight, fontSize: '12px', lineHeight: '1.4' }}
+                style={{ 
+                  color: premiumColors.textLight, 
+                  fontSize: 'clamp(11px, 1.2vw, 13px)', 
+                  lineHeight: '1.5' 
+                }}
               >
                 <MapPin className="w-3 h-3 flex-shrink-0" />
                 <span>{person.location}</span>
@@ -171,7 +180,7 @@ export const OrgNode = ({ person, level, onSelect, isExpanded }: {
 
             {/* Bio - Short by default, expandable - Only show if bio exists */}
             {person.bio && person.bio.trim() !== '' && (
-              <div className="w-full mt-2">
+              <div className="w-full" style={{ marginTop: 'clamp(8px, 1vw, 12px)' }}>
                 <motion.div
                   initial={false}
                   animate={{ height: 'auto' }}
@@ -181,9 +190,9 @@ export const OrgNode = ({ person, level, onSelect, isExpanded }: {
                   <p 
                     style={{ 
                       color: premiumColors.textGray,
-                      fontSize: '12px',
-                      lineHeight: '1.5',
-                      marginBottom: person.bio.length > 80 ? (isCardExpanded ? '8px' : '0') : '0'
+                      fontSize: 'clamp(12px, 1.3vw, 14px)',
+                      lineHeight: '1.6',
+                      marginBottom: person.bio.length > 80 ? (isCardExpanded ? 'clamp(12px, 1.5vw, 16px)' : '0') : '0'
                     }}
                   >
                     {isCardExpanded ? person.bio : getShortBio(person.bio)}
@@ -192,25 +201,13 @@ export const OrgNode = ({ person, level, onSelect, isExpanded }: {
 
                 {/* Show More/Less Button */}
                 {person.bio.length > 80 && (
-                  <motion.button
-                    onClick={handleCardClick}
-                    className="flex items-center gap-1.5 mt-2 mx-auto"
-                    style={{
-                      color: premiumColors.darkBlue,
-                      fontSize: '11px',
-                      fontWeight: 500
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span>{isCardExpanded ? 'Show less' : 'Show more'}</span>
-                    <motion.div
-                      animate={{ rotate: isCardExpanded ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ChevronDown className="w-3 h-3" />
-                    </motion.div>
-                  </motion.button>
+                  <div className="mt-4 mb-1">
+                    <ShowMoreButton
+                      isExpanded={isCardExpanded}
+                      onClick={handleCardClick}
+                      size="sm"
+                    />
+                  </div>
                 )}
               </div>
             )}
@@ -391,402 +388,6 @@ export const LevelHeader = ({ level, isExpanded, onToggle }: {
   );
 };
 
-// Detailed Profile Modal - Improved & Professional
-export const ProfileModal = ({ person, onClose }: { person: Person; onClose: () => void }) => {
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(['bio']));
-
-  const toggleSection = (section: string) => {
-    setExpandedSections(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(section)) {
-        newSet.delete(section);
-      } else {
-        newSet.add(section);
-      }
-      return newSet;
-    });
-  };
-
-  const getShortText = (text: string, maxLength: number = 150) => {
-    if (text.length <= maxLength) return text;
-    const truncated = text.substring(0, maxLength).trim();
-    const lastSpace = truncated.lastIndexOf(' ');
-    const cutPoint = lastSpace > maxLength * 0.7 ? lastSpace : maxLength;
-    return truncated.substring(0, cutPoint) + '...';
-  };
-
-  return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
-        onClick={onClose}
-      >
-        {/* Backdrop */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        />
-        
-        {/* Premium Modal Design */}
-        <motion.div
-          initial={{ scale: 0.95, y: 30, opacity: 0 }}
-          animate={{ scale: 1, y: 0, opacity: 1 }}
-          exit={{ scale: 0.95, y: 30, opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
-          style={{ 
-            boxShadow: '0 32px 80px rgba(0, 0, 0, 0.25), 0 12px 32px rgba(0, 0, 0, 0.15)'
-          }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Clean & Minimal Header */}
-          <div 
-            className="relative px-6 md:px-8 pt-6 pb-5 flex items-center justify-between"
-            style={{ 
-              backgroundColor: 'white',
-              borderBottom: `1px solid ${premiumColors.borderGray}`
-            }}
-          >
-            <h2 
-              className="text-lg md:text-xl font-medium"
-              style={{ 
-                color: premiumColors.textGray,
-                lineHeight: '1.4',
-                letterSpacing: '-0.01em',
-                fontWeight: 500
-              }}
-            >
-              Profile Details
-            </h2>
-            <motion.button
-              onClick={onClose}
-              className="w-8 h-8 rounded-lg flex items-center justify-center transition-all"
-              style={{ 
-                backgroundColor: 'transparent',
-                color: premiumColors.textLight
-              }}
-              whileHover={{ 
-                backgroundColor: premiumColors.lightGray,
-                scale: 1.1
-              }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <span className="text-lg leading-none">×</span>
-            </motion.button>
-          </div>
-          
-          {/* Scrollable Content */}
-          <div className="overflow-y-auto flex-1">
-            <div className="px-6 md:px-8 pb-8">
-              {/* Profile Header - Clean & Balanced Design */}
-              <div className="flex flex-col items-center text-center pt-8 pb-8">
-                {/* Avatar - Smaller & Softer */}
-                <div className="mb-5">
-                  <Avatar person={person} size="lg" />
-                </div>
-                
-                {/* Name - Clean Typography */}
-                <h3 
-                  className="text-2xl md:text-3xl font-semibold mb-2"
-                  style={{ 
-                    color: premiumColors.textDark,
-                    lineHeight: '1.3',
-                    letterSpacing: '-0.01em',
-                    fontWeight: 600
-                  }}
-                >
-                  {person.name}
-                </h3>
-                
-                {/* Title - Light & Elegant */}
-                <p 
-                  className="text-base md:text-lg mb-4"
-                  style={{ 
-                    color: premiumColors.darkBlue,
-                    lineHeight: '1.5',
-                    fontWeight: 400
-                  }}
-                >
-                  {person.title}
-                </p>
-                
-                {/* Department & Location - Subtle & Clean */}
-                <div className="flex flex-wrap items-center justify-center gap-2 text-sm" style={{ color: premiumColors.textLight }}>
-                  <span className="font-normal">{person.department}</span>
-                  <span className="text-gray-300">•</span>
-                  <div className="flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span className="font-normal">{person.location}</span>
-                  </div>
-                </div>
-              </div>
-            
-              {/* Additional Details - Only show if they exist */}
-              {(person.bio && person.bio.trim() !== '') || 
-               (person.achievements && person.achievements.length > 0) || 
-               (person.expertise && person.expertise.length > 0) || 
-               (person.email || person.phone) ? (
-                <div 
-                  className="border-t pt-10"
-                  style={{ 
-                    borderColor: premiumColors.borderGray,
-                    borderTopWidth: '2px'
-                  }}
-                >
-                  <div className="space-y-10">
-                    {/* Biography - Premium Section */}
-                    {person.bio && person.bio.trim() !== '' && (
-                      <div>
-                        <div className="flex items-center justify-between mb-5">
-                          <h4 
-                            className="text-xl font-bold flex items-center gap-3"
-                            style={{ color: premiumColors.textDark }}
-                          >
-                            <div 
-                              className="w-10 h-10 rounded-xl flex items-center justify-center"
-                              style={{ 
-                                backgroundColor: premiumColors.darkBlue + '10'
-                              }}
-                            >
-                              <UserCheck className="w-5 h-5" style={{ color: premiumColors.darkBlue }} />
-                            </div>
-                            Biography
-                          </h4>
-                          {person.bio.length > 150 && (
-                            <motion.button
-                              onClick={() => toggleSection('bio')}
-                              className="flex items-center gap-2 px-4 py-2 rounded-lg"
-                              style={{
-                                color: premiumColors.darkBlue,
-                                fontSize: '13px',
-                                fontWeight: 600,
-                                backgroundColor: premiumColors.lightGray,
-                                border: `1px solid ${premiumColors.borderGray}`
-                              }}
-                              whileHover={{ 
-                                scale: 1.05, 
-                                backgroundColor: premiumColors.darkBlue,
-                                color: 'white',
-                                borderColor: premiumColors.darkBlue
-                              }}
-                              whileTap={{ scale: 0.95 }}
-                            >
-                              <span>{expandedSections.has('bio') ? 'Show less' : 'Show more'}</span>
-                              <motion.div
-                                animate={{ rotate: expandedSections.has('bio') ? 180 : 0 }}
-                                transition={{ duration: 0.3 }}
-                              >
-                                <ChevronDown className="w-4 h-4" />
-                              </motion.div>
-                            </motion.button>
-                          )}
-                        </div>
-                        <motion.p
-                          initial={false}
-                          animate={{ height: 'auto' }}
-                          transition={{ duration: 0.3 }}
-                          className="leading-relaxed pl-1"
-                          style={{ 
-                            color: premiumColors.textGray, 
-                            lineHeight: '1.8',
-                            fontSize: '15px'
-                          }}
-                        >
-                          {expandedSections.has('bio') ? person.bio : getShortText(person.bio)}
-                        </motion.p>
-                      </div>
-                    )}
-                  
-                    {/* Key Achievements - Premium Section */}
-                    {person.achievements && person.achievements.length > 0 && (
-                      <div>
-                        <h4 
-                          className="text-xl font-bold mb-5 flex items-center gap-3"
-                          style={{ color: premiumColors.textDark }}
-                        >
-                          <div 
-                            className="w-10 h-10 rounded-xl flex items-center justify-center"
-                            style={{ 
-                              backgroundColor: premiumColors.darkBlue + '10'
-                            }}
-                          >
-                            <Award className="w-5 h-5" style={{ color: premiumColors.darkBlue }} />
-                          </div>
-                          Key Achievements
-                        </h4>
-                        <ul className="space-y-4">
-                          {person.achievements.map((achievement, idx) => (
-                            <li key={idx} className="flex items-start gap-4">
-                              <div 
-                                className="w-2.5 h-2.5 rounded-full mt-2.5 flex-shrink-0"
-                                style={{ 
-                                  backgroundColor: premiumColors.darkBlue,
-                                  boxShadow: `0 0 0 4px ${premiumColors.darkBlue}15`
-                                }}
-                              />
-                              <span 
-                                className="leading-relaxed flex-1"
-                                style={{ 
-                                  color: premiumColors.textGray, 
-                                  lineHeight: '1.8',
-                                  fontSize: '15px'
-                                }}
-                              >
-                                {achievement}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    
-                    {/* Areas of Expertise - Premium Section */}
-                    {person.expertise && person.expertise.length > 0 && (
-                      <div>
-                        <h4 
-                          className="text-xl font-bold mb-5 flex items-center gap-3"
-                          style={{ color: premiumColors.textDark }}
-                        >
-                          <div 
-                            className="w-10 h-10 rounded-xl flex items-center justify-center"
-                            style={{ 
-                              backgroundColor: premiumColors.darkBlue + '10'
-                            }}
-                          >
-                            <Target className="w-5 h-5" style={{ color: premiumColors.darkBlue }} />
-                          </div>
-                          Areas of Expertise
-                        </h4>
-                        <div className="flex flex-wrap gap-3">
-                          {person.expertise.map((skill, idx) => (
-                            <motion.span 
-                              key={idx}
-                              className="px-5 py-2.5 rounded-xl font-bold border text-sm"
-                              style={{ 
-                                backgroundColor: premiumColors.lightGray,
-                                borderColor: premiumColors.borderGray,
-                                color: premiumColors.textDark
-                              }}
-                              whileHover={{
-                                backgroundColor: premiumColors.darkBlue,
-                                color: 'white',
-                                borderColor: premiumColors.darkBlue,
-                                scale: 1.05
-                              }}
-                            >
-                              {skill}
-                            </motion.span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  
-                    {/* Contact Information - Premium Section */}
-                    {(person.email || person.phone) && (
-                      <div>
-                        <h4 
-                          className="text-xl font-bold mb-5 flex items-center gap-3"
-                          style={{ color: premiumColors.textDark }}
-                        >
-                          <div 
-                            className="w-10 h-10 rounded-xl flex items-center justify-center"
-                            style={{ 
-                              backgroundColor: premiumColors.darkBlue + '10'
-                            }}
-                          >
-                            <MessageSquare className="w-5 h-5" style={{ color: premiumColors.darkBlue }} />
-                          </div>
-                          Contact Information
-                        </h4>
-                        <div className="flex flex-col gap-4">
-                          {person.email && (
-                            <motion.a 
-                              href={`mailto:${person.email}`}
-                              className="flex items-center gap-4 p-5 rounded-2xl transition-all border-2"
-                              style={{ 
-                                backgroundColor: premiumColors.bgGray,
-                                borderColor: premiumColors.borderGray
-                              }}
-                              whileHover={{
-                                borderColor: premiumColors.darkBlue,
-                                backgroundColor: premiumColors.lightGray,
-                                scale: 1.02
-                              }}
-                            >
-                              <div 
-                                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm"
-                                style={{ backgroundColor: premiumColors.darkBlue + '15' }}
-                              >
-                                <Mail className="w-6 h-6" style={{ color: premiumColors.darkBlue }} />
-                              </div>
-                              <div className="flex-1">
-                                <div 
-                                  className="text-xs mb-1.5 font-bold uppercase tracking-wide"
-                                  style={{ color: premiumColors.textLight }}
-                                >
-                                  Email
-                                </div>
-                                <div 
-                                  className="font-bold text-base"
-                                  style={{ color: premiumColors.textDark }}
-                                >
-                                  {person.email}
-                                </div>
-                              </div>
-                            </motion.a>
-                          )}
-                          {person.phone && (
-                            <motion.a 
-                              href={`tel:${person.phone}`}
-                              className="flex items-center gap-4 p-5 rounded-2xl transition-all border-2"
-                              style={{ 
-                                backgroundColor: premiumColors.bgGray,
-                                borderColor: premiumColors.borderGray
-                              }}
-                              whileHover={{
-                                borderColor: premiumColors.darkBlue,
-                                backgroundColor: premiumColors.lightGray,
-                                scale: 1.02
-                              }}
-                            >
-                              <div 
-                                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm"
-                                style={{ backgroundColor: premiumColors.darkBlue + '15' }}
-                              >
-                                <Phone className="w-6 h-6" style={{ color: premiumColors.darkBlue }} />
-                              </div>
-                              <div className="flex-1">
-                                <div 
-                                  className="text-xs mb-1.5 font-bold uppercase tracking-wide"
-                                  style={{ color: premiumColors.textLight }}
-                                >
-                                  Phone
-                                </div>
-                                <div 
-                                  className="font-bold text-base"
-                                  style={{ color: premiumColors.textDark }}
-                                >
-                                  {person.phone}
-                                </div>
-                              </div>
-                            </motion.a>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ) : null}
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
+// ProfileModal has been moved to components/ui/ProfileModal.tsx
+// This ensures a single source of truth for the modal component
 

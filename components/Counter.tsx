@@ -78,3 +78,4 @@ export default function Counter({ value, duration = 2 }: CounterProps) {
     </span>
   );
 }
+

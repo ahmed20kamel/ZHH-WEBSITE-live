@@ -6,7 +6,7 @@ import {
   Users2, ArrowRight, MapPin, Briefcase, Search, Sparkles
 } from 'lucide-react';
 import { Person, orgData, premiumColors } from './types';
-import { ProfileModal } from './OrgChartComponents';
+import ProfileModal from '@/components/ui/ProfileModal';
 
 export default function OrgChartSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
