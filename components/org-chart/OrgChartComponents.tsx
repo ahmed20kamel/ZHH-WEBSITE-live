@@ -83,11 +83,6 @@ export const OrgNode = ({ person, level, onSelect, isExpanded }: {
     return truncated.substring(0, cutPoint) + '...';
   };
 
-  const handleCardClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsCardExpanded(!isCardExpanded);
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -204,7 +199,7 @@ export const OrgNode = ({ person, level, onSelect, isExpanded }: {
                   <div className="mt-4 mb-1">
                     <ShowMoreButton
                       isExpanded={isCardExpanded}
-                      onClick={handleCardClick}
+                      onClick={() => setIsCardExpanded(!isCardExpanded)}
                       size="sm"
                     />
                   </div>
