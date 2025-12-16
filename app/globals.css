@@ -121,6 +121,25 @@
   --title-content-gap: clamp(17px, 2vw, 20px);
   --title-content-gap-mobile: clamp(11px, 1.4vw, 13px);
   
+  /* ============================================
+     VERTICAL RHYTHM SYSTEM (Unified)
+     ============================================ */
+  
+  /* Section → Section: Large gap */
+  --rhythm-section-gap: clamp(80px, 10vw, 120px);
+  
+  /* Title → Content: Medium gap */
+  --rhythm-title-content: clamp(24px, 3vw, 32px);
+  
+  /* Content → CTA: Small gap */
+  --rhythm-content-cta: clamp(16px, 2vw, 24px);
+  
+  /* Card → Card: Grid gap */
+  --rhythm-card-gap: clamp(24px, 3vw, 32px);
+  
+  /* Internal Card Spacing */
+  --rhythm-card-internal: clamp(20px, 2.5vw, 28px);
+  
   /* Legacy spacing aliases */
   --spacing-s: var(--spacing-md);
   --spacing-m: var(--spacing-lg);
@@ -139,10 +158,11 @@
      ============================================ */
   
   --container-max-width: 1320px;
-  --container-padding: 12px;
-  --container-padding-mobile: 12px;
-  --container-padding-tablet: 24px;
-  --container-padding-desktop: 36px;
+  /* Updated for better breathing space on all viewports */
+  --container-padding: clamp(20px, 4vw, 24px);
+  --container-padding-mobile: clamp(20px, 4vw, 24px);
+  --container-padding-tablet: clamp(24px, 4vw, 32px);
+  --container-padding-desktop: clamp(32px, 4vw, 48px);
   --container-margin: 5%;
   
   /* ============================================

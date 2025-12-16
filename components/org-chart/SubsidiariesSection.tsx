@@ -3,7 +3,8 @@
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { subsidiaries, premiumColors } from './types';
-import ShowMoreButton from '@/components/ui/ShowMoreButton';
+import Button from '@/components/ui/Button';
+import { ChevronDown } from 'lucide-react';
 
 export default function SubsidiariesSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -270,12 +271,21 @@ export default function SubsidiariesSection() {
                   </AnimatePresence>
 
                   {/* Enhanced Show More/Less Button */}
-                  <div className="mt-8">
-                    <ShowMoreButton
-                      isExpanded={isExpanded}
-                      onClick={() => toggleCard(subsidiary.id)}
+                  <div className="mt-8 flex justify-center">
+                    <Button
+                      variant={isExpanded ? 'primary' : 'secondary'}
                       size="md"
-                    />
+                      onClick={() => toggleCard(subsidiary.id)}
+                      className="flex items-center gap-2"
+                    >
+                      <span>{isExpanded ? 'Show less' : 'Show more'}</span>
+                      <motion.div
+                        animate={{ rotate: isExpanded ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ChevronDown className="w-4 h-4" />
+                      </motion.div>
+                    </Button>
                   </div>
                 </div>
               </motion.div>

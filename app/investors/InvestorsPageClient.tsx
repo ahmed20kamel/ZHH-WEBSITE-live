@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import Card from '@/components/ui/Card';
+import CardBody from '@/components/ui/CardBody';
+import BulletList from '@/components/ui/BulletList';
 
 const investmentHighlights = [
   {
@@ -61,9 +63,8 @@ const miningInvestments = [
 export default function InvestorsPageClient() {
   return (
     <div style={{ paddingTop: '80px' }}>
-      {/* Hero Section with Background Image & Overlay */}
+      {/* Hero Section */}
       <section className="relative flex items-center justify-center overflow-hidden text-white" style={{ minHeight: '70vh' }}>
-        {/* Background Image - Desktop Only */}
         <div className="absolute inset-0 w-full h-full z-0 hidden md:block">
           <Image
             src="/assets/hero/hero-investors.png"
@@ -77,7 +78,6 @@ export default function InvestorsPageClient() {
             }}
           />
         </div>
-        {/* Mobile Static Background - Shows bottom portion */}
         <div className="absolute inset-0 w-full h-full z-0 md:hidden">
           <Image
             src="/assets/hero/hero-investors.png"
@@ -93,7 +93,6 @@ export default function InvestorsPageClient() {
           />
         </div>
         
-        {/* Light Gradient Overlay - Bottom to Top (stronger at bottom) */}
         <div 
           className="absolute inset-0 z-[1]"
           style={{
@@ -101,7 +100,6 @@ export default function InvestorsPageClient() {
           }}
         />
 
-        {/* Text Content Container with Backdrop */}
         <div className="container-unified relative z-10 flex items-center justify-center" style={{ minHeight: '70vh', paddingTop: 'clamp(40px, 8vh, 80px)' }}>
           <motion.div
             initial="hidden"
@@ -143,25 +141,24 @@ export default function InvestorsPageClient() {
       </section>
 
       {/* Investment Highlights */}
-      <section className="py-20 lg:py-32 bg-white">
+      <section className="section-unified bg-white">
         <div className="container-unified">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
-            className="text-center mb-16"
+            className="section-title-wrapper"
           >
             <motion.h2
               variants={fadeInUp}
-              className="text-4xl md:text-5xl font-bold text-[#1a2332] mb-3"
+              className="text-4xl md:text-5xl font-bold text-[#1a2332] mb-4"
             >
               Investment Highlights
             </motion.h2>
             <motion.p
               variants={fadeInUp}
-              className="text-base lg:text-lg text-gray-600 w-full"
-              style={{ width: '100%' }}
+              className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto"
             >
               Building value through strategic investments and operational excellence
             </motion.p>
@@ -172,24 +169,26 @@ export default function InvestorsPageClient() {
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 rhythm-card-gap"
           >
             {investmentHighlights.map((highlight, index) => (
               <motion.div key={index} variants={fadeInUp}>
-                <Card className="h-full p-7 lg:p-8 text-center">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, type: 'spring', stiffness: 200 }}
-                    className="text-4xl md:text-5xl font-bold text-[#00d4aa] mb-4"
-                  >
-                    {highlight.value}
-                  </motion.div>
-                  <h3 className="text-lg lg:text-xl font-semibold text-[#1a2332] mb-2">
-                    {highlight.label}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{highlight.description}</p>
+                <Card className="h-full text-center">
+                  <CardBody maxWidth="max-w-none">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1, type: 'spring', stiffness: 200 }}
+                      className="text-4xl md:text-5xl font-bold text-[#00d4aa] mb-6"
+                    >
+                      {highlight.value}
+                    </motion.div>
+                    <h3 className="text-lg lg:text-xl font-semibold text-[#1a2332] mb-3">
+                      {highlight.label}
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{highlight.description}</p>
+                  </CardBody>
                 </Card>
               </motion.div>
             ))}
@@ -198,53 +197,53 @@ export default function InvestorsPageClient() {
       </section>
 
       {/* Strategic Gold Mining Investments */}
-      <section className="py-20 lg:py-32 bg-gray-50">
+      <section className="section-unified bg-gray-50">
         <div className="container-unified">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
-            className="w-full"
-            style={{ width: '100%' }}
           >
             {miningInvestments.map((investment, index) => (
               <motion.div key={index} variants={fadeInUp}>
-                <Card className="p-8 lg:p-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#1a2332] mb-6">
-                    {investment.title}
-                  </h2>
-                  <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                    {investment.description}
-                  </p>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div>
-                      <h3 className="text-xl font-semibold text-[#1a2332] mb-4">
-                        Key Highlights
-                      </h3>
-                      <ul className="space-y-3">
-                        {investment.highlights.map((item, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-[#00d4aa] rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-gray-600">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                <Card>
+                  <CardBody maxWidth="max-w-4xl mx-auto">
+                    {/* Intro Zone - Narrow Column */}
+                    <div className="mb-8">
+                      <h2 className="text-3xl md:text-4xl font-bold text-[#1a2332] mb-6">
+                        {investment.title}
+                      </h2>
+                      <p className="text-lg text-gray-600 leading-relaxed max-w-3xl">
+                        {investment.description}
+                      </p>
                     </div>
 
-                    <div>
-                      <h3 className="text-xl font-semibold text-[#1a2332] mb-4">Impact</h3>
-                      <ul className="space-y-3">
-                        {investment.impact.map((item, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-[#00d4aa] rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-gray-600">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    {/* Highlights + Impact Zone - Balanced Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 rhythm-card-gap">
+                      <div>
+                        <h3 className="text-xl font-semibold text-[#1a2332] mb-6">
+                          Key Highlights
+                        </h3>
+                        <BulletList
+                          items={investment.highlights}
+                          bulletColor="#00d4aa"
+                          maxWidth="max-w-none"
+                          titleGap="sm"
+                        />
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold text-[#1a2332] mb-6">Impact</h3>
+                        <BulletList
+                          items={investment.impact}
+                          bulletColor="#00d4aa"
+                          maxWidth="max-w-none"
+                          titleGap="sm"
+                        />
+                      </div>
                     </div>
-                  </div>
+                  </CardBody>
                 </Card>
               </motion.div>
             ))}
@@ -252,60 +251,44 @@ export default function InvestorsPageClient() {
         </div>
       </section>
 
-      {/* Investment Strategy */}
-      <section className="py-20 lg:py-32 bg-white">
+      {/* Investment Strategy - Visual Separation */}
+      <section className="section-unified bg-white">
         <div className="container-unified">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
-            className="w-full"
-            style={{ width: '100%' }}
           >
             <motion.div variants={fadeInUp}>
-              <Card className="p-8 lg:p-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#1a2332] mb-6">
-                  Why Invest with ZHH Group Holding
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-2 h-2 bg-[#00d4aa] rounded-full mt-2 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-semibold text-[#1a2332] mb-2">Diversified Portfolio</h4>
-                      <p className="text-gray-600 text-sm">
-                        Strategic investments across construction, real estate, gold, and trading sectors
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-2 h-2 bg-[#00d4aa] rounded-full mt-2 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-semibold text-[#1a2332] mb-2">Strong Governance</h4>
-                      <p className="text-gray-600 text-sm">
-                        Zero compliance violations with highest ethical and governance standards
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-2 h-2 bg-[#00d4aa] rounded-full mt-2 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-semibold text-[#1a2332] mb-2">Sustainable Returns</h4>
-                      <p className="text-gray-600 text-sm">
-                        Long-term value creation with responsible, asset-backed growth
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-2 h-2 bg-[#00d4aa] rounded-full mt-2 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-semibold text-[#1a2332] mb-2">Global Presence</h4>
-                      <p className="text-gray-600 text-sm">
-                        Operations across 10+ countries with strategic market positioning
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              <Card>
+                <CardBody maxWidth="max-w-4xl mx-auto">
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#1a2332] mb-8">
+                    Why Invest with ZHH Group Holding
+                  </h2>
+                  <BulletList
+                    bulletColor="#00d4aa"
+                    maxWidth="max-w-none"
+                    items={[
+                      {
+                        title: 'Diversified Portfolio',
+                        description: 'Strategic investments across construction, real estate, gold, and trading sectors',
+                      },
+                      {
+                        title: 'Strong Governance',
+                        description: 'Zero compliance violations with highest ethical and governance standards',
+                      },
+                      {
+                        title: 'Sustainable Returns',
+                        description: 'Long-term value creation with responsible, asset-backed growth',
+                      },
+                      {
+                        title: 'Global Presence',
+                        description: 'Operations across 10+ countries with strategic market positioning',
+                      },
+                    ]}
+                  />
+                </CardBody>
               </Card>
             </motion.div>
           </motion.div>
@@ -314,4 +297,3 @@ export default function InvestorsPageClient() {
     </div>
   );
 }
-

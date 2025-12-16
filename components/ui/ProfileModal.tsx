@@ -2,8 +2,8 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { X, MapPin, Mail, Phone, Award, Target, UserCheck, MessageSquare } from 'lucide-react';
-import ShowMoreButton from './ShowMoreButton';
+import { X, MapPin, Mail, Phone, Award, Target, UserCheck, MessageSquare, ChevronDown } from 'lucide-react';
+import Button from './Button';
 
 import { Person, premiumColors } from '@/components/org-chart/types';
 
@@ -274,12 +274,21 @@ export default function ProfileModal({ person, onClose }: ProfileModalProps) {
                   </motion.p>
 
                   {person.bio.length > 150 && (
-                    <div className="mt-4">
-                      <ShowMoreButton
-                        isExpanded={expandedSections.has('bio')}
-                        onClick={() => toggleSection('bio')}
+                    <div className="mt-4 flex justify-center">
+                      <Button
+                        variant={expandedSections.has('bio') ? 'primary' : 'secondary'}
                         size="md"
-                      />
+                        onClick={() => toggleSection('bio')}
+                        className="flex items-center gap-2"
+                      >
+                        <span>{expandedSections.has('bio') ? 'Show less' : 'Show more'}</span>
+                        <motion.div
+                          animate={{ rotate: expandedSections.has('bio') ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <ChevronDown className="w-4 h-4" />
+                        </motion.div>
+                      </Button>
                     </div>
                   )}
                 </div>

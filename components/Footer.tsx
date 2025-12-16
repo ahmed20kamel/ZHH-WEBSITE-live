@@ -7,6 +7,7 @@ import {
   Linkedin, Twitter, Instagram, Youtube,
   Shield, Award, TrendingUp, Sparkles
 } from 'lucide-react';
+import Button from '@/components/ui/Button';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -343,7 +344,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              style={{ marginTop: 'var(--content-spacing-lg)' }}
+              className="mt-6"
             >
               <p className="body-small-unified text-white mb-2" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>
                 Stay Updated
@@ -355,27 +356,17 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
-                  style={{
-                    fontFamily: 'var(--font-primary)',
-                    fontSize: 'clamp(13px, 1.5vw, 15px)'
-                  }}
+                  className="flex-1 h-12 px-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
                 />
-                <motion.button
-                  whileHover={{ scale: 1.05, boxShadow: '0 4px 12px rgba(1, 178, 178, 0.3)' }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-600 rounded-lg text-white font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
-                  style={{
-                    fontFamily: 'var(--font-primary)',
-                    fontSize: 'clamp(13px, 1.5vw, 15px)',
-                    fontWeight: 600,
-                    whiteSpace: 'nowrap',
-                    textAlign: 'center'
-                  }}
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="flex items-center gap-2"
+                  type="button"
                 >
                   <span>Subscribe</span>
                   <ArrowUpRight className="w-4 h-4" />
-                </motion.button>
+                </Button>
               </div>
             </motion.div>
           </div>

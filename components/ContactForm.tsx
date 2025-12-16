@@ -6,6 +6,8 @@ import { motion } from 'framer-motion';
 import { sendEmail, ContactFormData } from '@/lib/emailjs';
 import { fadeInUp } from '@/lib/animations';
 import Button from './ui/Button';
+import { Input } from './ui/Input';
+import { Textarea } from './ui/Textarea';
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,42 +51,54 @@ export default function ContactForm() {
       viewport={{ once: true }}
       variants={fadeInUp}
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6"
+      className="space-y-8"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-            Name *
-          </label>
-          <input
-            type="text"
-            id="name"
-            {...register('name', { required: 'Name is required' })}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00d4aa] focus:border-transparent outline-none transition-all"
-            placeholder="Your Name"
-          />
+          <div className="relative">
+            <Input
+              id="name"
+              {...register('name', { required: 'Name is required' })}
+              className="peer pt-4 pb-1 placeholder-transparent"
+              placeholder="Your name"
+            />
+            <label
+              htmlFor="name"
+              className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm text-gray-500 transition-all duration-200 
+                peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#00a78a] 
+                peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-gray-600"
+            >
+              Name *
+            </label>
+          </div>
           {errors.name && (
             <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
           )}
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-            Email *
-          </label>
-          <input
-            type="email"
-            id="email"
-            {...register('email', {
-              required: 'Email is required',
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Invalid email address',
-              },
-            })}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00d4aa] focus:border-transparent outline-none transition-all"
-            placeholder="your.email@example.com"
-          />
+          <div className="relative">
+            <Input
+              id="email"
+              {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Invalid email address',
+                },
+              })}
+              className="peer pt-4 pb-1 placeholder-transparent"
+              placeholder="you@example.com"
+            />
+            <label
+              htmlFor="email"
+              className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm text-gray-500 transition-all duration-200 
+                peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#00a78a] 
+                peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-gray-600"
+            >
+              Email *
+            </label>
+          </div>
           {errors.email && (
             <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
           )}
@@ -92,29 +106,42 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-          Phone
-        </label>
-        <input
-          type="tel"
-          id="phone"
-          {...register('phone')}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00d4aa] focus:border-transparent outline-none transition-all"
-          placeholder="+971 XX XXX XXXX"
-        />
+        <div className="relative">
+          <Input
+            id="phone"
+            {...register('phone')}
+            className="peer pt-4 pb-1 placeholder-transparent"
+            placeholder="+971 XX XXX XXXX"
+          />
+          <label
+            htmlFor="phone"
+            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm text-gray-500 transition-all duration-200 
+              peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#00a78a] 
+              peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-gray-600"
+          >
+            Phone (optional)
+          </label>
+        </div>
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-          Message *
-        </label>
-        <textarea
-          id="message"
-          {...register('message', { required: 'Message is required' })}
-          rows={6}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00d4aa] focus:border-transparent outline-none transition-all resize-none"
-          placeholder="Your message..."
-        />
+        <div className="relative">
+          <Textarea
+            id="message"
+            {...register('message', { required: 'Message is required' })}
+            rows={6}
+            className="peer pt-5 pb-3 placeholder-transparent"
+            placeholder="Your message..."
+          />
+          <label
+            htmlFor="message"
+            className="pointer-events-none absolute left-4 top-4 text-sm text-gray-500 transition-all duration-200 
+              peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#00a78a]
+              peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-gray-600"
+          >
+            Message *
+          </label>
+        </div>
         {errors.message && (
           <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
         )}
@@ -136,7 +163,7 @@ export default function ContactForm() {
 
       <Button
         type="submit"
-        size="lg"
+        size="md"
         className="w-full md:w-auto"
       >
         {isSubmitting ? 'Sending...' : 'Send Message'}

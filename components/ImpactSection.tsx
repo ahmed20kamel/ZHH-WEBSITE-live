@@ -8,6 +8,10 @@ import {
 } from 'lucide-react';
 import { fadeInUp, staggerContainer, cardVariants } from '@/lib/animations';
 import Counter from './Counter';
+import Card from '@/components/ui/Card';
+import CardBody from '@/components/ui/CardBody';
+import BulletList from '@/components/ui/BulletList';
+import Button from '@/components/ui/Button';
 
 const impactPillars = [
   {
@@ -22,6 +26,7 @@ const impactPillars = [
     gradient: 'from-green-50 to-emerald-50',
     iconColor: 'text-green-600',
     borderColor: 'border-green-200',
+    color: '#10b981',
     delay: 0.1,
     stats: [
       { label: 'Green Projects', value: '24', suffix: '' },
@@ -41,6 +46,7 @@ const impactPillars = [
     gradient: 'from-blue-50 to-cyan-50',
     iconColor: 'text-blue-600',
     borderColor: 'border-blue-200',
+    color: '#3b82f6',
     delay: 0.2,
     stats: [
       { label: 'Jobs Created', value: '1,500', suffix: '+' },
@@ -60,6 +66,7 @@ const impactPillars = [
     gradient: 'from-amber-50 to-yellow-50',
     iconColor: 'text-amber-600',
     borderColor: 'border-amber-200',
+    color: '#f59e0b',
     delay: 0.3,
     stats: [
       { label: 'Gold Traded', value: '165', suffix: '' },
@@ -116,7 +123,6 @@ export default function ImpactSection() {
 
       {/* Subtle Ambient Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Subtle Background Color Overlay */}
         <div
           style={{
             position: 'absolute',
@@ -125,8 +131,6 @@ export default function ImpactSection() {
             pointerEvents: 'none'
           }}
         />
-
-        {/* Animated Gradient Orbs - More Subtle */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 0.08 } : { opacity: 0 }}
@@ -139,8 +143,6 @@ export default function ImpactSection() {
           transition={{ duration: 1.5, delay: 0.2 }}
           className="absolute -bottom-1/4 -right-48 w-[600px] h-[600px] bg-gradient-to-r from-blue-200 to-cyan-200 rounded-full blur-3xl"
         />
-
-        {/* Minimal Grid Pattern - More Subtle */}
         <div
           className="absolute inset-0"
           style={{
@@ -199,16 +201,28 @@ export default function ImpactSection() {
           </motion.p>
         </motion.div>
 
-        {/* Impact Pillars */}
+        {/* Impact Pillars - Using Unified System */}
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-3"
-          style={{ gap: 'var(--content-spacing-md)' }}
+          className="grid grid-cols-1 md:grid-cols-3 rhythm-card-gap"
         >
           {impactPillars.map((pillar, index) => {
             const Icon = pillar.icon;
+
+            // Convert items to BulletList format
+            const bulletItems = pillar.items.map(item => ({
+              title: item.text,
+              description: (
+                <div className="inline-flex items-center gap-1 mt-1">
+                  <span className="body-small-unified text-teal" style={{ fontWeight: 600 }}>
+                    {item.value}
+                  </span>
+                  <TrendingUp className="w-3 h-3 text-green-500" />
+                </div>
+              )
+            }));
 
             return (
               <motion.div
@@ -217,216 +231,211 @@ export default function ImpactSection() {
                 custom={index}
                 className="h-full"
               >
-                <motion.div
-                  className="card-unified h-full flex flex-col relative overflow-hidden"
-                  style={{
-                    padding: 'clamp(20px, 4vw, var(--content-spacing-xl))',
-                    position: 'relative'
-                  }}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {/* Animated Accent Line */}
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={isInView ? { width: "100%" } : {}}
-                    transition={{ duration: 1.5, delay: 0.2 + (index * 0.1) }}
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      height: '3px',
-                      background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
-                      borderRadius: '12px 12px 0 0'
-                    }}
-                  />
-
-                  {/* Icon */}
-                  <div className={`w-14 h-14 rounded-lg ${pillar.gradient} flex items-center justify-center mb-8 shadow-sm`} style={{ marginBottom: 'clamp(24px, 3vw, 32px)' }}>
-                    <Icon className={`w-7 h-7 ${pillar.iconColor}`} />
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="h3-unified text-primary mb-4">
-                    {pillar.title}
-                  </h3>
-
-                  {/* Impact Items */}
-                  <div className="space-y-3 mb-6 flex-grow">
-                    {pillar.items.map((item, itemIndex) => (
-                      <div
-                        key={itemIndex}
-                        className="flex items-start gap-3"
+                <Card className="h-full flex flex-col">
+                  <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
+                    {/* Icon Container with Visual Anchor */}
+                    <div className="mb-8 flex flex-col items-center">
+                      <div 
+                        className={`w-16 h-16 rounded-lg ${pillar.gradient} flex items-center justify-center shadow-sm transition-all duration-300`}
+                        style={{ 
+                          border: `1px solid ${pillar.color}15`
+                        }}
                       >
-                        <div className="w-5 h-5 rounded-full bg-gradient-to-r from-green-100 to-emerald-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <CheckCircle className="w-3 h-3 text-green-500" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="body-regular-unified text-secondary">
-                            {item.text}
-                          </p>
-                          <div className="inline-flex items-center gap-1 mt-1">
-                            <span className="body-small-unified text-teal" style={{ fontWeight: 600 }}>
-                              {item.value}
+                        <Icon 
+                          className={`w-8 h-8 ${pillar.iconColor}`}
+                          strokeWidth={1.5}
+                        />
+                      </div>
+                      {/* Visual anchor line under icon */}
+                      <div 
+                        className="mt-4 h-0.5 w-12"
+                        style={{ backgroundColor: pillar.color }}
+                      />
+                    </div>
+                    
+                    {/* Title */}
+                    <div className="mb-8 text-center">
+                      <h3 
+                        className="text-xl lg:text-2xl font-semibold text-gray-900"
+                        style={{
+                          fontFamily: "'Inter', sans-serif",
+                          letterSpacing: '-0.01em',
+                          lineHeight: '1.3'
+                        }}
+                      >
+                        {pillar.title}
+                      </h3>
+                    </div>
+                    
+                    {/* Divider */}
+                    <div 
+                      className="h-px mb-8"
+                      style={{ backgroundColor: pillar.color, opacity: 0.2 }}
+                    />
+                    
+                    {/* Content - Bullet List */}
+                    <div className="flex-1 mb-8">
+                      <BulletList
+                        bulletColor={pillar.color}
+                        className="text-left"
+                        maxWidth="max-w-none"
+                        items={bulletItems}
+                        titleGap="sm"
+                      />
+                    </div>
+
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-3 gap-3 pt-6 border-t border-gray-200 mb-8">
+                      {pillar.stats.map((stat, statIndex) => (
+                        <div
+                          key={statIndex}
+                          className="text-center"
+                        >
+                          <div className="mb-1" style={{ 
+                            color: 'var(--emirati-blue)',
+                            display: 'flex',
+                            alignItems: 'baseline',
+                            justifyContent: 'center',
+                            gap: '4px',
+                            flexWrap: 'wrap'
+                          }}>
+                            <span className="text-stats-number">
+                              <Counter value={stat.value} />
                             </span>
-                            <TrendingUp className="w-3 h-3 text-green-500" />
+                            {stat.suffix && (
+                              <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>
+                                {stat.suffix}
+                              </span>
+                            )}
                           </div>
+                          <div className="body-small-unified text-tertiary">{stat.label}</div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Stats Grid */}
-                  <div className="grid grid-cols-3 gap-3 pt-4 border-t" style={{ borderTopColor: 'var(--color-border-light)' }}>
-                    {pillar.stats.map((stat, statIndex) => (
-                      <div
-                        key={statIndex}
-                        className="text-center"
-                      >
-                        <div className="mb-1" style={{ 
-                          color: 'var(--emirati-blue)',
-                          display: 'flex',
-                          alignItems: 'baseline',
-                          justifyContent: 'center',
-                          gap: '4px',
-                          flexWrap: 'wrap'
-                        }}>
-                          <span className="text-stats-number">
-                            <Counter value={stat.value} />
-                          </span>
-                          {stat.suffix && (
-                            <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>
-                              {stat.suffix}
-                            </span>
-                          )}
-                        </div>
-                        <div className="body-small-unified text-tertiary">{stat.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
+                      ))}
+                    </div>
+                  </CardBody>
+                </Card>
               </motion.div>
             );
           })}
         </motion.div>
 
-        {/* Impact Summary Banner */}
+        {/* Impact Summary Banner - Using Card + CardBody */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 0.6 }}
-          className="mt-16"
+          style={{ marginTop: 'var(--rhythm-card-gap)' }}
         >
-          <div className="card-unified" style={{ 
+          <Card style={{ 
             background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.05) 0%, rgba(212, 175, 55, 0.03) 100%)',
-            padding: 'var(--content-spacing-xl)',
             border: '1px solid var(--color-border-light)'
           }}>
-            <div className="grid grid-cols-1 md:grid-cols-4" style={{ gap: 'var(--content-spacing-lg)' }}>
-              {/* Total Impact */}
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <Target className="w-5 h-5 text-teal" />
-                  <span className="body-small-unified text-secondary">Total Impact</span>
+            <CardBody maxWidth="max-w-none">
+              <div className="grid grid-cols-1 md:grid-cols-4 rhythm-card-gap">
+                {/* Total Impact */}
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 mb-3">
+                    <Target className="w-5 h-5 text-teal" />
+                    <span className="body-small-unified text-secondary">Total Impact</span>
+                  </div>
+                  <div className="mb-1" style={{ 
+                    color: 'var(--emirati-blue)',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'center',
+                    gap: '4px',
+                    flexWrap: 'wrap'
+                  }}>
+                    <span className="text-stats-number">
+                      <Counter value="1.5" />
+                    </span>
+                    <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>K+</span>
+                  </div>
+                  <div className="body-small-unified text-tertiary">Lives Touched</div>
                 </div>
-                <div className="mb-1" style={{ 
-                  color: 'var(--emirati-blue)',
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  justifyContent: 'center',
-                  gap: '4px',
-                  flexWrap: 'wrap'
-                }}>
-                  <span className="text-stats-number">
-                    <Counter value="1.5" />
-                  </span>
-                  <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>K+</span>
+
+                {/* Sustainable Projects */}
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 mb-3">
+                    <Leaf className="w-5 h-5 text-teal" />
+                    <span className="body-small-unified text-secondary">Green Projects</span>
+                  </div>
+                  <div className="mb-1" style={{ 
+                    color: 'var(--emirati-blue)',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'center',
+                    gap: '4px',
+                    flexWrap: 'wrap'
+                  }}>
+                    <span className="text-stats-number">
+                      <Counter value="85" />
+                    </span>
+                    <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>%</span>
+                  </div>
+                  <div className="body-small-unified text-tertiary">Sustainable Operations</div>
                 </div>
-                <div className="body-small-unified text-tertiary">Lives Touched</div>
+
+                {/* Community Investment */}
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 mb-3">
+                    <Heart className="w-5 h-5 text-teal" />
+                    <span className="body-small-unified text-secondary">Community</span>
+                  </div>
+                  <div className="mb-1" style={{ 
+                    color: 'var(--emirati-blue)',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'center',
+                    gap: '4px',
+                    flexWrap: 'wrap'
+                  }}>
+                    <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>AED</span>
+                    <span className="text-stats-number">
+                      <Counter value="25" />
+                    </span>
+                    <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>M</span>
+                  </div>
+                  <div className="body-small-unified text-tertiary">Investment</div>
+                </div>
+
+                {/* Compliance Excellence */}
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-2 mb-3">
+                    <Shield className="w-5 h-5 text-teal" />
+                    <span className="body-small-unified text-secondary">Compliance</span>
+                  </div>
+                  <div className="mb-1" style={{ 
+                    color: 'var(--emirati-blue)',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'center',
+                    gap: '4px',
+                    flexWrap: 'wrap'
+                  }}>
+                    <span className="text-stats-number">
+                      <Counter value="100" />
+                    </span>
+                    <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>%</span>
+                  </div>
+                  <div className="body-small-unified text-tertiary">Perfect Record</div>
+                </div>
               </div>
 
-              {/* Sustainable Projects */}
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <Leaf className="w-5 h-5 text-teal" />
-                  <span className="body-small-unified text-secondary">Green Projects</span>
-                </div>
-                <div className="mb-1" style={{ 
-                  color: 'var(--emirati-blue)',
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  justifyContent: 'center',
-                  gap: '4px',
-                  flexWrap: 'wrap'
-                }}>
-                  <span className="text-stats-number">
-                    <Counter value="85" />
-                  </span>
-                  <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>%</span>
-                </div>
-                <div className="body-small-unified text-tertiary">Sustainable Operations</div>
-              </div>
-
-              {/* Community Investment */}
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <Heart className="w-5 h-5 text-teal" />
-                  <span className="body-small-unified text-secondary">Community</span>
-                </div>
-                <div className="mb-1" style={{ 
-                  color: 'var(--emirati-blue)',
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  justifyContent: 'center',
-                  gap: '4px',
-                  flexWrap: 'wrap'
-                }}>
-                  <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>AED</span>
-                  <span className="text-stats-number">
-                    <Counter value="25" />
-                  </span>
-                  <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>M</span>
-                </div>
-                <div className="body-small-unified text-tertiary">Investment</div>
-              </div>
-
-              {/* Compliance Excellence */}
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <Shield className="w-5 h-5 text-teal" />
-                  <span className="body-small-unified text-secondary">Compliance</span>
-                </div>
-                <div className="mb-1" style={{ 
-                  color: 'var(--emirati-blue)',
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  justifyContent: 'center',
-                  gap: '4px',
-                  flexWrap: 'wrap'
-                }}>
-                  <span className="text-stats-number">
-                    <Counter value="100" />
-                  </span>
-                  <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>%</span>
-                </div>
-                <div className="body-small-unified text-tertiary">Perfect Record</div>
-              </div>
-            </div>
-
-            {/* Animated Progress Bar */}
-            <motion.div
-              initial={{ width: 0 }}
-              animate={isInView ? { width: "100%" } : {}}
-              transition={{ duration: 2, delay: 0.8 }}
-              style={{
-                height: '2px',
-                background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
-                borderRadius: '1px',
-                marginTop: 'var(--content-spacing-lg)'
-              }}
-            />
-          </div>
+              {/* Animated Progress Bar */}
+              <motion.div
+                initial={{ width: 0 }}
+                animate={isInView ? { width: "100%" } : {}}
+                transition={{ duration: 2, delay: 0.8 }}
+                style={{
+                  height: '2px',
+                  background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
+                  borderRadius: '1px',
+                  marginTop: 'var(--rhythm-content-cta)'
+                }}
+              />
+            </CardBody>
+          </Card>
         </motion.div>
       </div>
     </section>

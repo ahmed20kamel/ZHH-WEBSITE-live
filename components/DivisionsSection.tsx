@@ -2,12 +2,14 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import Link from 'next/link';
 import { 
   Building2, Home, Globe, Gem, 
   ArrowRight
 } from 'lucide-react';
 import { fadeInUp, staggerContainer, cardVariants } from '@/lib/animations';
+import Card from '@/components/ui/Card';
+import CardBody from '@/components/ui/CardBody';
+import Button from '@/components/ui/Button';
 
 const divisions = [
   {
@@ -107,7 +109,6 @@ export default function DivisionsSection() {
 
       {/* Subtle Ambient Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Subtle Background Color Overlay */}
         <div
           style={{
             position: 'absolute',
@@ -116,8 +117,6 @@ export default function DivisionsSection() {
             pointerEvents: 'none'
           }}
         />
-
-        {/* Animated Gradient Orbs - More Subtle */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 0.08 } : { opacity: 0 }}
@@ -130,8 +129,6 @@ export default function DivisionsSection() {
           transition={{ duration: 1.5, delay: 0.2 }}
           className="absolute -bottom-1/4 -right-48 w-[600px] h-[600px] bg-gradient-to-r from-emerald-200 to-teal-200 rounded-full blur-3xl"
         />
-
-        {/* Minimal Grid Pattern - More Subtle */}
         <div
           className="absolute inset-0"
           style={{
@@ -190,13 +187,12 @@ export default function DivisionsSection() {
           </motion.p>
         </motion.div>
 
-        {/* Divisions Grid */}
+        {/* Divisions Grid - Using Unified System */}
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-          style={{ gap: 'var(--content-spacing-md)' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 rhythm-card-gap"
         >
           {divisions.map((division, index) => {
             const Icon = division.icon;
@@ -208,41 +204,16 @@ export default function DivisionsSection() {
                 custom={index}
                 className="h-full"
               >
-                <Link href={`/divisions#${division.id}`} className="block h-full">
-                  <motion.div
-                    className="card-unified h-full flex flex-col relative overflow-hidden cursor-pointer"
-                    style={{
-                      padding: 'clamp(24px, 3.5vw, 32px)',
-                      position: 'relative'
-                    }}
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {/* Animated Accent Line */}
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={isInView ? { width: "100%" } : {}}
-                      transition={{ duration: 1.5, delay: 0.2 + (index * 0.1) }}
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        height: '3px',
-                        background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
-                        borderRadius: '12px 12px 0 0'
-                      }}
-                    />
-
+                <Card className="h-full flex flex-col">
+                  <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
                     {/* Logo */}
                     <motion.div 
-                      className="flex items-center justify-center mb-4 md:mb-6" 
+                      className="flex items-center justify-center mb-8" 
                       style={{ 
                         height: 'clamp(60px, 12vw, 100px)', 
                         minHeight: '60px',
                         maxHeight: '100px',
-                        width: '100%',
-                        marginBottom: 'clamp(14px, 2.5vw, var(--content-spacing-md))'
+                        width: '100%'
                       }}
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.3 }}
@@ -262,9 +233,8 @@ export default function DivisionsSection() {
 
                     {/* Title */}
                     <h3 
-                      className="h3-unified text-teal" 
+                      className="h3-unified text-teal rhythm-title-content" 
                       style={{ 
-                        marginBottom: 'clamp(12px, 1.5vw, 16px)',
                         lineHeight: '1.3',
                         fontSize: 'clamp(18px, 2vw, 22px)'
                       }}
@@ -274,9 +244,8 @@ export default function DivisionsSection() {
 
                     {/* Description */}
                     <p 
-                      className="body-large-unified text-secondary flex-grow" 
+                      className="body-large-unified text-secondary flex-grow rhythm-card-internal" 
                       style={{ 
-                        marginBottom: 'clamp(20px, 2.5vw, 28px)',
                         lineHeight: '1.7',
                         fontSize: 'clamp(14px, 1.5vw, 16px)'
                       }}
@@ -284,63 +253,44 @@ export default function DivisionsSection() {
                       {division.description}
                     </p>
 
-                    {/* Learn More Button */}
-                    <motion.div
-                      className="mt-auto pt-3 md:pt-4 border-t w-full flex items-center justify-center gap-2 px-3 md:px-4 py-2.5 md:py-3 rounded-lg bg-gradient-to-r from-blue-50 to-cyan-50 hover:from-blue-100 hover:to-cyan-100 border border-blue-200/50 transition-all duration-300 group"
-                      style={{
-                        borderTopColor: 'var(--color-border-light)',
-                        marginTop: 'auto'
-                      }}
-                      whileHover={{ scale: 1.02, y: -2 }}
-                    >
-                      <span className="body-regular-unified text-teal" style={{ fontWeight: 600, fontSize: 'clamp(14px, 1.5vw, 16px)' }}>
-                        Learn More
-                      </span>
-                      <motion.span 
-                        className="text-teal"
-                        style={{ fontSize: '18px' }}
-                        animate={{ x: [0, 4, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    {/* Learn More Button - Unified */}
+                    <div className="mt-auto pt-6 border-t border-gray-200">
+                      <Button
+                        variant="secondary"
+                        size="md"
+                        href={`/divisions#${division.id}`}
+                        fullWidth
+                        className="flex items-center justify-center gap-2"
                       >
-                        <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
-                      </motion.span>
-                    </motion.div>
-                  </motion.div>
-                </Link>
+                        <span>Learn More</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </CardBody>
+                </Card>
               </motion.div>
             );
           })}
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Call to Action - Unified Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 0.6 }}
-          className="text-center"
-          style={{ marginTop: 'var(--content-spacing-lg)' }}
+          className="text-center rhythm-content-cta"
+          style={{ marginTop: 'var(--rhythm-card-gap)' }}
         >
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-full border border-blue-100 shadow-sm"
+          <Button
+            variant="ghost"
+            size="md"
+            href="/divisions"
+            className="flex items-center gap-2"
           >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              <Globe className="w-4 h-4 text-gray-600" />
-            </motion.div>
-            <Link href="/divisions" className="body-regular-unified text-secondary" style={{ fontWeight: 500, textDecoration: 'none' }}>
-              View All Divisions
-            </Link>
-            <motion.span 
-              style={{ color: 'var(--color-gold)', fontSize: '16px' }}
-              animate={{ x: [0, 4, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            >
-              →
-            </motion.span>
-          </motion.div>
+            <Globe className="w-4 h-4" />
+            <span>View All Divisions</span>
+            <ArrowRight className="w-4 h-4" />
+          </Button>
         </motion.div>
       </div>
     </section>

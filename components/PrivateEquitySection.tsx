@@ -4,6 +4,9 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { fadeInUp, staggerContainer, cardVariants } from '@/lib/animations';
 import { Target, Building2, Globe, Award, BarChart3, Shield, Clock, MapPin, TrendingUp } from 'lucide-react';
+import Card from '@/components/ui/Card';
+import CardBody from '@/components/ui/CardBody';
+import BulletList from '@/components/ui/BulletList';
 
 export default function PrivateEquitySection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -52,7 +55,6 @@ export default function PrivateEquitySection() {
 
       {/* Subtle Ambient Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Subtle Background Color Overlay */}
         <div
           style={{
             position: 'absolute',
@@ -61,8 +63,6 @@ export default function PrivateEquitySection() {
             pointerEvents: 'none'
           }}
         />
-
-        {/* Animated Gradient Orbs - More Subtle */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 0.08 } : { opacity: 0 }}
@@ -75,8 +75,6 @@ export default function PrivateEquitySection() {
           transition={{ duration: 1.5, delay: 0.2 }}
           className="absolute -bottom-1/4 -right-48 w-[600px] h-[600px] bg-gradient-to-r from-emerald-200 to-teal-200 rounded-full blur-3xl"
         />
-
-        {/* Minimal Grid Pattern - More Subtle */}
         <div
           className="absolute inset-0"
           style={{
@@ -135,13 +133,12 @@ export default function PrivateEquitySection() {
           </motion.p>
         </motion.div>
 
-        {/* Three Cards Grid */}
+        {/* Three Cards Grid - Using Unified System */}
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: 'var(--content-spacing-md)' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 rhythm-card-gap"
         >
           {/* Card 1 - Private Equity Overview */}
           <motion.div
@@ -149,77 +146,41 @@ export default function PrivateEquitySection() {
             custom={0}
             className="h-full"
           >
-            <motion.div
-              variants={cardVariants}
-              className="card-unified h-full"
-              style={{
-                position: 'relative',
-                padding: 'clamp(20px, 4vw, var(--content-spacing-xl))',
-                minHeight: 'auto'
-              }}
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Animated Accent Line */}
-              <motion.div
-                initial={{ width: 0 }}
-                animate={isInView ? { width: "100%" } : {}}
-                transition={{ duration: 1.5, delay: 0.2 }}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: '3px',
-                  background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
-                  borderRadius: '12px 12px 0 0'
-                }}
-              />
-
-              {/* Icon */}
-              <div
-                className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center mb-6 shadow-sm"
-              >
-                <BarChart3 className="w-7 h-7 text-teal-600" />
-              </div>
-
-              {/* Title */}
-              <h3 className="h3-unified text-primary" style={{ marginBottom: 'var(--content-spacing-md)' }}>
-                Private Equity Overview
-              </h3>
-
-              {/* Description */}
-              <p className="body-large-unified text-secondary" style={{ marginBottom: 'var(--content-spacing-lg)' }}>
-                Strategic investments in high-growth sectors across UAE and global markets, 
-                focusing on sustainable value creation.
-              </p>
-
-              {/* Focus Areas */}
-              <div>
-                <h4 className="body-small-unified text-tertiary uppercase tracking-wider mb-4">
-                  Focus Areas:
-                </h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--content-spacing-sm)' }}>
-                  {[
-                    { icon: Building2, label: 'Real Estate', gradient: 'from-blue-50 to-cyan-50' },
-                    { icon: Award, label: 'Gold Mining', gradient: 'from-amber-50 to-orange-50' },
-                    { icon: Globe, label: 'Global Trading', gradient: 'from-emerald-50 to-teal-50' }
-                  ].map((area, index) => (
-                    <div
-                      key={area.label}
-                      className="flex items-center gap-3"
-                    >
-                      <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${area.gradient} flex items-center justify-center shadow-sm`}>
-                        <area.icon className="w-5 h-5 text-gray-700" />
-                      </div>
-                      <span className="body-regular-unified text-secondary">
-                        {area.label}
-                      </span>
-                    </div>
-                  ))}
+            <Card className="h-full flex flex-col">
+              <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
+                {/* Icon */}
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center mb-6 shadow-sm">
+                  <BarChart3 className="w-7 h-7 text-teal-600" />
                 </div>
-              </div>
-            </motion.div>
+
+                {/* Title */}
+                <h3 className="h3-unified text-primary rhythm-title-content">
+                  Private Equity Overview
+                </h3>
+
+                {/* Description */}
+                <p className="body-large-unified text-secondary rhythm-card-internal">
+                  Strategic investments in high-growth sectors across UAE and global markets, 
+                  focusing on sustainable value creation.
+                </p>
+
+                {/* Focus Areas - Using BulletList */}
+                <div>
+                  <h4 className="body-small-unified text-tertiary uppercase tracking-wider mb-4">
+                    Focus Areas:
+                  </h4>
+                  <BulletList
+                    bulletColor="#00d4aa"
+                    items={[
+                      'Real Estate',
+                      'Gold Mining',
+                      'Global Trading'
+                    ]}
+                    titleGap="sm"
+                  />
+                </div>
+              </CardBody>
+            </Card>
           </motion.div>
 
           {/* Card 2 - Investment Strategy */}
@@ -228,65 +189,31 @@ export default function PrivateEquitySection() {
             custom={1}
             className="h-full"
           >
-            <motion.div
-              variants={cardVariants}
-              className="card-unified h-full"
-              style={{
-                position: 'relative',
-                padding: 'clamp(20px, 4vw, var(--content-spacing-xl))',
-                minHeight: 'auto'
-              }}
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Animated Accent Line */}
-              <motion.div
-                initial={{ width: 0 }}
-                animate={isInView ? { width: "100%" } : {}}
-                transition={{ duration: 1.5, delay: 0.3 }}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: '3px',
-                  background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
-                  borderRadius: '12px 12px 0 0'
-                }}
-              />
+            <Card className="h-full flex flex-col">
+              <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
+                {/* Icon */}
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center mb-6 shadow-sm">
+                  <Target className="w-7 h-7 text-teal-600" />
+                </div>
 
-              {/* Icon */}
-              <div
-                className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center mb-6 shadow-sm"
-              >
-                <Target className="w-7 h-7 text-teal-600" />
-              </div>
+                {/* Title */}
+                <h3 className="h3-unified text-primary rhythm-title-content">
+                  Investment Strategy
+                </h3>
 
-              {/* Title */}
-              <h3 className="h3-unified text-primary" style={{ marginBottom: 'var(--content-spacing-lg)' }}>
-                Investment Strategy
-              </h3>
-
-              {/* Strategy Items */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--content-spacing-md)' }}>
-                {[
-                  { icon: TrendingUp, text: 'Target high-growth sectors' },
-                  { icon: Shield, text: 'Governance & transparency' },
-                  { icon: MapPin, text: 'Regional expansion' },
-                  { icon: Clock, text: 'Long-term value creation' }
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3"
-                  >
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center shadow-sm">
-                      <item.icon className="w-5 h-5 text-teal-600" />
-                    </div>
-                    <span className="body-regular-unified text-secondary">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+                {/* Strategy Items - Using BulletList */}
+                <BulletList
+                  bulletColor="#00d4aa"
+                  items={[
+                    'Target high-growth sectors',
+                    'Governance & transparency',
+                    'Regional expansion',
+                    'Long-term value creation'
+                  ]}
+                  titleGap="sm"
+                />
+              </CardBody>
+            </Card>
           </motion.div>
 
           {/* Card 3 - UAE Investments */}
@@ -295,82 +222,48 @@ export default function PrivateEquitySection() {
             custom={2}
             className="h-full"
           >
-            <motion.div
-              variants={cardVariants}
-              className="card-unified h-full"
-              style={{
-                position: 'relative',
-                padding: 'clamp(20px, 4vw, var(--content-spacing-xl))',
-                minHeight: 'auto'
-              }}
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Animated Accent Line */}
-              <motion.div
-                initial={{ width: 0 }}
-                animate={isInView ? { width: "100%" } : {}}
-                transition={{ duration: 1.5, delay: 0.4 }}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: '3px',
-                  background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
-                  borderRadius: '12px 12px 0 0'
-                }}
-              />
-
-              {/* Icon */}
-              <div
-                className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center mb-6 shadow-sm"
-              >
-                <Building2 className="w-7 h-7 text-teal-600" />
-              </div>
-
-              {/* Title */}
-              <h3 className="h3-unified text-primary" style={{ marginBottom: 'var(--content-spacing-md)' }}>
-                UAE Investments
-              </h3>
-
-              {/* Description */}
-              <p className="body-large-unified text-secondary" style={{ marginBottom: 'var(--content-spacing-lg)' }}>
-                Strategic investments in UAE's most promising sectors, 
-                leveraging local expertise and global partnerships.
-              </p>
-
-              {/* Investment Items */}
-              <div>
-                <h4 className="body-small-unified text-tertiary uppercase tracking-wider mb-4">
-                  Key Sectors:
-                </h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--content-spacing-md)' }}>
-                  {[
-                    { 
-                      label: 'Premium Real Estate', 
-                      subtext: 'Residential & Commercial'
-                    },
-                    { 
-                      label: 'Gold Ecosystem', 
-                      subtext: 'Dubai Gold Market'
-                    }
-                  ].map((sector) => (
-                    <div key={sector.label}>
-                      <div className="body-regular-unified text-primary" style={{ fontWeight: 500, marginBottom: '4px' }}>
-                        {sector.label}
-                      </div>
-                      <div className="body-small-unified text-tertiary">
-                        {sector.subtext}
-                      </div>
-                    </div>
-                  ))}
+            <Card className="h-full flex flex-col">
+              <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
+                {/* Icon */}
+                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center mb-6 shadow-sm">
+                  <Building2 className="w-7 h-7 text-teal-600" />
                 </div>
-              </div>
-            </motion.div>
+
+                {/* Title */}
+                <h3 className="h3-unified text-primary rhythm-title-content">
+                  UAE Investments
+                </h3>
+
+                {/* Description */}
+                <p className="body-large-unified text-secondary rhythm-card-internal">
+                  Strategic investments in UAE's most promising sectors, 
+                  leveraging local expertise and global partnerships.
+                </p>
+
+                {/* Investment Items */}
+                <div>
+                  <h4 className="body-small-unified text-tertiary uppercase tracking-wider mb-4">
+                    Key Sectors:
+                  </h4>
+                  <BulletList
+                    bulletColor="#00d4aa"
+                    items={[
+                      {
+                        title: 'Premium Real Estate',
+                        description: 'Residential & Commercial'
+                      },
+                      {
+                        title: 'Gold Ecosystem',
+                        description: 'Dubai Gold Market'
+                      }
+                    ]}
+                    titleGap="sm"
+                  />
+                </div>
+              </CardBody>
+            </Card>
           </motion.div>
         </motion.div>
-
       </div>
     </section>
   );

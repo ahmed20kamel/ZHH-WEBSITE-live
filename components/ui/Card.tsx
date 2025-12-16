@@ -10,6 +10,7 @@ interface CardProps {
 
 export default function Card({ children, className = '', hover = true, style }: CardProps) {
   const defaultStyle: CSSProperties = {
+    padding: 'clamp(24px, 3vw, 32px)',
     borderRadius: '8px',
     boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
     ...style

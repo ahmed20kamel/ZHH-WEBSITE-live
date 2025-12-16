@@ -8,7 +8,8 @@ import {
   Briefcase
 } from 'lucide-react';
 import { Person, OrgLevel, premiumColors } from './types';
-import ShowMoreButton from '@/components/ui/ShowMoreButton';
+import Button from '@/components/ui/Button';
+import { ChevronDown } from 'lucide-react';
 
 // Clean Avatar Component - Soft & Minimal Design
 export const Avatar = ({ person, size = 'lg' }: { person: Person; size?: 'sm' | 'lg' | 'xl' }) => {
@@ -196,12 +197,21 @@ export const OrgNode = ({ person, level, onSelect, isExpanded }: {
 
                 {/* Show More/Less Button */}
                 {person.bio.length > 80 && (
-                  <div className="mt-4 mb-1">
-                    <ShowMoreButton
-                      isExpanded={isCardExpanded}
-                      onClick={() => setIsCardExpanded(!isCardExpanded)}
+                  <div className="mt-4 mb-1 flex justify-center">
+                    <Button
+                      variant={isCardExpanded ? 'primary' : 'secondary'}
                       size="sm"
-                    />
+                      onClick={() => setIsCardExpanded(!isCardExpanded)}
+                      className="flex items-center gap-2"
+                    >
+                      <span>{isCardExpanded ? 'Show less' : 'Show more'}</span>
+                      <motion.div
+                        animate={{ rotate: isCardExpanded ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ChevronDown className="w-3.5 h-3.5" />
+                      </motion.div>
+                    </Button>
                   </div>
                 )}
               </div>

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { teamMembers } from '@/data/team';
 import OrgChart from '@/components/OrgChart';
-import ShowMoreButton from '@/components/ui/ShowMoreButton';
+import Button from '@/components/ui/Button';
 import { 
   Building2, Users, Globe, Gem, 
   TrendingUp, Award, Target, Shield,
@@ -14,7 +14,7 @@ import {
   Linkedin, Twitter, ExternalLink,
   Briefcase, Eye, Zap, Crown,
   Coffee, Cpu, Package, Home,
-  Flag
+  Flag, ChevronDown
 } from 'lucide-react';
 
 // Premium Color Palette
@@ -511,12 +511,21 @@ export default function AboutPageClient() {
 
                           {/* Show More/Less Button */}
                           {member.bio.length > 120 && (
-                            <div className="mt-6 mb-2">
-                              <ShowMoreButton
-                                isExpanded={expandedBios.has(member.id)}
-                                onClick={() => toggleBio(member.id)}
+                            <div className="mt-6 mb-2 flex justify-center">
+                              <Button
+                                variant={expandedBios.has(member.id) ? 'primary' : 'secondary'}
                                 size="md"
-                              />
+                                onClick={() => toggleBio(member.id)}
+                                className="flex items-center gap-2"
+                              >
+                                <span>{expandedBios.has(member.id) ? 'Show less' : 'Show more'}</span>
+                                <motion.div
+                                  animate={{ rotate: expandedBios.has(member.id) ? 180 : 0 }}
+                                  transition={{ duration: 0.3 }}
+                                >
+                                  <ChevronDown className="w-4 h-4" />
+                                </motion.div>
+                              </Button>
                             </div>
                           )}
                         </div>
@@ -653,12 +662,21 @@ export default function AboutPageClient() {
 
                             {/* Show More/Less Button */}
                             {item.member.bio.length > 120 && (
-                              <div className="mt-6 mb-2">
-                                <ShowMoreButton
-                                  isExpanded={expandedBios.has(item.member.id)}
-                                  onClick={() => toggleBio(item.member!.id)}
+                              <div className="mt-6 mb-2 flex justify-center">
+                                <Button
+                                  variant={expandedBios.has(item.member.id) ? 'primary' : 'secondary'}
                                   size="md"
-                                />
+                                  onClick={() => toggleBio(item.member!.id)}
+                                  className="flex items-center gap-2"
+                                >
+                                  <span>{expandedBios.has(item.member.id) ? 'Show less' : 'Show more'}</span>
+                                  <motion.div
+                                    animate={{ rotate: expandedBios.has(item.member.id) ? 180 : 0 }}
+                                    transition={{ duration: 0.3 }}
+                                  >
+                                    <ChevronDown className="w-4 h-4" />
+                                  </motion.div>
+                                </Button>
                               </div>
                             )}
                           </>
@@ -777,12 +795,21 @@ export default function AboutPageClient() {
 
                             {/* Show More/Less Button */}
                             {item.member.bio.length > 120 && (
-                              <div className="mt-6 mb-2">
-                                <ShowMoreButton
-                                  isExpanded={expandedBios.has(item.member.id)}
-                                  onClick={() => toggleBio(item.member!.id)}
+                              <div className="mt-6 mb-2 flex justify-center">
+                                <Button
+                                  variant={expandedBios.has(item.member.id) ? 'primary' : 'secondary'}
                                   size="md"
-                                />
+                                  onClick={() => toggleBio(item.member!.id)}
+                                  className="flex items-center gap-2"
+                                >
+                                  <span>{expandedBios.has(item.member.id) ? 'Show less' : 'Show more'}</span>
+                                  <motion.div
+                                    animate={{ rotate: expandedBios.has(item.member.id) ? 180 : 0 }}
+                                    transition={{ duration: 0.3 }}
+                                  >
+                                    <ChevronDown className="w-4 h-4" />
+                                  </motion.div>
+                                </Button>
                               </div>
                             )}
                           </>
