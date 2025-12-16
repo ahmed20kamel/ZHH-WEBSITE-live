@@ -723,23 +723,36 @@ export default function Header() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1, duration: 0.3 }}
                 >
-                  {/* Contact Title */}
-                  <h3
-                    style={{
-                      fontFamily: '"Montserrat", sans-serif',
-                      fontSize: 'clamp(20px, 2.6vw, 27px)',
-                      fontWeight: 600,
-                      letterSpacing: '0.5px',
-                      lineHeight: 1.2,
-                      color: '#032D46',
-                      marginBottom: 'clamp(17px, 2.1vw, 20px)',
-                      paddingBottom: 'clamp(10px, 1.3vw, 14px)',
-                      borderBottom: '2px solid #032D46',
-                      textTransform: 'uppercase'
-                    }}
+                  {/* Contact Title - navigates to /contact */}
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    style={{ textDecoration: 'none' }}
                   >
-                    Contact Us
-                  </h3>
+                    <h3
+                      style={{
+                        fontFamily: '"Montserrat", sans-serif',
+                        fontSize: 'clamp(20px, 2.6vw, 27px)',
+                        fontWeight: 600,
+                        letterSpacing: '0.5px',
+                        lineHeight: 1.2,
+                        color: '#032D46',
+                        marginBottom: 'clamp(17px, 2.1vw, 20px)',
+                        paddingBottom: 'clamp(10px, 1.3vw, 14px)',
+                        borderBottom: '2px solid #032D46',
+                        textTransform: 'uppercase',
+                        cursor: 'pointer',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = 'var(--color-primary-teal)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = '#032D46';
+                      }}
+                    >
+                      Contact Us
+                    </h3>
+                  </Link>
 
                   {/* Contact Info */}
                   <div 

@@ -218,23 +218,38 @@ export default function MegaMenu({
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1, duration: 0.3 }}
                   >
-                    {/* Contact Title */}
-                    <h3
+                    {/* Contact Title - navigates to /contact */}
+                    <Link
+                      href="/contact"
+                      onClick={onClose}
                       style={{
-                        fontFamily: '"Montserrat", sans-serif',
-                        fontSize: 'clamp(24px, 3vw, 32px)',
-                        fontWeight: 600,
-                        letterSpacing: '0.5px',
-                        lineHeight: 1.2,
-                        color: '#032D46',
-                        marginBottom: 'clamp(20px, 2.5vw, 24px)',
-                        paddingBottom: 'clamp(12px, 1.5vw, 16px)',
-                        borderBottom: '2px solid #032D46',
-                        textTransform: 'uppercase'
+                        textDecoration: 'none',
                       }}
                     >
-                      Contact Us
-                    </h3>
+                      <h3
+                        style={{
+                          fontFamily: '"Montserrat", sans-serif',
+                          fontSize: 'clamp(24px, 3vw, 32px)',
+                          fontWeight: 600,
+                          letterSpacing: '0.5px',
+                          lineHeight: 1.2,
+                          color: '#032D46',
+                          marginBottom: 'clamp(20px, 2.5vw, 24px)',
+                          paddingBottom: 'clamp(12px, 1.5vw, 16px)',
+                          borderBottom: '2px solid #032D46',
+                          textTransform: 'uppercase',
+                          cursor: 'pointer',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = '#01B2B2';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = '#032D46';
+                        }}
+                      >
+                        Contact Us
+                      </h3>
+                    </Link>
 
                     {/* Contact Info */}
                     <div 
