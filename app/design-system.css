@@ -91,12 +91,13 @@
 }
 
 .h2-unified {
-  font-family: var(--font-heading);
+  font-family: var(--font-inter), Inter, sans-serif;
   font-size: var(--h2-size);
   line-height: var(--h2-line-height);
-  font-weight: var(--h2-weight);
+  font-weight: 700;
   margin-bottom: var(--h2-margin-bottom);
   letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text-primary);
 }
 
 .h3-unified {

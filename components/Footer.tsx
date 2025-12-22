@@ -4,8 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { 
   Mail, Phone, MapPin, ArrowUpRight,
-  Linkedin, Twitter, Instagram, Youtube,
-  Shield, Award, TrendingUp, Sparkles
+  Linkedin, Twitter, Instagram, Youtube
 } from 'lucide-react';
 import Button from '@/components/ui/Button';
 
@@ -60,24 +59,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-b from-gray-900 to-black" style={{ paddingTop: 'clamp(60px, 8vw, 100px)', paddingBottom: 'clamp(40px, 5vw, 60px)' }}>
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient Orbs */}
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-r from-blue-900/20 to-teal-900/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-gradient-to-r from-emerald-900/20 to-teal-900/20 rounded-full blur-3xl" />
-        
-        {/* Grid Pattern */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `linear-gradient(90deg, rgba(1, 178, 178, 0.05) 1px, transparent 1px),
-                             linear-gradient(rgba(1, 178, 178, 0.05) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
-            maskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)'
-          }}
-        />
-      </div>
+    <footer className="relative overflow-hidden bg-gray-700" style={{ paddingTop: 'clamp(60px, 8vw, 100px)', paddingBottom: 'clamp(40px, 5vw, 60px)' }}>
 
       <div className="container-unified relative z-10">
         {/* Top Section - Main Content */}
@@ -88,28 +70,17 @@ export default function Footer() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex items-center gap-4"
+              className="flex items-center"
             >
               <div className="relative">
-                <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-blue-600/20 to-teal-600/20 backdrop-blur-sm border border-blue-500/20 flex items-center justify-center shadow-md">
+                <div className="w-40 h-40 rounded-2xl bg-transparent flex items-center justify-center p-4">
                   <img
                     src="/assets/logos/zhh-group-holding-logo.svg"
                     alt="ZHH Group Holding"
-                    style={{ width: '80px', height: '80px' }}
+                    style={{ width: '100%', height: '100%', filter: 'brightness(1.5) contrast(1.4) drop-shadow(0 0 10px rgba(13, 148, 136, 0.3))', objectFit: 'contain' }}
                     className="object-contain"
                   />
                 </div>
-                {/* Animated Glow */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/10 to-teal-500/10 blur-sm -z-10 animate-pulse" />
-              </div>
-              
-              <div>
-                <h3 className="h4-unified text-white" style={{ fontFamily: 'var(--font-primary)', fontWeight: 700 }}>
-                  ZHH GROUP
-                </h3>
-                <p className="body-small-unified text-gray-400 uppercase tracking-wider" style={{ fontFamily: 'var(--font-primary)' }}>
-                  Emirati Conglomerate
-                </p>
               </div>
             </motion.div>
 
@@ -140,9 +111,9 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -2, scale: 1.1 }}
-                  className="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 flex items-center justify-center hover:border-blue-500/30 transition-all duration-300 group"
+                  className="w-10 h-10 rounded-lg bg-gray-800 border border-gray-700 flex items-center justify-center hover:border-teal-500 transition-all duration-300 group"
                 >
-                  <social.icon className="w-4 h-4 text-gray-400 group-hover:text-blue-400 transition-colors" />
+                  <social.icon className="w-4 h-4 text-gray-400 group-hover:text-teal-400 transition-colors" />
                 </motion.a>
               ))}
             </motion.div>
@@ -163,7 +134,7 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--content-spacing-sm)' }}>
               {divisions.map((division, index) => {
                 const content = (
-                  <div className="group flex items-center gap-4 p-4 rounded-lg hover:bg-gradient-to-r hover:from-blue-900/10 hover:to-teal-900/10 transition-all duration-300 border border-transparent hover:border-blue-500/10">
+                  <div className="group flex items-center gap-4 p-4 rounded-lg hover:bg-gray-800/50 transition-all duration-300 border border-transparent hover:border-teal-500/30">
                     {/* Logo */}
                     <div className="w-14 h-14 rounded-lg bg-white/5 backdrop-blur-sm border border-gray-700/50 flex items-center justify-center flex-shrink-0 p-2">
                       <img
@@ -175,13 +146,13 @@ export default function Footer() {
                     
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="body-small-unified text-white group-hover:text-blue-300 transition-colors" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>
+                        <span className="body-small-unified text-white group-hover:text-teal-400 transition-colors" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>
                           {division.name}
                         </span>
                         <motion.span
                           initial={{ opacity: 0, x: -10 }}
                           whileHover={{ opacity: 1, x: 0 }}
-                          className="text-blue-400 flex-shrink-0"
+                          className="text-teal-400 flex-shrink-0"
                         >
                           <ArrowUpRight className="w-4 h-4" />
                         </motion.span>
@@ -245,7 +216,7 @@ export default function Footer() {
                     href={link.href}
                     className="group flex items-center gap-2 p-3 rounded-lg hover:bg-gradient-to-r hover:from-gray-800/50 hover:to-gray-900/50 transition-all duration-300"
                   >
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="w-2 h-2 rounded-full bg-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <span className="body-small-unified text-gray-400 group-hover:text-white transition-colors" style={{ fontFamily: 'var(--font-primary)' }}>
                       {link.name}
                     </span>
@@ -275,8 +246,8 @@ export default function Footer() {
                 viewport={{ once: true }}
                 className="flex items-start gap-3"
               >
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-blue-400" />
+                <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-teal-400" />
                 </div>
                 <div>
                   <p className="body-small-unified text-white" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>Corporate Headquarters</p>
@@ -295,8 +266,8 @@ export default function Footer() {
                 transition={{ delay: 0.1 }}
                 className="flex items-center gap-3"
               >
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-5 h-5 text-blue-400" />
+                <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-5 h-5 text-teal-400" />
                 </div>
                 <div>
                   <a
@@ -320,8 +291,8 @@ export default function Footer() {
                 transition={{ delay: 0.2 }}
                 className="flex items-center gap-3"
               >
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-5 h-5 text-blue-400" />
+                <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 text-teal-400" />
                 </div>
                 <div>
                   <a
@@ -356,7 +327,7 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 h-12 px-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="flex-1 h-12 px-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-teal-500 transition-colors"
                 />
                 <Button
                   variant="primary"
@@ -372,122 +343,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Middle Section - Awards & Certifications */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="py-8 border-y border-gray-800 mb-8"
-        >
-          <h4 className="h4-unified text-white text-center" style={{ fontFamily: 'var(--font-primary)', marginBottom: 'var(--content-spacing-md)' }}>
-            Recognitions & Certifications
-          </h4>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center mx-auto mb-3">
-                <Shield className="w-6 h-6 text-blue-400" />
-              </div>
-              <p className="body-small-unified text-gray-400" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>ISO 9001:2015</p>
-              <p className="body-small-unified text-gray-500 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
-                Quality Management Certified
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center mx-auto mb-3">
-                <Award className="w-6 h-6 text-emerald-400" />
-              </div>
-              <p className="body-small-unified text-gray-400" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>ESG Excellence</p>
-              <p className="body-small-unified text-gray-500 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
-                Sustainability Leadership
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center mx-auto mb-3">
-                <TrendingUp className="w-6 h-6 text-amber-400" />
-              </div>
-              <p className="body-small-unified text-gray-400" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>Top 50 UAE</p>
-              <p className="body-small-unified text-gray-500 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
-                Fastest Growing Companies
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center mx-auto mb-3">
-                <Sparkles className="w-6 h-6 text-violet-400" />
-              </div>
-              <p className="body-small-unified text-gray-400" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>Zero Violations</p>
-              <p className="body-small-unified text-gray-500 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
-                Perfect Compliance Record
-              </p>
-            </div>
-          </div>
-        </motion.div>
-
         {/* Bottom Section */}
         <div className="pt-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            {/* Copyright */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="body-small-unified text-gray-500 text-center md:text-left"
-              style={{ fontFamily: 'var(--font-primary)' }}
-            >
-              © {currentYear} ZHH Group Holding. All Rights Reserved.
-            </motion.p>
-
-            {/* Legal Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex flex-wrap gap-6 justify-center"
-            >
-              <Link href="/privacy" className="body-small-unified text-gray-400 hover:text-white transition-colors" style={{ fontFamily: 'var(--font-primary)' }}>
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="body-small-unified text-gray-400 hover:text-white transition-colors" style={{ fontFamily: 'var(--font-primary)' }}>
-                Terms of Service
-              </Link>
-              <Link href="/disclaimer" className="body-small-unified text-gray-400 hover:text-white transition-colors" style={{ fontFamily: 'var(--font-primary)' }}>
-                Legal Disclaimer
-              </Link>
-              <Link href="/sitemap" className="body-small-unified text-gray-400 hover:text-white transition-colors" style={{ fontFamily: 'var(--font-primary)' }}>
-                Sitemap
-              </Link>
-            </motion.div>
-
-            {/* Back to Top */}
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -2 }}
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="px-4 py-2 rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 border border-gray-700 text-gray-400 hover:text-white hover:border-blue-500/30 transition-all duration-300 flex items-center gap-2"
-              style={{
-                fontFamily: 'var(--font-primary)',
-                fontSize: 'clamp(12px, 1.4vw, 14px)'
-              }}
-            >
-              <ArrowUpRight className="w-4 h-4" />
-              Back to Top
-            </motion.button>
-          </div>
-          
-          {/* Additional Copyright Line */}
           <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="body-small-unified text-gray-600 text-center"
-            style={{ fontFamily: 'var(--font-primary)', marginTop: 'var(--content-spacing-md)' }}
+            className="body-small-unified text-gray-500 text-center"
+            style={{ fontFamily: 'var(--font-primary)' }}
           >
-            ZHH Group Holding is a registered trademark. All company names, logos, and 
-            product names are trademarks or registered trademarks of their respective holders.
+            © {currentYear} ZHH Group Holding. All Rights Reserved.
           </motion.p>
         </div>
       </div>

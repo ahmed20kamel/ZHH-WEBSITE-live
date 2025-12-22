@@ -23,10 +23,10 @@ const impactPillars = [
       { text: 'Energy-efficient construction projects', value: '85%' },
       { text: 'Carbon footprint reduction initiatives', value: '-30%' }
     ],
-    gradient: 'from-green-50 to-emerald-50',
-    iconColor: 'text-green-600',
-    borderColor: 'border-green-200',
-    color: '#10b981',
+    gradient: 'from-blue-50 to-cyan-50',
+    iconColor: 'text-teal-600',
+    borderColor: 'border-teal-200',
+    color: '#0d9488',
     delay: 0.1,
     stats: [
       { label: 'Green Projects', value: '24', suffix: '' },
@@ -44,9 +44,9 @@ const impactPillars = [
       { text: 'Local community partnerships established', value: '45' }
     ],
     gradient: 'from-blue-50 to-cyan-50',
-    iconColor: 'text-blue-600',
-    borderColor: 'border-blue-200',
-    color: '#3b82f6',
+    iconColor: 'text-teal-600',
+    borderColor: 'border-teal-200',
+    color: '#0d9488',
     delay: 0.2,
     stats: [
       { label: 'Jobs Created', value: '1,500', suffix: '+' },
@@ -63,10 +63,10 @@ const impactPillars = [
       { text: 'Community safeguards implemented', value: '25' },
       { text: 'Ethical sourcing certifications obtained', value: '5' }
     ],
-    gradient: 'from-amber-50 to-yellow-50',
-    iconColor: 'text-amber-600',
-    borderColor: 'border-amber-200',
-    color: '#f59e0b',
+    gradient: 'from-blue-50 to-cyan-50',
+    iconColor: 'text-teal-600',
+    borderColor: 'border-teal-200',
+    color: '#0d9488',
     delay: 0.3,
     stats: [
       { label: 'Gold Traded', value: '165', suffix: '' },
@@ -167,30 +167,24 @@ export default function ImpactSection() {
             variants={fadeInUp}
             className="inline-flex items-center gap-3 mb-6"
           >
-            <div className="w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-teal-600" />
             <span className="body-small-unified text-tertiary uppercase tracking-wider">
               Sustainability & Impact
             </span>
-            <div className="w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-teal-600" />
           </motion.div>
 
           <motion.h2
             variants={fadeInUp}
             className="h2-unified text-primary text-center"
+            style={{
+              fontFamily: 'var(--font-inter), Inter, sans-serif',
+              fontWeight: 700,
+              color: 'var(--color-text-primary)'
+            }}
           >
             Our Impact
           </motion.h2>
-
-          <motion.div
-            variants={fadeInUp}
-            style={{
-              width: '60px',
-              height: '4px',
-              background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
-              margin: 'var(--content-spacing-md) auto 0',
-              borderRadius: '2px'
-            }}
-          />
 
           <motion.p
             variants={fadeInUp}
@@ -215,11 +209,11 @@ export default function ImpactSection() {
             const bulletItems = pillar.items.map(item => ({
               title: item.text,
               description: (
-                <div className="inline-flex items-center gap-1 mt-1">
-                  <span className="body-small-unified text-teal" style={{ fontWeight: 600 }}>
-                    {item.value}
-                  </span>
-                  <TrendingUp className="w-3 h-3 text-green-500" />
+                  <div className="inline-flex items-center gap-1 mt-1">
+                   <span className="body-small-unified text-teal-600" style={{ fontWeight: 600 }}>
+                      {item.value}
+                    </span>
+                   <TrendingUp className="w-3 h-3 text-teal-600" />
                 </div>
               )
             }));
@@ -238,7 +232,7 @@ export default function ImpactSection() {
                       <div 
                         className={`w-16 h-16 rounded-lg ${pillar.gradient} flex items-center justify-center shadow-sm transition-all duration-300`}
                         style={{ 
-                          border: `1px solid ${pillar.color}15`
+                          border: '1px solid rgba(13, 148, 136, 0.15)'
                         }}
                       >
                         <Icon 
@@ -248,8 +242,7 @@ export default function ImpactSection() {
                       </div>
                       {/* Visual anchor line under icon */}
                       <div 
-                        className="mt-4 h-0.5 w-12"
-                        style={{ backgroundColor: pillar.color }}
+                        className="mt-4 h-0.5 w-12 bg-teal-600"
                       />
                     </div>
                     
@@ -268,17 +261,17 @@ export default function ImpactSection() {
                     </div>
                     
                     {/* Divider */}
-                    <div 
-                      className="h-px mb-8"
-                      style={{ backgroundColor: pillar.color, opacity: 0.2 }}
-                    />
+                      <div 
+                        className="h-px mb-8 bg-teal-600"
+                        style={{ opacity: 0.2 }}
+                      />
                     
                     {/* Content - Bullet List */}
                     <div className="flex-1 mb-8">
-                      <BulletList
-                        bulletColor={pillar.color}
-                        className="text-left"
-                        maxWidth="max-w-none"
+                        <BulletList
+                         bulletColor="#0d9488"
+                          className="text-left"
+                          maxWidth="max-w-none"
                         items={bulletItems}
                         titleGap="sm"
                       />

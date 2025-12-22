@@ -19,7 +19,7 @@ const highlights = [
     description: 'Strong financial foundation with diversified portfolio',
     icon: TrendingUp,
     gradient: 'from-blue-50 to-cyan-50',
-    color: 'text-blue-600',
+    color: 'text-teal-600',
     delay: 0.1,
     growth: '+15% YoY',
     features: ['Diversified Portfolio', 'Risk Management', 'Sustainable Returns']
@@ -29,8 +29,8 @@ const highlights = [
     label: 'Total Project Value', 
     description: 'Significant investments across all divisions',
     icon: Building2,
-    gradient: 'from-emerald-50 to-teal-50',
-    color: 'text-emerald-600',
+    gradient: 'from-blue-50 to-cyan-50',
+    color: 'text-teal-600',
     delay: 0.2,
     growth: '+25% YoY',
     features: ['Major Developments', 'Infrastructure', 'Commercial Projects']
@@ -40,8 +40,8 @@ const highlights = [
     label: 'Completed Projects', 
     description: 'Proven track record of successful delivery',
     icon: Award,
-    gradient: 'from-violet-50 to-indigo-50',
-    color: 'text-violet-600',
+    gradient: 'from-blue-50 to-cyan-50',
+    color: 'text-teal-600',
     delay: 0.3,
     growth: '98% On-time',
     features: ['Quality Assurance', 'Timely Delivery', 'Client Satisfaction']
@@ -51,8 +51,8 @@ const highlights = [
     label: 'Gold Traded', 
     description: 'Ethical sourcing and transparent trading operations',
     icon: Gem,
-    gradient: 'from-amber-50 to-yellow-50',
-    color: 'text-amber-600',
+    gradient: 'from-blue-50 to-cyan-50',
+    color: 'text-teal-600',
     delay: 0.4,
     growth: '+30% YoY',
     features: ['Ethical Sourcing', 'Market Leaders', 'Global Network']
@@ -62,8 +62,8 @@ const highlights = [
     label: 'Licensed Mines', 
     description: 'Under active development and expansion',
     icon: Target,
-    gradient: 'from-rose-50 to-pink-50',
-    color: 'text-rose-600',
+    gradient: 'from-blue-50 to-cyan-50',
+    color: 'text-teal-600',
     delay: 0.5,
     growth: 'Expanding',
     features: ['Active Operations', 'Sustainable Mining', 'Resource Rich']
@@ -73,8 +73,8 @@ const highlights = [
     label: 'Compliance Violations', 
     description: 'Perfect regulatory compliance record',
     icon: Shield,
-    gradient: 'from-green-50 to-emerald-50',
-    color: 'text-green-600',
+    gradient: 'from-blue-50 to-cyan-50',
+    color: 'text-teal-600',
     delay: 0.6,
     growth: '100% Clean',
     features: ['Full Compliance', 'Transparent Operations', 'Strong Governance']
@@ -172,30 +172,24 @@ export default function InvestmentHighlightsSection() {
             variants={fadeInUp}
             className="inline-flex items-center gap-3 mb-6"
           >
-            <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-teal-600" />
             <span className="body-small-unified text-tertiary uppercase tracking-wider">
               Performance Metrics
             </span>
-            <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-teal-600" />
           </motion.div>
 
           <motion.h2
             variants={fadeInUp}
             className="h2-unified text-primary text-center"
+            style={{
+              fontFamily: 'var(--font-inter), Inter, sans-serif',
+              fontWeight: 700,
+              color: 'var(--color-text-primary)'
+            }}
           >
             Investment Highlights
           </motion.h2>
-
-          <motion.div
-            variants={fadeInUp}
-            style={{
-              width: '60px',
-              height: '4px',
-              background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
-              margin: 'var(--content-spacing-md) auto 0',
-              borderRadius: '2px'
-            }}
-          />
 
           <motion.p
             variants={fadeInUp}
@@ -241,10 +235,10 @@ export default function InvestmentHighlightsSection() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.3 + (index * 0.1) }}
-                        className="inline-flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-green-50 to-emerald-50 rounded-full border border-green-200 mb-3"
-                      >
-                        <TrendingUp className="w-3 h-3 text-green-600" />
-                        <span className="body-small-unified text-green-700" style={{ fontWeight: 600 }}>
+                        className="inline-flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-full border border-teal-200 mb-3"
+                        >
+                         <TrendingUp className="w-3 h-3 text-teal-600" />
+                         <span className="body-small-unified text-teal-600" style={{ fontWeight: 600 }}>
                           {highlight.growth}
                         </span>
                       </motion.div>

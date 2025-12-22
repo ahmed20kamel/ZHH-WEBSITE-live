@@ -135,7 +135,7 @@ export default function AboutPageClient() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative flex items-center justify-center overflow-hidden text-white" style={{ minHeight: '70vh' }}>
+      <section className="relative flex items-center justify-center overflow-hidden text-white" style={{ height: '100vh', minHeight: '600px', maxHeight: '1200px' }}>
         {/* Background Image - Desktop Only */}
         <div className="absolute inset-0 w-full h-full z-0 hidden md:block">
           <Image
@@ -146,7 +146,8 @@ export default function AboutPageClient() {
             className="object-cover"
             style={{
               objectFit: 'cover',
-              objectPosition: 'center'
+              objectPosition: 'center',
+              filter: 'grayscale(100%)',
             }}
           />
         </div>
@@ -161,21 +162,22 @@ export default function AboutPageClient() {
             style={{ 
               pointerEvents: 'none',
               objectFit: 'cover',
-              objectPosition: 'bottom'
+              objectPosition: 'bottom',
+              filter: 'grayscale(100%)',
             }}
           />
         </div>
         
-        {/* Light Gradient Overlay - Bottom to Top (stronger at bottom) */}
+        {/* Dark Overlay for better text readability */}
         <div 
           className="absolute inset-0 z-[1]"
           style={{
-            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 40%, transparent 100%)'
+            background: 'rgba(0, 0, 0, 0.3)',
           }}
         />
 
-        {/* Text Content Container with Backdrop */}
-        <div className="container-unified relative z-10 flex items-center justify-center" style={{ minHeight: '70vh', paddingTop: 'clamp(40px, 8vh, 80px)' }}>
+        {/* Text Content - Direct on Image */}
+        <div className="container-unified relative z-10 flex items-center justify-center" style={{ height: '100%', paddingTop: 'clamp(40px, 8vh, 80px)' }}>
           <motion.div
             initial="hidden"
             animate="visible"
@@ -189,37 +191,29 @@ export default function AboutPageClient() {
               }
             }}
             className="text-center max-w-4xl mx-auto space-y-6 px-4"
-            style={{
-              padding: 'clamp(40px, 5vw, 60px)',
-              borderRadius: '16px',
-              background: 'rgba(0, 0, 0, 0.35)',
-              backdropFilter: 'blur(10px)',
-              WebkitBackdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
-            }}
           >
-            <motion.div
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col items-center gap-4"
+              className="text-4xl md:text-6xl font-bold tracking-tight text-white"
+              style={{ 
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 700,
+                lineHeight: 1.2
+              }}
             >
-              <div className="w-16 h-1 bg-gradient-to-r from-[#00d4aa] via-[#c9a74a] to-[#00d4aa]" />
-              <h1
-                className="text-4xl md:text-6xl font-semibold tracking-tight text-white"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
-                About ZHH Group Holding
-              </h1>
-              <div className="w-24 h-1 bg-gradient-to-r from-[#c9a74a] via-[#00d4aa] to-[#c9a74a]" />
-            </motion.div>
+              About ZHH Group Holding
+            </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-lg md:text-xl text-gray-200 leading-relaxed"
-              style={{ fontFamily: "'Inter', sans-serif" }}
+              style={{ 
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 300
+              }}
             >
               Building Value Across Construction, Real Estate, Trading & Precious Metals
             </motion.p>

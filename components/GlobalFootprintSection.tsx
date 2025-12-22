@@ -13,23 +13,23 @@ const keyHighlights = [
     description: 'Strong financial foundation with diversified portfolio',
     icon: TrendingUp,
     gradient: 'from-blue-50 to-cyan-50',
-    borderColor: 'border-blue-100'
+    borderColor: 'border-teal-200'
   },
   {
     value: '70+',
     label: 'Completed Projects',
     description: 'Proven track record of successful delivery',
     icon: Building2,
-    gradient: 'from-emerald-50 to-teal-50',
-    borderColor: 'border-emerald-100'
+    gradient: 'from-blue-50 to-cyan-50',
+    borderColor: 'border-teal-200'
   },
   {
     value: '12B+',
     label: 'Total Project Value',
     description: 'Significant investments across all divisions',
     icon: Briefcase,
-    gradient: 'from-violet-50 to-indigo-50',
-    borderColor: 'border-violet-100'
+    gradient: 'from-blue-50 to-cyan-50',
+    borderColor: 'border-teal-200'
   },
   {
     value: '300+',
@@ -37,40 +37,40 @@ const keyHighlights = [
     subLabel: '1,200+ Indirect',
     description: 'Growing team of professionals',
     icon: Users,
-    gradient: 'from-amber-50 to-orange-50',
-    borderColor: 'border-amber-100'
+    gradient: 'from-blue-50 to-cyan-50',
+    borderColor: 'border-teal-200'
   },
   {
     value: '165',
     label: 'Gold Traded',
     description: 'Ethical sourcing and trading operations',
     icon: Award,
-    gradient: 'from-rose-50 to-pink-50',
-    borderColor: 'border-rose-100'
+    gradient: 'from-blue-50 to-cyan-50',
+    borderColor: 'border-teal-200'
   },
   {
     value: '180+',
     label: 'Trade Contracts Executed',
     description: 'Global trade partnerships',
     icon: Globe,
-    gradient: 'from-cyan-50 to-sky-50',
-    borderColor: 'border-cyan-100'
+    gradient: 'from-blue-50 to-cyan-50',
+    borderColor: 'border-teal-200'
   },
   {
     value: '24',
     label: 'Major Construction Projects',
     description: 'Infrastructure and development excellence',
     icon: Target,
-    gradient: 'from-lime-50 to-green-50',
-    borderColor: 'border-lime-100'
+    gradient: 'from-blue-50 to-cyan-50',
+    borderColor: 'border-teal-200'
   },
   {
     value: '10+',
     label: 'Presence in Countries',
     description: 'Expanding global footprint',
     icon: Sparkles,
-    gradient: 'from-purple-50 to-fuchsia-50',
-    borderColor: 'border-purple-100'
+    gradient: 'from-blue-50 to-cyan-50',
+    borderColor: 'border-teal-200'
   },
 ];
 
@@ -171,30 +171,24 @@ export default function GlobalFootprintSection() {
             variants={fadeInUp}
             className="inline-flex items-center gap-3 mb-6"
           >
-            <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-teal-600" />
             <span className="body-small-unified text-tertiary uppercase tracking-wider">
               Global Presence
             </span>
-            <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-teal-600" />
           </motion.div>
 
           <motion.h2
             variants={fadeInUp}
             className="h2-unified text-primary text-center"
+            style={{
+              fontFamily: 'var(--font-inter), Inter, sans-serif',
+              fontWeight: 700,
+              color: 'var(--color-text-primary)'
+            }}
           >
             Our Global Footprint
           </motion.h2>
-
-          <motion.div
-            variants={fadeInUp}
-            style={{
-              width: '60px',
-              height: '4px',
-              background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
-              margin: 'var(--content-spacing-md) auto 0',
-              borderRadius: '2px'
-            }}
-          />
 
           <motion.p
             variants={fadeInUp}
@@ -274,7 +268,7 @@ export default function GlobalFootprintSection() {
                       >
                         <div className="flex items-center gap-3 mb-2">
                           <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center shadow-sm`}>
-                            <Icon className="w-5 h-5 text-gray-700" />
+                            <Icon className="w-5 h-5 text-teal-600" />
                           </div>
                           <div className="text-2xl font-light text-primary" style={{ fontFamily: 'var(--font-heading)' }}>
                             <Counter value={stat.value} />
@@ -411,7 +405,7 @@ export default function GlobalFootprintSection() {
                       transition={{ type: "spring", stiffness: 400, damping: 25 }}
                       className={`w-14 h-14 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center mb-4 shadow-sm flex-shrink-0`}
                     >
-                      <Icon className="w-6 h-6 text-gray-700" />
+                      <Icon className="w-6 h-6 text-teal-600" />
                     </motion.div>
 
                     {/* Number */}

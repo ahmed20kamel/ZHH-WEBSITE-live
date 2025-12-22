@@ -19,9 +19,9 @@ const divisions = [
     description: 'Delivering sustainable, world-class infrastructure projects across the UAE and beyond.',
     logo: '/assets/logos/zhh-construction-logo.svg',
     icon: Building2,
-    gradient: 'from-blue-100 to-teal-100',
-    iconColor: 'text-blue-600',
-    borderColor: 'border-blue-200',
+    gradient: 'from-blue-50 to-cyan-50',
+    iconColor: 'text-teal-600',
+    borderColor: 'border-teal-200',
     delay: 0.1
   },
   {
@@ -31,9 +31,9 @@ const divisions = [
     description: 'Creating long-term value through visionary residential and commercial developments.',
     logo: '/assets/logos/zhh-real-estate-logo.svg',
     icon: Home,
-    gradient: 'from-emerald-100 to-teal-100',
-    iconColor: 'text-emerald-600',
-    borderColor: 'border-emerald-200',
+    gradient: 'from-blue-50 to-cyan-50',
+    iconColor: 'text-teal-600',
+    borderColor: 'border-teal-200',
     delay: 0.2
   },
   {
@@ -43,9 +43,9 @@ const divisions = [
     description: 'Connecting global markets with transparency, compliance, and strategic partnerships.',
     logo: '/assets/logos/zhh-general-trading-logo.svg',
     icon: Globe,
-    gradient: 'from-violet-100 to-indigo-100',
-    iconColor: 'text-violet-600',
-    borderColor: 'border-violet-200',
+    gradient: 'from-blue-50 to-cyan-50',
+    iconColor: 'text-teal-600',
+    borderColor: 'border-teal-200',
     delay: 0.3
   },
   {
@@ -55,9 +55,9 @@ const divisions = [
     description: 'Where wealth becomes legacy. Responsible and transparent precious metals trading.',
     logo: '/assets/logos/jewelust-logo.svg',
     icon: Gem,
-    gradient: 'from-amber-100 to-yellow-100',
-    iconColor: 'text-amber-600',
-    borderColor: 'border-amber-200',
+    gradient: 'from-blue-50 to-cyan-50',
+    iconColor: 'text-teal-600',
+    borderColor: 'border-teal-200',
     delay: 0.4
   }
 ];
@@ -153,30 +153,24 @@ export default function DivisionsSection() {
             variants={fadeInUp}
             className="inline-flex items-center gap-3 mb-6"
           >
-            <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-teal-600" />
             <span className="body-small-unified text-tertiary uppercase tracking-wider">
               Business Divisions
             </span>
-            <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-teal-600" />
           </motion.div>
 
           <motion.h2
             variants={fadeInUp}
             className="h2-unified text-primary text-center"
+            style={{
+              fontFamily: 'var(--font-inter), Inter, sans-serif',
+              fontWeight: 700,
+              color: 'var(--color-text-primary)'
+            }}
           >
             Core Businesses
           </motion.h2>
-
-          <motion.div
-            variants={fadeInUp}
-            style={{
-              width: '60px',
-              height: '4px',
-              background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
-              margin: 'var(--content-spacing-md) auto 0',
-              borderRadius: '2px'
-            }}
-          />
 
           <motion.p
             variants={fadeInUp}

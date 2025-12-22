@@ -99,30 +99,24 @@ export default function PrivateEquitySection() {
             variants={fadeInUp}
             className="inline-flex items-center gap-3 mb-6"
           >
-            <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-teal-600" />
             <span className="body-small-unified text-tertiary uppercase tracking-wider">
               Investment Portfolio
             </span>
-            <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full" />
+            <div className="w-2 h-2 rounded-full bg-teal-600" />
           </motion.div>
 
           <motion.h2
             variants={fadeInUp}
             className="h2-unified text-primary text-center"
+            style={{
+              fontFamily: 'var(--font-inter), Inter, sans-serif',
+              fontWeight: 700,
+              color: 'var(--color-text-primary)'
+            }}
           >
             Private Equity
           </motion.h2>
-
-          <motion.div
-            variants={fadeInUp}
-            style={{
-              width: '60px',
-              height: '4px',
-              background: 'linear-gradient(90deg, var(--color-primary-teal), var(--color-gold))',
-              margin: 'var(--content-spacing-md) auto 0',
-              borderRadius: '2px'
-            }}
-          />
 
           <motion.p
             variants={fadeInUp}
