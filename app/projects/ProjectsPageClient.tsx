@@ -30,12 +30,16 @@ export default function ProjectsPageClient() {
               className="text-white"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontSize: 'clamp(42px, 6vw, 80px)',
+                fontSize: 'clamp(32px, 8vw, 80px)',
                 fontWeight: 300,
-                lineHeight: 1.2,
-                marginBottom: 'clamp(24px, 3vw, 32px)',
+                lineHeight: 1.3,
+                marginBottom: 'clamp(20px, 4vw, 32px)',
                 letterSpacing: '-0.5px',
-                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)'
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word',
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)'
               }}
             >
               Our Projects
@@ -45,12 +49,16 @@ export default function ProjectsPageClient() {
               className="text-gray-200"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontSize: 'clamp(18px, 2.2vw, 24px)',
+                fontSize: 'clamp(16px, 3.5vw, 24px)',
                 fontWeight: 400,
-                lineHeight: 1.6,
+                lineHeight: 1.7,
                 color: 'rgba(255, 255, 255, 0.95)',
-                maxWidth: '700px',
-                margin: '0 auto'
+                maxWidth: '100%',
+                margin: '0 auto',
+                paddingLeft: 'clamp(16px, 4vw, 0px)',
+                paddingRight: 'clamp(16px, 4vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Showcasing excellence across all our divisions
@@ -60,9 +68,22 @@ export default function ProjectsPageClient() {
       </section>
 
       {/* Filters */}
-      <section className="section-unified bg-unified-white border-b border-gray-200" style={{ paddingTop: 'var(--content-spacing-lg)', paddingBottom: 'var(--content-spacing-lg)' }}>
+      <section 
+        className="section-unified bg-unified-white border-b border-gray-200" 
+        style={{ 
+          paddingTop: 'clamp(32px, 5vw, 48px)', 
+          paddingBottom: 'clamp(32px, 5vw, 48px)'
+        }}
+      >
         <div className="container-unified">
-          <div className="flex flex-wrap justify-center gap-4">
+          <div 
+            className="flex flex-wrap justify-center"
+            style={{
+              gap: 'clamp(12px, 2vw, 16px)',
+              paddingLeft: 'clamp(16px, 4vw, 0px)',
+              paddingRight: 'clamp(16px, 4vw, 0px)'
+            }}
+          >
             {projectCategories.map((category) => (
               <button
                 key={category}
@@ -81,7 +102,13 @@ export default function ProjectsPageClient() {
       </section>
 
       {/* Projects Grid */}
-      <section className="section-unified bg-unified-light">
+      <section 
+        className="section-unified bg-unified-light"
+        style={{
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)'
+        }}
+      >
         <div className="container-unified">
           <AnimatePresence mode="wait">
             <motion.div
@@ -90,7 +117,14 @@ export default function ProjectsPageClient() {
               animate="visible"
               exit="hidden"
               variants={staggerContainer}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+              style={{
+                gap: 'clamp(20px, 3vw, 32px)',
+                paddingLeft: 'clamp(16px, 4vw, 0px)',
+                paddingRight: 'clamp(16px, 4vw, 0px)',
+                width: '100%',
+                boxSizing: 'border-box'
+              }}
             >
               {filteredProjects.map((project) => (
                 <motion.div
@@ -98,25 +132,26 @@ export default function ProjectsPageClient() {
                   id={project.id}
                   variants={fadeInUp}
                   layout
+                  style={{ width: '100%', maxWidth: '100%' }}
                 >
-                  <Card className="h-full overflow-hidden">
-                    <div className="h-48 bg-gradient-to-br from-[#00d4aa]/20 to-[#1a2332] flex items-center justify-center">
+                  <Card className="h-full overflow-hidden" style={{ width: '100%', maxWidth: '100%' }}>
+                    <div className="bg-gradient-to-br from-[#00d4aa]/20 to-[#1a2332] flex items-center justify-center" style={{ minHeight: 'clamp(160px, 25vw, 192px)', padding: 'clamp(16px, 3vw, 24px)' }}>
                       <div className="text-center">
                         <div className="text-4xl mb-2">🏗️</div>
-                        <p className="text-gray-600 text-sm">{project.category}</p>
+                        <p className="text-gray-600" style={{ fontSize: 'clamp(12px, 2vw, 14px)', wordWrap: 'break-word', overflowWrap: 'break-word' }}>{project.category}</p>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-semibold text-[#00d4aa] uppercase tracking-wide">
+                    <div style={{ padding: 'clamp(20px, 3vw, 24px)' }}>
+                      <div className="flex items-center justify-between mb-2" style={{ flexWrap: 'wrap', gap: 'clamp(4px, 1vw, 8px)' }}>
+                        <span className="text-xs font-semibold text-[#00d4aa] uppercase tracking-wide" style={{ fontSize: 'clamp(10px, 1.8vw, 12px)', wordWrap: 'break-word', overflowWrap: 'break-word' }}>
                           {project.category}
                         </span>
-                        <span className="text-xs text-gray-500">{project.year}</span>
+                        <span className="text-xs text-gray-500" style={{ fontSize: 'clamp(10px, 1.8vw, 12px)' }}>{project.year}</span>
                       </div>
-                      <h3 className="text-xl font-bold text-[#1a2332] mb-2">
+                      <h3 className="font-bold text-[#1a2332] mb-2" style={{ fontSize: 'clamp(16px, 3.5vw, 20px)', lineHeight: 1.3, wordWrap: 'break-word', overflowWrap: 'break-word' }}>
                         {project.title}
                       </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      <p className="text-gray-600 leading-relaxed mb-4" style={{ fontSize: 'clamp(13px, 2.5vw, 14px)', lineHeight: 1.6, wordWrap: 'break-word', overflowWrap: 'break-word' }}>
                         {project.fullDescription}
                       </p>
                       <div className="flex items-center justify-between pt-4 border-t border-gray-200">

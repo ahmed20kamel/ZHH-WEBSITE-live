@@ -79,7 +79,11 @@ export default function Tabs({ tabs, defaultTab }: TabsProps) {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
           style={{
-            minHeight: '200px'
+            minHeight: '200px',
+            width: '100%',
+            maxWidth: '100%',
+            boxSizing: 'border-box',
+            overflow: 'hidden'
           }}
         >
           {tabs.find(tab => tab.id === activeTab)?.content}

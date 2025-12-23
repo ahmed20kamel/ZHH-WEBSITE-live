@@ -529,8 +529,8 @@ h4 {
   
   /* Improved section spacing on mobile */
   .section-unified {
-    padding-top: clamp(40px, 8vw, 60px);
-    padding-bottom: clamp(40px, 8vw, 60px);
+    padding-top: clamp(60px, 8vw, 80px) !important;
+    padding-bottom: clamp(60px, 8vw, 80px) !important;
   }
 }
 

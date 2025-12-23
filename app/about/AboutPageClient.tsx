@@ -191,7 +191,13 @@ export default function AboutPageClient() {
                 }
               }
             }}
-            className="text-center max-w-4xl mx-auto space-y-6 px-4"
+            className="text-center max-w-4xl mx-auto space-y-6"
+            style={{
+              paddingLeft: 'clamp(16px, 4vw, 24px)',
+              paddingRight: 'clamp(16px, 4vw, 24px)',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}
           >
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -200,12 +206,14 @@ export default function AboutPageClient() {
               className="text-white"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontSize: 'clamp(42px, 6vw, 80px)',
+                fontSize: 'clamp(32px, 8vw, 80px)',
                 fontWeight: 300,
-                lineHeight: 1.2,
-                marginBottom: 'clamp(24px, 3vw, 32px)',
+                lineHeight: 1.3,
+                marginBottom: 'clamp(20px, 4vw, 32px)',
                 letterSpacing: '-0.5px',
-                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)'
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               About ZHH Group Holding
@@ -217,12 +225,16 @@ export default function AboutPageClient() {
               className="text-gray-200"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontSize: 'clamp(18px, 2.2vw, 24px)',
+                fontSize: 'clamp(16px, 3.5vw, 24px)',
                 fontWeight: 400,
-                lineHeight: 1.6,
+                lineHeight: 1.7,
                 color: 'rgba(255, 255, 255, 0.95)',
-                maxWidth: '700px',
-                margin: '0 auto'
+                maxWidth: '100%',
+                margin: '0 auto',
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Building Value Across Construction, Real Estate, Trading & Precious Metals
@@ -236,8 +248,8 @@ export default function AboutPageClient() {
         className="section-unified relative overflow-hidden scroll-margin-top" 
         id="journey"
         style={{
-          paddingTop: 'clamp(60px, 7vw, 80px)',
-          paddingBottom: 'clamp(60px, 7vw, 80px)',
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)',
           background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)'
         }}
       >
@@ -258,13 +270,19 @@ export default function AboutPageClient() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             className="text-center w-full mb-xl"
+            style={{
+              paddingLeft: 'clamp(16px, 4vw, 0px)',
+              paddingRight: 'clamp(16px, 4vw, 0px)',
+              marginBottom: 'clamp(32px, 5vw, 48px)'
+            }}
           >
             <motion.div
               variants={fadeInUp}
               className="inline-flex items-center gap-3 mb-6"
+              style={{ flexWrap: 'wrap', justifyContent: 'center' }}
             >
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
-              <span className="body-small-unified text-tertiary uppercase tracking-wider">
+              <span className="body-small-unified text-tertiary uppercase tracking-wider" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
                 Our Timeline
               </span>
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
@@ -276,7 +294,13 @@ export default function AboutPageClient() {
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontWeight: 600,
                 color: 'var(--color-text-primary)',
-                marginBottom: 'clamp(16px, 2vw, 24px)'
+                marginBottom: 'clamp(16px, 3vw, 24px)',
+                fontSize: 'clamp(20px, 4.5vw, 28px)',
+                lineHeight: 1.3,
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Journey of Growth
@@ -286,10 +310,10 @@ export default function AboutPageClient() {
               className="body-large-unified text-secondary text-center"
               style={{
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontSize: 'clamp(16px, 1.9vw, 19px)',
+                fontSize: 'clamp(14px, 3vw, 19px)',
                 lineHeight: '1.7',
                 color: 'var(--color-text-secondary)',
-                maxWidth: '700px',
+                maxWidth: '100%',
                 margin: '0 auto'
               }}
             >
@@ -394,8 +418,8 @@ export default function AboutPageClient() {
         className="section-unified relative overflow-hidden scroll-margin-top" 
         id="board"
         style={{
-          paddingTop: 'clamp(60px, 7vw, 80px)',
-          paddingBottom: 'clamp(60px, 7vw, 80px)',
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)',
           background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)'
         }}
       >
@@ -435,13 +459,19 @@ export default function AboutPageClient() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             className="text-center w-full mb-xl"
+            style={{
+              paddingLeft: 'clamp(16px, 4vw, 0px)',
+              paddingRight: 'clamp(16px, 4vw, 0px)',
+              marginBottom: 'clamp(32px, 5vw, 48px)'
+            }}
           >
             <motion.div
               variants={fadeInUp}
               className="inline-flex items-center gap-3 mb-6"
+              style={{ flexWrap: 'wrap', justifyContent: 'center' }}
             >
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
-              <span className="body-small-unified text-tertiary uppercase tracking-wider">
+              <span className="body-small-unified text-tertiary uppercase tracking-wider" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
                 Leadership Team
               </span>
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
@@ -453,7 +483,13 @@ export default function AboutPageClient() {
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontWeight: 600,
                 color: 'var(--color-text-primary)',
-                marginBottom: 'clamp(16px, 2vw, 24px)'
+                marginBottom: 'clamp(16px, 3vw, 24px)',
+                fontSize: 'clamp(20px, 4.5vw, 28px)',
+                lineHeight: 1.3,
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Board of Directors
@@ -463,11 +499,15 @@ export default function AboutPageClient() {
               className="body-large-unified text-secondary text-center"
               style={{
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontSize: 'clamp(16px, 1.9vw, 19px)',
+                fontSize: 'clamp(14px, 3vw, 19px)',
                 lineHeight: '1.7',
                 color: 'var(--color-text-secondary)',
-                maxWidth: '700px',
-                margin: '0 auto'
+                maxWidth: '100%',
+                margin: '0 auto',
+                paddingLeft: 'clamp(16px, 4vw, 0px)',
+                paddingRight: 'clamp(16px, 4vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Visionary leaders driving strategic growth and sustainable value creation
@@ -506,7 +546,7 @@ export default function AboutPageClient() {
                       transition={{ duration: 0.4 }}
                     >
                       {/* Member Image */}
-                      <div className="h-48 bg-gray-50 relative overflow-hidden flex items-center justify-center" style={{ padding: 'clamp(20px, 2.5vw, 28px)' }}>
+                      <div className="bg-gray-50 relative overflow-hidden flex items-center justify-center" style={{ padding: 'clamp(20px, 2.5vw, 28px)', minHeight: 'clamp(180px, 25vw, 192px)' }}>
                         <motion.div 
                           className="relative z-10 flex items-center justify-center h-full"
                           initial={{ opacity: 0, scale: 0.8 }}
@@ -546,7 +586,7 @@ export default function AboutPageClient() {
                       </div>
 
                       {/* Member Info */}
-                      <div style={{ padding: 'clamp(24px, 3vw, 32px)' }}>
+                      <div style={{ padding: 'clamp(20px, 3vw, 32px)' }}>
                         <div className="text-center">
                           <motion.h3 
                             className="text-2xl font-bold"
@@ -554,7 +594,9 @@ export default function AboutPageClient() {
                               color: premiumColors.textDark,
                               marginBottom: 'clamp(12px, 1.5vw, 16px)',
                               lineHeight: '1.3',
-                              fontSize: 'clamp(20px, 2.2vw, 24px)'
+                              fontSize: 'clamp(18px, 3.5vw, 24px)',
+                              wordWrap: 'break-word',
+                              overflowWrap: 'break-word'
                             }}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -932,8 +974,8 @@ export default function AboutPageClient() {
         className="section-unified relative overflow-hidden scroll-margin-top" 
         id="structure"
         style={{
-          paddingTop: 'clamp(60px, 7vw, 80px)',
-          paddingBottom: 'clamp(60px, 7vw, 80px)',
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)',
           background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)'
         }}
       >

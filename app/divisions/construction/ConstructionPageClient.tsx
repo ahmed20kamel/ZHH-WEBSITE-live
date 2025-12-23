@@ -99,7 +99,13 @@ export default function ConstructionPageClient() {
       </section>
 
       {/* Content Section with Tabs */}
-      <section className="section-unified bg-unified-white">
+      <section 
+        className="section-unified bg-unified-white"
+        style={{
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)'
+        }}
+      >
         <div className="container-unified">
           <Card
             className="overflow-hidden"

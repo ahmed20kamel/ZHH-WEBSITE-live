@@ -98,7 +98,13 @@ export default function RealEstatePageClient() {
         </div>
       </section>
 
-      <section className="section-unified bg-unified-white">
+      <section 
+        className="section-unified bg-unified-white"
+        style={{
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)'
+        }}
+      >
         <div className="container-unified">
           <Card className="overflow-hidden" hover={false} style={{ padding: 0, boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', borderRadius: '12px', border: '1px solid #E5E5E5', backgroundColor: '#FFFFFF' }}>
             <motion.div variants={fadeInUp} style={{ background: 'linear-gradient(135deg, #F9F9F9 0%, #FFFFFF 100%)', padding: 'clamp(40px, 5vw, 56px)', borderBottom: '1px solid #E5E5E5', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(24px, 3vw, 32px)', textAlign: 'center' }}>

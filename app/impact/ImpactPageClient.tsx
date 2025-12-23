@@ -97,19 +97,27 @@ export default function ImpactPageClient() {
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="text-center max-w-4xl mx-auto space-y-6 px-4"
+            className="text-center max-w-4xl mx-auto space-y-6"
+            style={{
+              paddingLeft: 'clamp(16px, 4vw, 24px)',
+              paddingRight: 'clamp(16px, 4vw, 24px)',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}
           >
             <motion.h1
               variants={fadeInUp}
               className="text-white"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontSize: 'clamp(42px, 6vw, 80px)',
+                fontSize: 'clamp(32px, 8vw, 80px)',
                 fontWeight: 300,
-                lineHeight: 1.2,
-                marginBottom: 'clamp(24px, 3vw, 32px)',
+                lineHeight: 1.3,
+                marginBottom: 'clamp(20px, 4vw, 32px)',
                 letterSpacing: '-0.5px',
-                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)'
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Our Impact
@@ -120,12 +128,16 @@ export default function ImpactPageClient() {
               className="text-gray-200"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontSize: 'clamp(18px, 2.2vw, 24px)',
+                fontSize: 'clamp(16px, 3.5vw, 24px)',
                 fontWeight: 400,
-                lineHeight: 1.6,
+                lineHeight: 1.7,
                 color: 'rgba(255, 255, 255, 0.95)',
-                maxWidth: '700px',
-                margin: '0 auto'
+                maxWidth: '100%',
+                margin: '0 auto',
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Creating sustainable value through ethical practices and community development
@@ -138,8 +150,8 @@ export default function ImpactPageClient() {
       <section 
         className="section-unified relative overflow-hidden"
         style={{
-          paddingTop: 'clamp(50px, 6vw, 70px)',
-          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)',
           background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)',
           position: 'relative'
         }}
@@ -180,14 +192,20 @@ export default function ImpactPageClient() {
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
             className="section-title-wrapper"
-            style={{ marginTop: 'clamp(20px, 2.5vw, 30px)' }}
+            style={{ 
+              marginTop: 'clamp(20px, 2.5vw, 30px)',
+              paddingLeft: 'clamp(16px, 4vw, 0px)',
+              paddingRight: 'clamp(16px, 4vw, 0px)',
+              marginBottom: 'clamp(32px, 5vw, 48px)'
+            }}
           >
             <motion.div
               variants={fadeInUp}
               className="inline-flex items-center gap-3 mb-6"
+              style={{ flexWrap: 'wrap', justifyContent: 'center' }}
             >
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
-              <span className="body-small-unified text-tertiary uppercase tracking-wider">
+              <span className="body-small-unified text-tertiary uppercase tracking-wider" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
                 Sustainability & Impact
               </span>
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
@@ -199,21 +217,46 @@ export default function ImpactPageClient() {
               style={{
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontWeight: 600,
-                color: 'var(--color-text-primary)'
+                color: 'var(--color-text-primary)',
+                marginBottom: 'clamp(16px, 3vw, 24px)',
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word',
+                lineHeight: 1.3
               }}
             >
               Our Commitment Pillars
             </motion.h2>
             <motion.p 
               variants={fadeInUp}
-              className="body-large-unified text-secondary mt-6"
-              style={{ maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}
+              className="body-large-unified text-secondary"
+              style={{ 
+                maxWidth: '100%',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: 'clamp(12px, 2vw, 20px)',
+                paddingLeft: 'clamp(16px, 4vw, 0px)',
+                paddingRight: 'clamp(16px, 4vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word',
+                lineHeight: 1.7
+              }}
             >
               Three foundational principles guiding our sustainable impact
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 rhythm-card-gap max-w-6xl mx-auto">
+          <div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
+            style={{
+              gap: 'clamp(24px, 4vw, 32px)',
+              paddingLeft: 'clamp(16px, 4vw, 24px)',
+              paddingRight: 'clamp(16px, 4vw, 24px)',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}
+          >
             {impactPillars.map((pillar, index) => {
               const Icon = pillar.icon;
               return (
@@ -224,41 +267,47 @@ export default function ImpactPageClient() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.2, ease: [0.4, 0, 0.2, 1] }}
                   className="h-full"
+                  style={{ width: '100%', maxWidth: '100%' }}
                 >
-                  <Card className="h-full flex flex-col">
+                  <Card className="h-full flex flex-col" style={{ width: '100%', maxWidth: '100%', padding: 'clamp(24px, 4vw, 32px)' }}>
                     <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
                       {/* Icon → Title → Divider → Content (strict order) */}
                       
                       {/* Icon with Visual Anchor - Unified Style */}
                       <motion.div 
-                        className="mb-8 flex flex-col items-center"
+                        className="mb-6 md:mb-8 flex flex-col items-center"
                         initial={{ scale: 0, rotate: -180 }}
                         whileInView={{ scale: 1, rotate: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.2, type: 'spring', stiffness: 200 }}
                       >
                         <motion.div 
-                          className="w-16 h-16 rounded-lg flex items-center justify-center shadow-sm transition-all duration-300"
+                          className="rounded-lg flex items-center justify-center shadow-sm transition-all duration-300"
                           style={{ 
-                            backgroundColor: '#E0F2F1'
+                            backgroundColor: '#E0F2F1',
+                            width: 'clamp(56px, 8vw, 64px)',
+                            height: 'clamp(56px, 8vw, 64px)'
                           }}
                           whileHover={{ rotate: 5, scale: 1.05 }}
                         >
                           <Icon 
-                            className="w-8 h-8"
+                            className="w-7 h-7 md:w-8 md:h-8"
                             style={{ color: '#0D9488' }}
                             strokeWidth={1.5}
                           />
                         </motion.div>
                         {/* Visual anchor line under icon - Unified teal color */}
                         <div 
-                          className="mt-4 h-0.5 w-12"
-                          style={{ backgroundColor: '#0D9488' }}
+                          className="mt-3 md:mt-4 h-0.5"
+                          style={{ 
+                            backgroundColor: '#0D9488',
+                            width: 'clamp(40px, 6vw, 48px)'
+                          }}
                         />
                       </motion.div>
                       
                       {/* Title */}
-                      <div className="mb-8 text-center">
+                      <div className="mb-6 md:mb-8 text-center">
                         <h3 
                           className="h3-unified text-primary"
                           style={{
@@ -266,7 +315,11 @@ export default function ImpactPageClient() {
                             fontWeight: 600,
                             color: 'var(--color-text-primary)',
                             letterSpacing: '-0.01em',
-                            lineHeight: '1.3'
+                            lineHeight: 1.3,
+                            fontSize: 'clamp(18px, 4vw, 22px)',
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word',
+                            marginBottom: 'clamp(8px, 1.5vw, 12px)'
                           }}
                         >
                           {pillar.title}
@@ -275,12 +328,12 @@ export default function ImpactPageClient() {
                       
                       {/* Divider - Unified teal color */}
                       <div 
-                        className="h-px mb-8"
+                        className="h-px mb-6 md:mb-8"
                         style={{ backgroundColor: '#0D9488', opacity: 0.2 }}
                       />
                       
                       {/* Content - Bullet List */}
-                      <div className="flex-1 mb-8">
+                      <div className="flex-1 mb-6 md:mb-8" style={{ minHeight: 'clamp(120px, 20vw, 180px)' }}>
                         <BulletList
                           bulletColor="#0D9488"
                           className="text-left"
@@ -290,12 +343,16 @@ export default function ImpactPageClient() {
                       </div>
 
                       {/* CTA Button - Unified teal color */}
-                      <div className="mt-auto pt-6 border-t border-gray-200">
+                      <div className="mt-auto pt-4 md:pt-6 border-t border-gray-200">
                         <Button
                           variant="secondary"
                           size="md"
                           fullWidth
                           className="text-sm"
+                          style={{ 
+                            fontSize: 'clamp(13px, 2.5vw, 14px)',
+                            padding: 'clamp(10px, 2vw, 12px) clamp(16px, 3vw, 20px)'
+                          }}
                         >
                           Learn More
                         </Button>
@@ -313,16 +370,33 @@ export default function ImpactPageClient() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="pt-16 lg:pt-20 border-t border-gray-200 rhythm-content-cta"
+            className="pt-12 md:pt-16 lg:pt-20 border-t border-gray-200"
+            style={{
+              marginTop: 'clamp(32px, 5vw, 48px)',
+              paddingLeft: 'clamp(16px, 4vw, 24px)',
+              paddingRight: 'clamp(16px, 4vw, 24px)'
+            }}
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto text-center">
-              <div className="text-center space-y-3">
+            <div 
+              className="grid grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto text-center"
+              style={{
+                gap: 'clamp(24px, 4vw, 40px)',
+                width: '100%',
+                boxSizing: 'border-box'
+              }}
+            >
+              <div className="text-center" style={{ padding: 'clamp(12px, 2vw, 16px)' }}>
                 <div 
                   className="text-stats-number"
                   style={{ 
                     color: 'var(--color-primary-dark)',
                     fontFamily: 'var(--font-inter), Inter, sans-serif',
-                    fontWeight: 600
+                    fontWeight: 600,
+                    fontSize: 'clamp(32px, 6vw, 48px)',
+                    lineHeight: 1.2,
+                    marginBottom: 'clamp(8px, 1.5vw, 12px)',
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word'
                   }}
                 >
                   1500+
@@ -331,19 +405,28 @@ export default function ImpactPageClient() {
                   className="body-regular-unified text-secondary"
                   style={{ 
                     fontFamily: 'var(--font-inter), Inter, sans-serif',
-                    color: 'var(--color-text-secondary)'
+                    color: 'var(--color-text-secondary)',
+                    fontSize: 'clamp(14px, 3vw, 16px)',
+                    lineHeight: 1.6,
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word'
                   }}
                 >
                   Jobs Created
                 </div>
               </div>
-              <div className="text-center space-y-3">
+              <div className="text-center" style={{ padding: 'clamp(12px, 2vw, 16px)' }}>
                 <div 
                   className="text-stats-number"
                   style={{ 
                     color: 'var(--color-primary-dark)',
                     fontFamily: 'var(--font-inter), Inter, sans-serif',
-                    fontWeight: 600
+                    fontWeight: 600,
+                    fontSize: 'clamp(32px, 6vw, 48px)',
+                    lineHeight: 1.2,
+                    marginBottom: 'clamp(8px, 1.5vw, 12px)',
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word'
                   }}
                 >
                   100%
@@ -352,19 +435,28 @@ export default function ImpactPageClient() {
                   className="body-regular-unified text-secondary"
                   style={{ 
                     fontFamily: 'var(--font-inter), Inter, sans-serif',
-                    color: 'var(--color-text-secondary)'
+                    color: 'var(--color-text-secondary)',
+                    fontSize: 'clamp(14px, 3vw, 16px)',
+                    lineHeight: 1.6,
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word'
                   }}
                 >
                   Traceable Supply
                 </div>
               </div>
-              <div className="text-center space-y-3">
+              <div className="text-center" style={{ padding: 'clamp(12px, 2vw, 16px)' }}>
                 <div 
                   className="text-stats-number"
                   style={{ 
                     color: 'var(--color-primary-dark)',
                     fontFamily: 'var(--font-inter), Inter, sans-serif',
-                    fontWeight: 600
+                    fontWeight: 600,
+                    fontSize: 'clamp(32px, 6vw, 48px)',
+                    lineHeight: 1.2,
+                    marginBottom: 'clamp(8px, 1.5vw, 12px)',
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word'
                   }}
                 >
                   50+
@@ -373,7 +465,11 @@ export default function ImpactPageClient() {
                   className="body-regular-unified text-secondary"
                   style={{ 
                     fontFamily: 'var(--font-inter), Inter, sans-serif',
-                    color: 'var(--color-text-secondary)'
+                    color: 'var(--color-text-secondary)',
+                    fontSize: 'clamp(14px, 3vw, 16px)',
+                    lineHeight: 1.6,
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word'
                   }}
                 >
                   Community Programs

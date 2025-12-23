@@ -80,19 +80,27 @@ export default function AboutZHHPageClient() {
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="text-center max-w-4xl mx-auto space-y-6 px-4"
+            className="text-center max-w-4xl mx-auto space-y-6"
+            style={{
+              paddingLeft: 'clamp(16px, 4vw, 24px)',
+              paddingRight: 'clamp(16px, 4vw, 24px)',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}
           >
             <motion.h1
               variants={fadeInUp}
               className="text-white"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontSize: 'clamp(42px, 6vw, 80px)',
+                fontSize: 'clamp(32px, 8vw, 80px)',
                 fontWeight: 300,
-                lineHeight: 1.2,
-                marginBottom: 'clamp(24px, 3vw, 32px)',
+                lineHeight: 1.3,
+                marginBottom: 'clamp(20px, 4vw, 32px)',
                 letterSpacing: '-0.5px',
-                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)'
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               About ZHH Group Holding
@@ -102,12 +110,16 @@ export default function AboutZHHPageClient() {
               className="text-gray-200"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontSize: 'clamp(18px, 2.2vw, 24px)',
+                fontSize: 'clamp(16px, 3.5vw, 24px)',
                 fontWeight: 400,
-                lineHeight: 1.6,
+                lineHeight: 1.7,
                 color: 'rgba(255, 255, 255, 0.95)',
-                maxWidth: '700px',
-                margin: '0 auto'
+                maxWidth: '100%',
+                margin: '0 auto',
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Building Value Across Construction, Real Estate, Trading & Precious Metals
@@ -121,8 +133,8 @@ export default function AboutZHHPageClient() {
         className="section-unified relative overflow-hidden scroll-margin-top" 
         id="ceo-message"
         style={{
-          paddingTop: 'clamp(50px, 6vw, 70px)',
-          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)',
           background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)',
           position: 'relative'
         }}
@@ -168,6 +180,15 @@ export default function AboutZHHPageClient() {
             <motion.h2
               variants={fadeInUp}
               className="h2-unified text-primary-color text-center-unified mb-xl"
+              style={{
+                fontSize: 'clamp(20px, 4.5vw, 28px)',
+                lineHeight: 1.3,
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word',
+                marginBottom: 'clamp(24px, 4vw, 32px)'
+              }}
             >
               CEO Message
             </motion.h2>
@@ -321,8 +342,8 @@ export default function AboutZHHPageClient() {
       <section 
         className="section-unified relative overflow-hidden scroll-margin-top"
         style={{
-          paddingTop: 'clamp(50px, 6vw, 70px)',
-          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)',
           background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)',
           position: 'relative'
         }}
@@ -369,6 +390,15 @@ export default function AboutZHHPageClient() {
             <motion.h2
               variants={fadeInUp}
               className="h2-unified text-primary-color text-center-unified mb-xl"
+              style={{
+                fontSize: 'clamp(20px, 4.5vw, 28px)',
+                lineHeight: 1.3,
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word',
+                marginBottom: 'clamp(24px, 4vw, 32px)'
+              }}
             >
               Company Overview
             </motion.h2>
@@ -415,8 +445,8 @@ export default function AboutZHHPageClient() {
       <section 
         className="section-unified relative overflow-hidden scroll-margin-top"
         style={{
-          paddingTop: 'clamp(50px, 6vw, 70px)',
-          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)',
           background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)',
           position: 'relative'
         }}
@@ -462,6 +492,15 @@ export default function AboutZHHPageClient() {
             <motion.h2
               variants={fadeInUp}
               className="h2-unified text-primary-color text-center-unified mb-xl"
+              style={{
+                fontSize: 'clamp(20px, 4.5vw, 28px)',
+                lineHeight: 1.3,
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word',
+                marginBottom: 'clamp(24px, 4vw, 32px)'
+              }}
             >
               Our Divisions
             </motion.h2>
@@ -616,8 +655,8 @@ export default function AboutZHHPageClient() {
       <section 
         className="section-unified relative overflow-hidden scroll-margin-top"
         style={{
-          paddingTop: 'clamp(50px, 6vw, 70px)',
-          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)',
           background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)',
           position: 'relative'
         }}
@@ -668,7 +707,13 @@ export default function AboutZHHPageClient() {
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontWeight: 600,
                 color: 'var(--color-text-primary)',
-                marginBottom: 'clamp(32px, 4vw, 48px)'
+                marginBottom: 'clamp(32px, 4vw, 48px)',
+                fontSize: 'clamp(20px, 4.5vw, 28px)',
+                lineHeight: 1.3,
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Our Commitment
@@ -718,8 +763,8 @@ export default function AboutZHHPageClient() {
         className="section-unified relative overflow-hidden scroll-margin-top" 
         id="vision"
         style={{
-          paddingTop: 'clamp(50px, 6vw, 70px)',
-          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)',
           background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)',
           position: 'relative'
         }}
@@ -770,7 +815,13 @@ export default function AboutZHHPageClient() {
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontWeight: 600,
                 color: 'var(--color-text-primary)',
-                marginBottom: 'clamp(32px, 4vw, 48px)'
+                marginBottom: 'clamp(32px, 4vw, 48px)',
+                fontSize: 'clamp(20px, 4.5vw, 28px)',
+                lineHeight: 1.3,
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Our Vision
@@ -811,8 +862,8 @@ export default function AboutZHHPageClient() {
         className="section-unified relative overflow-hidden scroll-margin-top" 
         id="mission"
         style={{
-          paddingTop: 'clamp(50px, 6vw, 70px)',
-          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)',
           background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)',
           position: 'relative'
         }}
@@ -863,7 +914,13 @@ export default function AboutZHHPageClient() {
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontWeight: 600,
                 color: 'var(--color-text-primary)',
-                marginBottom: 'clamp(48px, 6vw, 64px)'
+                marginBottom: 'clamp(48px, 6vw, 64px)',
+                fontSize: 'clamp(20px, 4.5vw, 28px)',
+                lineHeight: 1.3,
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Our Mission
@@ -965,8 +1022,8 @@ export default function AboutZHHPageClient() {
         className="section-unified relative overflow-hidden scroll-margin-top" 
         id="core-values"
         style={{
-          paddingTop: 'clamp(50px, 6vw, 70px)',
-          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          paddingTop: 'clamp(60px, 8vw, 80px)',
+          paddingBottom: 'clamp(60px, 8vw, 80px)',
           background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)',
           position: 'relative'
         }}
@@ -1017,7 +1074,13 @@ export default function AboutZHHPageClient() {
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontWeight: 600,
                 color: 'var(--color-text-primary)',
-                marginBottom: 'clamp(48px, 6vw, 64px)'
+                marginBottom: 'clamp(48px, 6vw, 64px)',
+                fontSize: 'clamp(20px, 4.5vw, 28px)',
+                lineHeight: 1.3,
+                paddingLeft: 'clamp(8px, 2vw, 0px)',
+                paddingRight: 'clamp(8px, 2vw, 0px)',
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               Core Values

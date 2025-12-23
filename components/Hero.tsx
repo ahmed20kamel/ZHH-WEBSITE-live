@@ -1,13 +1,14 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import HeroSlider from './HeroSlider';
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(heroRef, { once: true });
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   return (
     <section 
@@ -26,7 +27,7 @@ export default function Hero() {
         
         {/* Hero Slider */}
         <div className="absolute inset-0 z-0">
-          <HeroSlider />
+          <HeroSlider onSlideChange={setCurrentSlide} />
         </div>
 
         {/* Animated Background Elements */}
@@ -80,60 +81,130 @@ export default function Hero() {
         </Link>
       </motion.div>
 
-      {/* Hero Content */}
-      <div className="relative z-20 w-full h-full flex items-center pt-20 md:pt-0">
-          <div className="container-unified">
-          <div className="flex items-center">
-            {/* Left Column - Main Content */}
-            <div className="space-y-6 md:space-y-8">
-              {/* Main Headline */}
-              <motion.h1
-                initial={{ y: 30, opacity: 0 }}
-                animate={isInView ? { y: 0, opacity: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
+      {/* Hero Content - Left Aligned, Stacked Lines */}
+      <div className="relative z-20 w-full h-full flex items-center justify-center">
+        <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
+          <div className="flex flex-col items-start justify-center" style={{ marginLeft: 'clamp(8%, 12vw, 16%)' }}>
+            {/* Main Headline - Uppercase, Thin, Large, Stacked */}
+            <motion.h1
+              initial={{ y: 30, opacity: 0 }}
+              animate={isInView ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-white"
+              style={{
+                fontSize: 'clamp(42px, 6.5vw, 88px)',
+                lineHeight: 1.2,
+                fontWeight: 200,
+                letterSpacing: '0.03em',
+                textTransform: 'uppercase',
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)',
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                marginBottom: 'clamp(40px, 5vw, 56px)',
+                padding: 0,
+                textAlign: 'left'
+              }}
+            >
+              <span className="block">Building</span>
+              <span className="block" style={{ marginTop: 'clamp(4px, 0.8vw, 8px)' }}>a Legacy of</span>
+              <span className="block" style={{ marginTop: 'clamp(4px, 0.8vw, 8px)' }}>Trust</span>
+              <span className="block" style={{ marginTop: 'clamp(4px, 0.8vw, 8px)' }}>& Growth</span>
+            </motion.h1>
+
+            {/* Play Video Button */}
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              onClick={() => {
+                // Handle play video action
+                const video = document.querySelector('video');
+                if (video) {
+                  video.play();
+                }
+              }}
+              className="flex items-center justify-center gap-4 bg-transparent border border-white/30 rounded-lg hover:bg-white/10 transition-all duration-300"
+              style={{
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                padding: 'clamp(16px, 2.5vw, 20px) clamp(32px, 4vw, 48px)',
+                minHeight: 'clamp(56px, 7vw, 64px)'
+              }}
+            >
+              {/* Play Icon */}
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 16 16"
+                fill="none"
                 className="text-white"
+                style={{ flexShrink: 0 }}
+              >
+                <path
+                  d="M3 2L13 8L3 14V2Z"
+                  fill="currentColor"
+                />
+              </svg>
+              <span
+                className="text-white uppercase tracking-wider"
                 style={{
-                  fontSize: 'clamp(48px, 6.5vw, 88px)',
-                  lineHeight: 1.15,
-                  fontWeight: 300,
-                  letterSpacing: '-0.5px',
-                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)',
+                  fontSize: 'clamp(14px, 1.5vw, 16px)',
                   fontFamily: 'var(--font-inter), Inter, sans-serif',
-                  marginBottom: 'clamp(24px, 3vw, 32px)'
+                  fontWeight: 400,
+                  letterSpacing: '0.1em',
+                  whiteSpace: 'nowrap'
                 }}
               >
-                Building a Legacy of
-                <span className="block mt-2 text-white" style={{ fontWeight: 300 }}>
-                  Trust & Growth
-                </span>
-              </motion.h1>
-
-            </div>
+                Play Video
+              </span>
+            </motion.button>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Pagination Indicator - Bottom Left */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1, delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 1, delay: 0.6 }}
+        className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-20 flex items-center gap-3"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center gap-2"
+        {/* Current Slide Number */}
+        <span
+          className="text-white"
+          style={{
+            fontSize: 'clamp(14px, 1.5vw, 16px)',
+            fontFamily: 'var(--font-inter), Inter, sans-serif',
+            fontWeight: 300,
+            letterSpacing: '0.05em'
+          }}
         >
-          <span className="body-small-unified text-white/60">Scroll to Explore</span>
-          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-1">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1 h-3 bg-white rounded-full"
+          {String(currentSlide + 1).padStart(2, '0')}
+        </span>
+        
+        {/* Active Indicator Line */}
+        <div
+          className="bg-white"
+          style={{
+            width: '24px',
+            height: '1px'
+          }}
+        />
+        
+        {/* Dots for other slides */}
+        <div className="flex items-center gap-2">
+          {[0, 1, 2].map((index) => (
+            <div
+              key={index}
+              className={`rounded-full transition-opacity duration-300 ${
+                index === currentSlide ? 'bg-white' : 'bg-white/30'
+              }`}
+              style={{
+                width: index === currentSlide ? '6px' : '4px',
+                height: index === currentSlide ? '6px' : '4px'
+              }}
             />
-          </div>
-        </motion.div>
+          ))}
+        </div>
       </motion.div>
 
       {/* Custom CSS for Additional Effects */}

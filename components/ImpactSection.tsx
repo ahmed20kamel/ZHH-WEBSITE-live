@@ -85,8 +85,6 @@ export default function ImpactSection() {
       ref={sectionRef}
       className="section-unified relative overflow-hidden"
       style={{
-        paddingTop: 'clamp(50px, 6vw, 70px)',
-        paddingBottom: 'clamp(50px, 6vw, 70px)',
         background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)',
         position: 'relative'
       }}
@@ -162,13 +160,19 @@ export default function ImpactSection() {
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
           className="section-title-wrapper"
+          style={{
+            paddingLeft: 'clamp(16px, 4vw, 0px)',
+            paddingRight: 'clamp(16px, 4vw, 0px)',
+            marginBottom: 'clamp(40px, 6vw, 56px)'
+          }}
         >
           <motion.div
             variants={fadeInUp}
             className="inline-flex items-center gap-3 mb-6"
+            style={{ flexWrap: 'wrap', justifyContent: 'center' }}
           >
             <div className="w-2 h-2 rounded-full bg-teal-600" />
-            <span className="body-small-unified text-tertiary uppercase tracking-wider">
+            <span className="body-small-unified text-tertiary uppercase tracking-wider" style={{ wordWrap: 'break-word', overflowWrap: 'break-word' }}>
               Sustainability & Impact
             </span>
             <div className="w-2 h-2 rounded-full bg-teal-600" />
@@ -180,7 +184,14 @@ export default function ImpactSection() {
             style={{
               fontFamily: 'var(--font-inter), Inter, sans-serif',
               fontWeight: 700,
-              color: 'var(--color-text-primary)'
+              color: 'var(--color-text-primary)',
+              fontSize: 'clamp(20px, 4.5vw, 28px)',
+              lineHeight: 1.3,
+              marginBottom: 'clamp(16px, 3vw, 24px)',
+              paddingLeft: 'clamp(8px, 2vw, 0px)',
+              paddingRight: 'clamp(8px, 2vw, 0px)',
+              wordWrap: 'break-word',
+              overflowWrap: 'break-word'
             }}
           >
             Our Impact
@@ -188,8 +199,19 @@ export default function ImpactSection() {
 
           <motion.p
             variants={fadeInUp}
-            className="body-large-unified text-secondary mt-6"
-            style={{ maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}
+            className="body-large-unified text-secondary"
+            style={{ 
+              maxWidth: '100%',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              marginTop: 'clamp(12px, 2vw, 20px)',
+              paddingLeft: 'clamp(16px, 4vw, 0px)',
+              paddingRight: 'clamp(16px, 4vw, 0px)',
+              fontSize: 'clamp(14px, 3vw, 18px)',
+              lineHeight: 1.7,
+              wordWrap: 'break-word',
+              overflowWrap: 'break-word'
+            }}
           >
             Creating sustainable economic, social, and environmental value through responsible business practices and strategic community engagement.
           </motion.p>
@@ -200,7 +222,14 @@ export default function ImpactSection() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-3 rhythm-card-gap"
+          className="grid grid-cols-1 md:grid-cols-3"
+          style={{
+            gap: 'clamp(24px, 4vw, 32px)',
+            paddingLeft: 'clamp(16px, 4vw, 0px)',
+            paddingRight: 'clamp(16px, 4vw, 0px)',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}
         >
           {impactPillars.map((pillar, index) => {
             const Icon = pillar.icon;
