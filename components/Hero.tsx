@@ -91,18 +91,19 @@ export default function Hero() {
                 initial={{ y: 30, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="h1-unified text-white"
+                className="text-white"
                 style={{
-                  fontSize: 'clamp(36px, 5.1vw, 72px)',
+                  fontSize: 'clamp(48px, 6.5vw, 88px)',
                   lineHeight: 1.15,
-                  fontWeight: 100,
+                  fontWeight: 600,
                   letterSpacing: '-0.5px',
                   textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)',
-                  fontFamily: 'var(--font-inter), Inter, sans-serif'
+                  fontFamily: 'var(--font-inter), Inter, sans-serif',
+                  marginBottom: 'clamp(24px, 3vw, 32px)'
                 }}
               >
                 Building a Legacy of
-                <span className="block mt-2 text-white">
+                <span className="block mt-2 text-white" style={{ fontWeight: 600 }}>
                   Trust & Growth
                 </span>
               </motion.h1>

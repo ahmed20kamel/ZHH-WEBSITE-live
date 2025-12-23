@@ -305,13 +305,12 @@ export const LevelHeader = ({ level, isExpanded, onToggle }: {
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
           <div className="flex items-center gap-6 flex-1">
           <div 
-            className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
+            className="w-16 h-16 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm"
             style={{ 
-              backgroundColor: premiumColors.darkBlue + '10',
-              boxShadow: '0 4px 12px rgba(10, 61, 98, 0.1)'
+              backgroundColor: '#E0F2F1'
             }}
           >
-            <Icon className="w-8 h-8" style={{ color: premiumColors.darkBlue }} />
+            <Icon className="w-8 h-8" style={{ color: '#0D9488' }} />
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-4 mb-3">

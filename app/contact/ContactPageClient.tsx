@@ -10,7 +10,7 @@ import InternalHero from '@/components/InternalHero';
 
 export default function ContactPageClient() {
   return (
-    <div style={{ paddingTop: '80px' }}>
+    <div>
       {/* Hero Section - Shared with Divisions */}
       <InternalHero
         title="Contact Us"

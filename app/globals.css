@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
 @import "tailwindcss";
@@ -10,41 +9,26 @@
      ZHH GROUP HOLDING - UNIFIED COLOR SYSTEM
      ============================================ */
   
-  /* ZHH Brand Colors - Primary */
-  --zhh-dark-blue: #032D46;
-  --zhh-gray-blue: #435A66;
-  --zhh-teal: #01B2B2;
-  --zhh-light-teal: #B0E0E2;
-  --zhh-off-white: #F9F9F9;
+  /* ============================================
+     SIMPLIFIED COLOR PALETTE
+     ============================================ */
   
-  /* Unified Color System (used by design-system.css) */
+  /* Primary Colors */
   --color-primary-dark: #032D46;
   --color-primary-gray: #435A66;
   --color-primary-teal: #01B2B2;
   --color-primary-light-teal: #B0E0E2;
-  --color-off-white: #F9F9F9;
-  
-  /* Accent Colors */
-  --gold: #D4AF37;
-  --dark-gold: #B7950B;
-  --light-gold: #F4D03F;
   --color-gold: #D4AF37;
   --color-gold-dark: #B7950B;
-  --color-gold-light: #F4D03F;
   
-  /* Text Colors - Unified */
-  --text-primary: #0E777F;
-  --text-normal: #333333;
-  --text-secondary: #666666;
-  --text-link: #0099A4;
-  --text-footer: #ffffff;
+  /* Text Colors */
   --color-text-primary: #1A1A1A;
   --color-text-secondary: #4A4A4A;
   --color-text-tertiary: #666666;
   --color-text-light: #999999;
   --color-text-white: #FFFFFF;
   
-  /* Background Colors - Unified */
+  /* Background Colors */
   --background: #ffffff;
   --foreground: #1B1B1A;
   --color-bg-white: #FFFFFF;
@@ -55,41 +39,22 @@
   /* Border Colors */
   --color-border-light: #E0E0E0;
   --color-border-medium: #D7D8DA;
-  --color-border-dark: #CCCCCC;
   
-  /* Jewelust Colors */
-  --jewelust-burgundy: #3F0D0F;
-  --jewelust-red: #6C2B2F;
-  --jewelust-brown: #9D7961;
-  --jewelust-beige: #D3BCAC;
-  --jewelust-cream: #F6F0E6;
-  
-  /* Legacy Colors (for compatibility) */
-  --gold-dark: #D4AF37;
-  --emirati-blue: #0055A4;
-  --white-snow: #FFFFFF;
-  --gray-light: #F5F5F5;
-  --black-dark: #1A1A1A;
-  --teal-primary: #0099A4;
-  --teal-dark: #0E777F;
-  --gold-accent: #D4AF37;
-  --white: #ffffff;
-  --charcoal: #1B1B1B;
-  --primary-blue: #1a2b49;
-  --secondary-blue: #0070ba;
-  --primary-dark-blue: #001A2F;
-  --primary-light-blue: #2E6FAF;
-  --gold-accent-legacy: #CBA65B;
-  --sand-beige: #E8E4D8;
-  --soft-gray: #F5F6F7;
-  --medium-gray: #D7D8DA;
-  --dark-gray: #4A4A4A;
-  --text-light-gray: #A7B0B7;
-  
-  /* Utility Colors */
-  --success-green: #14A86A;
-  --warning-yellow: #CBA340;
-  --error-red: #C64141;
+  /* Legacy Color Aliases (for backward compatibility) */
+  --zhh-dark-blue: var(--color-primary-dark);
+  --zhh-gray-blue: var(--color-primary-gray);
+  --zhh-teal: var(--color-primary-teal);
+  --zhh-light-teal: var(--color-primary-light-teal);
+  --zhh-off-white: var(--color-bg-off-white);
+  --text-primary: var(--color-primary-teal);
+  --text-normal: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-link: var(--color-primary-teal);
+  --text-footer: var(--color-text-white);
+  --gold: var(--color-gold);
+  --dark-gold: var(--color-gold-dark);
+  --white: var(--color-bg-white);
+  --charcoal: var(--foreground);
   
   /* ============================================
      UNIFIED SPACING SYSTEM
@@ -112,33 +77,33 @@
   --content-spacing-lg: 20px;
   --content-spacing-xl: 32px;
   
-  /* Section Spacing - Reduced by 35% */
-  --section-spacing-top: clamp(50px, 5.8vw, 66px);
-  --section-spacing-bottom: clamp(50px, 5.8vw, 66px);
-  --section-spacing-mobile: clamp(40px, 5vw, 50px);
+  /* Section Spacing - Improved */
+  --section-spacing-top: clamp(60px, 8vw, 80px);
+  --section-spacing-bottom: clamp(60px, 8vw, 80px);
+  --section-spacing-mobile: clamp(50px, 8vw, 70px);
   
-  /* Title to Content Spacing - Reduced by 35% */
-  --title-content-gap: clamp(17px, 2vw, 20px);
-  --title-content-gap-mobile: clamp(11px, 1.4vw, 13px);
+  /* Title to Content Spacing - Improved */
+  --title-content-gap: clamp(20px, 2.5vw, 28px);
+  --title-content-gap-mobile: clamp(16px, 2vw, 24px);
   
   /* ============================================
      VERTICAL RHYTHM SYSTEM (Unified)
      ============================================ */
   
   /* Section → Section: Large gap */
-  --rhythm-section-gap: clamp(80px, 10vw, 120px);
+  --rhythm-section-gap: clamp(60px, 8vw, 100px);
   
   /* Title → Content: Medium gap */
-  --rhythm-title-content: clamp(24px, 3vw, 32px);
+  --rhythm-title-content: clamp(24px, 3vw, 36px);
   
   /* Content → CTA: Small gap */
-  --rhythm-content-cta: clamp(16px, 2vw, 24px);
+  --rhythm-content-cta: clamp(20px, 2.5vw, 28px);
   
   /* Card → Card: Grid gap */
-  --rhythm-card-gap: clamp(24px, 3vw, 32px);
+  --rhythm-card-gap: clamp(20px, 3vw, 32px);
   
   /* Internal Card Spacing */
-  --rhythm-card-internal: clamp(20px, 2.5vw, 28px);
+  --rhythm-card-internal: clamp(16px, 2vw, 24px);
   
   /* Legacy spacing aliases */
   --spacing-s: var(--spacing-md);
@@ -169,50 +134,50 @@
      TYPOGRAPHY SYSTEM
      ============================================ */
   
-  /* Font Families */
+  /* Font Families - Unified to Inter */
   --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-english: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-english-heading: 'Playfair Display', 'Inter', serif;
+  --font-english-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-arabic: 'Cairo', 'Almarai', sans-serif;
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Playfair Display', 'Inter', serif;
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   
-  /* Heading Sizes - Reduced by 35% */
-  --h1-size: clamp(20px, 3vw, 40px);
+  /* Heading Sizes - Improved Readability */
+  --h1-size: clamp(28px, 4vw, 48px);
   --h1-line-height: 1.2;
   --h1-weight: 700;
-  --h1-margin-bottom: clamp(14px, 1.6vw, 19px);
+  --h1-margin-bottom: clamp(16px, 2vw, 24px);
   
-  --h2-size: clamp(18px, 2.5vw, 30px);
+  --h2-size: clamp(24px, 3.5vw, 36px);
   --h2-line-height: 1.25;
   --h2-weight: 700;
-  --h2-margin-bottom: clamp(12px, 1.3vw, 16px);
+  --h2-margin-bottom: clamp(14px, 1.8vw, 20px);
   
-  --h3-size: clamp(16px, 2vw, 22px);
+  --h3-size: clamp(20px, 2.8vw, 28px);
   --h3-line-height: 1.3;
   --h3-weight: 600;
-  --h3-margin-bottom: clamp(10px, 1.1vw, 12px);
+  --h3-margin-bottom: clamp(12px, 1.5vw, 16px);
   
-  --h4-size: clamp(14px, 1.7vw, 18px);
+  --h4-size: clamp(18px, 2.4vw, 22px);
   --h4-line-height: 1.35;
   --h4-weight: 600;
-  --h4-margin-bottom: clamp(8px, 0.9vw, 10px);
+  --h4-margin-bottom: clamp(10px, 1.2vw, 14px);
   
-  /* Body Text - Reduced by 25% */
-  --body-large-size: clamp(12px, 1.3vw, 13px);
-  --body-large-line-height: 1.5;
-  --body-regular-size: clamp(11px, 1.2vw, 12px);
-  --body-regular-line-height: 1.5;
-  --body-small-size: clamp(10px, 1.1vw, 11px);
-  --body-small-line-height: 1.4;
+  /* Body Text - Improved Readability */
+  --body-large-size: clamp(16px, 2vw, 18px);
+  --body-large-line-height: 1.6;
+  --body-regular-size: clamp(15px, 1.8vw, 16px);
+  --body-regular-line-height: 1.6;
+  --body-small-size: clamp(13px, 1.6vw, 14px);
+  --body-small-line-height: 1.5;
   
-  /* Additional Typography Sizes - Reduced by 35% */
-  --hero-title-size: clamp(24px, 3.3vw, 35px);
-  --hero-subtitle-size: clamp(12px, 1.4vw, 13px);
-  --section-title-size: clamp(18px, 2.2vw, 26px);
-  --card-title-size: clamp(14px, 1.5vw, 17px);
-  --stats-number-size: clamp(18px, 2.2vw, 26px);
-  --stats-label-size: clamp(9px, 1vw, 10px);
+  /* Additional Typography Sizes */
+  --hero-title-size: clamp(32px, 5vw, 64px);
+  --hero-subtitle-size: clamp(16px, 2vw, 20px);
+  --section-title-size: clamp(24px, 3.5vw, 36px);
+  --card-title-size: clamp(18px, 2.4vw, 22px);
+  --stats-number-size: clamp(24px, 3.5vw, 36px);
+  --stats-label-size: clamp(13px, 1.6vw, 14px);
   
   /* Letter Spacing */
   --letter-spacing-tight: -0.5px;
@@ -274,23 +239,108 @@
   box-sizing: border-box;
 }
 
+/* Button component uses Tailwind classes only - no CSS rules here */
+/* Tailwind classes have higher specificity and will work correctly */
+
+/* Fixed Menu Button - ABSOLUTE FIXED - NO MOVEMENT ALLOWED */
+/* This button MUST stay fixed at all times - highest priority CSS */
+/* Using html > selector ensures it's directly in html, not in body */
+html > .fixed-menu-button,
+html .fixed-menu-button,
+.fixed-menu-button {
+  position: fixed !important;
+  top: 24px !important;
+  right: 24px !important;
+  z-index: 99999 !important;
+  transform: none !important;
+  translate: none !important;
+  margin: 0 !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: auto !important;
+  height: auto !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 10px !important;
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+  pointer-events: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  /* Break out of any parent context */
+  isolation: isolate !important;
+  contain: layout style paint !important;
+  /* Prevent any transforms from parent */
+  will-change: auto !important;
+}
+
+/* Ensure SVG inside button is white */
+.fixed-menu-button svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
+.fixed-menu-button svg path {
+  stroke: #FFFFFF !important;
+}
+
 html {
   scroll-behavior: smooth;
+  /* Ensure html doesn't have transforms that break fixed positioning */
+  position: static !important;
+  transform: none !important;
+  overflow-x: hidden;
+  /* Ensure fixed elements work correctly */
+  height: 100%;
+  width: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-english);
+  font-family: var(--font-inter), Inter, sans-serif;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 13px; /* Reduced from 16px by 19% */
-  line-height: 1.45; /* Reduced from 1.6 */
+  font-size: clamp(14px, 1.5vw, 16px);
+  line-height: 1.6;
   overflow-x: hidden; /* Prevent horizontal scroll */
   width: 100%;
   max-width: 100vw;
-  position: relative;
+  /* Removed position: relative - it breaks fixed positioning */
+}
+
+/* Mobile Optimizations */
+@media (max-width: 767px) {
+  body {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  /* Ensure all containers are full width on mobile */
+  .container-custom,
+  .container-unified {
+    padding-left: clamp(16px, 4vw, 20px);
+    padding-right: clamp(16px, 4vw, 20px);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Prevent text overflow */
+  h1, h2, h3, h4, p, span, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  /* Better spacing on mobile */
+  section {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 /* Prevent images and media from exceeding container width */
@@ -391,13 +441,38 @@ h4 {
 
 @media (max-width: 767px) {
   h1 {
-    font-size: 1.3rem; /* 21px - reduced from 32px by 34% */
+    font-size: clamp(24px, 6vw, 32px);
+    line-height: 1.2;
+    margin-bottom: clamp(12px, 3vw, 16px);
   }
   h2 {
-    font-size: 1.1rem; /* 18px - reduced from 28px by 36% */
+    font-size: clamp(20px, 5vw, 28px);
+    line-height: 1.25;
+    margin-bottom: clamp(10px, 2.5vw, 14px);
   }
   h3 {
-    font-size: 0.9rem; /* 14px - reduced from 20px by 30% */
+    font-size: clamp(18px, 4.5vw, 22px);
+    line-height: 1.3;
+    margin-bottom: clamp(8px, 2vw, 12px);
+  }
+  h4 {
+    font-size: clamp(16px, 4vw, 18px);
+    line-height: 1.35;
+  }
+  
+  .body-large {
+    font-size: clamp(14px, 3.5vw, 16px);
+    line-height: 1.6;
+  }
+  
+  .body-regular {
+    font-size: clamp(14px, 3.5vw, 15px);
+    line-height: 1.6;
+  }
+  
+  .caption {
+    font-size: clamp(12px, 3vw, 14px);
+    line-height: 1.5;
   }
 }
 
@@ -434,7 +509,28 @@ h4 {
 /* Mobile (≤ 767px) */
 @media (max-width: 767px) {
   .container-custom {
-    padding: 0 var(--spacing-md);
+    padding: 0 clamp(16px, 4vw, 20px);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Prevent horizontal overflow */
+  * {
+    max-width: 100%;
+  }
+  
+  /* Better grid behavior on mobile */
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 4vw, 24px);
+  }
+  
+  /* Improved section spacing on mobile */
+  .section-unified {
+    padding-top: clamp(40px, 8vw, 60px);
+    padding-bottom: clamp(40px, 8vw, 60px);
   }
 }
 

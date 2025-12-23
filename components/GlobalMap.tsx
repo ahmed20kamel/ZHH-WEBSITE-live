@@ -292,7 +292,7 @@ export default function GlobalMap() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontFamily: '"Montserrat", sans-serif',
+              fontFamily: 'var(--font-inter), Inter, sans-serif',
               fontSize: 'clamp(16px, 1.8vw, 18px)',
               color: '#666666',
             }}
@@ -351,7 +351,7 @@ export default function GlobalMap() {
               color: '#FFFFFF',
               padding: '8px 16px',
               borderRadius: '8px',
-              fontFamily: '"Montserrat", sans-serif',
+              fontFamily: 'var(--font-inter), Inter, sans-serif',
               fontSize: '14px',
               fontWeight: 600,
               whiteSpace: 'nowrap',
@@ -392,7 +392,7 @@ export default function GlobalMap() {
               >
                 <h3
                   style={{
-                    fontFamily: '"Montserrat", sans-serif',
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
                     fontSize: 'clamp(20px, 2.6vw, 27px)',
                     fontWeight: 700,
                     color: '#032D46',
@@ -434,7 +434,7 @@ export default function GlobalMap() {
                     <div key={index}>
                       <h4
                         style={{
-                          fontFamily: '"Montserrat", sans-serif',
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
                           fontSize: 'clamp(18px, 2vw, 22px)',
                           fontWeight: 600,
                           color: '#01B2B2',
@@ -457,7 +457,7 @@ export default function GlobalMap() {
                           <li
                             key={eIdx}
                             style={{
-                              fontFamily: '"Montserrat", sans-serif',
+                              fontFamily: 'var(--font-inter), Inter, sans-serif',
                               fontSize: 'clamp(16px, 1.8vw, 18px)',
                               lineHeight: 1.6,
                               color: '#333333',
@@ -498,7 +498,7 @@ export default function GlobalMap() {
                     <li
                       key={eIdx}
                       style={{
-                        fontFamily: '"Montserrat", sans-serif',
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
                         fontSize: 'clamp(16px, 1.8vw, 18px)',
                         lineHeight: 1.6,
                         color: '#333333',

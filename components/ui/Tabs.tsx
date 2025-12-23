@@ -38,7 +38,7 @@ export default function Tabs({ tabs, defaultTab }: TabsProps) {
             onClick={() => setActiveTab(tab.id)}
             className="tab-button"
             style={{
-              fontFamily: '"Montserrat", sans-serif',
+              fontFamily: 'var(--font-inter), Inter, sans-serif',
               fontSize: 'clamp(12px, 1.4vw, 14px)',
               fontWeight: activeTab === tab.id ? 600 : 400,
               color: activeTab === tab.id ? '#01B2B2' : '#666666',

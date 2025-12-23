@@ -119,7 +119,7 @@ export default function MegaMenu({
                           onClick={onClose}
                           className="block transition-colors duration-200"
                           style={{
-                            fontFamily: '"Montserrat", sans-serif',
+                            fontFamily: 'var(--font-inter), Inter, sans-serif',
                             fontSize: 'clamp(32px, 4vw, 48px)',
                             fontWeight: 300,
                             letterSpacing: '0.5px',
@@ -179,7 +179,7 @@ export default function MegaMenu({
                               onClick={onClose}
                               className="block transition-colors duration-200"
                               style={{
-                                fontFamily: '"Montserrat", sans-serif',
+                                fontFamily: 'var(--font-inter), Inter, sans-serif',
                                 fontSize: 'clamp(14px, 1.5vw, 16px)',
                                 fontWeight: 300,
                                 letterSpacing: '0.3px',
@@ -228,7 +228,7 @@ export default function MegaMenu({
                     >
                       <h3
                         style={{
-                          fontFamily: '"Montserrat", sans-serif',
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
                           fontSize: 'clamp(24px, 3vw, 32px)',
                           fontWeight: 600,
                           letterSpacing: '0.5px',
@@ -266,7 +266,7 @@ export default function MegaMenu({
                         href="tel:+971504044187"
                         className="transition-colors duration-200"
                         style={{
-                          fontFamily: '"Montserrat", sans-serif',
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
                           fontSize: 'clamp(16px, 1.8vw, 18px)',
                           fontWeight: 400,
                           lineHeight: 1.6,
@@ -285,7 +285,7 @@ export default function MegaMenu({
                         href="mailto:info@zhhgroup.com"
                         className="transition-colors duration-200"
                         style={{
-                          fontFamily: '"Montserrat", sans-serif',
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
                           fontSize: 'clamp(16px, 1.8vw, 18px)',
                           fontWeight: 400,
                           lineHeight: 1.6,

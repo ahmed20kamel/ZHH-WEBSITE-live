@@ -142,9 +142,12 @@ export default function PrivateEquitySection() {
           >
             <Card className="h-full flex flex-col">
               <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center mb-6 shadow-sm">
-                  <BarChart3 className="w-7 h-7 text-teal-600" />
+                {/* Icon - Unified Style */}
+                <div 
+                  className="w-14 h-14 rounded-lg flex items-center justify-center mb-6 shadow-sm"
+                  style={{ backgroundColor: '#E0F2F1' }}
+                >
+                  <BarChart3 className="w-7 h-7" style={{ color: '#0D9488' }} />
                 </div>
 
                 {/* Title */}
@@ -185,9 +188,12 @@ export default function PrivateEquitySection() {
           >
             <Card className="h-full flex flex-col">
               <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center mb-6 shadow-sm">
-                  <Target className="w-7 h-7 text-teal-600" />
+                {/* Icon - Unified Style */}
+                <div 
+                  className="w-14 h-14 rounded-lg flex items-center justify-center mb-6 shadow-sm"
+                  style={{ backgroundColor: '#E0F2F1' }}
+                >
+                  <Target className="w-7 h-7" style={{ color: '#0D9488' }} />
                 </div>
 
                 {/* Title */}
@@ -218,9 +224,12 @@ export default function PrivateEquitySection() {
           >
             <Card className="h-full flex flex-col">
               <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center mb-6 shadow-sm">
-                  <Building2 className="w-7 h-7 text-teal-600" />
+                {/* Icon - Unified Style */}
+                <div 
+                  className="w-14 h-14 rounded-lg flex items-center justify-center mb-6 shadow-sm"
+                  style={{ backgroundColor: '#E0F2F1' }}
+                >
+                  <Building2 className="w-7 h-7" style={{ color: '#0D9488' }} />
                 </div>
 
                 {/* Title */}

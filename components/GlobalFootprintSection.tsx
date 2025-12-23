@@ -4,7 +4,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { fadeInUp, staggerContainer, cardVariants, scaleUp } from '@/lib/animations';
 import Counter from './Counter';
-import { Globe, TrendingUp, Building2, Users, Briefcase, Award, Target, Sparkles } from 'lucide-react';
+import { Globe, TrendingUp, Building2, Users, Award, Sparkles, BarChart3 } from 'lucide-react';
 
 const keyHighlights = [
   {
@@ -12,24 +12,24 @@ const keyHighlights = [
     label: 'Assets Under Management',
     description: 'Strong financial foundation with diversified portfolio',
     icon: TrendingUp,
-    gradient: 'from-blue-50 to-cyan-50',
-    borderColor: 'border-teal-200'
+    iconColor: '#0D9488', // Teal-600
+    iconBgColor: '#E0F2F1', // Teal-100
   },
   {
     value: '70+',
     label: 'Completed Projects',
     description: 'Proven track record of successful delivery',
-    icon: Building2,
-    gradient: 'from-blue-50 to-cyan-50',
-    borderColor: 'border-teal-200'
+    icon: Award,
+    iconColor: '#0D9488', // Teal-600
+    iconBgColor: '#E0F2F1', // Teal-100
   },
   {
     value: '12B+',
     label: 'Total Project Value',
     description: 'Significant investments across all divisions',
-    icon: Briefcase,
-    gradient: 'from-blue-50 to-cyan-50',
-    borderColor: 'border-teal-200'
+    icon: BarChart3,
+    iconColor: '#0D9488', // Teal-600
+    iconBgColor: '#E0F2F1', // Teal-100
   },
   {
     value: '300+',
@@ -37,40 +37,40 @@ const keyHighlights = [
     subLabel: '1,200+ Indirect',
     description: 'Growing team of professionals',
     icon: Users,
-    gradient: 'from-blue-50 to-cyan-50',
-    borderColor: 'border-teal-200'
+    iconColor: '#0D9488', // Teal-600
+    iconBgColor: '#E0F2F1', // Teal-100
   },
   {
     value: '165',
     label: 'Gold Traded',
     description: 'Ethical sourcing and trading operations',
-    icon: Award,
-    gradient: 'from-blue-50 to-cyan-50',
-    borderColor: 'border-teal-200'
+    icon: Sparkles,
+    iconColor: '#0D9488', // Teal-600
+    iconBgColor: '#E0F2F1', // Teal-100
   },
   {
     value: '180+',
     label: 'Trade Contracts Executed',
     description: 'Global trade partnerships',
     icon: Globe,
-    gradient: 'from-blue-50 to-cyan-50',
-    borderColor: 'border-teal-200'
+    iconColor: '#0D9488', // Teal-600
+    iconBgColor: '#E0F2F1', // Teal-100
   },
   {
     value: '24',
     label: 'Major Construction Projects',
     description: 'Infrastructure and development excellence',
-    icon: Target,
-    gradient: 'from-blue-50 to-cyan-50',
-    borderColor: 'border-teal-200'
+    icon: Building2,
+    iconColor: '#0D9488', // Teal-600
+    iconBgColor: '#E0F2F1', // Teal-100
   },
   {
     value: '10+',
     label: 'Presence in Countries',
     description: 'Expanding global footprint',
     icon: Sparkles,
-    gradient: 'from-blue-50 to-cyan-50',
-    borderColor: 'border-teal-200'
+    iconColor: '#0D9488', // Teal-600
+    iconBgColor: '#E0F2F1', // Teal-100
   },
 ];
 
@@ -256,7 +256,7 @@ export default function GlobalFootprintSection() {
                   variants={staggerContainer}
                   className="grid grid-cols-2 gap-4"
                 >
-                  {keyHighlights.slice(0, 2).map((stat, idx) => {
+                  {keyHighlights.slice(0, 2).map((stat) => {
                     const Icon = stat.icon;
                     return (
                       <motion.div
@@ -267,10 +267,14 @@ export default function GlobalFootprintSection() {
                         style={{ padding: 'var(--content-spacing-md)' }}
                       >
                         <div className="flex items-center gap-3 mb-2">
-                          <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center shadow-sm`}>
-                            <Icon className="w-5 h-5 text-teal-600" />
+                          {/* Unified Icon Style */}
+                          <div 
+                            className="w-12 h-12 rounded-lg flex items-center justify-center shadow-sm"
+                            style={{ backgroundColor: stat.iconBgColor }}
+                          >
+                            <Icon className="w-5 h-5" style={{ color: stat.iconColor }} />
                           </div>
-                          <div className="text-2xl font-light text-primary" style={{ fontFamily: 'var(--font-heading)' }}>
+                          <div className="text-2xl font-light text-primary" style={{ fontFamily: 'var(--font-inter), Inter, sans-serif' }}>
                             <Counter value={stat.value} />
                           </div>
                         </div>
@@ -308,7 +312,7 @@ export default function GlobalFootprintSection() {
                   >
                     <span style={{
                       fontSize: 'clamp(80px, 10vw, 140px)',
-                      fontFamily: 'var(--font-heading)',
+                      fontFamily: 'var(--font-inter), Inter, sans-serif',
                       fontWeight: 700,
                       color: 'var(--color-text-primary)',
                       lineHeight: 1
@@ -317,7 +321,7 @@ export default function GlobalFootprintSection() {
                     </span>
                     <span style={{
                       fontSize: 'clamp(60px, 7.5vw, 100px)',
-                      fontFamily: 'var(--font-heading)',
+                      fontFamily: 'var(--font-inter), Inter, sans-serif',
                       fontWeight: 700,
                       color: 'var(--color-text-primary)',
                       lineHeight: 1
@@ -384,7 +388,7 @@ export default function GlobalFootprintSection() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} rounded-xl blur-sm`}
+                        className="absolute inset-0 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl blur-sm"
                       />
                     )}
                   </AnimatePresence>
@@ -399,20 +403,21 @@ export default function GlobalFootprintSection() {
                       flexDirection: 'column'
                     }}
                   >
-                    {/* Icon with subtle animation */}
+                    {/* Icon with subtle animation - Unified Style */}
                     <motion.div
                       whileHover={{ rotate: 5, scale: 1.05 }}
                       transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                      className={`w-14 h-14 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center mb-4 shadow-sm flex-shrink-0`}
+                      className="w-14 h-14 rounded-lg flex items-center justify-center mb-4 shadow-sm flex-shrink-0"
+                      style={{ backgroundColor: stat.iconBgColor }}
                     >
-                      <Icon className="w-6 h-6 text-teal-600" />
+                      <Icon className="w-6 h-6" style={{ color: stat.iconColor }} />
                     </motion.div>
 
                     {/* Number */}
                     <div style={{ marginBottom: 'var(--content-spacing-sm)', flexShrink: 0 }}>
                       <div style={{
                         fontSize: 'clamp(32px, 4vw, 48px)',
-                        fontFamily: 'var(--font-heading)',
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
                         fontWeight: 700,
                         color: 'var(--color-text-primary)',
                         lineHeight: 1.2

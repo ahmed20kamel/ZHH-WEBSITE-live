@@ -13,7 +13,7 @@ export default function TradingPageClient() {
   if (!division) return null;
 
   return (
-    <div style={{ paddingTop: '80px' }}>
+    <div>
       {/* Hero Section */}
       <section className="relative flex items-center justify-center overflow-hidden text-white" style={{ height: '100vh', minHeight: '600px', maxHeight: '1200px' }}>
         {/* Background Image - Desktop Only */}
@@ -66,21 +66,30 @@ export default function TradingPageClient() {
           >
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-6xl font-bold tracking-tight text-white"
+              className="text-white"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontWeight: 700,
-                lineHeight: 1.2
+                fontSize: 'clamp(42px, 6vw, 80px)',
+                fontWeight: 600,
+                lineHeight: 1.2,
+                marginBottom: 'clamp(24px, 3vw, 32px)',
+                letterSpacing: '-0.5px',
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)'
               }}
             >
               {division.name}
             </motion.h1>
             <motion.p
               variants={fadeInUp}
-              className="text-lg md:text-xl text-gray-200 leading-relaxed"
+              className="text-gray-200"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontWeight: 300
+                fontSize: 'clamp(18px, 2.2vw, 24px)',
+                fontWeight: 400,
+                lineHeight: 1.6,
+                color: 'rgba(255, 255, 255, 0.95)',
+                maxWidth: '700px',
+                margin: '0 auto'
               }}
             >
               {division.tagline}
@@ -97,10 +106,10 @@ export default function TradingPageClient() {
                 <img src="/assets/logos/zhh-general-trading-logo.svg" alt="ZHH General Trading Logo" className="h-full w-auto object-contain" style={{ maxWidth: 'min(100%, 350px)' }} />
               </div>
               <div>
-                <h2 style={{ fontFamily: 'var(--font-english-heading)', fontSize: 'clamp(32px, 4.1vw, 49px)', fontWeight: 700, color: '#032D46', marginBottom: 'clamp(10px, 1.3vw, 14px)' }}>
+                <h2 style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: 'clamp(32px, 4.1vw, 49px)', fontWeight: 700, color: '#032D46', marginBottom: 'clamp(10px, 1.3vw, 14px)' }}>
                   {division.name}
                 </h2>
-                <p style={{ fontFamily: '"Montserrat", sans-serif', fontSize: 'clamp(15px, 2vw, 20px)', fontStyle: 'italic', color: '#01B2B2', fontWeight: 500 }}>
+                <p style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: 'clamp(15px, 2vw, 20px)', fontStyle: 'italic', color: '#01B2B2', fontWeight: 500 }}>
                   {division.tagline}
                 </p>
               </div>
@@ -110,12 +119,12 @@ export default function TradingPageClient() {
               <Tabs
                 defaultTab="overview"
                 tabs={[
-                  { id: 'overview', label: 'Overview', content: <p style={{ fontFamily: '"Montserrat", sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', lineHeight: 1.8, color: '#333333' }}>{division.overview}</p> },
-                  { id: 'establishment', label: 'Establishment', content: <p style={{ fontFamily: '"Montserrat", sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', lineHeight: 1.8, color: '#333333' }}>{division.establishment}</p> },
+                  { id: 'overview', label: 'Overview', content: <p style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', lineHeight: 1.8, color: '#333333' }}>{division.overview}</p> },
+                  { id: 'establishment', label: 'Establishment', content: <p style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', lineHeight: 1.8, color: '#333333' }}>{division.establishment}</p> },
                   { id: 'core-activities', label: 'Core Activities', content: (
                     <ul style={{ listStyle: 'none', paddingLeft: 0, display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.5vw, 16px)' }}>
                       {division.coreActivities.map((activity, idx) => (
-                        <li key={idx} style={{ fontFamily: '"Montserrat", sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', lineHeight: 1.7, color: '#333333', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                        <li key={idx} style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', lineHeight: 1.7, color: '#333333', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                           <span style={{ color: '#01B2B2', fontSize: '22px', fontWeight: 'bold', marginTop: '2px', flexShrink: 0 }}>•</span>
                           <span>{activity}</span>
                         </li>
@@ -125,7 +134,7 @@ export default function TradingPageClient() {
                   { id: 'achievements', label: 'Achievements & Milestones', content: (
                     <ul style={{ listStyle: 'none', paddingLeft: 0, display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 1.5vw, 16px)' }}>
                       {division.achievements.map((achievement, idx) => (
-                        <li key={idx} style={{ fontFamily: '"Montserrat", sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', lineHeight: 1.7, color: '#333333', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                        <li key={idx} style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', lineHeight: 1.7, color: '#333333', display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                           <span style={{ color: '#01B2B2', fontSize: '22px', fontWeight: 'bold', marginTop: '2px', flexShrink: 0 }}>✓</span>
                           <span>{achievement}</span>
                         </li>
@@ -134,9 +143,9 @@ export default function TradingPageClient() {
                   )},
                   { id: 'ceo-message', label: 'CEO Message', content: (
                     <div style={{ padding: 'clamp(27px, 3.4vw, 34px)', background: 'linear-gradient(135deg, #F0FDFF 0%, #FFFFFF 100%)', borderRadius: '8px', borderLeft: '4px solid #01B2B2', border: '1px solid #E5E5E5' }}>
-                      <p style={{ fontFamily: '"Montserrat", sans-serif', fontSize: 'clamp(20px, 2.2vw, 21px)', fontWeight: 600, color: '#032D46', marginBottom: 'clamp(8px, 1vw, 12px)' }}>{division.ceoMessage.name}</p>
-                      <p style={{ fontFamily: '"Montserrat", sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', color: '#666666', marginBottom: 'clamp(20px, 2.5vw, 24px)' }}>{division.ceoMessage.title}</p>
-                      <p style={{ fontFamily: '"Montserrat", sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', lineHeight: 1.8, color: '#333333', fontStyle: 'italic', position: 'relative', paddingLeft: 'clamp(20px, 2.5vw, 28px)' }}>
+                      <p style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: 'clamp(20px, 2.2vw, 21px)', fontWeight: 600, color: '#032D46', marginBottom: 'clamp(8px, 1vw, 12px)' }}>{division.ceoMessage.name}</p>
+                      <p style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', color: '#666666', marginBottom: 'clamp(20px, 2.5vw, 24px)' }}>{division.ceoMessage.title}</p>
+                      <p style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: 'clamp(18px, 2vw, 19px)', lineHeight: 1.8, color: '#333333', fontStyle: 'italic', position: 'relative', paddingLeft: 'clamp(20px, 2.5vw, 28px)' }}>
                         <span style={{ position: 'absolute', left: 0, top: 0, fontSize: 'clamp(40px, 5vw, 56px)', color: '#01B2B2', opacity: 0.2, fontFamily: 'Georgia, serif', lineHeight: 1 }}>"</span>
                         {division.ceoMessage.quote}
                       </p>

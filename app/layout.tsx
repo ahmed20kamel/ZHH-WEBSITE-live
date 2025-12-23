@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
+import MenuButton from "@/components/MenuButton";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang="en" style={{ overflowX: 'hidden' }}>
       <body className={`${inter.variable} font-sans antialiased`} style={{ overflowX: 'hidden', width: '100%', maxWidth: '100%' }}>
         <ScrollProgressBar />
+        <MenuButton />
         <Header />
         <main className="min-h-screen" style={{ width: '100%', maxWidth: '100%', overflowX: 'hidden' }}>
           {children}

@@ -80,9 +80,9 @@
 
 /* All typography variables are defined in globals.css */
 
-/* Unified Headings */
+/* Unified Headings - Using Inter */
 .h1-unified {
-  font-family: var(--font-heading);
+  font-family: var(--font-inter), Inter, sans-serif;
   font-size: var(--h1-size);
   line-height: var(--h1-line-height);
   font-weight: var(--h1-weight);
@@ -289,52 +289,10 @@
    6. BUTTON SYSTEM
    ============================================ */
 
-/* All button variables are defined in globals.css */
+/* Button component uses Tailwind classes only - no CSS rules here */
+/* All button styling is handled by Button.tsx component using Tailwind */
 
-.btn-primary-unified {
-  display: inline-block;
-  padding: var(--button-padding-y) var(--button-padding-x);
-  background-color: var(--color-gold);
-  color: var(--color-text-white);
-  border-radius: var(--button-border-radius);
-  font-size: var(--button-font-size);
-  font-weight: var(--button-font-weight);
-  text-decoration: none;
-  transition: var(--button-transition);
-  border: none;
-  cursor: pointer;
-}
-
-.btn-primary-unified:hover {
-  background-color: var(--color-gold-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-}
-
-.btn-secondary-unified {
-  display: inline-block;
-  padding: var(--button-padding-y) var(--button-padding-x);
-  background-color: transparent;
-  color: var(--color-primary-teal);
-  border: 2px solid var(--color-primary-teal);
-  border-radius: var(--button-border-radius);
-  font-size: var(--button-font-size);
-  font-weight: var(--button-font-weight);
-  text-decoration: none;
-  transition: var(--button-transition);
-  cursor: pointer;
-}
-
-.btn-secondary-unified:hover {
-  background-color: var(--color-primary-teal);
-  color: var(--color-text-white);
-  transform: translateY(-2px);
-}
-
-.btn-primary-unified:active,
-.btn-secondary-unified:active {
-  transform: translateY(0);
-}
+/* .btn-primary-unified and .btn-secondary-unified removed - use Button component instead */
 
 /* ============================================
    7. FEATURE LIST SYSTEM
@@ -408,23 +366,70 @@
 /* Mobile (≤ 767px) */
 @media (max-width: 767px) {
   .section-unified {
-    padding-top: var(--section-spacing-mobile);
-    padding-bottom: var(--section-spacing-mobile);
+    padding-top: clamp(40px, 8vw, 60px);
+    padding-bottom: clamp(40px, 8vw, 60px);
   }
   
   .card-unified {
-    padding: var(--card-padding-mobile);
+    padding: clamp(16px, 4vw, 20px);
   }
   
   .section-title-wrapper {
-    margin-bottom: var(--title-content-gap-mobile);
+    margin-bottom: clamp(16px, 4vw, 24px);
+    padding: 0 clamp(16px, 4vw, 20px);
   }
   
   .container-unified,
   .container-custom {
-    padding-left: var(--container-padding-mobile);
-    padding-right: var(--container-padding-mobile);
+    padding-left: clamp(16px, 4vw, 20px);
+    padding-right: clamp(16px, 4vw, 20px);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
+  
+  /* Better text sizing on mobile */
+  .h1-unified {
+    font-size: clamp(24px, 6vw, 32px);
+    line-height: 1.2;
+    margin-bottom: clamp(12px, 3vw, 16px);
+  }
+  
+  .h2-unified {
+    font-size: clamp(20px, 5vw, 28px);
+    line-height: 1.25;
+    margin-bottom: clamp(10px, 2.5vw, 14px);
+  }
+  
+  .h3-unified {
+    font-size: clamp(18px, 4.5vw, 22px);
+    line-height: 1.3;
+    margin-bottom: clamp(8px, 2vw, 12px);
+  }
+  
+  .body-large-unified {
+    font-size: clamp(14px, 3.5vw, 16px);
+    line-height: 1.6;
+  }
+  
+  .body-regular-unified {
+    font-size: clamp(14px, 3.5vw, 15px);
+    line-height: 1.6;
+  }
+  
+  .body-small-unified {
+    font-size: clamp(12px, 3vw, 14px);
+    line-height: 1.5;
+  }
+  
+  /* Prevent image overflow */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Button component handles all sizing via Tailwind classes */
 }
 
 /* ============================================
@@ -812,9 +817,9 @@
    11. ADDITIONAL TYPOGRAPHY CLASSES
    ============================================ */
 
-/* Hero Title */
+/* Hero Title - Using Inter */
 .text-hero-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-inter), Inter, sans-serif;
   font-size: var(--hero-title-size);
   line-height: 1.15;
   font-weight: 700;
@@ -829,9 +834,9 @@
   font-weight: 400;
 }
 
-/* Section Title (for non-centered titles) */
+/* Section Title (for non-centered titles) - Using Inter */
 .text-section-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-inter), Inter, sans-serif;
   font-size: var(--section-title-size);
   line-height: 1.2;
   font-weight: 700;

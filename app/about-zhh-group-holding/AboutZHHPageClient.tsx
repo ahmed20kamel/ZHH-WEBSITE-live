@@ -31,7 +31,7 @@ const divisions = [
 
 export default function AboutZHHPageClient() {
   return (
-    <div className="pt-20">
+    <div>
       {/* Premium Hero Section */}
       <section className="relative flex items-center justify-center overflow-hidden text-white" style={{ height: '100vh', minHeight: '600px', maxHeight: '1200px' }}>
         {/* Background Image - Desktop Only */}
@@ -84,21 +84,30 @@ export default function AboutZHHPageClient() {
           >
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-6xl font-bold tracking-tight text-white"
+              className="text-white"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontWeight: 700,
-                lineHeight: 1.2
+                fontSize: 'clamp(42px, 6vw, 80px)',
+                fontWeight: 600,
+                lineHeight: 1.2,
+                marginBottom: 'clamp(24px, 3vw, 32px)',
+                letterSpacing: '-0.5px',
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)'
               }}
             >
               About ZHH Group Holding
             </motion.h1>
             <motion.p
               variants={fadeInUp}
-              className="text-lg md:text-xl text-gray-200 leading-relaxed"
+              className="text-gray-200"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontWeight: 300
+                fontSize: 'clamp(18px, 2.2vw, 24px)',
+                fontWeight: 400,
+                lineHeight: 1.6,
+                color: 'rgba(255, 255, 255, 0.95)',
+                maxWidth: '700px',
+                margin: '0 auto'
               }}
             >
               Building Value Across Construction, Real Estate, Trading & Precious Metals
@@ -189,7 +198,7 @@ export default function AboutZHHPageClient() {
                     </h3>
                 <p
                       style={{
-                        fontFamily: '"Montserrat", sans-serif',
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
                         fontSize: 'clamp(14px, 1.6vw, 17px)',
                         color: 'rgba(255, 255, 255, 0.94)',
                         fontWeight: 500,
@@ -213,7 +222,7 @@ export default function AboutZHHPageClient() {
                 <div 
                   className="space-y-6 body-regular-unified text-secondary-color"
                   style={{
-                    fontFamily: '"Montserrat", sans-serif',
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
                     fontSize: 'clamp(15px, 1.8vw, 18px)',
                     lineHeight: 1.8,
                     color: '#333333'
@@ -244,7 +253,7 @@ export default function AboutZHHPageClient() {
             >
               <p
                 style={{
-                  fontFamily: '"Montserrat\", sans-serif',
+                  fontFamily: 'var(--font-inter), Inter, sans-serif',
                   fontSize: 'clamp(18px, 2.2vw, 24px)',
                   fontWeight: 700,
                   color: '#032D46',
@@ -255,7 +264,7 @@ export default function AboutZHHPageClient() {
               </p>
               <p
                 style={{
-                  fontFamily: '"Montserrat\", sans-serif',
+                  fontFamily: 'var(--font-inter), Inter, sans-serif',
                   fontSize: 'clamp(14px, 1.6vw, 16px)',
                   color: '#666666',
                   lineHeight: 1.6
@@ -311,7 +320,7 @@ export default function AboutZHHPageClient() {
                 <p
                   className="body-large-unified text-secondary-color"
                   style={{
-                    fontFamily: '"Montserrat", sans-serif',
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
                     fontSize: 'clamp(15px, 1.9vw, 18px)',
                     lineHeight: 1.9,
                     color: '#2F3A45'
@@ -455,7 +464,7 @@ export default function AboutZHHPageClient() {
                     {/* Title */}
                     <h3
                       style={{
-                        fontFamily: '"Montserrat", sans-serif',
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
                         fontSize: 'clamp(20px, 2.2vw, 24px)',
                         fontWeight: 600,
                         color: '#032D46',
@@ -470,7 +479,7 @@ export default function AboutZHHPageClient() {
                   </div>
                   <p
                     style={{
-                      fontFamily: '"Montserrat", sans-serif',
+                      fontFamily: 'var(--font-inter), Inter, sans-serif',
                       fontSize: 'clamp(15px, 1.7vw, 17px)',
                       lineHeight: 1.7,
                       color: '#333333',
@@ -517,7 +526,7 @@ export default function AboutZHHPageClient() {
             <motion.div
               variants={fadeInUp}
               style={{
-                fontFamily: '"Montserrat", sans-serif',
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontSize: 'clamp(14px, 1.5vw, 15px)',
                 lineHeight: 1.8,
                 color: '#333333',
@@ -633,7 +642,7 @@ export default function AboutZHHPageClient() {
                 </div>
                 <p
                   style={{
-                    fontFamily: '"Montserrat", sans-serif',
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
                     fontSize: 'clamp(17px, 2vw, 21px)',
                     lineHeight: 1.8,
                     color: '#333333',
@@ -669,7 +678,7 @@ export default function AboutZHHPageClient() {
                 </div>
                 <p
                   style={{
-                    fontFamily: '"Montserrat", sans-serif',
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
                     fontSize: 'clamp(17px, 2vw, 21px)',
                     lineHeight: 1.8,
                     color: '#333333',
@@ -789,7 +798,7 @@ export default function AboutZHHPageClient() {
                     </div>
                     <h3
                       style={{
-                        fontFamily: '"Montserrat", sans-serif',
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
                         fontSize: 'clamp(20px, 2.2vw, 24px)',
                         fontWeight: 600,
                         color: '#032D46',
@@ -800,7 +809,7 @@ export default function AboutZHHPageClient() {
                     </h3>
                     <p
                       style={{
-                        fontFamily: '"Montserrat", sans-serif',
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
                         fontSize: 'clamp(14px, 1.5vw, 15px)',
                         lineHeight: 1.7,
                         color: '#666666',
@@ -816,14 +825,14 @@ export default function AboutZHHPageClient() {
         </div>
       </section>
 
-      {/* Section 4: Our Emirati Identity - Premium Hero-Style Section */}
+      {/* Section 4: Our Emirati Identity - Premium Section with Image */}
       <section 
         className="section-unified relative overflow-hidden" 
         id="emirati-identity" 
         style={{ 
           background: 'linear-gradient(135deg, #032D46 0%, #001A2F 50%, #003057 100%)',
-          paddingTop: 'clamp(102px, 12.8vw, 153px)',
-          paddingBottom: 'clamp(102px, 12.8vw, 153px)',
+          paddingTop: 'clamp(80px, 10vw, 120px)',
+          paddingBottom: 'clamp(80px, 10vw, 120px)',
         }}
       >
         {/* Subtle Background Pattern */}
@@ -844,29 +853,156 @@ export default function AboutZHHPageClient() {
             className="w-full"
             style={{ width: '100%' }}
           >
+            {/* Title */}
             <motion.h2
               variants={fadeInUp}
               style={{
-                fontFamily: 'var(--font-english-heading)',
-                fontSize: 'clamp(36px, 4.7vw, 58px)',
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontSize: 'clamp(32px, 4.5vw, 56px)',
                 lineHeight: 1.2,
                 fontWeight: 700,
                 color: '#FFFFFF',
-                marginBottom: 'clamp(40px, 5vw, 56px)',
+                marginBottom: 'clamp(48px, 6vw, 72px)',
                 textAlign: 'center',
               }}
             >
               Our Emirati Identity
             </motion.h2>
-            <motion.p
-              variants={fadeInUp}
-              className="body-large-unified text-white/95 text-center-unified"
-              style={{
-                margin: '0 auto'
-              }}
-            >
-              Founded in the United Arab Emirates, ZHH Group Holding carries the values of the nation — vision, integrity, and innovation. Every project and partnership contributes to the UAE's economic strength and global reputation for excellence.
-            </motion.p>
+
+            {/* Image and Text Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              {/* Image Section */}
+              <motion.div
+                variants={fadeInUp}
+                className="relative"
+                style={{
+                  order: 2,
+                }}
+              >
+                <div
+                  className="relative rounded-2xl overflow-hidden"
+                  style={{
+                    width: '100%',
+                    height: 'clamp(300px, 40vw, 500px)',
+                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+                    border: '2px solid rgba(255, 255, 255, 0.1)',
+                  }}
+                >
+                  <Image
+                    src="/assets/hero/hero-About ZHH Group.jpg"
+                    alt="ZHH Group Holding - Emirati Identity"
+                    fill
+                    className="object-cover"
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                    }}
+                    priority
+                  />
+                  {/* Subtle Overlay */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(3, 45, 70, 0.2) 0%, rgba(1, 178, 178, 0.1) 100%)',
+                    }}
+                  />
+                </div>
+              </motion.div>
+
+              {/* Text Content Section */}
+              <motion.div
+                variants={fadeInUp}
+                className="flex flex-col justify-center"
+                style={{
+                  order: 1,
+                  padding: 'clamp(20px, 3vw, 40px)',
+                }}
+              >
+                <p
+                  className="body-large-unified text-white"
+                  style={{
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    fontSize: 'clamp(16px, 2vw, 20px)',
+                    lineHeight: 1.8,
+                    color: 'rgba(255, 255, 255, 0.95)',
+                    marginBottom: 'clamp(24px, 3vw, 32px)',
+                  }}
+                >
+                  Founded in the United Arab Emirates, ZHH Group Holding carries the values of the nation — vision, integrity, and innovation. Every project and partnership contributes to the UAE's economic strength and global reputation for excellence.
+                </p>
+                
+                {/* Additional Content Points */}
+                <div className="space-y-4">
+                  {[
+                    {
+                      icon: (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                      ),
+                      text: 'Built on Emirati values of vision, integrity, and innovation'
+                    },
+                    {
+                      icon: (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
+                          <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
+                          <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3" />
+                          <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3" />
+                        </svg>
+                      ),
+                      text: 'Contributing to the UAE\'s economic strength and global reputation'
+                    },
+                    {
+                      icon: (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M3 21L12 2L21 21H3Z" />
+                          <path d="M12 2V21" />
+                        </svg>
+                      ),
+                      text: 'Strengthening partnerships that reflect Emirati excellence'
+                    }
+                  ].map((point, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="flex items-start gap-4"
+                      style={{
+                        padding: 'clamp(12px, 1.5vw, 16px)',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        borderRadius: '12px',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        backdropFilter: 'blur(10px)',
+                      }}
+                    >
+                      <div
+                        className="flex-shrink-0"
+                        style={{
+                          color: '#01B2B2',
+                          marginTop: '2px',
+                        }}
+                      >
+                        {point.icon}
+                      </div>
+                      <p
+                        style={{
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
+                          fontSize: 'clamp(14px, 1.7vw, 16px)',
+                          lineHeight: 1.6,
+                          color: 'rgba(255, 255, 255, 0.9)',
+                          margin: 0,
+                        }}
+                      >
+                        {point.text}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -979,7 +1115,7 @@ export default function AboutZHHPageClient() {
                   >
                     <h3
                       style={{
-                        fontFamily: '"Montserrat", sans-serif',
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
                         fontSize: 'clamp(15px, 1.7vw, 19px)',
                         fontWeight: 700,
                         color: '#032D46',
@@ -994,7 +1130,7 @@ export default function AboutZHHPageClient() {
                           <div key={idx}>
                             <p
                               style={{
-                                fontFamily: '"Montserrat", sans-serif',
+                                fontFamily: 'var(--font-inter), Inter, sans-serif',
                                 fontSize: 'clamp(12px, 1.4vw, 14px)',
                                 fontWeight: 600,
                                 color: '#01B2B2',
@@ -1008,7 +1144,7 @@ export default function AboutZHHPageClient() {
                                 <li
                                   key={eIdx}
                                   style={{
-                                    fontFamily: '"Montserrat", sans-serif',
+                                    fontFamily: 'var(--font-inter), Inter, sans-serif',
                                     fontSize: 'clamp(12px, 1.4vw, 14px)',
                                     lineHeight: 1.6,
                                     color: '#666666',
@@ -1040,7 +1176,7 @@ export default function AboutZHHPageClient() {
                           <li
                             key={eIdx}
                             style={{
-                              fontFamily: '"Montserrat", sans-serif',
+                              fontFamily: 'var(--font-inter), Inter, sans-serif',
                               fontSize: 'clamp(12px, 1.4vw, 14px)',
                               lineHeight: 1.6,
                               color: '#666666',

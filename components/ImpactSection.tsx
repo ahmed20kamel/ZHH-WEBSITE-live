@@ -227,16 +227,17 @@ export default function ImpactSection() {
               >
                 <Card className="h-full flex flex-col">
                   <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
-                    {/* Icon Container with Visual Anchor */}
+                    {/* Icon Container with Visual Anchor - Unified Style */}
                     <div className="mb-8 flex flex-col items-center">
                       <div 
-                        className={`w-16 h-16 rounded-lg ${pillar.gradient} flex items-center justify-center shadow-sm transition-all duration-300`}
+                        className="w-16 h-16 rounded-lg flex items-center justify-center shadow-sm transition-all duration-300"
                         style={{ 
-                          border: '1px solid rgba(13, 148, 136, 0.15)'
+                          backgroundColor: '#E0F2F1'
                         }}
                       >
                         <Icon 
-                          className={`w-8 h-8 ${pillar.iconColor}`}
+                          className="w-8 h-8"
+                          style={{ color: '#0D9488' }}
                           strokeWidth={1.5}
                         />
                       </div>
@@ -328,7 +329,7 @@ export default function ImpactSection() {
                 {/* Total Impact */}
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-3">
-                    <Target className="w-5 h-5 text-teal" />
+                    <Target className="w-5 h-5" style={{ color: '#0D9488' }} />
                     <span className="body-small-unified text-secondary">Total Impact</span>
                   </div>
                   <div className="mb-1" style={{ 
@@ -350,7 +351,7 @@ export default function ImpactSection() {
                 {/* Sustainable Projects */}
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-3">
-                    <Leaf className="w-5 h-5 text-teal" />
+                    <Leaf className="w-5 h-5" style={{ color: '#0D9488' }} />
                     <span className="body-small-unified text-secondary">Green Projects</span>
                   </div>
                   <div className="mb-1" style={{ 
@@ -372,7 +373,7 @@ export default function ImpactSection() {
                 {/* Community Investment */}
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-3">
-                    <Heart className="w-5 h-5 text-teal" />
+                    <Heart className="w-5 h-5" style={{ color: '#0D9488' }} />
                     <span className="body-small-unified text-secondary">Community</span>
                   </div>
                   <div className="mb-1" style={{ 
@@ -395,7 +396,7 @@ export default function ImpactSection() {
                 {/* Compliance Excellence */}
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-3">
-                    <Shield className="w-5 h-5 text-teal" />
+                    <Shield className="w-5 h-5" style={{ color: '#0D9488' }} />
                     <span className="body-small-unified text-secondary">Compliance</span>
                   </div>
                   <div className="mb-1" style={{ 

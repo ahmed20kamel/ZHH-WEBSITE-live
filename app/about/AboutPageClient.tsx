@@ -12,7 +12,7 @@ import {
   TrendingUp, Award, Target, Shield,
   ChevronRight, Sparkles, MapPin,
   Linkedin, Twitter, ExternalLink,
-  Briefcase, Eye, Zap, Crown,
+  Briefcase, Eye, Zap,
   Coffee, Cpu, Package, Home,
   Flag, ChevronDown
 } from 'lucide-react';
@@ -133,7 +133,7 @@ export default function AboutPageClient() {
   const activeItem = timelineData.find(item => item.year === activeYear) || timelineData[0];
 
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero Section */}
       <section className="relative flex items-center justify-center overflow-hidden text-white" style={{ height: '100vh', minHeight: '600px', maxHeight: '1200px' }}>
         {/* Background Image - Desktop Only */}
@@ -196,11 +196,15 @@ export default function AboutPageClient() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-6xl font-bold tracking-tight text-white"
+              className="text-white"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontWeight: 700,
-                lineHeight: 1.2
+                fontSize: 'clamp(42px, 6vw, 80px)',
+                fontWeight: 600,
+                lineHeight: 1.2,
+                marginBottom: 'clamp(24px, 3vw, 32px)',
+                letterSpacing: '-0.5px',
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)'
               }}
             >
               About ZHH Group Holding
@@ -209,10 +213,15 @@ export default function AboutPageClient() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-lg md:text-xl text-gray-200 leading-relaxed"
+              className="text-gray-200"
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontWeight: 300
+                fontSize: 'clamp(18px, 2.2vw, 24px)',
+                fontWeight: 400,
+                lineHeight: 1.6,
+                color: 'rgba(255, 255, 255, 0.95)',
+                maxWidth: '700px',
+                margin: '0 auto'
               }}
             >
               Building Value Across Construction, Real Estate, Trading & Precious Metals
@@ -461,22 +470,21 @@ export default function AboutPageClient() {
                             {member.name}
                           </motion.h3>
                           <motion.div 
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg"
                             style={{ 
                               backgroundColor: premiumColors.lightGray,
-                              border: `1px solid ${premiumColors.slateGray}20`,
                               marginBottom: 'clamp(16px, 2vw, 20px)'
                             }}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: 0.3 }}
                           >
-                            <Crown className="w-4 h-4" style={{ color: premiumColors.darkBlue }} />
                             <span 
                               className="font-semibold"
                               style={{ 
                                 color: premiumColors.darkBlue,
-                                fontSize: 'clamp(13px, 1.4vw, 15px)'
+                                fontSize: 'clamp(13px, 1.4vw, 15px)',
+                                lineHeight: 1.5
                               }}
                             >
                               {member.position}
@@ -510,7 +518,7 @@ export default function AboutPageClient() {
                                 variant={expandedBios.has(member.id) ? 'primary' : 'secondary'}
                                 size="md"
                                 onClick={() => toggleBio(member.id)}
-                                className="flex items-center gap-2"
+                                className="gap-2"
                               >
                                 <span>{expandedBios.has(member.id) ? 'Show less' : 'Show more'}</span>
                                 <motion.div
@@ -612,22 +620,21 @@ export default function AboutPageClient() {
                         {item.member && (
                           <>
                             <motion.div 
-                              className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg"
                               style={{ 
                                 backgroundColor: premiumColors.lightGray,
-                                border: `1px solid ${premiumColors.slateGray}20`,
                                 marginBottom: 'clamp(16px, 2vw, 20px)'
                               }}
                               initial={{ opacity: 0, y: 8 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ duration: 0.3, delay: 0.2 + index * 0.05 }}
                             >
-                              <Crown className="w-3.5 h-3.5" style={{ color: premiumColors.darkBlue }} />
                               <span 
                                 className="font-semibold"
                                 style={{ 
                                   color: premiumColors.darkBlue,
-                                  fontSize: 'clamp(12px, 1.3vw, 14px)'
+                                  fontSize: 'clamp(12px, 1.3vw, 14px)',
+                                  lineHeight: 1.5
                                 }}
                               >
                                 {item.member.position}
@@ -661,7 +668,7 @@ export default function AboutPageClient() {
                                   variant={expandedBios.has(item.member.id) ? 'primary' : 'secondary'}
                                   size="md"
                                   onClick={() => toggleBio(item.member!.id)}
-                                  className="flex items-center gap-2"
+                                  className="gap-2"
                                 >
                                   <span>{expandedBios.has(item.member.id) ? 'Show less' : 'Show more'}</span>
                                   <motion.div
@@ -748,19 +755,18 @@ export default function AboutPageClient() {
                         {item.member && (
                           <>
                             <div 
-                              className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg"
                               style={{ 
                                 backgroundColor: premiumColors.lightGray,
-                                border: `1px solid ${premiumColors.slateGray}20`,
                                 marginBottom: 'clamp(16px, 2vw, 20px)'
                               }}
                             >
-                              <Crown className="w-3.5 h-3.5" style={{ color: premiumColors.darkBlue }} />
                               <span 
                                 className="font-semibold"
                                 style={{ 
                                   color: premiumColors.darkBlue,
-                                  fontSize: 'clamp(12px, 1.3vw, 14px)'
+                                  fontSize: 'clamp(12px, 1.3vw, 14px)',
+                                  lineHeight: 1.5
                                 }}
                               >
                                 {item.member.position}
@@ -794,7 +800,7 @@ export default function AboutPageClient() {
                                   variant={expandedBios.has(item.member.id) ? 'primary' : 'secondary'}
                                   size="md"
                                   onClick={() => toggleBio(item.member!.id)}
-                                  className="flex items-center gap-2"
+                                  className="gap-2"
                                 >
                                   <span>{expandedBios.has(item.member.id) ? 'Show less' : 'Show more'}</span>
                                   <motion.div

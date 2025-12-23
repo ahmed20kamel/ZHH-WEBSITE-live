@@ -35,20 +35,21 @@ export default function Button({
   style,
 }: ButtonProps) {
   // Unified base styles - same for all buttons
-  const baseStyles = 'font-semibold transition-all duration-300 ease-in-out rounded-lg inline-flex items-center justify-center';
+  // Using !important to ensure Tailwind classes override any global CSS
+  const baseStyles = '!font-semibold !transition-all !duration-300 !ease-in-out !rounded-lg !inline-flex !items-center !justify-center';
   
-  // Unified size system - same height, padding, font size
+  // Unified size system - improved padding and spacing for better UI
   const sizeStyles = {
-    sm: 'px-6 py-2.5 text-sm h-10',
-    md: 'px-8 py-3 text-base h-12',
-    lg: 'px-10 py-3.5 text-base h-14',
+    sm: '!px-7 !py-3.5 !text-sm !min-h-[44px]',
+    md: '!px-10 !py-4 !text-base !min-h-[50px]',
+    lg: '!px-12 !py-5 !text-base !min-h-[56px]',
   };
 
-  // Unified variant system
+  // Unified variant system - professional design with proper spacing and borders
   const variantStyles = {
-    primary: 'bg-[#00d4aa] text-white hover:bg-[#00b896] hover:shadow-[0_4px_12px_rgba(0,212,170,0.3)]',
-    secondary: 'border-2 border-[#00d4aa] bg-transparent text-[#00d4aa] hover:bg-[#00d4aa] hover:text-white',
-    ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 border border-gray-200 hover:border-gray-300',
+    primary: '!bg-[#01B2B2] !text-white hover:!bg-[#009999] hover:!shadow-[0_8px_24px_rgba(1,178,178,0.4)] active:!bg-[#008888] !border-0',
+    secondary: '!border-2 !border-[#01B2B2] !bg-white !text-[#01B2B2] hover:!bg-[#01B2B2] hover:!text-white hover:!shadow-[0_6px_16px_rgba(1,178,178,0.3)] active:!bg-[#009999] active:!border-[#009999]',
+    ghost: '!bg-transparent !text-gray-700 hover:!bg-gray-50 !border-2 !border-gray-200 hover:!border-gray-300 active:!bg-gray-100',
   };
 
   const widthClass = fullWidth ? 'w-full' : '';

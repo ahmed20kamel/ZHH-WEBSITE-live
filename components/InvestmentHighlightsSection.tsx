@@ -219,9 +219,12 @@ export default function InvestmentHighlightsSection() {
               >
                 <Card className="h-full flex flex-col">
                   <CardBody maxWidth="max-w-none" className="flex flex-col h-full text-center">
-                    {/* Icon */}
-                    <div className={`w-14 h-14 rounded-lg ${highlight.gradient} flex items-center justify-center mb-6 shadow-sm mx-auto`}>
-                      <Icon className={`w-7 h-7 ${highlight.color}`} />
+                    {/* Icon - Unified Style */}
+                    <div 
+                      className="w-14 h-14 rounded-lg flex items-center justify-center mb-6 shadow-sm mx-auto"
+                      style={{ backgroundColor: '#E0F2F1' }}
+                    >
+                      <Icon className="w-7 h-7" style={{ color: '#0D9488' }} />
                     </div>
 
                     {/* Main Value with Counter */}
@@ -276,7 +279,7 @@ export default function InvestmentHighlightsSection() {
                 {/* Total Portfolio */}
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-3">
-                    <BarChart3 className="w-5 h-5 text-teal" />
+                    <BarChart3 className="w-5 h-5" style={{ color: '#0D9488' }} />
                     <span className="body-small-unified text-secondary">Total Portfolio</span>
                   </div>
                   <div className="text-stats-number mb-1" style={{ color: 'var(--emirati-blue)' }}>AED 12.5B+</div>
@@ -286,7 +289,7 @@ export default function InvestmentHighlightsSection() {
                 {/* Years of Excellence */}
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-3">
-                    <Clock className="w-5 h-5 text-teal" />
+                    <Clock className="w-5 h-5" style={{ color: '#0D9488' }} />
                     <span className="body-small-unified text-secondary">Years of Excellence</span>
                   </div>
                   <div className="text-stats-number mb-1" style={{ color: 'var(--emirati-blue)' }}>15+</div>
@@ -296,7 +299,7 @@ export default function InvestmentHighlightsSection() {
                 {/* Global Presence */}
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-2 mb-3">
-                    <Globe className="w-5 h-5 text-teal" />
+                    <Globe className="w-5 h-5" style={{ color: '#0D9488' }} />
                     <span className="body-small-unified text-secondary">Global Presence</span>
                   </div>
                   <div className="text-stats-number mb-1" style={{ color: 'var(--emirati-blue)' }}>10+</div>

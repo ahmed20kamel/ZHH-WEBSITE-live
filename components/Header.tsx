@@ -118,47 +118,30 @@
       const textColor = isSolid ? 'var(--color-primary-dark)' : 'var(--color-text-white)';
       const iconColor = isSolid ? 'var(--color-primary-dark)' : 'var(--color-text-white)';
 
+      // Listen for menu button clicks
+      useEffect(() => {
+        const handleOpenMenu = () => {
+          setIsMobileMenuOpen(true);
+        };
+        
+        window.addEventListener('openMenu', handleOpenMenu);
+        
+        return () => {
+          window.removeEventListener('openMenu', handleOpenMenu);
+        };
+      }, []);
+
+      // Notify MenuButton component about menu state
+      useEffect(() => {
+        window.dispatchEvent(new CustomEvent('menuStateChange', {
+          detail: { isOpen: isMobileMenuOpen }
+        }));
+      }, [isMobileMenuOpen]);
+
       return (
         <>
-          {/* Floating Menu Button for Home Page - Clean and Light (Mubadala Style) */}
-          {isHomePage && !isMobileMenuOpen && (
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="fixed top-6 right-6 z-[9998] flex items-center justify-center transition-opacity duration-300 hover:opacity-80"
-              style={{
-                width: 'auto',
-                height: 'auto',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                padding: '8px',
-                color: 'white'
-              }}
-              aria-label="Toggle menu"
-            >
-              <svg
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                style={{ 
-                  width: '28px', 
-                  height: '28px',
-                  display: 'block'
-                }}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h18M3.75 12h18"
-                />
-              </svg>
-            </motion.button>
-          )}
 
+          {/* Hide white header on internal pages - only show menu button */}
           <header
             className="fixed top-0 left-0 right-0 z-[9999] transition-all duration-300"
             style={{ 
@@ -166,7 +149,7 @@
               background: isSolid ? 'var(--color-bg-white)' : 'transparent',
               boxShadow: isSolid ? '0 2px 20px rgba(0,0,0,0.08)' : 'none',
               backdropFilter: isSolid ? 'blur(10px)' : 'none',
-              display: isMobileMenuOpen ? 'none' : (isHomePage ? 'none' : 'block'),
+              display: 'none', // Hide header on all pages - only menu button is visible
               width: '100%',
               maxWidth: '100%',
               overflow: 'hidden'
@@ -356,60 +339,7 @@
                     </svg>
                   </button>
 
-                  {/* Menu Button - Clean and Light (Mubadala Style) */}
-                  <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="flex items-center justify-center transition-opacity hover:opacity-80 flex-shrink-0"
-                    style={{ 
-                      width: 'auto',
-                      height: 'auto',
-                      color: iconColor,
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer',
-                      padding: 'clamp(6px, 1vw, 8px)',
-                      transition: 'opacity 0.3s ease'
-                    }}
-                    aria-label="Toggle menu"
-                  >
-                    {isMobileMenuOpen ? (
-                      <svg
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2.5}
-                        style={{ 
-                          width: 'clamp(22px, 2.8vw, 26px)',
-                          height: 'clamp(22px, 2.8vw, 26px)',
-                          display: 'block'
-                        }}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        style={{ 
-                          width: 'clamp(22px, 2.8vw, 26px)',
-                          height: 'clamp(22px, 2.8vw, 26px)',
-                          display: 'block'
-                        }}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M3.75 6.75h18M3.75 12h18"
-                        />
-                      </svg>
-                    )}
-                  </button>
+                  {/* Menu Button - Removed - Now using MenuButton component in layout.tsx */}
                 </div>
               </div>
             </nav>
@@ -550,7 +480,7 @@
                       right: 'clamp(20px, 4vw, 40px)',
                       zIndex: 10001,
                       color: '#032D46',
-                      fontFamily: '"Montserrat", sans-serif',
+                      fontFamily: 'var(--font-inter), Inter, sans-serif',
                       background: 'none',
                       border: 'none',
                       padding: 0,
@@ -624,7 +554,7 @@
                               onClick={() => setIsMobileMenuOpen(false)}
                               className="block transition-colors duration-200"
                               style={{
-                                fontFamily: '"Montserrat", sans-serif',
+                                fontFamily: 'var(--font-inter), Inter, sans-serif',
                                 fontSize: 'clamp(27px, 3.4vw, 41px)',
                                 fontWeight: 300,
                                 letterSpacing: '0.5px',
@@ -684,7 +614,7 @@
                                   onClick={() => setIsMobileMenuOpen(false)}
                                   className="block transition-colors duration-200"
                                   style={{
-                                    fontFamily: '"Montserrat", sans-serif',
+                                    fontFamily: 'var(--font-inter), Inter, sans-serif',
                                     fontSize: 'clamp(12px, 1.3vw, 14px)',
                                     fontWeight: 300,
                                     letterSpacing: '0.3px',
@@ -731,7 +661,7 @@
                       >
                         <h3
                           style={{
-                            fontFamily: '"Montserrat", sans-serif',
+                            fontFamily: 'var(--font-inter), Inter, sans-serif',
                             fontSize: 'clamp(20px, 2.6vw, 27px)',
                             fontWeight: 600,
                             letterSpacing: '0.5px',
@@ -768,7 +698,7 @@
                           href="tel:+971504044187"
                           className="transition-colors duration-200"
                           style={{
-                            fontFamily: '"Montserrat", sans-serif',
+                            fontFamily: 'var(--font-inter), Inter, sans-serif',
                             fontSize: 'clamp(15px, 1.6vw, 17px)',
                             fontWeight: 400,
                             lineHeight: 1.6,
@@ -785,7 +715,7 @@
                           href="mailto:info@zhhgroup.com"
                           className="transition-colors duration-200"
                           style={{
-                            fontFamily: '"Montserrat", sans-serif',
+                            fontFamily: 'var(--font-inter), Inter, sans-serif',
                             fontSize: 'clamp(14px, 1.5vw, 15px)',
                             fontWeight: 400,
                             lineHeight: 1.6,

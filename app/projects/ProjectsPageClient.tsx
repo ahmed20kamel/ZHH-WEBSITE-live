@@ -15,7 +15,7 @@ export default function ProjectsPageClient() {
       : projects.filter((project) => project.category === selectedCategory);
 
   return (
-    <div style={{ paddingTop: '80px' }}>
+    <div>
       {/* Hero Section */}
       <section className="hero-internal bg-unified-dark text-white">
         <div className="container-unified">
@@ -27,13 +27,31 @@ export default function ProjectsPageClient() {
           >
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl md:text-6xl font-bold mb-6"
+              className="text-white"
+              style={{ 
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontSize: 'clamp(42px, 6vw, 80px)',
+                fontWeight: 600,
+                lineHeight: 1.2,
+                marginBottom: 'clamp(24px, 3vw, 32px)',
+                letterSpacing: '-0.5px',
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)'
+              }}
             >
               Our Projects
             </motion.h1>
             <motion.p
               variants={fadeInUp}
-              className="text-xl text-gray-300 leading-relaxed"
+              className="text-gray-200"
+              style={{ 
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontSize: 'clamp(18px, 2.2vw, 24px)',
+                fontWeight: 400,
+                lineHeight: 1.6,
+                color: 'rgba(255, 255, 255, 0.95)',
+                maxWidth: '700px',
+                margin: '0 auto'
+              }}
             >
               Showcasing excellence across all our divisions
             </motion.p>

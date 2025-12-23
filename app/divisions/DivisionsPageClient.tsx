@@ -8,10 +8,11 @@ import { fadeInUp, staggerContainer } from '@/lib/animations';
 import Card from '@/components/ui/Card';
 import Tabs from '@/components/ui/Tabs';
 import InternalHero from '@/components/InternalHero';
+import Button from '@/components/ui/Button';
 
 export default function DivisionsPageClient() {
   return (
-    <div style={{ paddingTop: '80px' }}>
+    <div>
       {/* Hero Section - Shared InternalHero */}
       <InternalHero
         title="Our Divisions"
@@ -226,7 +227,7 @@ export default function DivisionsPageClient() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                         style={{
-                          fontFamily: '"Montserrat", sans-serif',
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
                           fontSize: 'clamp(14px, 1.7vw, 17px)',
                           fontStyle: 'italic',
                           color: '#01B2B2',
@@ -257,7 +258,7 @@ export default function DivisionsPageClient() {
                             <div>
                               <p
                                 style={{
-                                  fontFamily: '"Montserrat", sans-serif',
+                                  fontFamily: 'var(--font-inter), Inter, sans-serif',
                                   fontSize: 'clamp(14px, 1.5vw, 15px)',
                                   lineHeight: 1.8,
                                   color: '#333333',
@@ -276,7 +277,7 @@ export default function DivisionsPageClient() {
                             <div>
                               <p
                                 style={{
-                                  fontFamily: '"Montserrat", sans-serif',
+                                  fontFamily: 'var(--font-inter), Inter, sans-serif',
                                   fontSize: 'clamp(14px, 1.5vw, 15px)',
                                   lineHeight: 1.8,
                                   color: '#333333'
@@ -309,7 +310,7 @@ export default function DivisionsPageClient() {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.4, delay: idx * 0.05 }}
                                     style={{
-                                      fontFamily: '"Montserrat", sans-serif',
+                                      fontFamily: 'var(--font-inter), Inter, sans-serif',
                                       fontSize: 'clamp(14px, 1.5vw, 15px)',
                                       lineHeight: 1.7,
                                       color: '#333333',
@@ -361,7 +362,7 @@ export default function DivisionsPageClient() {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.4, delay: idx * 0.05 }}
                                     style={{
-                                      fontFamily: '"Montserrat", sans-serif',
+                                      fontFamily: 'var(--font-inter), Inter, sans-serif',
                                       fontSize: 'clamp(14px, 1.5vw, 15px)',
                                       lineHeight: 1.7,
                                       color: '#333333',
@@ -406,7 +407,7 @@ export default function DivisionsPageClient() {
                             >
                               <p
                                 style={{
-                                  fontFamily: '"Montserrat", sans-serif',
+                                  fontFamily: 'var(--font-inter), Inter, sans-serif',
                                   fontSize: 'clamp(14px, 1.5vw, 15px)',
                                   fontWeight: 600,
                                   color: '#032D46',
@@ -417,7 +418,7 @@ export default function DivisionsPageClient() {
                               </p>
                               <p
                                 style={{
-                                  fontFamily: '"Montserrat", sans-serif',
+                                  fontFamily: 'var(--font-inter), Inter, sans-serif',
                                   fontSize: 'clamp(14px, 1.6vw, 16px)',
                                   color: '#666666',
                                   marginBottom: 'clamp(16px, 2vw, 20px)'
@@ -427,7 +428,7 @@ export default function DivisionsPageClient() {
                               </p>
                               <p
                                 style={{
-                                  fontFamily: '"Montserrat", sans-serif',
+                                  fontFamily: 'var(--font-inter), Inter, sans-serif',
                                   fontSize: 'clamp(14px, 1.5vw, 15px)',
                                   lineHeight: 1.8,
                                   color: '#333333',
@@ -497,7 +498,7 @@ export default function DivisionsPageClient() {
                                   >
                                     <p
                                       style={{
-                                        fontFamily: '"Montserrat", sans-serif',
+                                        fontFamily: 'var(--font-inter), Inter, sans-serif',
                                         fontSize: 'clamp(14px, 1.5vw, 15px)',
                                         fontWeight: 600,
                                         color: '#032D46',
@@ -508,7 +509,7 @@ export default function DivisionsPageClient() {
                                     </p>
                                     <p
                                       style={{
-                                        fontFamily: '"Montserrat", sans-serif',
+                                        fontFamily: 'var(--font-inter), Inter, sans-serif',
                                         fontSize: 'clamp(14px, 1.6vw, 16px)',
                                         color: '#666666',
                                         marginBottom: 'clamp(10px, 1.3vw, 14px)'
@@ -518,7 +519,7 @@ export default function DivisionsPageClient() {
                                     </p>
                                     <p
                                       style={{
-                                        fontFamily: '"Montserrat", sans-serif',
+                                        fontFamily: 'var(--font-inter), Inter, sans-serif',
                                         fontSize: 'clamp(15px, 1.7vw, 17px)',
                                         lineHeight: 1.7,
                                         color: '#333333',
@@ -566,12 +567,13 @@ export default function DivisionsPageClient() {
               Contact us to learn more about our divisions and how we can help you achieve your goals.
             </motion.p>
             <motion.div variants={fadeInUp}>
-              <a
+              <Button
                 href="/contact"
-                className="btn-primary-unified"
+                variant="primary"
+                size="md"
               >
                 Get In Touch
-              </a>
+              </Button>
             </motion.div>
           </motion.div>
         </div>
