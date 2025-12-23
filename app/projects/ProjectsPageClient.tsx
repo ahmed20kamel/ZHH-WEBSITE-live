@@ -31,7 +31,7 @@ export default function ProjectsPageClient() {
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontSize: 'clamp(42px, 6vw, 80px)',
-                fontWeight: 600,
+                fontWeight: 300,
                 lineHeight: 1.2,
                 marginBottom: 'clamp(24px, 3vw, 32px)',
                 letterSpacing: '-0.5px',

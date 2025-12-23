@@ -95,7 +95,7 @@ export default function Hero() {
                 style={{
                   fontSize: 'clamp(48px, 6.5vw, 88px)',
                   lineHeight: 1.15,
-                  fontWeight: 600,
+                  fontWeight: 300,
                   letterSpacing: '-0.5px',
                   textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)',
                   fontFamily: 'var(--font-inter), Inter, sans-serif',
@@ -103,7 +103,7 @@ export default function Hero() {
                 }}
               >
                 Building a Legacy of
-                <span className="block mt-2 text-white" style={{ fontWeight: 600 }}>
+                <span className="block mt-2 text-white" style={{ fontWeight: 300 }}>
                   Trust & Growth
                 </span>
               </motion.h1>

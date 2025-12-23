@@ -47,7 +47,6 @@ export default function Footer() {
     { name: 'What We Do', href: '/divisions' },
     { name: 'Our Impact', href: '/impact' },
     { name: 'Investor Relations', href: '/investors' },
-    { name: 'Career Opportunities', href: '/careers' },
     { name: 'Contact Us', href: '/contact' },
   ];
 
@@ -214,10 +213,20 @@ export default function Footer() {
                 >
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-2 p-3 rounded-lg hover:bg-gradient-to-r hover:from-gray-800/50 hover:to-gray-900/50 transition-all duration-300"
+                    className="group flex items-center rounded-lg hover:bg-gradient-to-r hover:from-gray-800/50 hover:to-gray-900/50 transition-all duration-300"
+                    style={{
+                      padding: 'clamp(14px, 1.8vw, 18px) clamp(20px, 2.5vw, 24px)',
+                      margin: 'clamp(2px, 0.3vw, 4px) 0'
+                    }}
                   >
-                    <div className="w-2 h-2 rounded-full bg-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <span className="body-small-unified text-gray-400 group-hover:text-white transition-colors" style={{ fontFamily: 'var(--font-primary)' }}>
+                    <span 
+                      className="body-small-unified text-gray-400 group-hover:text-white transition-colors whitespace-nowrap" 
+                      style={{ 
+                        fontFamily: 'var(--font-primary)',
+                        fontSize: 'clamp(13px, 1.4vw, 14px)',
+                        lineHeight: 1.6
+                      }}
+                    >
                       {link.name}
                     </span>
                   </Link>
@@ -327,13 +336,22 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 h-12 px-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-teal-500 transition-colors"
+                  className="flex-1 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-teal-500 transition-colors"
+                  style={{ 
+                    height: '44px',
+                    padding: 'clamp(12px, 1.5vw, 16px) clamp(16px, 2vw, 20px)'
+                  }}
                 />
                 <Button
                   variant="primary"
-                  size="md"
+                  size="sm"
                   className="flex items-center gap-2"
                   type="button"
+                  style={{
+                    height: '44px',
+                    padding: 'clamp(10px, 1.2vw, 12px) clamp(16px, 2vw, 20px)',
+                    fontSize: 'clamp(13px, 1.4vw, 14px)'
+                  }}
                 >
                   <span>Subscribe</span>
                   <ArrowUpRight className="w-4 h-4" />
@@ -344,13 +362,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="pt-8 border-t border-gray-800">
+        <div className="border-t border-gray-800" style={{ paddingTop: 'clamp(32px, 4vw, 48px)', marginTop: 'clamp(20px, 2.5vw, 30px)' }}>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="body-small-unified text-gray-500 text-center"
-            style={{ fontFamily: 'var(--font-primary)' }}
+            className="body-small-unified text-center"
+            style={{ fontFamily: 'var(--font-primary)', color: '#FFFFFF' }}
           >
             © {currentYear} ZHH Group Holding. All Rights Reserved.
           </motion.p>

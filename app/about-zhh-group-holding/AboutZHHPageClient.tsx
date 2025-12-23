@@ -88,7 +88,7 @@ export default function AboutZHHPageClient() {
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontSize: 'clamp(42px, 6vw, 80px)',
-                fontWeight: 600,
+                fontWeight: 300,
                 lineHeight: 1.2,
                 marginBottom: 'clamp(24px, 3vw, 32px)',
                 letterSpacing: '-0.5px',
@@ -117,8 +117,47 @@ export default function AboutZHHPageClient() {
       </section>
 
       {/* CEO Message Section */}
-      <section className="section-unified bg-off-white scroll-margin-top" id="ceo-message">
-        <div className="container-unified">
+      <section 
+        className="section-unified relative overflow-hidden scroll-margin-top" 
+        id="ceo-message"
+        style={{
+          paddingTop: 'clamp(50px, 6vw, 70px)',
+          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)',
+          position: 'relative'
+        }}
+      >
+        {/* Subtle Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.02) 0%, rgba(212, 175, 55, 0.01) 100%)',
+            }}
+          />
+        </div>
+        
+        {/* Professional Divider Line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '60%',
+            maxWidth: '400px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
+            transformOrigin: 'center'
+          }}
+        />
+        
+        <div className="container-unified relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -279,8 +318,46 @@ export default function AboutZHHPageClient() {
       </section>
 
       {/* Company Overview Section */}
-      <section className="section-unified bg-white scroll-margin-top">
-        <div className="container-unified">
+      <section 
+        className="section-unified relative overflow-hidden scroll-margin-top"
+        style={{
+          paddingTop: 'clamp(50px, 6vw, 70px)',
+          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)',
+          position: 'relative'
+        }}
+      >
+        {/* Subtle Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.015) 0%, rgba(212, 175, 55, 0.008) 100%)',
+            }}
+          />
+        </div>
+        
+        {/* Professional Divider Line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '60%',
+            maxWidth: '400px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
+            transformOrigin: 'center'
+          }}
+        />
+        
+        <div className="container-unified relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -300,10 +377,10 @@ export default function AboutZHHPageClient() {
               variants={fadeInUp}
               className="relative overflow-hidden rounded-2xl"
               style={{
-                background: 'linear-gradient(135deg, #F7FBFD 0%, #E9F4F8 100%)',
+                background: 'rgba(255, 255, 255, 0.8)',
                 padding: 'clamp(32px, 4.5vw, 56px)',
-                border: '1px solid #E5E7EB',
-                boxShadow: '0 10px 32px rgba(0, 0, 0, 0.06)'
+                border: '1px solid rgba(1, 178, 178, 0.1)',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)'
               }}
             >
               {/* Decorative orbs */}
@@ -335,8 +412,46 @@ export default function AboutZHHPageClient() {
       </section>
 
       {/* Our Divisions Section */}
-      <section className="section-unified bg-white scroll-margin-top">
-        <div className="container-unified">
+      <section 
+        className="section-unified relative overflow-hidden scroll-margin-top"
+        style={{
+          paddingTop: 'clamp(50px, 6vw, 70px)',
+          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)',
+          position: 'relative'
+        }}
+      >
+        {/* Subtle Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.02) 0%, rgba(212, 175, 55, 0.01) 100%)',
+            }}
+          />
+        </div>
+        
+        {/* Professional Divider Line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '60%',
+            maxWidth: '400px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
+            transformOrigin: 'center'
+          }}
+        />
+        
+        <div className="container-unified relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -498,26 +613,62 @@ export default function AboutZHHPageClient() {
       </section>
 
       {/* Our Commitment Section */}
-      <section className="section-unified bg-off-white scroll-margin-top">
-        <div className="container-unified">
+      <section 
+        className="section-unified relative overflow-hidden scroll-margin-top"
+        style={{
+          paddingTop: 'clamp(50px, 6vw, 70px)',
+          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)',
+          position: 'relative'
+        }}
+      >
+        {/* Subtle Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.02) 0%, rgba(212, 175, 55, 0.01) 100%)',
+            }}
+          />
+        </div>
+        
+        {/* Professional Divider Line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '60%',
+            maxWidth: '400px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
+            transformOrigin: 'center'
+          }}
+        />
+        
+        <div className="container-unified relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
             className="w-full"
-            style={{ width: '100%' }}
+            style={{ width: '100%', marginTop: 'clamp(20px, 2.5vw, 30px)' }}
           >
             <motion.h2
               variants={fadeInUp}
+              className="h2-unified text-primary text-center"
               style={{
-                fontFamily: 'var(--font-english-heading)',
-                fontSize: 'clamp(32px, 4vw, 48px)',
-                lineHeight: 1.2,
-                fontWeight: 700,
-                color: '#032D46',
-                marginBottom: '48px',
-                textAlign: 'center'
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 600,
+                color: 'var(--color-text-primary)',
+                marginBottom: 'clamp(32px, 4vw, 48px)'
               }}
             >
               Our Commitment
@@ -525,91 +676,194 @@ export default function AboutZHHPageClient() {
             
             <motion.div
               variants={fadeInUp}
+              className="relative"
               style={{
-                fontFamily: 'var(--font-inter), Inter, sans-serif',
-                fontSize: 'clamp(14px, 1.5vw, 15px)',
-                lineHeight: 1.8,
-                color: '#333333',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '24px',
                 maxWidth: '900px',
-                margin: '0 auto'
+                margin: '0 auto',
+                padding: 'clamp(32px, 4vw, 48px)',
+                background: 'rgba(255, 255, 255, 0.8)',
+                borderRadius: '16px',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+                border: '1px solid rgba(1, 178, 178, 0.1)'
               }}
             >
-              <p>
-                At ZHH Group Holding, leadership is built on integrity, innovation, and long-term vision. Our Executive Team drives sustainable growth across all sectors, ensuring every decision reflects the values of the UAE and contributes to the nation's global economic influence.
-              </p>
-              <p>
-                We remain committed to responsible investments, strengthening international partnerships, and pioneering new opportunities that create long-term value for future generations.
-              </p>
-              <p>
-                Together, we continue building a legacy of trust, ambition, and excellence — for the UAE and the world.
-              </p>
+              <div
+                style={{
+                  fontFamily: 'var(--font-inter), Inter, sans-serif',
+                  fontSize: 'clamp(15px, 1.7vw, 17px)',
+                  lineHeight: 1.8,
+                  color: '#333333',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'clamp(20px, 2.5vw, 24px)'
+                }}
+              >
+                <p>
+                  At ZHH Group Holding, leadership is built on integrity, innovation, and long-term vision. Our Executive Team drives sustainable growth across all sectors, ensuring every decision reflects the values of the UAE and contributes to the nation's global economic influence.
+                </p>
+                <p>
+                  We remain committed to responsible investments, strengthening international partnerships, and pioneering new opportunities that create long-term value for future generations.
+                </p>
+                <p>
+                  Together, we continue building a legacy of trust, ambition, and excellence — for the UAE and the world.
+                </p>
+              </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Section 1: Vision - Standalone Section */}
-      <section className="section-unified bg-white scroll-margin-top" id="vision">
-        <div className="container-unified">
+      <section 
+        className="section-unified relative overflow-hidden scroll-margin-top" 
+        id="vision"
+        style={{
+          paddingTop: 'clamp(50px, 6vw, 70px)',
+          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)',
+          position: 'relative'
+        }}
+      >
+        {/* Subtle Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.015) 0%, rgba(212, 175, 55, 0.008) 100%)',
+            }}
+          />
+        </div>
+        
+        {/* Professional Divider Line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '60%',
+            maxWidth: '400px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
+            transformOrigin: 'center'
+          }}
+        />
+        
+        <div className="container-unified relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
             className="w-full"
-            style={{ width: '100%' }}
+            style={{ width: '100%', marginTop: 'clamp(20px, 2.5vw, 30px)' }}
           >
             <motion.h2
               variants={fadeInUp}
+              className="h2-unified text-primary text-center"
               style={{
-                fontFamily: 'var(--font-english-heading)',
-                fontSize: 'clamp(38px, 4.8vw, 58px)',
-                lineHeight: 1.2,
-                fontWeight: 700,
-                color: '#032D46',
-                marginBottom: 'clamp(32px, 4vw, 48px)',
-                textAlign: 'center',
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 600,
+                color: 'var(--color-text-primary)',
+                marginBottom: 'clamp(32px, 4vw, 48px)'
               }}
             >
               Our Vision
             </motion.h2>
-            <motion.p
+            
+            <motion.div
               variants={fadeInUp}
-              className="body-large-unified text-secondary text-center-unified"
+              className="relative"
               style={{
-                margin: '0 auto'
+                maxWidth: '900px',
+                margin: '0 auto',
+                padding: 'clamp(32px, 4vw, 48px)',
+                background: 'rgba(255, 255, 255, 0.8)',
+                borderRadius: '16px',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+                border: '1px solid rgba(1, 178, 178, 0.1)'
               }}
             >
-              To be a leading Emirati holding group that delivers value-driven excellence in every sector we operate, contributing to economic prosperity and global trade connectivity, while strengthening the UAE's global economic presence.
-            </motion.p>
+              <p
+                className="body-large-unified text-secondary text-center"
+                style={{
+                  fontFamily: 'var(--font-inter), Inter, sans-serif',
+                  fontSize: 'clamp(16px, 1.9vw, 19px)',
+                  lineHeight: 1.8,
+                  color: 'var(--color-text-secondary)',
+                  margin: 0
+                }}
+              >
+                To be a leading Emirati holding group that delivers value-driven excellence in every sector we operate, contributing to economic prosperity and global trade connectivity, while strengthening the UAE's global economic presence.
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Section 2: Mission - Standalone Section with Two-Column Layout */}
-      <section className="section-unified bg-off-white scroll-margin-top" id="mission">
-        <div className="container-unified">
+      <section 
+        className="section-unified relative overflow-hidden scroll-margin-top" 
+        id="mission"
+        style={{
+          paddingTop: 'clamp(50px, 6vw, 70px)',
+          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)',
+          position: 'relative'
+        }}
+      >
+        {/* Subtle Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.02) 0%, rgba(212, 175, 55, 0.01) 100%)',
+            }}
+          />
+        </div>
+        
+        {/* Professional Divider Line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '60%',
+            maxWidth: '400px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
+            transformOrigin: 'center'
+          }}
+        />
+        
+        <div className="container-unified relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
             className="w-full"
-            style={{ width: '100%' }}
+            style={{ width: '100%', marginTop: 'clamp(20px, 2.5vw, 30px)' }}
           >
             <motion.h2
               variants={fadeInUp}
+              className="h2-unified text-primary text-center"
               style={{
-                fontFamily: 'var(--font-english-heading)',
-                fontSize: 'clamp(38px, 4.8vw, 58px)',
-                lineHeight: 1.2,
-                fontWeight: 700,
-                color: '#032D46',
-                marginBottom: 'clamp(48px, 6vw, 64px)',
-                textAlign: 'center',
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 600,
+                color: 'var(--color-text-primary)',
+                marginBottom: 'clamp(48px, 6vw, 64px)'
               }}
             >
               Our Mission
@@ -618,7 +872,13 @@ export default function AboutZHHPageClient() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
               <motion.div
                 variants={fadeInUp}
+                className="relative"
                 style={{
+                  padding: 'clamp(32px, 4vw, 48px)',
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  borderRadius: '16px',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+                  border: '1px solid rgba(1, 178, 178, 0.1)',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 'clamp(17px, 2.1vw, 24px)',
@@ -634,6 +894,7 @@ export default function AboutZHHPageClient() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginBottom: 'clamp(16px, 2vw, 24px)',
+                    boxShadow: '0 4px 12px rgba(1, 178, 178, 0.2)'
                   }}
                 >
                   <svg width="clamp(32px, 4vw, 40px)" height="clamp(32px, 4vw, 40px)" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -654,7 +915,13 @@ export default function AboutZHHPageClient() {
 
               <motion.div
                 variants={fadeInUp}
+                className="relative"
                 style={{
+                  padding: 'clamp(32px, 4vw, 48px)',
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  borderRadius: '16px',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+                  border: '1px solid rgba(1, 178, 178, 0.1)',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 'clamp(17px, 2.1vw, 24px)',
@@ -670,6 +937,7 @@ export default function AboutZHHPageClient() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginBottom: 'clamp(16px, 2vw, 24px)',
+                    boxShadow: '0 4px 12px rgba(3, 45, 70, 0.2)'
                   }}
                 >
                   <svg width="clamp(32px, 4vw, 40px)" height="clamp(32px, 4vw, 40px)" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -693,26 +961,63 @@ export default function AboutZHHPageClient() {
       </section>
 
       {/* Section 3: Core Values - Standalone Grid Section */}
-      <section className="section-unified bg-white scroll-margin-top" id="core-values">
-        <div className="container-unified">
+      <section 
+        className="section-unified relative overflow-hidden scroll-margin-top" 
+        id="core-values"
+        style={{
+          paddingTop: 'clamp(50px, 6vw, 70px)',
+          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)',
+          position: 'relative'
+        }}
+      >
+        {/* Subtle Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.015) 0%, rgba(212, 175, 55, 0.008) 100%)',
+            }}
+          />
+        </div>
+        
+        {/* Professional Divider Line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '60%',
+            maxWidth: '400px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
+            transformOrigin: 'center'
+          }}
+        />
+        
+        <div className="container-unified relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
             className="w-full"
-            style={{ width: '100%' }}
+            style={{ width: '100%', marginTop: 'clamp(20px, 2.5vw, 30px)' }}
           >
             <motion.h2
               variants={fadeInUp}
+              className="h2-unified text-primary text-center"
               style={{
-                fontFamily: 'var(--font-english-heading)',
-                fontSize: 'clamp(38px, 4.8vw, 58px)',
-                lineHeight: 1.2,
-                fontWeight: 700,
-                color: '#032D46',
-                marginBottom: 'clamp(48px, 6vw, 64px)',
-                textAlign: 'center',
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 600,
+                color: 'var(--color-text-primary)',
+                marginBottom: 'clamp(48px, 6vw, 64px)'
               }}
             >
               Core Values
@@ -780,8 +1085,19 @@ export default function AboutZHHPageClient() {
                   variants={fadeInUp}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Card className="h-full p-8 text-center" hover={true}>
-                    <div
+                  <Card 
+                    className="h-full p-8 text-center relative" 
+                    hover={true}
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.9)',
+                      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+                      border: '1px solid rgba(1, 178, 178, 0.1)',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.05, rotate: 5 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
                       style={{
                         width: 'clamp(70px, 8vw, 90px)',
                         height: 'clamp(70px, 8vw, 90px)',
@@ -792,10 +1108,11 @@ export default function AboutZHHPageClient() {
                         justifyContent: 'center',
                         margin: 'clamp(12px, 1.5vw, 18px) auto clamp(24px, 3vw, 32px)',
                         color: '#FFFFFF',
+                        boxShadow: '0 4px 12px rgba(1, 178, 178, 0.25)'
                       }}
                     >
                       {value.icon}
-                    </div>
+                    </motion.div>
                     <h3
                       style={{
                         fontFamily: 'var(--font-inter), Inter, sans-serif',

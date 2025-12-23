@@ -23,14 +23,21 @@ export default function ProfessionalOrgChart() {
     <div 
       ref={containerRef} 
       className="min-h-screen"
-      style={{ backgroundColor: premiumColors.bgGray }}
+      style={{ backgroundColor: 'transparent' }}
     >
-            <div className="relative">
+      <div className="relative">
         {/* Subsidiaries Section */}
         <SubsidiariesSection />
 
         {/* Organization Chart Section */}
-        <motion.div style={{ opacity, scale }} ref={sectionRef}>
+        <motion.div 
+          style={{ 
+            opacity, 
+            scale,
+            marginTop: 'clamp(40px, 5vw, 60px)'
+          }} 
+          ref={sectionRef}
+        >
           <OrgChartSection />
         </motion.div>
       </div>

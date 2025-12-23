@@ -105,7 +105,7 @@ export default function ImpactPageClient() {
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontSize: 'clamp(42px, 6vw, 80px)',
-                fontWeight: 600,
+                fontWeight: 300,
                 lineHeight: 1.2,
                 marginBottom: 'clamp(24px, 3vw, 32px)',
                 letterSpacing: '-0.5px',
@@ -135,27 +135,79 @@ export default function ImpactPageClient() {
       </section>
 
       {/* Impact Pillars Section */}
-      <section className="section-unified bg-white">
-        <div className="container-unified">
+      <section 
+        className="section-unified relative overflow-hidden"
+        style={{
+          paddingTop: 'clamp(50px, 6vw, 70px)',
+          paddingBottom: 'clamp(50px, 6vw, 70px)',
+          background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)',
+          position: 'relative'
+        }}
+      >
+        {/* Subtle Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.02) 0%, rgba(212, 175, 55, 0.01) 100%)',
+            }}
+          />
+        </div>
+        <div className="container-unified relative z-10">
+          {/* Professional Divider Line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '60%',
+              maxWidth: '400px',
+              height: '1px',
+              background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
+              transformOrigin: 'center'
+            }}
+          />
+          
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
             className="section-title-wrapper"
+            style={{ marginTop: 'clamp(20px, 2.5vw, 30px)' }}
           >
+            <motion.div
+              variants={fadeInUp}
+              className="inline-flex items-center gap-3 mb-6"
+            >
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
+              <span className="body-small-unified text-tertiary uppercase tracking-wider">
+                Sustainability & Impact
+              </span>
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
+            </motion.div>
+            
             <motion.h2 
               variants={fadeInUp}
-              className="text-3xl lg:text-4xl font-light text-gray-900 mb-4"
+              className="h2-unified text-primary text-center"
               style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 600,
+                color: 'var(--color-text-primary)'
               }}
             >
               Our Commitment Pillars
             </motion.h2>
             <motion.p 
               variants={fadeInUp}
-              className="text-gray-600 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed"
+              className="body-large-unified text-secondary mt-6"
+              style={{ maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}
             >
               Three foundational principles guiding our sustainable impact
             </motion.p>
@@ -178,32 +230,41 @@ export default function ImpactPageClient() {
                       {/* Icon → Title → Divider → Content (strict order) */}
                       
                       {/* Icon with Visual Anchor - Unified Style */}
-                      <div className="mb-8 flex flex-col items-center">
-                        <div 
+                      <motion.div 
+                        className="mb-8 flex flex-col items-center"
+                        initial={{ scale: 0, rotate: -180 }}
+                        whileInView={{ scale: 1, rotate: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.2, type: 'spring', stiffness: 200 }}
+                      >
+                        <motion.div 
                           className="w-16 h-16 rounded-lg flex items-center justify-center shadow-sm transition-all duration-300"
                           style={{ 
                             backgroundColor: '#E0F2F1'
                           }}
+                          whileHover={{ rotate: 5, scale: 1.05 }}
                         >
                           <Icon 
                             className="w-8 h-8"
                             style={{ color: '#0D9488' }}
                             strokeWidth={1.5}
                           />
-                        </div>
-                        {/* Visual anchor line under icon */}
+                        </motion.div>
+                        {/* Visual anchor line under icon - Unified teal color */}
                         <div 
                           className="mt-4 h-0.5 w-12"
-                          style={{ backgroundColor: pillar.color }}
+                          style={{ backgroundColor: '#0D9488' }}
                         />
-                      </div>
+                      </motion.div>
                       
                       {/* Title */}
                       <div className="mb-8 text-center">
                         <h3 
-                          className="text-xl lg:text-2xl font-semibold text-gray-900"
+                          className="h3-unified text-primary"
                           style={{
-                            fontFamily: "'Inter', sans-serif",
+                            fontFamily: 'var(--font-inter), Inter, sans-serif',
+                            fontWeight: 600,
+                            color: 'var(--color-text-primary)',
                             letterSpacing: '-0.01em',
                             lineHeight: '1.3'
                           }}
@@ -212,33 +273,29 @@ export default function ImpactPageClient() {
                         </h3>
                       </div>
                       
-                      {/* Divider */}
+                      {/* Divider - Unified teal color */}
                       <div 
                         className="h-px mb-8"
-                        style={{ backgroundColor: pillar.color, opacity: 0.2 }}
+                        style={{ backgroundColor: '#0D9488', opacity: 0.2 }}
                       />
                       
-                      {/* Content - Bullet List (slightly right, not centered, not edge) */}
+                      {/* Content - Bullet List */}
                       <div className="flex-1 mb-8">
                         <BulletList
-                          bulletColor={pillar.color}
+                          bulletColor="#0D9488"
                           className="text-left"
                           maxWidth="max-w-none"
                           items={pillar.items}
                         />
                       </div>
 
-                      {/* CTA Button - Same width, visually attached to card bottom */}
+                      {/* CTA Button - Unified teal color */}
                       <div className="mt-auto pt-6 border-t border-gray-200">
                         <Button
                           variant="secondary"
                           size="md"
                           fullWidth
                           className="text-sm"
-                          style={{
-                            color: pillar.color,
-                            borderColor: `${pillar.color}30`,
-                          }}
                         >
                           Learn More
                         </Button>
@@ -260,16 +317,67 @@ export default function ImpactPageClient() {
           >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto text-center">
               <div className="text-center space-y-3">
-                <div className="text-4xl lg:text-5xl font-light text-gray-900">1500+</div>
-                <div className="text-gray-600 text-base lg:text-lg">Jobs Created</div>
+                <div 
+                  className="text-stats-number"
+                  style={{ 
+                    color: 'var(--color-primary-dark)',
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    fontWeight: 600
+                  }}
+                >
+                  1500+
+                </div>
+                <div 
+                  className="body-regular-unified text-secondary"
+                  style={{ 
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    color: 'var(--color-text-secondary)'
+                  }}
+                >
+                  Jobs Created
+                </div>
               </div>
               <div className="text-center space-y-3">
-                <div className="text-4xl lg:text-5xl font-light text-gray-900">100%</div>
-                <div className="text-gray-600 text-base lg:text-lg">Traceable Supply</div>
+                <div 
+                  className="text-stats-number"
+                  style={{ 
+                    color: 'var(--color-primary-dark)',
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    fontWeight: 600
+                  }}
+                >
+                  100%
+                </div>
+                <div 
+                  className="body-regular-unified text-secondary"
+                  style={{ 
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    color: 'var(--color-text-secondary)'
+                  }}
+                >
+                  Traceable Supply
+                </div>
               </div>
               <div className="text-center space-y-3">
-                <div className="text-4xl lg:text-5xl font-light text-gray-900">50+</div>
-                <div className="text-gray-600 text-base lg:text-lg">Community Programs</div>
+                <div 
+                  className="text-stats-number"
+                  style={{ 
+                    color: 'var(--color-primary-dark)',
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    fontWeight: 600
+                  }}
+                >
+                  50+
+                </div>
+                <div 
+                  className="body-regular-unified text-secondary"
+                  style={{ 
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    color: 'var(--color-text-secondary)'
+                  }}
+                >
+                  Community Programs
+                </div>
               </div>
             </div>
           </motion.div>

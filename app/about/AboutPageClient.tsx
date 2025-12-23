@@ -7,6 +7,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { teamMembers } from '@/data/team';
 import OrgChart from '@/components/OrgChart';
 import Button from '@/components/ui/Button';
+import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { 
   Building2, Users, Globe, Gem, 
   TrendingUp, Award, Target, Shield,
@@ -200,7 +201,7 @@ export default function AboutPageClient() {
               style={{ 
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontSize: 'clamp(42px, 6vw, 80px)',
-                fontWeight: 600,
+                fontWeight: 300,
                 lineHeight: 1.2,
                 marginBottom: 'clamp(24px, 3vw, 32px)',
                 letterSpacing: '-0.5px',
@@ -231,33 +232,66 @@ export default function AboutPageClient() {
       </section>
 
       {/* Timeline Section - Vertical Timeline */}
-      <section className="section-unified bg-white scroll-margin-top" id="journey">
-        <div className="container-unified">
+      <section 
+        className="section-unified relative overflow-hidden scroll-margin-top" 
+        id="journey"
+        style={{
+          paddingTop: 'clamp(60px, 7vw, 80px)',
+          paddingBottom: 'clamp(60px, 7vw, 80px)',
+          background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)'
+        }}
+      >
+        {/* Subtle Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.015) 0%, rgba(212, 175, 55, 0.008) 100%)',
+            }}
+          />
+        </div>
+        
+        <div className="container-unified relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             className="text-center w-full mb-xl"
           >
-            <div className="inline-flex items-center gap-4 mb-md">
-              <div className="w-12 h-px" style={{ background: `linear-gradient(to right, transparent, ${premiumColors.slateGray}40, transparent)` }} />
-              <span 
-                className="text-sm font-semibold uppercase tracking-widest"
-                style={{ color: premiumColors.slateGray }}
-              >
+            <motion.div
+              variants={fadeInUp}
+              className="inline-flex items-center gap-3 mb-6"
+            >
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
+              <span className="body-small-unified text-tertiary uppercase tracking-wider">
                 Our Timeline
               </span>
-              <div className="w-12 h-px" style={{ background: `linear-gradient(to right, transparent, ${premiumColors.slateGray}40, transparent)` }} />
-            </div>
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
+            </motion.div>
             
             <h2 
-              className="h2-unified text-center-unified text-primary-color mb-md" 
+              className="h2-unified text-primary text-center"
+              style={{
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 600,
+                color: 'var(--color-text-primary)',
+                marginBottom: 'clamp(16px, 2vw, 24px)'
+              }}
             >
               Journey of Growth
             </h2>
             
             <p 
-              className="body-large-unified text-center-unified text-secondary-color"
+              className="body-large-unified text-secondary text-center"
+              style={{
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontSize: 'clamp(16px, 1.9vw, 19px)',
+                lineHeight: '1.7',
+                color: 'var(--color-text-secondary)',
+                maxWidth: '700px',
+                margin: '0 auto'
+              }}
             >
               From local beginnings to global presence — our story of strategic expansion
             </p>
@@ -356,40 +390,99 @@ export default function AboutPageClient() {
       </section>
 
       {/* Board of Directors Section */}
-      <section className="section-unified bg-gradient-to-b from-gray-50 to-white scroll-margin-top" id="board">
-        <div className="container-unified">
+      <section 
+        className="section-unified relative overflow-hidden scroll-margin-top" 
+        id="board"
+        style={{
+          paddingTop: 'clamp(60px, 7vw, 80px)',
+          paddingBottom: 'clamp(60px, 7vw, 80px)',
+          background: 'linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 50%, #FAFAFA 100%)'
+        }}
+      >
+        {/* Subtle Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.02) 0%, rgba(212, 175, 55, 0.01) 100%)',
+            }}
+          />
+        </div>
+        
+        {/* Professional Divider Line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '60%',
+            maxWidth: '400px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
+            transformOrigin: 'center'
+          }}
+        />
+        
+        <div className="container-unified relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             className="text-center w-full mb-xl"
           >
-            <div className="inline-flex items-center gap-4 mb-md">
-              <div className="w-12 h-px" style={{ background: `linear-gradient(to right, transparent, ${premiumColors.slateGray}40, transparent)` }} />
-              <span 
-                className="text-sm font-semibold uppercase tracking-widest"
-                style={{ color: premiumColors.slateGray }}
-              >
+            <motion.div
+              variants={fadeInUp}
+              className="inline-flex items-center gap-3 mb-6"
+            >
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
+              <span className="body-small-unified text-tertiary uppercase tracking-wider">
                 Leadership Team
               </span>
-              <div className="w-12 h-px" style={{ background: `linear-gradient(to right, transparent, ${premiumColors.slateGray}40, transparent)` }} />
-            </div>
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0D9488' }} />
+            </motion.div>
             
             <h2 
-              className="h2-unified text-center-unified text-primary-color mb-md" 
+              className="h2-unified text-primary text-center"
+              style={{
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 600,
+                color: 'var(--color-text-primary)',
+                marginBottom: 'clamp(16px, 2vw, 24px)'
+              }}
             >
               Board of Directors
             </h2>
             
             <p 
-              className="body-large-unified text-center-unified text-secondary-color"
+              className="body-large-unified text-secondary text-center"
+              style={{
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontSize: 'clamp(16px, 1.9vw, 19px)',
+                lineHeight: '1.7',
+                color: 'var(--color-text-secondary)',
+                maxWidth: '700px',
+                margin: '0 auto'
+              }}
             >
               Visionary leaders driving strategic growth and sustainable value creation
             </p>
           </motion.div>
 
           {/* Board Members Layout: 1 + 3 + 3 */}
-          <div className="max-w-7xl mx-auto space-y-4 md:space-y-6">
+          <div 
+            className="max-w-7xl mx-auto"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'clamp(32px, 4vw, 48px)'
+            }}
+          >
             {/* Row 1: Single Card - Mohamed Al Hammadi */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -539,7 +632,12 @@ export default function AboutPageClient() {
             </motion.div>
 
             {/* Row 2: Three Cards - Najeeb PK, Shamma Al Amri, Mohamed Rafeeq */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+            <div 
+              className="grid grid-cols-1 md:grid-cols-3"
+              style={{
+                gap: 'clamp(20px, 2.5vw, 28px)'
+              }}
+            >
               {[
                 { name: 'Najeeb PK', image: '/assets/board/board-najeeb-pk.jpg', member: teamMembers.find(m => m.name === 'Najeeb PK') },
                 { name: 'Shamma Al Amri', image: '/assets/board/board-shamma-al-amri.jpg', member: teamMembers.find(m => m.name === 'Shamma Al Amri') },
@@ -690,7 +788,12 @@ export default function AboutPageClient() {
             </div>
 
             {/* Row 3: Three Cards - Ahmed Ali, Shadi, Mohamed Al Hammadi (Jewelust) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+            <div 
+              className="grid grid-cols-1 md:grid-cols-3"
+              style={{
+                gap: 'clamp(20px, 2.5vw, 28px)'
+              }}
+            >
               {[
                 { image: '/assets/board/board-ahmed-ali.jpg', name: 'Ahmed Ali', member: teamMembers.find(m => m.name === 'Ahmed Ali') },
                 { image: '/assets/board/board-shadi.jpg', name: 'Shadi', member: teamMembers.find(m => m.name === 'Shadi') },
@@ -825,28 +928,55 @@ export default function AboutPageClient() {
       </section>
 
       {/* Organizational Structure Section */}
-      <section className="section-unified bg-white scroll-margin-top" id="structure">
-        <div className="container-unified">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            className="text-center w-full mb-xl"
-          >
-            <h2 className="h2-unified text-primary text-center-unified mb-md">
-              Organizational Structure
-            </h2>
-            <p className="body-large-unified text-secondary text-center-unified">
-              Streamlined framework for optimal governance and performance
-            </p>
-          </motion.div>
-
+      <section 
+        className="section-unified relative overflow-hidden scroll-margin-top" 
+        id="structure"
+        style={{
+          paddingTop: 'clamp(60px, 7vw, 80px)',
+          paddingBottom: 'clamp(60px, 7vw, 80px)',
+          background: 'linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #FFFFFF 100%)'
+        }}
+      >
+        {/* Subtle Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.015) 0%, rgba(212, 175, 55, 0.008) 100%)',
+            }}
+          />
+        </div>
+        
+        {/* Professional Divider Line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '60%',
+            maxWidth: '400px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
+            transformOrigin: 'center'
+          }}
+        />
+        
+        <div className="container-unified relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-3xl border border-blue-100 w-full"
-            style={{ padding: 'clamp(24px, 3vw, 32px)' }}
+            className="w-full"
+            style={{ 
+              padding: 0,
+              marginTop: 'clamp(20px, 2.5vw, 30px)'
+            }}
           >
             <OrgChart />
           </motion.div>
