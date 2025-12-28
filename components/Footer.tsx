@@ -280,11 +280,11 @@ export default function Footer() {
                 </div>
                 <div>
                   <a
-                    href="tel:+971504044187"
+                    href="tel:+971502621050"
                     className="body-small-unified text-gray-400 hover:text-white transition-colors"
                     style={{ fontFamily: 'var(--font-primary)' }}
                   >
-                    +971 50 404 4187
+                    +971 50 262 1050
                   </a>
                   <p className="body-small-unified text-gray-500 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
                     Business Hours: 9AM - 6PM GST
@@ -305,11 +305,11 @@ export default function Footer() {
                 </div>
                 <div>
                   <a
-                    href="mailto:info@zhhgroup.com"
+                    href="mailto:Info@zhhholding.com"
                     className="body-small-unified text-gray-400 hover:text-white transition-colors"
                     style={{ fontFamily: 'var(--font-primary)' }}
                   >
-                    info@zhhgroup.com
+                    Info@zhhholding.com
                   </a>
                   <p className="body-small-unified text-gray-500 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
                     General Inquiries

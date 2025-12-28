@@ -198,25 +198,6 @@ export default function ImpactPageClient() {
           />
         </div>
         <div className="container-unified relative z-10">
-          {/* Professional Divider Line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2 }}
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '60%',
-              maxWidth: '400px',
-              height: '1px',
-              background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
-              transformOrigin: 'center'
-            }}
-          />
-          
           <motion.div
             initial="hidden"
             whileInView="visible"

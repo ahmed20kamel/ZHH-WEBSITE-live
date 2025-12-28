@@ -683,7 +683,7 @@
                         }}
                       >
                         <a
-                          href="tel:+971504044187"
+                          href="tel:+971502621050"
                           className="transition-colors duration-200"
                           style={{
                             fontFamily: 'var(--font-inter), Inter, sans-serif',
@@ -697,10 +697,10 @@
                           onMouseEnter={(e) => e.currentTarget.style.color = '#01B2B2'}
                           onMouseLeave={(e) => e.currentTarget.style.color = '#1A1A1A'}
                         >
-                          +971 50 404 4187
+                          +971 50 262 1050
                         </a>
                         <a
-                          href="mailto:info@zhhgroup.com"
+                          href="mailto:Info@zhhholding.com"
                           className="transition-colors duration-200"
                           style={{
                             fontFamily: 'var(--font-inter), Inter, sans-serif',
@@ -720,7 +720,7 @@
                             e.currentTarget.style.textDecoration = 'none';
                           }}
                         >
-                          info@zhhgroup.com
+                          Info@zhhholding.com
                         </a>
                       </div>
 

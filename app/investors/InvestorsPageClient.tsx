@@ -7,7 +7,7 @@ import { fadeInUp, staggerContainer } from '@/lib/animations';
 import Card from '@/components/ui/Card';
 import CardBody from '@/components/ui/CardBody';
 import BulletList from '@/components/ui/BulletList';
-import { TrendingUp, BarChart3, Award, Sparkles, Building2, Shield } from 'lucide-react';
+import { TrendingUp, BarChart3, Award, Gem, Building2, Shield } from 'lucide-react';
 
 const investmentHighlights = [
   {
@@ -32,13 +32,13 @@ const investmentHighlights = [
     value: '165',
     label: 'Gold Traded',
     description: 'Ethical sourcing and trading operations',
-    icon: Sparkles,
+    icon: Gem,
   },
   {
     value: '3',
     label: 'Licensed Gold Mines',
     description: 'Active development and ownership',
-    icon: Building2,
+    icon: Gem,
   },
   {
     value: '0',
@@ -216,25 +216,6 @@ export default function InvestorsPageClient() {
           />
         </div>
         <div className="container-unified relative z-10">
-          {/* Professional Divider Line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2 }}
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '60%',
-              maxWidth: '400px',
-              height: '1px',
-              background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.3), transparent)',
-              transformOrigin: 'center'
-            }}
-          />
-          
           <motion.div
             initial="hidden"
             whileInView="visible"

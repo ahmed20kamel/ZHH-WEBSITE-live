@@ -69,10 +69,10 @@ export default function ContactPageClient() {
                       </h3>
                       <p className="text-gray-600">
                         <a
-                          href="tel:+971504044187"
+                          href="tel:+971502621050"
                           className="hover:text-[#00d4aa] transition-colors"
                         >
-                          +971 50 404 4187
+                          +971 50 262 1050
                         </a>
                       </p>
                     </div>
