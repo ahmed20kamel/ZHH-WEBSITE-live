@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import GlobalMap from '@/components/GlobalMap';
 import Card from '@/components/ui/Card';
+import { Shield, Award, Leaf } from 'lucide-react';
 
 const divisions = [
   {
@@ -73,6 +75,36 @@ export default function AboutZHHPageClient() {
             background: 'rgba(0, 0, 0, 0.3)',
           }}
         />
+
+        {/* Logo - Premium Positioning */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute top-4 left-4 md:top-8 md:left-8 z-30"
+        >
+          <Link 
+            href="/" 
+            className="group flex items-center gap-2 md:gap-4"
+            style={{ textDecoration: 'none' }}
+          >
+            {/* Logo without square background */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="relative"
+            >
+              <img
+                src="/assets/logos/zhh-group-holding-logo.svg"
+                alt="ZHH Group Holding"
+                className="w-20 h-20 md:w-32 md:h-32 object-contain drop-shadow-lg"
+                style={{
+                  filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.1))',
+                  WebkitFilter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.1))'
+                }}
+              />
+            </motion.div>
+          </Link>
+        </motion.div>
         
         {/* Text Content - Direct on Image */}
         <div className="container-unified relative z-10 flex items-center justify-center" style={{ height: '100%', paddingTop: 'clamp(40px, 8vh, 80px)' }}>
@@ -1091,15 +1123,7 @@ export default function AboutZHHPageClient() {
                 { 
                   title: 'Integrity', 
                   desc: 'Transparent, ethical, and accountable.',
-                  icon: (
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M9 12l2 2 4-4" />
-                      <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
-                      <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
-                      <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3" />
-                      <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3" />
-                    </svg>
-                  )
+                  icon: <Shield size={32} />
                 },
                 { 
                   title: 'Excellence', 
@@ -1113,22 +1137,12 @@ export default function AboutZHHPageClient() {
                 { 
                   title: 'National Pride', 
                   desc: 'Advancing the UAE\'s vision for prosperity.',
-                  icon: (
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M3 21L12 2L21 21H3Z" />
-                      <path d="M12 2V21" />
-                    </svg>
-                  )
+                  icon: <Award size={32} />
                 },
                 { 
                   title: 'Sustainability', 
                   desc: 'Building responsibly for future generations.',
-                  icon: (
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
-                      <path d="M12 6v6l4 2" />
-                    </svg>
-                  )
+                  icon: <Leaf size={32} />
                 },
                 { 
                   title: 'Partnership', 
@@ -1312,7 +1326,7 @@ export default function AboutZHHPageClient() {
                 </p>
                 
                 {/* Additional Content Points */}
-                <div className="space-y-4">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(16px, 2.5vw, 24px)' }}>
                   {[
                     {
                       icon: (
@@ -1351,7 +1365,7 @@ export default function AboutZHHPageClient() {
                       transition={{ delay: index * 0.1 }}
                       className="flex items-start gap-4"
                       style={{
-                        padding: 'clamp(12px, 1.5vw, 16px)',
+                        padding: 'clamp(16px, 2vw, 24px)',
                         background: 'rgba(255, 255, 255, 0.05)',
                         borderRadius: '12px',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -1427,134 +1441,62 @@ export default function AboutZHHPageClient() {
                 A growing Emirati presence supporting trade and strategic development.
               </p>
 
-              {/* Global Presence List */}
+              {/* Global Presence List - 3 Cards Only */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                {[
-                  {
-                    region: 'UAE',
-                    locations: [
-                      { city: 'Abu Dhabi (Main Offices)', entities: ['ZHH Group Holding LLC', 'ZHH Construction LLC', 'ZHH General Trading LLC', 'ZHH Real Estates'] },
-                      { city: 'Dubai (Main Office & Showroom)', entities: ['Jewelust Jewelry & Gold Bullion Trading LLC'] },
-                    ]
-                  },
-                  {
-                    region: 'UGANDA',
-                    entities: ['ZHH General Trading', 'Jewelust Jewelry']
-                  },
-                  {
-                    region: 'KENYA',
-                    entities: ['ZHH General Trading', 'Jewelust Jewelry']
-                  },
-                  {
-                    region: 'MALI',
-                    entities: ['ZHH General Trading', 'Jewelust Jewelry']
-                  },
-                  {
-                    region: 'CONGO',
-                    entities: ['ZHH General Trading', 'Jewelust Jewelry']
-                  },
-                  {
-                    region: 'GUINEA',
-                    entities: ['ZHH General Trading']
-                  },
-                  {
-                    region: 'BURKINA FASO',
-                    entities: ['ZHH General Trading']
-                  },
-                  {
-                    region: 'SIERRA LEONE',
-                    entities: ['ZHH General Trading']
-                  },
-                  {
-                    region: 'TURKEY',
-                    entities: ['Jewelust Jewelry']
-                  },
-                  {
-                    region: 'TANZANIA',
-                    entities: ['Jewelust Jewelry']
-                  },
-                  {
-                    region: 'ZAMBIA',
-                    entities: ['Jewelust Jewelry']
-                  },
-                  {
-                    region: 'ZIMBABWE',
-                    entities: ['Jewelust Jewelry']
-                  },
-                ].map((location, index) => (
-                  <motion.div
-                    key={location.region}
-                    variants={fadeInUp}
-                    transition={{ delay: index * 0.05 }}
+                {/* Card 1: UAE Main Offices */}
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                  whileHover={{ 
+                    y: -8,
+                    boxShadow: '0 8px 24px rgba(1, 178, 178, 0.12)',
+                    borderColor: '#01B2B2',
+                    background: '#FFFFFF',
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  style={{
+                    padding: 'clamp(17px, 2.1vw, 24px)',
+                    background: '#F9F9F9',
+                    borderRadius: '12px',
+                    border: '1px solid #E5E5E5',
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                  }}
+                >
+                  <h3
                     style={{
-                      padding: 'clamp(17px, 2.1vw, 24px)',
-                      background: '#F9F9F9',
-                      borderRadius: '12px',
-                      border: '1px solid #E5E5E5',
+                      fontFamily: 'var(--font-inter), Inter, sans-serif',
+                      fontSize: 'clamp(15px, 1.7vw, 19px)',
+                      fontWeight: 700,
+                      color: '#032D46',
+                      marginBottom: 'clamp(16px, 2vw, 20px)',
                     }}
                   >
-                    <h3
-                      style={{
-                        fontFamily: 'var(--font-inter), Inter, sans-serif',
-                        fontSize: 'clamp(15px, 1.7vw, 19px)',
-                        fontWeight: 700,
-                        color: '#032D46',
-                        marginBottom: 'clamp(10px, 1.3vw, 14px)',
-                      }}
-                    >
-                      {location.region}
-                    </h3>
-                    {location.locations ? (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(16px, 2vw, 20px)' }}>
-                        {location.locations.map((loc, idx) => (
-                          <div key={idx}>
-                            <p
-                              style={{
-                                fontFamily: 'var(--font-inter), Inter, sans-serif',
-                                fontSize: 'clamp(12px, 1.4vw, 14px)',
-                                fontWeight: 600,
-                                color: '#01B2B2',
-                                marginBottom: 'clamp(6px, 0.8vw, 8px)',
-                              }}
-                            >
-                              {loc.city}:
-                            </p>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'clamp(4px, 0.5vw, 6px)' }}>
-                              {loc.entities.map((entity, eIdx) => (
-                                <li
-                                  key={eIdx}
-                                  style={{
-                                    fontFamily: 'var(--font-inter), Inter, sans-serif',
-                                    fontSize: 'clamp(12px, 1.4vw, 14px)',
-                                    lineHeight: 1.6,
-                                    color: '#666666',
-                                    paddingLeft: 'clamp(14px, 1.7vw, 17px)',
-                                    position: 'relative',
-                                  }}
-                                >
-                                  <span
-                                    style={{
-                                      position: 'absolute',
-                                      left: 0,
-                                      top: '0.6em',
-                                      width: '6px',
-                                      height: '6px',
-                                      borderRadius: '50%',
-                                      background: '#01B2B2',
-                                    }}
-                                  />
-                                  {entity}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'clamp(6px, 0.8vw, 8px)' }}>
-                        {location.entities.map((entity, eIdx) => (
-                          <li
+                    UAE Main Offices
+                  </h3>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(16px, 2vw, 20px)' }}>
+                    <div>
+                      <p
+                        style={{
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
+                          fontSize: 'clamp(12px, 1.4vw, 14px)',
+                          fontWeight: 600,
+                          color: '#01B2B2',
+                          marginBottom: 'clamp(6px, 0.8vw, 8px)',
+                        }}
+                      >
+                        Abu Dhabi:
+                      </p>
+                      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'clamp(4px, 0.5vw, 6px)' }}>
+                        {['ZHH Group Holding LLC', 'ZHH Construction LLC', 'ZHH General Trading LLC', 'ZHH Real Estates'].map((entity, eIdx) => (
+                          <motion.li
                             key={eIdx}
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 + eIdx * 0.05 }}
                             style={{
                               fontFamily: 'var(--font-inter), Inter, sans-serif',
                               fontSize: 'clamp(12px, 1.4vw, 14px)',
@@ -1564,7 +1506,11 @@ export default function AboutZHHPageClient() {
                               position: 'relative',
                             }}
                           >
-                            <span
+                            <motion.span
+                              initial={{ scale: 0 }}
+                              whileInView={{ scale: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.15 + eIdx * 0.05, type: "spring", stiffness: 200 }}
                               style={{
                                 position: 'absolute',
                                 left: 0,
@@ -1576,12 +1522,200 @@ export default function AboutZHHPageClient() {
                               }}
                             />
                             {entity}
-                          </li>
+                          </motion.li>
                         ))}
                       </ul>
-                    )}
-                  </motion.div>
-                ))}
+                    </div>
+                    <div>
+                      <p
+                        style={{
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
+                          fontSize: 'clamp(12px, 1.4vw, 14px)',
+                          fontWeight: 600,
+                          color: '#01B2B2',
+                          marginBottom: 'clamp(6px, 0.8vw, 8px)',
+                        }}
+                      >
+                        Dubai:
+                      </p>
+                      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'clamp(4px, 0.5vw, 6px)' }}>
+                        <motion.li
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.3 }}
+                          style={{
+                            fontFamily: 'var(--font-inter), Inter, sans-serif',
+                            fontSize: 'clamp(12px, 1.4vw, 14px)',
+                            lineHeight: 1.6,
+                            color: '#666666',
+                            paddingLeft: 'clamp(14px, 1.7vw, 17px)',
+                            position: 'relative',
+                          }}
+                        >
+                          <motion.span
+                            initial={{ scale: 0 }}
+                            whileInView={{ scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.35, type: "spring", stiffness: 200 }}
+                            style={{
+                              position: 'absolute',
+                              left: 0,
+                              top: '0.6em',
+                              width: '6px',
+                              height: '6px',
+                              borderRadius: '50%',
+                              background: '#01B2B2',
+                            }}
+                          />
+                          Jewelust Jewelry & Gold Bullion Trading LLC
+                        </motion.li>
+                      </ul>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Card 2: ZHH General Trading Branches */}
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                  whileHover={{ 
+                    y: -8,
+                    boxShadow: '0 8px 24px rgba(1, 178, 178, 0.12)',
+                    borderColor: '#01B2B2',
+                    background: '#FFFFFF',
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  style={{
+                    padding: 'clamp(17px, 2.1vw, 24px)',
+                    background: '#F9F9F9',
+                    borderRadius: '12px',
+                    border: '1px solid #E5E5E5',
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontFamily: 'var(--font-inter), Inter, sans-serif',
+                      fontSize: 'clamp(15px, 1.7vw, 19px)',
+                      fontWeight: 700,
+                      color: '#032D46',
+                      marginBottom: 'clamp(10px, 1.3vw, 14px)',
+                    }}
+                  >
+                    ZHH General Trading Branches
+                  </h3>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'clamp(6px, 0.8vw, 8px)' }}>
+                    {['Uganda', 'Mali', 'Congo', 'Guinea', 'Kenya', 'Burkina Faso', 'Sierra Leone'].map((country, idx) => (
+                      <motion.li
+                        key={idx}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 + idx * 0.05 }}
+                        style={{
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
+                          fontSize: 'clamp(12px, 1.4vw, 14px)',
+                          lineHeight: 1.6,
+                          color: '#666666',
+                          paddingLeft: 'clamp(14px, 1.7vw, 17px)',
+                          position: 'relative',
+                        }}
+                      >
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.15 + idx * 0.05, type: "spring", stiffness: 200 }}
+                          style={{
+                            position: 'absolute',
+                            left: 0,
+                            top: '0.6em',
+                            width: '6px',
+                            height: '6px',
+                            borderRadius: '50%',
+                            background: '#01B2B2',
+                          }}
+                        />
+                        {country}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+
+                {/* Card 3: Jewelust Branches */}
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                  whileHover={{ 
+                    y: -8,
+                    boxShadow: '0 8px 24px rgba(1, 178, 178, 0.12)',
+                    borderColor: '#01B2B2',
+                    background: '#FFFFFF',
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  style={{
+                    padding: 'clamp(17px, 2.1vw, 24px)',
+                    background: '#F9F9F9',
+                    borderRadius: '12px',
+                    border: '1px solid #E5E5E5',
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontFamily: 'var(--font-inter), Inter, sans-serif',
+                      fontSize: 'clamp(15px, 1.7vw, 19px)',
+                      fontWeight: 700,
+                      color: '#032D46',
+                      marginBottom: 'clamp(10px, 1.3vw, 14px)',
+                    }}
+                  >
+                    Jewelust Branches
+                  </h3>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 'clamp(6px, 0.8vw, 8px)' }}>
+                    {['Kenya', 'Uganda', 'Mali', 'Congo', 'Zambia', 'Turkey', 'Tanzania', 'Zimbabwe'].map((country, idx) => (
+                      <motion.li
+                        key={idx}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 + idx * 0.05 }}
+                        style={{
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
+                          fontSize: 'clamp(12px, 1.4vw, 14px)',
+                          lineHeight: 1.6,
+                          color: '#666666',
+                          paddingLeft: 'clamp(14px, 1.7vw, 17px)',
+                          position: 'relative',
+                        }}
+                      >
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.15 + idx * 0.05, type: "spring", stiffness: 200 }}
+                          style={{
+                            position: 'absolute',
+                            left: 0,
+                            top: '0.6em',
+                            width: '6px',
+                            height: '6px',
+                            borderRadius: '50%',
+                            background: '#01B2B2',
+                          }}
+                        />
+                        {country}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
               </div>
             </motion.div>
 
@@ -1613,4 +1747,3 @@ export default function AboutZHHPageClient() {
     </div>
   );
 }
-

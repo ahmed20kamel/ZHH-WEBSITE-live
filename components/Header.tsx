@@ -449,18 +449,6 @@
                           }}
                         />
                       </div>
-                      {/* Text */}
-                      <span 
-                        className="body-regular-unified"
-                        style={{
-                          fontWeight: 600,
-                          letterSpacing: '0.5px',
-                          color: 'var(--color-primary-dark)',
-                          textTransform: 'uppercase'
-                        }}
-                      >
-                        ZHH GROUP HOLDING
-                      </span>
                     </Link>
                   </motion.div>
 

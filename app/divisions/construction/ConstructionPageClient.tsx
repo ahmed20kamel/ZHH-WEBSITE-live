@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { divisions } from '@/data/divisions';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import Card from '@/components/ui/Card';
@@ -55,6 +56,36 @@ export default function ConstructionPageClient() {
             background: 'rgba(0, 0, 0, 0.3)',
           }}
         />
+
+        {/* Logo - Premium Positioning */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute top-4 left-4 md:top-8 md:left-8 z-30"
+        >
+          <Link 
+            href="/" 
+            className="group flex items-center gap-2 md:gap-4"
+            style={{ textDecoration: 'none' }}
+          >
+            {/* Logo without square background */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="relative"
+            >
+              <img
+                src="/assets/logos/zhh-group-holding-logo.svg"
+                alt="ZHH Group Holding"
+                className="w-20 h-20 md:w-32 md:h-32 object-contain drop-shadow-lg"
+                style={{
+                  filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.1))',
+                  WebkitFilter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.1))'
+                }}
+              />
+            </motion.div>
+          </Link>
+        </motion.div>
 
         {/* Text Content - Direct on Image */}
         <div className="container-unified relative z-10 flex items-center justify-center" style={{ height: '100%', paddingTop: 'clamp(40px, 8vh, 80px)' }}>

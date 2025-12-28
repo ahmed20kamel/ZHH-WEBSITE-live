@@ -3,7 +3,7 @@
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { 
-  Users2, ArrowRight, MapPin, Briefcase, Search, Sparkles
+  Search, Sparkles
 } from 'lucide-react';
 import { Person, orgData, premiumColors } from './types';
 import ProfileModal from '@/components/ui/ProfileModal';
@@ -68,7 +68,9 @@ export default function OrgChartSection() {
 
         {/* Chairman - Single Row */}
         {chairman && (
-          <div className="max-w-7xl mx-auto mb-10 md:mb-12">
+          <div className="max-w-7xl mx-auto"
+            style={{ marginBottom: 'clamp(48px, 6vw, 64px)' }}
+          >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -86,17 +88,17 @@ export default function OrgChartSection() {
                     <motion.button
                       onClick={() => setSelectedPerson(chairman)}
                       className="w-full relative overflow-hidden rounded-xl text-left"
-                      style={{
-                        background: isHovered 
-                          ? `linear-gradient(135deg, ${premiumColors.darkBlue} 0%, ${premiumColors.tealBlue} 100%)`
-                          : 'white',
-                        border: `1.5px solid ${isHovered ? premiumColors.darkBlue : premiumColors.borderGray}`,
-                        padding: '18px 20px',
-                        boxShadow: isHovered 
-                          ? '0 8px 24px rgba(10, 61, 98, 0.12), 0 2px 8px rgba(10, 61, 98, 0.08)'
-                          : '0 2px 6px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06)',
-                        transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
-                      }}
+                        style={{
+                          background: isHovered 
+                            ? `linear-gradient(135deg, ${premiumColors.darkBlue} 0%, ${premiumColors.tealBlue} 100%)`
+                            : 'white',
+                          border: `1.5px solid ${isHovered ? premiumColors.darkBlue : premiumColors.borderGray}`,
+                          padding: 'clamp(14px, 2vw, 16px)',
+                          boxShadow: isHovered 
+                            ? '0 8px 24px rgba(10, 61, 98, 0.12), 0 2px 8px rgba(10, 61, 98, 0.08)'
+                            : '0 2px 6px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06)',
+                          transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)'
+                        }}
                       whileHover={{ 
                         scale: 1.02,
                         y: -3
@@ -113,13 +115,19 @@ export default function OrgChartSection() {
                         animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
                         transition={{ duration: 0.3 }}
                       />
-                      <div className="relative z-10 flex flex-col gap-3">
-                        <div className="flex items-center gap-3">
+                      <div className="relative z-10 flex flex-col"
+                        style={{ gap: 'clamp(8px, 1vw, 12px)' }}
+                      >
+                        <div className="flex items-center"
+                          style={{ gap: 'clamp(10px, 1.5vw, 14px)' }}
+                        >
                           <div className="flex-shrink-0">
                             {chairman.hasPhoto && chairman.photo ? (
                               <motion.div
-                                className="w-14 h-14 rounded-xl overflow-hidden border-2 relative"
+                                className="rounded-xl overflow-hidden border-2 relative"
                                 style={{ 
+                                  width: 'clamp(48px, 6vw, 56px)',
+                                  height: 'clamp(48px, 6vw, 56px)',
                                   borderColor: isHovered ? 'rgba(255,255,255,0.3)' : premiumColors.borderGray,
                                   boxShadow: isHovered 
                                     ? '0 4px 12px rgba(0, 0, 0, 0.15)'
@@ -136,8 +144,11 @@ export default function OrgChartSection() {
                               </motion.div>
                             ) : (
                               <motion.div
-                                className="w-14 h-14 rounded-xl flex items-center justify-center border-2 text-lg font-bold"
+                                className="rounded-xl flex items-center justify-center border-2 font-bold"
                                 style={{ 
+                                  width: 'clamp(48px, 6vw, 56px)',
+                                  height: 'clamp(48px, 6vw, 56px)',
+                                  fontSize: 'clamp(14px, 1.8vw, 16px)',
                                   backgroundColor: chairman.gender === 'female' ? '#F3E8FF' : '#E0F2FE',
                                   borderColor: isHovered ? 'rgba(255,255,255,0.3)' : premiumColors.borderGray,
                                   color: chairman.gender === 'female' ? '#9333EA' : '#0284C7',
@@ -154,8 +165,9 @@ export default function OrgChartSection() {
                           </div>
                           <div className="flex-1 min-w-0">
                             <motion.h3
-                              className="font-bold text-base md:text-lg mb-0.5 truncate"
+                              className="font-bold mb-0.5 truncate"
                               style={{ 
+                                fontSize: 'clamp(14px, 1.8vw, 16px)',
                                 color: isHovered ? 'white' : premiumColors.textDark,
                                 lineHeight: '1.3',
                                 letterSpacing: '-0.01em'
@@ -164,8 +176,9 @@ export default function OrgChartSection() {
                               {chairman.name}
                             </motion.h3>
                             <motion.p
-                              className="font-semibold text-xs md:text-sm truncate"
+                              className="font-semibold truncate"
                               style={{ 
+                                fontSize: 'clamp(11px, 1.4vw, 13px)',
                                 color: isHovered ? 'rgba(255,255,255,0.9)' : premiumColors.darkBlue,
                                 lineHeight: '1.3'
                               }}
@@ -174,48 +187,6 @@ export default function OrgChartSection() {
                             </motion.p>
                           </div>
                         </div>
-                        <div className="flex flex-col gap-1.5">
-                          <motion.div
-                            className="flex items-center gap-1.5 text-xs"
-                            style={{ 
-                              color: isHovered ? 'rgba(255,255,255,0.8)' : premiumColors.textLight
-                            }}
-                          >
-                            <Briefcase className="w-3 h-3 flex-shrink-0" />
-                            <span className="truncate">{chairman.department}</span>
-                          </motion.div>
-                          <motion.div
-                            className="flex items-center gap-1.5 text-xs"
-                            style={{ 
-                              color: isHovered ? 'rgba(255,255,255,0.8)' : premiumColors.textLight
-                            }}
-                          >
-                            <MapPin className="w-3 h-3 flex-shrink-0" />
-                            <span className="truncate">{chairman.location}</span>
-                          </motion.div>
-                        </div>
-                        <motion.div
-                          className="flex items-center justify-end gap-1.5 pt-2 border-t"
-                          style={{ 
-                            borderColor: isHovered ? 'rgba(255,255,255,0.2)' : premiumColors.borderGray
-                          }}
-                          animate={{ 
-                            opacity: isHovered ? 1 : 0.6
-                          }}
-                        >
-                          <span 
-                            className="text-xs font-medium"
-                            style={{ 
-                              color: isHovered ? 'white' : premiumColors.darkBlue
-                            }}
-                          >
-                            View Details
-                          </span>
-                          <ArrowRight 
-                            className="w-3.5 h-3.5" 
-                            style={{ color: isHovered ? 'white' : premiumColors.darkBlue }}
-                          />
-                        </motion.div>
                       </div>
                     </motion.button>
                   );
@@ -231,7 +202,8 @@ export default function OrgChartSection() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            style={{ gap: 'clamp(32px, 4vw, 48px)' }}
           >
             {otherPeople.map((person, idx) => {
               const isHovered = hoveredPerson === person.id;
@@ -259,7 +231,7 @@ export default function OrgChartSection() {
                         ? `linear-gradient(135deg, ${premiumColors.darkBlue} 0%, ${premiumColors.tealBlue} 100%)`
                         : 'white',
                       border: `1.5px solid ${isHovered ? premiumColors.darkBlue : premiumColors.borderGray}`,
-                      padding: '18px 20px',
+                      padding: 'clamp(14px, 2vw, 16px)',
                       boxShadow: isHovered 
                         ? '0 8px 24px rgba(10, 61, 98, 0.12), 0 2px 8px rgba(10, 61, 98, 0.08)'
                         : '0 2px 6px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06)',
@@ -284,15 +256,21 @@ export default function OrgChartSection() {
                     />
 
                     {/* Compact Content */}
-                    <div className="relative z-10 flex flex-col gap-3">
+                    <div className="relative z-10 flex flex-col"
+                      style={{ gap: 'clamp(8px, 1vw, 12px)' }}
+                    >
                       {/* Avatar and Name Row */}
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center"
+                        style={{ gap: 'clamp(10px, 1.5vw, 14px)' }}
+                      >
                         {/* Compact Avatar */}
                         <div className="flex-shrink-0">
                           {person.hasPhoto && person.photo ? (
                             <motion.div
-                              className="w-14 h-14 rounded-xl overflow-hidden border-2 relative"
+                              className="rounded-xl overflow-hidden border-2 relative"
                               style={{ 
+                                width: 'clamp(48px, 6vw, 56px)',
+                                height: 'clamp(48px, 6vw, 56px)',
                                 borderColor: isHovered ? 'rgba(255,255,255,0.3)' : premiumColors.borderGray,
                                 boxShadow: isHovered 
                                   ? '0 4px 12px rgba(0, 0, 0, 0.15)'
@@ -309,8 +287,11 @@ export default function OrgChartSection() {
                             </motion.div>
                           ) : (
                             <motion.div
-                              className="w-14 h-14 rounded-xl flex items-center justify-center border-2 text-lg font-bold"
+                              className="rounded-xl flex items-center justify-center border-2 font-bold"
                               style={{ 
+                                width: 'clamp(48px, 6vw, 56px)',
+                                height: 'clamp(48px, 6vw, 56px)',
+                                fontSize: 'clamp(14px, 1.8vw, 16px)',
                                 backgroundColor: person.gender === 'female' ? '#F3E8FF' : '#E0F2FE',
                                 borderColor: isHovered ? 'rgba(255,255,255,0.3)' : premiumColors.borderGray,
                                 color: person.gender === 'female' ? '#9333EA' : '#0284C7',
@@ -329,8 +310,9 @@ export default function OrgChartSection() {
                         {/* Name and Title */}
                         <div className="flex-1 min-w-0">
                           <motion.h3
-                            className="font-bold text-base md:text-lg mb-0.5 truncate"
+                            className="font-bold mb-0.5 truncate"
                             style={{ 
+                              fontSize: 'clamp(14px, 1.8vw, 16px)',
                               color: isHovered ? 'white' : premiumColors.textDark,
                               lineHeight: '1.3',
                               letterSpacing: '-0.01em'
@@ -339,8 +321,9 @@ export default function OrgChartSection() {
                             {person.name}
                           </motion.h3>
                           <motion.p
-                            className="font-semibold text-xs md:text-sm truncate"
+                            className="font-semibold truncate"
                             style={{ 
+                              fontSize: 'clamp(11px, 1.4vw, 13px)',
                               color: isHovered ? 'rgba(255,255,255,0.9)' : premiumColors.darkBlue,
                               lineHeight: '1.3'
                             }}
@@ -350,51 +333,6 @@ export default function OrgChartSection() {
                         </div>
                       </div>
 
-                      {/* Department and Location - Compact */}
-                      <div className="flex flex-col gap-1.5">
-                        <motion.div
-                          className="flex items-center gap-1.5 text-xs"
-                          style={{ 
-                            color: isHovered ? 'rgba(255,255,255,0.8)' : premiumColors.textLight
-                          }}
-                        >
-                          <Briefcase className="w-3 h-3 flex-shrink-0" />
-                          <span className="truncate">{person.department}</span>
-                        </motion.div>
-                        <motion.div
-                          className="flex items-center gap-1.5 text-xs"
-                          style={{ 
-                            color: isHovered ? 'rgba(255,255,255,0.8)' : premiumColors.textLight
-                          }}
-                        >
-                          <MapPin className="w-3 h-3 flex-shrink-0" />
-                          <span className="truncate">{person.location}</span>
-                        </motion.div>
-                      </div>
-
-                      {/* View Details Button - Compact */}
-                      <motion.div
-                        className="flex items-center justify-end gap-1.5 pt-2 border-t"
-                        style={{ 
-                          borderColor: isHovered ? 'rgba(255,255,255,0.2)' : premiumColors.borderGray
-                        }}
-                        animate={{ 
-                          opacity: isHovered ? 1 : 0.6
-                        }}
-                      >
-                        <span 
-                          className="text-xs font-medium"
-                          style={{ 
-                            color: isHovered ? 'white' : premiumColors.darkBlue
-                          }}
-                        >
-                          View Details
-                        </span>
-                        <ArrowRight 
-                          className="w-3.5 h-3.5" 
-                          style={{ color: isHovered ? 'white' : premiumColors.darkBlue }}
-                        />
-                      </motion.div>
                     </div>
                   </motion.button>
                 </motion.div>

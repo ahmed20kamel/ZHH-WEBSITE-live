@@ -4,7 +4,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { fadeInUp, staggerContainer, cardVariants, scaleUp } from '@/lib/animations';
 import Counter from './Counter';
-import { Globe, TrendingUp, Building2, Users, Award, Sparkles, BarChart3 } from 'lucide-react';
+import { Globe, TrendingUp, Building2, Users, Award, Sparkles, BarChart3, Gem } from 'lucide-react';
 
 const keyHighlights = [
   {
@@ -44,7 +44,7 @@ const keyHighlights = [
     value: '165',
     label: 'Gold Traded',
     description: 'Ethical sourcing and trading operations',
-    icon: Sparkles,
+    icon: Gem,
     iconColor: '#0D9488', // Teal-600
     iconBgColor: '#E0F2F1', // Teal-100
   },
