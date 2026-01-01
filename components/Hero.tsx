@@ -68,7 +68,7 @@ export default function Hero() {
             className="relative"
           >
             <img
-              src="/assets/logos/zhh-group-holding-logo.svg"
+              src="/assets/logos/drawing.svg"
               alt="ZHH Group Holding"
               className="w-20 h-20 md:w-32 md:h-32 object-contain drop-shadow-lg"
               style={{

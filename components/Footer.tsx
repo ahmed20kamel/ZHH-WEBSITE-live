@@ -74,7 +74,7 @@ export default function Footer() {
               <div className="relative">
                 <div className="w-40 h-40 rounded-2xl bg-transparent flex items-center justify-center p-4">
                   <img
-                    src="/assets/logos/zhh-group-holding-logo.svg"
+                    src="/assets/logos/drawing.svg"
                     alt="ZHH Group Holding"
                     style={{ width: '100%', height: '100%', filter: 'brightness(1.5) contrast(1.4) drop-shadow(0 0 10px rgba(13, 148, 136, 0.3))', objectFit: 'contain' }}
                     className="object-contain"
@@ -88,7 +88,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="body-regular-unified text-gray-400"
+              className="body-regular-unified text-gray-200"
               style={{ fontFamily: 'var(--font-primary)', lineHeight: 1.7 }}
             >
               A diversified Emirati conglomerate managing strategic investments 
@@ -135,7 +135,7 @@ export default function Footer() {
                 const content = (
                   <div className="group flex items-center gap-4 p-4 rounded-lg hover:bg-gray-800/50 transition-all duration-300 border border-transparent hover:border-teal-500/30">
                     {/* Logo */}
-                    <div className="w-14 h-14 rounded-lg bg-white/5 backdrop-blur-sm border border-gray-700/50 flex items-center justify-center flex-shrink-0 p-2">
+                    <div className="w-14 h-14 rounded-lg bg-white/95 backdrop-blur-sm border border-gray-200/60 flex items-center justify-center flex-shrink-0 p-2">
                       <img
                         src={division.logo}
                         alt={`${division.name} Logo`}
@@ -156,7 +156,7 @@ export default function Footer() {
                           <ArrowUpRight className="w-4 h-4" />
                         </motion.span>
                       </div>
-                      <p className="body-small-unified text-gray-500 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
+                      <p className="body-small-unified text-gray-200 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
                         {division.description}
                       </p>
                     </div>
@@ -220,7 +220,7 @@ export default function Footer() {
                     }}
                   >
                     <span 
-                      className="body-small-unified text-gray-400 group-hover:text-white transition-colors whitespace-nowrap" 
+                      className="body-small-unified text-gray-200 group-hover:text-white transition-colors whitespace-nowrap" 
                       style={{ 
                         fontFamily: 'var(--font-primary)',
                         fontSize: 'clamp(13px, 1.4vw, 14px)',
@@ -260,7 +260,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="body-small-unified text-white" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>Corporate Headquarters</p>
-                  <p className="body-small-unified text-gray-400 mt-1" style={{ fontFamily: 'var(--font-primary)' }}>
+                  <p className="body-small-unified text-gray-200 mt-1" style={{ fontFamily: 'var(--font-primary)' }}>
                     Abu Dhabi Global Market<br />
                     United Arab Emirates
                   </p>
@@ -281,12 +281,12 @@ export default function Footer() {
                 <div>
                   <a
                     href="tel:+971502621050"
-                    className="body-small-unified text-gray-400 hover:text-white transition-colors"
+                    className="body-small-unified text-gray-200 hover:text-white transition-colors"
                     style={{ fontFamily: 'var(--font-primary)' }}
                   >
                     +971 50 262 1050
                   </a>
-                  <p className="body-small-unified text-gray-500 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
+                  <p className="body-small-unified text-gray-200 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
                     Business Hours: 9AM - 6PM GST
                   </p>
                 </div>
@@ -306,12 +306,12 @@ export default function Footer() {
                 <div>
                   <a
                     href="mailto:Info@zhhholding.com"
-                    className="body-small-unified text-gray-400 hover:text-white transition-colors"
+                    className="body-small-unified text-gray-200 hover:text-white transition-colors"
                     style={{ fontFamily: 'var(--font-primary)' }}
                   >
                     Info@zhhholding.com
                   </a>
-                  <p className="body-small-unified text-gray-500 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
+                  <p className="body-small-unified text-gray-200 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
                     General Inquiries
                   </p>
                 </div>
@@ -329,7 +329,7 @@ export default function Footer() {
               <p className="body-small-unified text-white mb-2" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>
                 Stay Updated
               </p>
-              <p className="body-small-unified text-gray-400 mb-4" style={{ fontFamily: 'var(--font-primary)' }}>
+              <p className="body-small-unified text-gray-200 mb-4" style={{ fontFamily: 'var(--font-primary)' }}>
                 Subscribe for the latest news & insights
               </p>
               <div className="flex gap-3">

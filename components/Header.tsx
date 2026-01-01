@@ -190,7 +190,7 @@
                       }}
                     >
                       <img
-                        src="/assets/logos/zhh-group-holding-logo.svg"
+                        src="/assets/logos/ZHH%20Group%20Holding%20Logo.svg"
                         alt="ZHH Group Holding"
                         style={{ 
                           width: '100%',
@@ -439,7 +439,7 @@
                         justifyContent: 'center'
                       }}>
                         <img
-                          src="/assets/logos/zhh-group-holding-logo.svg"
+                          src="/assets/logos/ZHH%20Group%20Holding%20Logo.svg"
                           alt="ZHH Group Holding"
                           style={{ 
                             width: '100%',

@@ -203,18 +203,20 @@ export default function DivisionsSection() {
           </motion.p>
         </motion.div>
 
-        {/* Divisions Grid - Using Unified System */}
+        {/* Divisions Grid - 2x2 Layout with Professional Touch */}
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+          className="grid grid-cols-1 md:grid-cols-2"
           style={{
-            gap: 'clamp(24px, 4vw, 32px)',
+            gap: 'clamp(20px, 3vw, 28px)',
             paddingLeft: 'clamp(16px, 4vw, 0px)',
             paddingRight: 'clamp(16px, 4vw, 0px)',
             width: '100%',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            maxWidth: '1200px',
+            margin: '0 auto'
           }}
         >
           {divisions.map((division, index) => {
@@ -226,70 +228,143 @@ export default function DivisionsSection() {
                 variants={cardVariants}
                 custom={index}
                 className="h-full"
+                whileHover={{ 
+                  y: -8,
+                  transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+                }}
+                style={{ 
+                  perspective: '1000px',
+                }}
               >
-                <Card className="h-full flex flex-col">
-                  <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
-                    {/* Logo */}
+                <Card 
+                  className="h-full flex flex-col group relative overflow-hidden"
+                  style={{
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+                  }}
+                >
+                  {/* Hover gradient overlay */}
+                  <motion.div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.03) 0%, rgba(212, 175, 55, 0.02) 100%)',
+                      transition: 'opacity 0.3s ease'
+                    }}
+                  />
+                  
+                  <CardBody maxWidth="max-w-none" className="flex flex-col h-full relative z-10">
+                    {/* Logo with enhanced animation */}
                     <motion.div 
-                      className="flex items-center justify-center mb-8" 
+                      className="flex items-center justify-center mb-4" 
                       style={{ 
-                        height: 'clamp(60px, 12vw, 100px)', 
+                        height: 'clamp(60px, 8vw, 90px)', 
                         minHeight: '60px',
-                        maxHeight: '100px',
+                        maxHeight: '90px',
                         width: '100%'
                       }}
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
+                      whileHover={{ scale: 1.08, y: -4 }}
+                      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                     >
-                      <img
+                      <motion.img
                         src={division.logo}
                         alt={`${division.title} Logo`}
                         className="h-full w-auto object-contain"
                         style={{ 
-                          maxWidth: 'min(180px, 100%)', 
+                          maxWidth: 'min(200px, 100%)', 
                           width: 'auto',
                           height: '100%',
-                          objectFit: 'contain'
+                          objectFit: 'contain',
+                          filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05))'
+                        }}
+                        whileHover={{ 
+                          filter: 'drop-shadow(0 4px 8px rgba(1, 178, 178, 0.2))'
                         }}
                       />
                     </motion.div>
 
-                    {/* Title */}
-                    <h3 
-                      className="h3-unified text-teal rhythm-title-content" 
+                    {/* Title with consistent spacing - Centered */}
+                    <motion.h3 
+                      className="h3-unified text-teal rhythm-title-content mb-3 text-center" 
                       style={{ 
                         lineHeight: '1.3',
-                        fontSize: 'clamp(18px, 2vw, 22px)'
+                        fontSize: 'clamp(20px, 2.5vw, 24px)',
+                        fontWeight: 600,
+                        minHeight: 'clamp(35px, 4vw, 45px)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
                       }}
                     >
                       {division.subtitle}
-                    </h3>
+                    </motion.h3>
 
-                    {/* Description */}
-                    <p 
-                      className="body-large-unified text-secondary flex-grow rhythm-card-internal" 
+                    {/* Description with fixed height for alignment - Centered */}
+                    <motion.div
+                      className="flex-grow mb-4 text-center"
                       style={{ 
-                        lineHeight: '1.7',
-                        fontSize: 'clamp(14px, 1.5vw, 16px)'
+                        minHeight: 'clamp(55px, 7vw, 70px)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        paddingLeft: 'clamp(8px, 2vw, 16px)',
+                        paddingRight: 'clamp(8px, 2vw, 16px)'
                       }}
                     >
-                      {division.description}
-                    </p>
-
-                    {/* Learn More Button - Unified */}
-                    <div className="mt-auto pt-6 border-t border-gray-200">
-                      <Button
-                        variant="secondary"
-                        size="md"
-                        href={`/divisions#${division.id}`}
-                        fullWidth
-                        className="flex items-center justify-center gap-2"
+                      <p 
+                        className="body-large-unified text-secondary rhythm-card-internal" 
+                        style={{ 
+                          lineHeight: '1.75',
+                          fontSize: 'clamp(15px, 1.8vw, 17px)',
+                          textAlign: 'center',
+                          margin: 0
+                        }}
                       >
-                        <span>Learn More</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </Button>
-                    </div>
+                        {division.description}
+                      </p>
+                    </motion.div>
+
+                    {/* Learn More Button - Unified with enhanced animation */}
+                    <motion.div 
+                      className="mt-auto pt-4 border-t border-gray-200"
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                      transition={{ delay: 0.3 + (index * 0.1) }}
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <Button
+                          variant="secondary"
+                          size="md"
+                          href={`/divisions#${division.id}`}
+                          fullWidth
+                          className="flex items-center justify-center gap-2 group/button"
+                          style={{
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          <span>Learn More</span>
+                          <motion.div
+                            initial={{ x: 0 }}
+                            whileHover={{ x: 4 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <ArrowRight className="w-4 h-4" />
+                          </motion.div>
+                        </Button>
+                      </motion.div>
+                    </motion.div>
                   </CardBody>
+                  
+                  {/* Subtle border animation on hover */}
+                  <motion.div
+                    className="absolute inset-0 border-2 border-transparent rounded-lg pointer-events-none"
+                    whileHover={{
+                      borderColor: 'rgba(1, 178, 178, 0.2)',
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </Card>
               </motion.div>
             );

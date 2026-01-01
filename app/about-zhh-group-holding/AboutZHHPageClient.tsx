@@ -94,7 +94,7 @@ export default function AboutZHHPageClient() {
               className="relative"
             >
               <img
-                src="/assets/logos/zhh-group-holding-logo.svg"
+                src="/assets/logos/ZHH%20Group%20Holding%20Logo.svg"
                 alt="ZHH Group Holding"
                 className="w-20 h-20 md:w-32 md:h-32 object-contain drop-shadow-lg"
                 style={{
@@ -557,7 +557,7 @@ export default function AboutZHHPageClient() {
                         overflow: 'hidden',
                         borderRadius: '12px',
                         marginBottom: 'clamp(16px, 2vw, 24px)',
-                        backgroundColor: '#f0f0f0'
+                        backgroundColor: '#F5F5F5'
                   }}
                     >
                       {/* Background Image */}
@@ -613,12 +613,12 @@ export default function AboutZHHPageClient() {
                           }}
                         />
                       )}
-                      {/* Overlay for better text visibility */}
+                      {/* Overlay for better text visibility - Lighter background */}
                       <div 
                         style={{
                           position: 'absolute',
                           inset: 0,
-                          background: 'linear-gradient(to right, rgba(3, 45, 70, 0.5) 0%, rgba(1, 178, 178, 0.4) 100%)',
+                          background: 'linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%)',
                           zIndex: 1
                         }}
                       />
