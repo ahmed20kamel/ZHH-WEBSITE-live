@@ -467,7 +467,13 @@ export default function InvestorsPageClient() {
             variants={staggerContainer}
           >
             {miningInvestments.map((investment, index) => (
-              <motion.div key={index} variants={fadeInUp} style={{ width: '100%', maxWidth: '100%' }}>
+              <motion.div 
+                key={index} 
+                variants={fadeInUp} 
+                style={{ width: '100%', maxWidth: '100%' }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              >
                 <Card 
                   className="relative overflow-hidden group"
                   style={{ 
@@ -480,7 +486,6 @@ export default function InvestorsPageClient() {
                     border: '1px solid rgba(229, 231, 235, 0.5)',
                     transition: 'all 0.3s ease'
                   }}
-                  whileHover={{ y: -4 }}
                 >
                   {/* Background Image with Blur and Overlay */}
                   <div
