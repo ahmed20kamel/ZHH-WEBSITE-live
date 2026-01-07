@@ -521,9 +521,10 @@ export default function InvestorsPageClient() {
                     />
                   </div>
 
-                  <CardBody maxWidth="max-w-4xl mx-auto" style={{ position: 'relative', zIndex: 2 }}>
-                    {/* Intro Zone - Narrow Column */}
-                    <div className="mb-6 md:mb-8">
+                  <div style={{ position: 'relative', zIndex: 2 }}>
+                    <CardBody maxWidth="max-w-4xl mx-auto">
+                      {/* Intro Zone - Narrow Column */}
+                      <div className="mb-6 md:mb-8">
                       <h2 
                         className="h2-unified text-primary"
                         style={{
@@ -718,45 +719,48 @@ export default function InvestorsPageClient() {
                   />
                 </div>
 
-                <CardBody maxWidth="max-w-4xl mx-auto" style={{ position: 'relative', zIndex: 2 }}>
-                  <h2 
-                    className="h2-unified text-primary"
-                    style={{
-                      fontFamily: 'var(--font-inter), Inter, sans-serif',
-                      fontWeight: 700,
-                      color: '#000000',
-                      marginBottom: 'clamp(20px, 3vw, 28px)',
-                      fontSize: 'clamp(20px, 4.5vw, 28px)',
-                      lineHeight: 1.3,
-                      wordWrap: 'break-word',
-                      overflowWrap: 'break-word'
-                    }}
-                  >
-                    Why Invest with ZHH Group Holding
-                  </h2>
-                  <BulletList
-                    bulletColor="#0D9488"
-                    maxWidth="max-w-none"
-                    items={[
-                      {
-                        title: 'Diversified Portfolio',
-                        description: 'Strategic investments across construction, real estate, gold, and trading sectors',
-                      },
-                      {
-                        title: 'Strong Governance',
-                        description: 'Zero compliance violations with highest ethical and governance standards',
-                      },
-                      {
-                        title: 'Sustainable Returns',
-                        description: 'Long-term value creation with responsible, asset-backed growth',
-                      },
-                      {
-                        title: 'Global Presence',
-                        description: 'Operations across 10+ countries with strategic market positioning',
-                      },
-                    ]}
-                  />
-                </CardBody>
+                <div style={{ position: 'relative', zIndex: 2 }}>
+                  <CardBody maxWidth="max-w-4xl mx-auto">
+                    <h2 
+                      className="h2-unified text-primary"
+                      style={{
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
+                        fontWeight: 700,
+                        color: '#000000',
+                        marginBottom: 'clamp(20px, 3vw, 28px)',
+                        fontSize: 'clamp(20px, 4.5vw, 28px)',
+                        lineHeight: 1.3,
+                        wordWrap: 'break-word',
+                        overflowWrap: 'break-word'
+                      }}
+                    >
+                      Why Invest with ZHH Group Holding
+                    </h2>
+                    <BulletList
+                      bulletColor="#0D9488"
+                      maxWidth="max-w-none"
+                      items={[
+                        {
+                          title: 'Diversified Portfolio',
+                          description: 'Strategic investments across construction, real estate, gold, and trading sectors',
+                        },
+                        {
+                          title: 'Strong Governance',
+                          description: 'Zero compliance violations with highest ethical and governance standards',
+                        },
+                        {
+                          title: 'Sustainable Returns',
+                          description: 'Long-term value creation with responsible, asset-backed growth',
+                        },
+                        {
+                          title: 'Global Presence',
+                          description: 'Operations across 10+ countries with strategic market positioning',
+                        },
+                      ]}
+                    />
+                  </CardBody>
+                </div>
+                </div>
               </Card>
             </motion.div>
           </motion.div>
