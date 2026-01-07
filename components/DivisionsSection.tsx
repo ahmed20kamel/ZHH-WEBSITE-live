@@ -1,7 +1,9 @@
 'use client';
 
+import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 import { 
   Building2, Home, Globe, Gem, 
   ArrowRight
@@ -240,27 +242,115 @@ export default function DivisionsSection() {
                   className="h-full flex flex-col group relative overflow-hidden"
                   style={{
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
+                    padding: 0,
+                    position: 'relative',
+                    borderRadius: '16px',
+                    border: '1px solid rgba(229, 231, 235, 0.5)'
                   }}
                 >
+                  {/* Background Image with Blur and Overlay */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      zIndex: 0,
+                      overflow: 'hidden',
+                      borderRadius: '12px'
+                    }}
+                  >
+                    {division.id === 'construction' && (
+                      <Image
+                        src="/assets/hero/card/Construction.jpg"
+                        alt=""
+                        fill
+                        className="object-cover"
+                        style={{
+                          filter: 'blur(4px)',
+                          opacity: 0.4,
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                          transform: 'scale(1.1)'
+                        }}
+                      />
+                    )}
+                    {division.id === 'trading' && (
+                      <Image
+                        src="/assets/hero/card/General Trading.jpg"
+                        alt=""
+                        fill
+                        className="object-cover"
+                        style={{
+                          filter: 'blur(4px)',
+                          opacity: 0.4,
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                          transform: 'scale(1.1)'
+                        }}
+                      />
+                    )}
+                    {division.id === 'real-estate' && (
+                      <Image
+                        src="/assets/hero/card/Real Estates.jpg"
+                        alt=""
+                        fill
+                        className="object-cover"
+                        style={{
+                          filter: 'blur(4px)',
+                          opacity: 0.4,
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                          transform: 'scale(1.1)'
+                        }}
+                      />
+                    )}
+                    {division.id === 'jewelust' && (
+                      <Image
+                        src="/assets/hero/card/Gold2.JPEG"
+                        alt=""
+                        fill
+                        className="object-cover"
+                        style={{
+                          filter: 'blur(4px)',
+                          opacity: 0.4,
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                          transform: 'scale(1.1)'
+                        }}
+                      />
+                    )}
+                    {/* White Overlay - Reduced for better image visibility */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                        zIndex: 1
+                      }}
+                    />
+                  </div>
+
                   {/* Hover gradient overlay */}
                   <motion.div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
                     style={{
                       background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.03) 0%, rgba(212, 175, 55, 0.02) 100%)',
-                      transition: 'opacity 0.3s ease'
+                      transition: 'opacity 0.3s ease',
+                      zIndex: 1
                     }}
                   />
                   
+                  <div style={{ padding: 'clamp(24px, 3vw, 32px)', display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 10 }}>
                   <CardBody maxWidth="max-w-none" className="flex flex-col h-full relative z-10">
                     {/* Logo with enhanced animation */}
                     <motion.div 
-                      className="flex items-center justify-center mb-4" 
+                      className="flex items-center justify-center mb-5" 
                       style={{ 
                         height: 'clamp(60px, 8vw, 90px)', 
                         minHeight: '60px',
                         maxHeight: '90px',
-                        width: '100%'
+                        width: '100%',
+                        marginBottom: 'clamp(20px, 2.5vw, 28px)'
                       }}
                       whileHover={{ scale: 1.08, y: -4 }}
                       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
@@ -274,25 +364,27 @@ export default function DivisionsSection() {
                           width: 'auto',
                           height: '100%',
                           objectFit: 'contain',
-                          filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05))'
+                          filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.1))'
                         }}
                         whileHover={{ 
-                          filter: 'drop-shadow(0 4px 8px rgba(1, 178, 178, 0.2))'
+                          filter: 'drop-shadow(0 4px 12px rgba(1, 178, 178, 0.3))'
                         }}
                       />
                     </motion.div>
 
                     {/* Title with consistent spacing - Centered */}
                     <motion.h3 
-                      className="h3-unified text-teal rhythm-title-content mb-3 text-center" 
+                      className="h3-unified text-teal rhythm-title-content mb-4 text-center" 
                       style={{ 
                         lineHeight: '1.3',
                         fontSize: 'clamp(20px, 2.5vw, 24px)',
-                        fontWeight: 600,
+                        fontWeight: 700,
+                        color: '#000000',
                         minHeight: 'clamp(35px, 4vw, 45px)',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        marginBottom: 'clamp(16px, 2vw, 20px)'
                       }}
                     >
                       {division.subtitle}
@@ -300,14 +392,15 @@ export default function DivisionsSection() {
 
                     {/* Description with fixed height for alignment - Centered */}
                     <motion.div
-                      className="flex-grow mb-4 text-center"
+                      className="flex-grow mb-5 text-center"
                       style={{ 
                         minHeight: 'clamp(55px, 7vw, 70px)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         paddingLeft: 'clamp(8px, 2vw, 16px)',
-                        paddingRight: 'clamp(8px, 2vw, 16px)'
+                        paddingRight: 'clamp(8px, 2vw, 16px)',
+                        marginBottom: 'clamp(20px, 2.5vw, 24px)'
                       }}
                     >
                       <p 
@@ -316,52 +409,107 @@ export default function DivisionsSection() {
                           lineHeight: '1.75',
                           fontSize: 'clamp(15px, 1.8vw, 17px)',
                           textAlign: 'center',
-                          margin: 0
+                          margin: 0,
+                          color: '#000000',
+                          fontWeight: 600
                         }}
                       >
                         {division.description}
                       </p>
                     </motion.div>
 
-                    {/* Learn More Button - Unified with enhanced animation */}
+                    {/* Learn More Button - Enhanced with better integration */}
                     <motion.div 
-                      className="mt-auto pt-4 border-t border-gray-200"
+                      className="mt-auto pt-5"
                       initial={{ opacity: 0 }}
                       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                       transition={{ delay: 0.3 + (index * 0.1) }}
+                      style={{
+                        position: 'relative',
+                        paddingTop: 'clamp(20px, 2.5vw, 24px)'
+                      }}
                     >
+                      {/* Subtle gradient divider instead of border */}
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: '10%',
+                          right: '10%',
+                          height: '1px',
+                          background: 'linear-gradient(90deg, transparent, rgba(1, 178, 178, 0.2), transparent)',
+                          marginBottom: 'clamp(16px, 2vw, 20px)'
+                        }}
+                      />
                       <motion.div
-                        whileHover={{ scale: 1.02 }}
+                        whileHover={{ scale: 1.02, y: -2 }}
                         whileTap={{ scale: 0.98 }}
+                        style={{
+                          transition: 'all 0.3s ease'
+                        }}
                       >
-                        <Button
-                          variant="secondary"
-                          size="md"
-                          href={`/divisions#${division.id}`}
-                          fullWidth
-                          className="flex items-center justify-center gap-2 group/button"
-                          style={{
-                            transition: 'all 0.3s ease'
+                        <div
+                          onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
+                            const button = e.currentTarget.querySelector('a') as HTMLElement;
+                            if (button) {
+                              button.style.background = 'linear-gradient(135deg, rgba(1, 178, 178, 0.15) 0%, rgba(1, 178, 178, 0.08) 100%)';
+                              button.style.borderColor = 'rgba(1, 178, 178, 0.3)';
+                              button.style.boxShadow = '0 4px 12px rgba(1, 178, 178, 0.2)';
+                              button.style.color = '#019999';
+                            }
+                          }}
+                          onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
+                            const button = e.currentTarget.querySelector('a') as HTMLElement;
+                            if (button) {
+                              button.style.background = 'linear-gradient(135deg, rgba(1, 178, 178, 0.1) 0%, rgba(1, 178, 178, 0.05) 100%)';
+                              button.style.borderColor = 'rgba(1, 178, 178, 0.2)';
+                              button.style.boxShadow = '0 2px 8px rgba(1, 178, 178, 0.1)';
+                              button.style.color = '#01B2B2';
+                            }
                           }}
                         >
-                          <span>Learn More</span>
-                          <motion.div
-                            initial={{ x: 0 }}
-                            whileHover={{ x: 4 }}
-                            transition={{ duration: 0.2 }}
+                          <Button
+                            variant="secondary"
+                            size="md"
+                            href={`/divisions#${division.id}`}
+                            fullWidth
+                            className="flex items-center justify-center gap-2 group/button"
+                            style={{
+                              transition: 'all 0.3s ease',
+                              background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.1) 0%, rgba(1, 178, 178, 0.05) 100%)',
+                              border: '1px solid rgba(1, 178, 178, 0.2)',
+                              borderRadius: '8px',
+                              padding: 'clamp(12px, 1.5vw, 14px) clamp(20px, 2.5vw, 24px)',
+                              fontWeight: 600,
+                              color: '#01B2B2',
+                              boxShadow: '0 2px 8px rgba(1, 178, 178, 0.1)'
+                            }}
                           >
-                            <ArrowRight className="w-4 h-4" />
-                          </motion.div>
-                        </Button>
+                            <span style={{ fontWeight: 600 }}>Learn More</span>
+                            <motion.div
+                              initial={{ x: 0 }}
+                              whileHover={{ x: 4 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <ArrowRight className="w-4 h-4" style={{ strokeWidth: 2.5 }} />
+                            </motion.div>
+                          </Button>
+                        </div>
                       </motion.div>
                     </motion.div>
                   </CardBody>
+                  </div>
                   
-                  {/* Subtle border animation on hover */}
+                  {/* Enhanced border animation on hover */}
                   <motion.div
-                    className="absolute inset-0 border-2 border-transparent rounded-lg pointer-events-none"
+                    className="absolute inset-0 border-2 border-transparent pointer-events-none"
+                    style={{
+                      borderRadius: '16px',
+                      zIndex: 2
+                    }}
                     whileHover={{
-                      borderColor: 'rgba(1, 178, 178, 0.2)',
+                      borderColor: 'rgba(1, 178, 178, 0.3)',
+                      boxShadow: '0 8px 32px rgba(1, 178, 178, 0.15)'
                     }}
                     transition={{ duration: 0.3 }}
                   />

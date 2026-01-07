@@ -39,9 +39,9 @@ export default function Tabs({ tabs, defaultTab }: TabsProps) {
             className="tab-button"
             style={{
               fontFamily: 'var(--font-inter), Inter, sans-serif',
-              fontSize: 'clamp(12px, 1.4vw, 14px)',
-              fontWeight: activeTab === tab.id ? 600 : 400,
-              color: activeTab === tab.id ? '#01B2B2' : '#666666',
+              fontSize: 'clamp(13px, 1.5vw, 15px)',
+              fontWeight: activeTab === tab.id ? 700 : 600,
+              color: activeTab === tab.id ? '#01B2B2' : '#333333',
               padding: 'clamp(10px, 1.3vw, 14px) clamp(17px, 2.1vw, 20px)',
               background: 'transparent',
               border: 'none',
@@ -50,7 +50,8 @@ export default function Tabs({ tabs, defaultTab }: TabsProps) {
               transition: 'all 0.3s ease',
               position: 'relative',
               whiteSpace: 'nowrap',
-              marginBottom: '-1px'
+              marginBottom: '-1px',
+              letterSpacing: '0.01em'
             }}
             onMouseEnter={(e) => {
               if (activeTab !== tab.id) {
@@ -60,7 +61,7 @@ export default function Tabs({ tabs, defaultTab }: TabsProps) {
             }}
             onMouseLeave={(e) => {
               if (activeTab !== tab.id) {
-                e.currentTarget.style.color = '#666666';
+                e.currentTarget.style.color = '#333333';
                 e.currentTarget.style.backgroundColor = 'transparent';
               }
             }}

@@ -2,6 +2,7 @@
 
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
+import Image from 'next/image';
 import { subsidiaries, premiumColors } from './types';
 import Button from '@/components/ui/Button';
 import { ChevronDown } from 'lucide-react';
@@ -136,24 +137,107 @@ export default function SubsidiariesSection() {
                 className="relative bg-white rounded-2xl overflow-hidden transition-all duration-500"
                 style={{ 
                   border: '1px solid rgba(1, 178, 178, 0.1)',
-                  padding: 'clamp(28px, 3.5vw, 44px)',
+                  padding: 0,
                   boxShadow: isExpanded
                     ? '0 20px 60px rgba(10, 61, 98, 0.12), 0 8px 24px rgba(10, 61, 98, 0.08)'
                     : '0 4px 20px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04)',
-                  background: 'rgba(255, 255, 255, 0.95)'
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  position: 'relative'
                 }}
               >
+                {/* Background Image with Blur and Overlay */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 0,
+                    overflow: 'hidden',
+                    borderRadius: '16px'
+                  }}
+                >
+                  {subsidiary.id === 'construction' && (
+                    <Image
+                      src="/assets/hero/card/Construction.jpg"
+                      alt=""
+                      fill
+                      className="object-cover"
+                      style={{
+                        filter: 'blur(4px)',
+                        opacity: 0.4,
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'scale(1.1)'
+                      }}
+                    />
+                  )}
+                  {subsidiary.id === 'trading' && (
+                    <Image
+                      src="/assets/hero/card/General Trading.jpg"
+                      alt=""
+                      fill
+                      className="object-cover"
+                      style={{
+                        filter: 'blur(4px)',
+                        opacity: 0.4,
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'scale(1.1)'
+                      }}
+                    />
+                  )}
+                  {subsidiary.id === 'real-estate' && (
+                    <Image
+                      src="/assets/hero/card/Real Estates.jpg"
+                      alt=""
+                      fill
+                      className="object-cover"
+                      style={{
+                        filter: 'blur(4px)',
+                        opacity: 0.4,
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'scale(1.1)'
+                      }}
+                    />
+                  )}
+                  {subsidiary.id === 'jewelust' && (
+                    <Image
+                      src="/assets/hero/card/Gold2.JPEG"
+                      alt=""
+                      fill
+                      className="object-cover"
+                      style={{
+                        filter: 'blur(4px)',
+                        opacity: 0.4,
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'scale(1.1)'
+                      }}
+                    />
+                  )}
+                  {/* White Overlay - Reduced for better image visibility */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                      zIndex: 1
+                    }}
+                  />
+                </div>
+
                 {/* Subtle Background Gradient */}
                 <motion.div
                   className="absolute inset-0 opacity-0"
                   style={{
-                    background: `linear-gradient(135deg, ${premiumColors.darkBlue}08 0%, ${premiumColors.tealBlue}05 100%)`
+                    background: `linear-gradient(135deg, ${premiumColors.darkBlue}08 0%, ${premiumColors.tealBlue}05 100%)`,
+                    zIndex: 1
                   }}
                   animate={isExpanded ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ duration: 0.4 }}
                 />
 
-                <div className="relative z-10 w-full max-w-full">
+                <div className="relative z-10 w-full max-w-full" style={{ padding: 'clamp(28px, 3.5vw, 44px)' }}>
                   {/* Enhanced Logo Section */}
                   <div className="flex items-center justify-center" style={{ marginBottom: 'clamp(20px, 2.5vw, 32px)' }}>
                     <motion.div 
@@ -179,7 +263,8 @@ export default function SubsidiariesSection() {
                   {/* Enhanced Company Name & Tagline */}
                   <div className="text-center" style={{ marginBottom: 'clamp(20px, 2.5vw, 32px)' }}>
                     <h3 className="font-bold leading-tight" style={{ 
-                      color: premiumColors.textDark,
+                      color: '#000000',
+                      fontWeight: 700,
                       lineHeight: '1.3',
                       letterSpacing: '-0.02em',
                       fontSize: 'clamp(22px, 2.5vw, 36px)',
@@ -188,7 +273,8 @@ export default function SubsidiariesSection() {
                       {subsidiary.name}
                     </h3>
                     <p className="font-semibold" style={{ 
-                      color: premiumColors.darkBlue,
+                      color: '#000000',
+                      fontWeight: 600,
                       lineHeight: '1.5',
                       fontSize: 'clamp(16px, 1.8vw, 20px)'
                     }}>
@@ -199,7 +285,8 @@ export default function SubsidiariesSection() {
                   {/* Enhanced Description */}
                   <div style={{ marginBottom: 'clamp(20px, 2.5vw, 32px)' }}>
                     <p className="font-normal text-left leading-relaxed" style={{ 
-                      color: premiumColors.textGray,
+                      color: '#000000',
+                      fontWeight: 600,
                       lineHeight: '1.7',
                       fontSize: 'clamp(14px, 1.6vw, 18px)'
                     }}>
