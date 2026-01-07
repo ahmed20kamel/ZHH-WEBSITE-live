@@ -614,7 +614,8 @@ export default function InvestorsPageClient() {
                         />
                       </div>
                     </div>
-                  </CardBody>
+                    </CardBody>
+                  </div>
                 </Card>
               </motion.div>
             ))}
@@ -649,7 +650,12 @@ export default function InvestorsPageClient() {
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
           >
-            <motion.div variants={fadeInUp} style={{ width: '100%', maxWidth: '100%' }}>
+            <motion.div 
+              variants={fadeInUp} 
+              style={{ width: '100%', maxWidth: '100%' }}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            >
               <Card 
                 className="relative overflow-hidden group"
                 style={{ 
@@ -662,7 +668,6 @@ export default function InvestorsPageClient() {
                   border: '1px solid rgba(229, 231, 235, 0.5)',
                   transition: 'all 0.3s ease'
                 }}
-                whileHover={{ y: -4 }}
               >
                 {/* Background Images - Split Layout */}
                 <div
@@ -759,7 +764,6 @@ export default function InvestorsPageClient() {
                       ]}
                     />
                   </CardBody>
-                </div>
                 </div>
               </Card>
             </motion.div>
