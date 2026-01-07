@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 import { 
   TrendingUp, Building2, Gem, Globe, 
   Shield, Award, Target, BarChart3,
@@ -245,20 +246,90 @@ export default function InvestmentHighlightsSection() {
                 variants={cardVariants}
                 custom={index}
                 className="h-full"
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               >
-                <Card className="h-full flex flex-col">
-                  <CardBody maxWidth="max-w-none" className="flex flex-col h-full text-center">
-                    {/* Icon - Unified Style */}
-                    <div 
-                      className="w-14 h-14 rounded-lg flex items-center justify-center mb-6 shadow-sm mx-auto"
-                      style={{ backgroundColor: '#E0F2F1' }}
+                <Card className="h-full flex flex-col relative overflow-hidden group" style={{ padding: 0, position: 'relative', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', border: '1px solid rgba(229, 231, 235, 0.5)', transition: 'all 0.3s ease' }}>
+                  {/* Hover Border Effect */}
+                  <motion.div
+                    className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"
+                    style={{ zIndex: 3 }}
+                    whileHover={{
+                      borderColor: 'rgba(13, 148, 136, 0.3)',
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  
+                  {/* Background Image with Blur and Overlay */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      zIndex: 0,
+                      overflow: 'hidden',
+                      borderRadius: '16px'
+                    }}
+                    className="group-hover:scale-105 transition-transform duration-500"
+                  >
+                    <Image
+                      src={`/assets/Our Global Footprint/${highlight.label}.${highlight.label === 'Compliance Violations' ? 'png' : 'jpg'}`}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      style={{
+                        filter: 'blur(4px)',
+                        opacity: 0.4,
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'scale(1.1)'
+                      }}
+                    />
+                    {/* White Overlay - Reduced for better image visibility */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                        zIndex: 1
+                      }}
+                    />
+                  </div>
+
+                  <div style={{ padding: 'clamp(28px, 3.5vw, 36px)', display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 2 }}>
+                  <CardBody maxWidth="max-w-none" className="flex flex-col h-full text-center relative z-10">
+                    {/* Icon - Enhanced with Animation */}
+                    <motion.div 
+                      className="w-16 h-16 rounded-xl flex items-center justify-center mb-5 shadow-lg mx-auto relative z-10"
+                      style={{ 
+                        backgroundColor: 'rgba(224, 242, 241, 0.95)', 
+                        backdropFilter: 'blur(12px)',
+                        border: '1px solid rgba(13, 148, 136, 0.2)'
+                      }}
+                      whileHover={{ 
+                        scale: 1.1, 
+                        rotate: 5,
+                        boxShadow: '0 8px 24px rgba(13, 148, 136, 0.3)'
+                      }}
+                      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                     >
-                      <Icon className="w-7 h-7" style={{ color: '#0D9488' }} />
-                    </div>
+                      <Icon className="w-8 h-8" style={{ color: '#0D9488' }} />
+                    </motion.div>
 
                     {/* Main Value with Counter */}
-                    <div className="mb-4">
-                      <div className="text-stats-number mb-2" style={{ color: 'var(--emirati-blue)' }}>
+                    <motion.div 
+                      className="mb-4"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                    >
+                      <div className="text-stats-number mb-2" style={{ 
+                        color: '#000000',
+                        fontSize: 'clamp(36px, 4.5vw, 52px)',
+                        fontWeight: 700,
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
+                        lineHeight: 1.2
+                      }}>
                         <Counter value={highlight.value} />
                       </div>
 
@@ -267,25 +338,56 @@ export default function InvestmentHighlightsSection() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.3 + (index * 0.1) }}
-                        className="inline-flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-full border border-teal-200 mb-3"
-                        >
-                         <TrendingUp className="w-3 h-3 text-teal-600" />
-                         <span className="body-small-unified text-teal-600" style={{ fontWeight: 600 }}>
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border mb-3"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(1, 178, 178, 0.1) 0%, rgba(1, 178, 178, 0.05) 100%)',
+                          borderColor: 'rgba(13, 148, 136, 0.2)',
+                          boxShadow: '0 2px 8px rgba(13, 148, 136, 0.1)'
+                        }}
+                      >
+                         <TrendingUp className="w-3.5 h-3.5 text-teal-600" />
+                         <span className="body-small-unified text-teal-600" style={{ fontWeight: 600, fontSize: 'clamp(11px, 1.3vw, 13px)' }}>
                           {highlight.growth}
                         </span>
                       </motion.div>
-                    </div>
+                    </motion.div>
 
                     {/* Label */}
-                    <h3 className="h4-unified text-primary text-center rhythm-title-content">
+                    <motion.h3 
+                      className="h4-unified text-primary text-center rhythm-title-content"
+                      style={{ 
+                        color: '#000000',
+                        fontWeight: 700,
+                        fontSize: 'clamp(18px, 2.2vw, 22px)',
+                        lineHeight: 1.3,
+                        marginBottom: 'clamp(12px, 1.5vw, 16px)'
+                      }}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
                       {highlight.label}
-                    </h3>
+                    </motion.h3>
 
                     {/* Description */}
-                    <p className="body-regular-unified text-secondary text-center flex-grow">
+                    <motion.p 
+                      className="body-regular-unified text-secondary text-center flex-grow"
+                      style={{ 
+                        color: '#000000',
+                        fontWeight: 600,
+                        fontSize: 'clamp(14px, 1.7vw, 16px)',
+                        lineHeight: 1.7
+                      }}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                    >
                       {highlight.description}
-                    </p>
+                    </motion.p>
                   </CardBody>
+                  </div>
                 </Card>
               </motion.div>
             );

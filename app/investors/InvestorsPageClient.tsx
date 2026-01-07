@@ -293,25 +293,93 @@ export default function InvestorsPageClient() {
           >
             {investmentHighlights.map((highlight, index) => {
               const Icon = highlight.icon;
+              
+              // Map labels to image filenames
+              const imageMap: { [key: string]: string } = {
+                'Assets Under Management': 'Assets Under Management.jpg',
+                'Total Project Value': 'Total Project Value.jpg',
+                'Completed Projects': 'Completed Projects.jpg',
+                'Gold Traded': 'Gold Traded.jpg',
+                'Licensed Gold Mines': 'Licensed Mines.jpg',
+                'Compliance Violations': 'Compliance Violations.png'
+              };
+              
+              const imageName = imageMap[highlight.label];
+              
               return (
-                <motion.div key={index} variants={fadeInUp} style={{ width: '100%', maxWidth: '100%' }}>
-                  <Card className="h-full text-center" style={{ width: '100%', maxWidth: '100%', padding: 'clamp(24px, 4vw, 32px)' }}>
-                    <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
-                      {/* Icon - Unified Style */}
+                <motion.div 
+                  key={index} 
+                  variants={fadeInUp} 
+                  style={{ width: '100%', maxWidth: '100%' }}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  <Card className="h-full text-center relative overflow-hidden group" style={{ width: '100%', maxWidth: '100%', padding: 0, position: 'relative', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', border: '1px solid rgba(229, 231, 235, 0.5)', transition: 'all 0.3s ease' }}>
+                    {/* Hover Border Effect */}
+                    <motion.div
+                      className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"
+                      style={{ zIndex: 3 }}
+                      whileHover={{
+                        borderColor: 'rgba(13, 148, 136, 0.3)',
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    
+                    {/* Background Image with Blur and Overlay */}
+                    {imageName && (
+                      <div
+                        style={{
+                          position: 'absolute',
+                          inset: 0,
+                          zIndex: 0,
+                          overflow: 'hidden',
+                          borderRadius: '16px'
+                        }}
+                        className="group-hover:scale-105 transition-transform duration-500"
+                      >
+                        <Image
+                          src={`/assets/Our Global Footprint/${imageName}`}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          style={{
+                            filter: 'blur(4px)',
+                            opacity: 0.4,
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                            transform: 'scale(1.1)'
+                          }}
+                        />
+                        <div
+                          style={{
+                            position: 'absolute',
+                            inset: 0,
+                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                            zIndex: 1
+                          }}
+                        />
+                      </div>
+                    )}
+
+                    <div style={{ padding: 'clamp(24px, 4vw, 32px)', display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 2 }}>
+                    <CardBody maxWidth="max-w-none" className="flex flex-col h-full relative z-10">
+                      {/* Icon - Enhanced Style */}
                       <motion.div
                         initial={{ scale: 0, rotate: -180 }}
                         whileInView={{ scale: 1, rotate: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.1, type: 'spring', stiffness: 200 }}
-                        whileHover={{ rotate: 5, scale: 1.05 }}
-                        className="rounded-lg flex items-center justify-center mb-4 md:mb-6 shadow-sm mx-auto"
+                        whileHover={{ rotate: 5, scale: 1.1, boxShadow: '0 8px 24px rgba(13, 148, 136, 0.3)' }}
+                        className="rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg mx-auto relative z-10"
                         style={{ 
-                          backgroundColor: '#E0F2F1',
-                          width: 'clamp(48px, 7vw, 56px)',
-                          height: 'clamp(48px, 7vw, 56px)'
+                          backgroundColor: 'rgba(224, 242, 241, 0.95)',
+                          backdropFilter: 'blur(12px)',
+                          border: '1px solid rgba(13, 148, 136, 0.2)',
+                          width: 'clamp(64px, 8vw, 80px)',
+                          height: 'clamp(64px, 8vw, 80px)'
                         }}
                       >
-                        <Icon className="w-6 h-6 md:w-7 md:h-7" style={{ color: '#0D9488' }} />
+                        <Icon className="w-8 h-8 md:w-10 md:h-10" style={{ color: '#0D9488' }} />
                       </motion.div>
 
                       <motion.div
@@ -321,9 +389,9 @@ export default function InvestorsPageClient() {
                         transition={{ delay: index * 0.1 + 0.2, type: 'spring', stiffness: 200 }}
                         className="text-stats-number mb-2"
                         style={{ 
-                          color: 'var(--color-primary-dark)',
+                          color: '#000000',
                           fontFamily: 'var(--font-inter), Inter, sans-serif',
-                          fontWeight: 600,
+                          fontWeight: 700,
                           fontSize: 'clamp(28px, 5vw, 40px)',
                           lineHeight: 1.2,
                           wordWrap: 'break-word',
@@ -336,8 +404,8 @@ export default function InvestorsPageClient() {
                         className="h4-unified text-primary text-center"
                         style={{ 
                           fontFamily: 'var(--font-inter), Inter, sans-serif',
-                          fontWeight: 600,
-                          color: 'var(--color-text-primary)',
+                          fontWeight: 700,
+                          color: '#000000',
                           fontSize: 'clamp(16px, 3.5vw, 18px)',
                           lineHeight: 1.3,
                           marginBottom: 'clamp(8px, 1.5vw, 12px)',
@@ -351,7 +419,8 @@ export default function InvestorsPageClient() {
                         className="body-regular-unified text-secondary text-center flex-grow"
                         style={{ 
                           fontFamily: 'var(--font-inter), Inter, sans-serif',
-                          color: 'var(--color-text-secondary)',
+                          color: '#000000',
+                          fontWeight: 600,
                           fontSize: 'clamp(13px, 2.5vw, 15px)',
                           lineHeight: 1.6,
                           wordWrap: 'break-word',
@@ -361,6 +430,7 @@ export default function InvestorsPageClient() {
                         {highlight.description}
                       </p>
                     </CardBody>
+                    </div>
                   </Card>
                 </motion.div>
               );
@@ -398,16 +468,63 @@ export default function InvestorsPageClient() {
           >
             {miningInvestments.map((investment, index) => (
               <motion.div key={index} variants={fadeInUp} style={{ width: '100%', maxWidth: '100%' }}>
-                <Card style={{ width: '100%', maxWidth: '100%', padding: 'clamp(24px, 4vw, 40px)' }}>
-                  <CardBody maxWidth="max-w-4xl mx-auto">
+                <Card 
+                  className="relative overflow-hidden group"
+                  style={{ 
+                    width: '100%', 
+                    maxWidth: '100%', 
+                    padding: 'clamp(24px, 4vw, 40px)',
+                    position: 'relative',
+                    borderRadius: '16px',
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                    border: '1px solid rgba(229, 231, 235, 0.5)',
+                    transition: 'all 0.3s ease'
+                  }}
+                  whileHover={{ y: -4 }}
+                >
+                  {/* Background Image with Blur and Overlay */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      zIndex: 0,
+                      overflow: 'hidden',
+                      borderRadius: '16px'
+                    }}
+                    className="group-hover:scale-105 transition-transform duration-500"
+                  >
+                    <Image
+                      src="/assets/investments/Strategic Gold Mining Investments.jpg"
+                      alt=""
+                      fill
+                      className="object-cover"
+                      style={{
+                        filter: 'blur(4px)',
+                        opacity: 0.4,
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'scale(1.1)'
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                        zIndex: 1
+                      }}
+                    />
+                  </div>
+
+                  <CardBody maxWidth="max-w-4xl mx-auto" style={{ position: 'relative', zIndex: 2 }}>
                     {/* Intro Zone - Narrow Column */}
                     <div className="mb-6 md:mb-8">
                       <h2 
                         className="h2-unified text-primary"
                         style={{
                           fontFamily: 'var(--font-inter), Inter, sans-serif',
-                          fontWeight: 600,
-                          color: 'var(--color-text-primary)',
+                          fontWeight: 700,
+                          color: '#000000',
                           marginBottom: 'clamp(12px, 2vw, 16px)',
                           fontSize: 'clamp(20px, 4.5vw, 28px)',
                           lineHeight: 1.3,
@@ -421,7 +538,8 @@ export default function InvestorsPageClient() {
                         className="body-large-unified text-secondary"
                         style={{ 
                           fontFamily: 'var(--font-inter), Inter, sans-serif',
-                          color: 'var(--color-text-secondary)',
+                          color: '#000000',
+                          fontWeight: 600,
                           maxWidth: '100%',
                           fontSize: 'clamp(14px, 3vw, 18px)',
                           lineHeight: 1.7,
@@ -447,8 +565,8 @@ export default function InvestorsPageClient() {
                           className="h3-unified text-primary"
                           style={{
                             fontFamily: 'var(--font-inter), Inter, sans-serif',
-                            fontWeight: 600,
-                            color: 'var(--color-text-primary)',
+                            fontWeight: 700,
+                            color: '#000000',
                             marginBottom: 'clamp(12px, 2vw, 16px)',
                             fontSize: 'clamp(18px, 4vw, 22px)',
                             lineHeight: 1.3,
@@ -471,8 +589,8 @@ export default function InvestorsPageClient() {
                           className="h3-unified text-primary"
                           style={{
                             fontFamily: 'var(--font-inter), Inter, sans-serif',
-                            fontWeight: 600,
-                            color: 'var(--color-text-primary)',
+                            fontWeight: 700,
+                            color: '#000000',
                             marginBottom: 'clamp(12px, 2vw, 16px)',
                             fontSize: 'clamp(18px, 4vw, 22px)',
                             lineHeight: 1.3,
@@ -526,14 +644,82 @@ export default function InvestorsPageClient() {
             variants={staggerContainer}
           >
             <motion.div variants={fadeInUp} style={{ width: '100%', maxWidth: '100%' }}>
-              <Card style={{ width: '100%', maxWidth: '100%', padding: 'clamp(24px, 4vw, 40px)' }}>
-                <CardBody maxWidth="max-w-4xl mx-auto">
+              <Card 
+                className="relative overflow-hidden group"
+                style={{ 
+                  width: '100%', 
+                  maxWidth: '100%', 
+                  padding: 'clamp(24px, 4vw, 40px)',
+                  position: 'relative',
+                  borderRadius: '16px',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                  border: '1px solid rgba(229, 231, 235, 0.5)',
+                  transition: 'all 0.3s ease'
+                }}
+                whileHover={{ y: -4 }}
+              >
+                {/* Background Images - Split Layout */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 0,
+                    overflow: 'hidden',
+                    borderRadius: '16px',
+                    display: 'flex'
+                  }}
+                  className="group-hover:scale-105 transition-transform duration-500"
+                >
+                  {/* Left Image */}
+                  <div style={{ position: 'relative', width: '50%', height: '100%' }}>
+                    <Image
+                      src="/assets/investments/Global Business.jpg"
+                      alt=""
+                      fill
+                      className="object-cover"
+                      style={{
+                        filter: 'blur(4px)',
+                        opacity: 0.4,
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'scale(1.1)'
+                      }}
+                    />
+                  </div>
+                  {/* Right Image */}
+                  <div style={{ position: 'relative', width: '50%', height: '100%' }}>
+                    <Image
+                      src="/assets/investments/Strategic Gold Mining Investments.jpg"
+                      alt=""
+                      fill
+                      className="object-cover"
+                      style={{
+                        filter: 'blur(4px)',
+                        opacity: 0.4,
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'scale(1.1)'
+                      }}
+                    />
+                  </div>
+                  {/* White Overlay */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                      zIndex: 1
+                    }}
+                  />
+                </div>
+
+                <CardBody maxWidth="max-w-4xl mx-auto" style={{ position: 'relative', zIndex: 2 }}>
                   <h2 
                     className="h2-unified text-primary"
                     style={{
                       fontFamily: 'var(--font-inter), Inter, sans-serif',
-                      fontWeight: 600,
-                      color: 'var(--color-text-primary)',
+                      fontWeight: 700,
+                      color: '#000000',
                       marginBottom: 'clamp(20px, 3vw, 28px)',
                       fontSize: 'clamp(20px, 4.5vw, 28px)',
                       lineHeight: 1.3,

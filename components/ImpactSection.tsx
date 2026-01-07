@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 import { 
   Leaf, Users, Gem, Target, 
   Shield, TrendingUp, Heart, CheckCircle
@@ -253,15 +254,76 @@ export default function ImpactSection() {
                 variants={cardVariants}
                 custom={index}
                 className="h-full"
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               >
-                <Card className="h-full flex flex-col">
-                  <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
-                    {/* Icon Container with Visual Anchor - Unified Style */}
-                    <div className="mb-8 flex flex-col items-center">
-                      <div 
-                        className="w-16 h-16 rounded-lg flex items-center justify-center shadow-sm transition-all duration-300"
+                <Card className="h-full flex flex-col relative overflow-hidden group" style={{ padding: 0, position: 'relative', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', border: '1px solid rgba(229, 231, 235, 0.5)', transition: 'all 0.3s ease' }}>
+                  {/* Hover Border Effect */}
+                  <motion.div
+                    className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"
+                    style={{ zIndex: 3 }}
+                    whileHover={{
+                      borderColor: 'rgba(13, 148, 136, 0.3)',
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  
+                  {/* Background Image with Blur and Overlay */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      zIndex: 0,
+                      overflow: 'hidden',
+                      borderRadius: '16px'
+                    }}
+                    className="group-hover:scale-105 transition-transform duration-500"
+                  >
+                    <Image
+                      src={`/assets/Our Impact/${pillar.title}.jpg`}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      style={{
+                        filter: 'blur(4px)',
+                        opacity: 0.4,
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transform: 'scale(1.1)'
+                      }}
+                    />
+                    {/* White Overlay - Reduced for better image visibility */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                        zIndex: 1
+                      }}
+                    />
+                  </div>
+
+                  <div style={{ padding: 'clamp(28px, 3.5vw, 36px)', display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 2 }}>
+                  <CardBody maxWidth="max-w-none" className="flex flex-col h-full relative z-10">
+                    {/* Icon Container with Visual Anchor - Enhanced Style */}
+                    <motion.div 
+                      className="mb-8 flex flex-col items-center"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                    >
+                      <motion.div 
+                        className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 relative z-10"
                         style={{ 
-                          backgroundColor: '#E0F2F1'
+                          backgroundColor: 'rgba(224, 242, 241, 0.95)',
+                          backdropFilter: 'blur(12px)',
+                          border: '1px solid rgba(13, 148, 136, 0.2)'
+                        }}
+                        whileHover={{ 
+                          scale: 1.1, 
+                          rotate: 5,
+                          boxShadow: '0 8px 24px rgba(13, 148, 136, 0.3)'
                         }}
                       >
                         <Icon 
@@ -269,73 +331,108 @@ export default function ImpactSection() {
                           style={{ color: '#0D9488' }}
                           strokeWidth={1.5}
                         />
-                      </div>
+                      </motion.div>
                       {/* Visual anchor line under icon */}
-                      <div 
+                      <motion.div 
                         className="mt-4 h-0.5 w-12 bg-teal-600"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: '48px' }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
                       />
-                    </div>
+                    </motion.div>
                     
                     {/* Title */}
-                    <div className="mb-8 text-center">
+                    <motion.div 
+                      className="mb-8 text-center"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
                       <h3 
-                        className="text-xl lg:text-2xl font-semibold text-gray-900"
+                        className="text-xl lg:text-2xl font-semibold"
                         style={{
                           fontFamily: "'Inter', sans-serif",
                           letterSpacing: '-0.01em',
-                          lineHeight: '1.3'
+                          lineHeight: '1.3',
+                          color: '#000000',
+                          fontWeight: 700,
+                          fontSize: 'clamp(20px, 2.5vw, 24px)'
                         }}
                       >
                         {pillar.title}
                       </h3>
-                    </div>
+                    </motion.div>
                     
                     {/* Divider */}
-                      <div 
-                        className="h-px mb-8 bg-teal-600"
-                        style={{ opacity: 0.2 }}
-                      />
+                    <motion.div 
+                      className="h-px mb-8 bg-teal-600"
+                      style={{ opacity: 0.2 }}
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '100%' }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                    />
                     
                     {/* Content - Bullet List */}
-                    <div className="flex-1 mb-8">
-                        <BulletList
-                         bulletColor="#0d9488"
-                          className="text-left"
-                          maxWidth="max-w-none"
-                        items={bulletItems}
-                        titleGap="sm"
-                      />
-                    </div>
+                    <motion.div 
+                      className="flex-1 mb-8"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                    >
+                        <div style={{ color: '#000000', fontWeight: 600 }}>
+                          <BulletList
+                            bulletColor="#0d9488"
+                            className="text-left [&_li_div]:text-black [&_li_div]:font-semibold [&_li_div_div]:text-black [&_li_div_div]:font-medium"
+                            maxWidth="max-w-none"
+                            items={bulletItems}
+                            titleGap="sm"
+                          />
+                        </div>
+                    </motion.div>
 
                     {/* Stats Grid */}
-                    <div className="grid grid-cols-3 gap-3 pt-6 border-t border-gray-200 mb-8">
+                    <motion.div 
+                      className="grid grid-cols-3 gap-3 pt-6 border-t mb-8"
+                      style={{ borderColor: 'rgba(229, 231, 235, 0.5)' }}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                    >
                       {pillar.stats.map((stat, statIndex) => (
                         <div
                           key={statIndex}
                           className="text-center"
                         >
                           <div className="mb-1" style={{ 
-                            color: 'var(--emirati-blue)',
+                            color: '#000000',
+                            fontWeight: 700,
                             display: 'flex',
                             alignItems: 'baseline',
                             justifyContent: 'center',
                             gap: '4px',
-                            flexWrap: 'wrap'
+                            flexWrap: 'wrap',
+                            fontSize: 'clamp(20px, 2.5vw, 24px)'
                           }}>
                             <span className="text-stats-number">
                               <Counter value={stat.value} />
                             </span>
                             {stat.suffix && (
-                              <span className="body-small-unified text-secondary" style={{ lineHeight: '1.2' }}>
+                              <span className="body-small-unified" style={{ lineHeight: '1.2', color: '#000000', fontWeight: 600, fontSize: 'clamp(14px, 1.7vw, 16px)' }}>
                                 {stat.suffix}
                               </span>
                             )}
                           </div>
-                          <div className="body-small-unified text-tertiary">{stat.label}</div>
+                          <div className="body-small-unified" style={{ color: '#000000', fontWeight: 600 }}>{stat.label}</div>
                         </div>
                       ))}
-                    </div>
+                    </motion.div>
                   </CardBody>
+                  </div>
                 </Card>
               </motion.div>
             );

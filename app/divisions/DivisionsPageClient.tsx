@@ -14,7 +14,6 @@ import Button from '@/components/ui/Button';
 function AlbumGallery({ divisionId }: { divisionId: string }) {
   const [loadedImages, setLoadedImages] = useState<Map<number, string>>(new Map());
   const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const extensions = ['.jpg', '.jpeg', '.png', '.webp', '.JPG', '.JPEG', '.PNG'];
@@ -28,7 +27,6 @@ function AlbumGallery({ divisionId }: { divisionId: string }) {
     const ext = extensions[extIndex];
     const path = `/assets/Album/${divisionId}/${num}${ext}`;
     
-    // Create a test image to check if it exists
     const img = new window.Image();
     img.onload = () => {
       setLoadedImages(prev => new Map(prev).set(num, path));
@@ -39,7 +37,6 @@ function AlbumGallery({ divisionId }: { divisionId: string }) {
     img.src = path;
   }, [divisionId]);
 
-  // Try to load images on mount (up to 25 images)
   useEffect(() => {
     for (let i = 1; i <= 25; i++) {
       tryLoadImage(i);
@@ -48,355 +45,217 @@ function AlbumGallery({ divisionId }: { divisionId: string }) {
 
   const loadedImageArray = Array.from(loadedImages.entries()).sort((a, b) => a[0] - b[0]);
 
-  const openModal = useCallback((index: number) => {
-    setCurrentImageIndex(index);
-    setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
-  }, []);
-
-  const closeModal = useCallback(() => {
-    setIsModalOpen(false);
-    document.body.style.overflow = 'unset';
-  }, []);
-
   const goToPrevious = useCallback(() => {
     setCurrentImageIndex((prev) => {
-      const total = loadedImages.size;
-      return prev > 0 ? prev - 1 : total - 1;
+      const total = loadedImageArray.length;
+      if (total === 0) return 0;
+      return prev > 0 ? prev - 1 : total - 1; // Loop to last image
     });
-  }, [loadedImages.size]);
+  }, [loadedImageArray.length]);
 
   const goToNext = useCallback(() => {
     setCurrentImageIndex((prev) => {
-      const total = loadedImages.size;
-      return prev < total - 1 ? prev + 1 : 0;
+      const total = loadedImageArray.length;
+      if (total === 0) return 0;
+      return prev < total - 1 ? prev + 1 : 0; // Loop to first image
     });
-  }, [loadedImages.size]);
+  }, [loadedImageArray.length]);
+
+  // Auto-play slider (optional - can be removed if not needed)
+  useEffect(() => {
+    if (loadedImageArray.length <= 1) return;
+    
+    const interval = setInterval(() => {
+      goToNext();
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [loadedImageArray.length, goToNext]);
 
   // Handle keyboard navigation
   useEffect(() => {
-    if (!isModalOpen) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeModal();
       if (e.key === 'ArrowLeft') goToPrevious();
       if (e.key === 'ArrowRight') goToNext();
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isModalOpen, goToPrevious, goToNext, closeModal]);
+  }, [goToPrevious, goToNext]);
+
+  if (loadedImageArray.length === 0) {
+    return (
+      <p
+        style={{
+          fontFamily: 'var(--font-inter), Inter, sans-serif',
+          fontSize: 'clamp(14px, 2.2vw, 16px)',
+          lineHeight: 1.9,
+          color: '#666666',
+          textAlign: 'center',
+          padding: 'clamp(20px, 4vw, 40px)',
+          margin: 0
+        }}
+      >
+        No images available in the album.
+      </p>
+    );
+  }
 
   return (
     <div style={{ 
       width: '100%', 
       maxWidth: '100%',
+      position: 'relative',
       padding: 'clamp(8px, 2vw, 0px)',
       boxSizing: 'border-box'
     }}>
-      {loadedImageArray.length === 0 ? (
-        <p
-          style={{
-            fontFamily: 'var(--font-inter), Inter, sans-serif',
-            fontSize: 'clamp(14px, 2.2vw, 16px)',
-            lineHeight: 1.9,
-            color: '#666666',
-            textAlign: 'center',
-            padding: 'clamp(20px, 4vw, 40px)',
-            margin: 0
-          }}
-        >
-          No images available in the album.
-        </p>
-      ) : (
-        <div
-          style={{
-            width: '100%',
-            overflowX: 'auto',
-            overflowY: 'hidden',
-            boxSizing: 'border-box',
-            paddingBottom: 'clamp(8px, 2vw, 12px)',
-            // Custom scrollbar styling for Firefox
-            scrollbarWidth: 'thin',
-            scrollbarColor: '#01B2B2 rgba(229, 231, 235, 0.3)'
-          }}
-          className="album-scroll-container"
-        >
-          <style dangerouslySetInnerHTML={{__html: `
-            .album-scroll-container::-webkit-scrollbar {
-              height: clamp(8px, 1.5vw, 12px);
-            }
-            .album-scroll-container::-webkit-scrollbar-track {
-              background: rgba(229, 231, 235, 0.3);
-              border-radius: 10px;
-            }
-            .album-scroll-container::-webkit-scrollbar-thumb {
-              background: #01B2B2;
-              border-radius: 10px;
-            }
-            .album-scroll-container::-webkit-scrollbar-thumb:hover {
-              background: #019999;
-            }
-          `}} />
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateRows: 'repeat(2, 1fr)',
-              gridAutoFlow: 'column',
-              gap: 'clamp(16px, 3vw, 24px)',
-              width: 'max-content',
-              minWidth: '100%',
-              paddingRight: 'clamp(16px, 3vw, 24px)',
-              boxSizing: 'border-box'
-            }}
-          >
-            {loadedImageArray.map(([num, path], index) => (
-              <motion.div
-                key={num}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: num * 0.05 }}
-                style={{
-                  position: 'relative',
-                  width: 'clamp(200px, 25vw, 300px)',
-                  height: 'clamp(150px, 18.75vw, 225px)',
-                  aspectRatio: '4/3',
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  backgroundColor: '#f5f5f5',
-                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer',
-                  flexShrink: 0
-                }}
-                onClick={() => openModal(index)}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.15)';
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
-                <Image
-                  src={path}
-                  alt={`${divisionId} album image ${num}`}
-                  fill
-                  className="object-cover"
-                  style={{
-                    objectFit: 'cover',
-                    objectPosition: 'center'
-                  }}
-                  sizes="(max-width: 768px) 200px, 300px"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Image Modal/Slider */}
-      <AnimatePresence>
-        {isModalOpen && loadedImageArray.length > 0 && (
+      {/* Slider Container */}
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          aspectRatio: '16/9',
+          maxHeight: 'clamp(400px, 50vw, 600px)',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          backgroundColor: '#f5f5f5',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        {/* Image Display */}
+        <AnimatePresence mode="wait">
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 9999,
-            backgroundColor: 'rgba(0, 0, 0, 0.95)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 'clamp(20px, 4vw, 40px)',
-            boxSizing: 'border-box'
-          }}
-          onClick={closeModal}
-        >
-          {/* Close Button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              closeModal();
-            }}
+            key={currentImageIndex}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             style={{
               position: 'absolute',
-              top: 'clamp(20px, 4vw, 30px)',
-              right: 'clamp(20px, 4vw, 30px)',
-              width: 'clamp(40px, 6vw, 50px)',
-              height: 'clamp(40px, 6vw, 50px)',
-              borderRadius: '50%',
-              border: '2px solid rgba(255, 255, 255, 0.3)',
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',
-              color: 'white',
-              fontSize: 'clamp(24px, 4vw, 32px)',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'all 0.3s ease',
-              zIndex: 10000
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.5)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+              inset: 0,
+              width: '100%',
+              height: '100%'
             }}
           >
-            ×
-          </button>
-
-          {/* Previous Button */}
-          {loadedImageArray.length > 1 && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                goToPrevious();
+            <Image
+              src={loadedImageArray[currentImageIndex][1]}
+              alt={`${divisionId} album image ${loadedImageArray[currentImageIndex][0]}`}
+              fill
+              className="object-cover"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center'
               }}
+              sizes="100vw"
+              priority={currentImageIndex === 0}
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Navigation Buttons */}
+        {loadedImageArray.length > 1 && (
+          <>
+            {/* Previous Button */}
+            <button
+              onClick={goToPrevious}
               style={{
                 position: 'absolute',
-                left: 'clamp(20px, 4vw, 30px)',
+                left: 'clamp(12px, 2vw, 20px)',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                width: 'clamp(50px, 8vw, 60px)',
-                height: 'clamp(50px, 8vw, 60px)',
+                width: 'clamp(44px, 6vw, 56px)',
+                height: 'clamp(44px, 6vw, 56px)',
                 borderRadius: '50%',
-                border: '2px solid rgba(255, 255, 255, 0.3)',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                border: '2px solid rgba(255, 255, 255, 0.9)',
+                backgroundColor: 'rgba(1, 178, 178, 0.85)',
                 color: 'white',
-                fontSize: 'clamp(24px, 4vw, 32px)',
+                fontSize: 'clamp(20px, 3vw, 28px)',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 transition: 'all 0.3s ease',
-                zIndex: 10000
+                zIndex: 10,
+                backdropFilter: 'blur(8px)',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                e.currentTarget.style.backgroundColor = 'rgba(1, 178, 178, 1)';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+                e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.2)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                e.currentTarget.style.backgroundColor = 'rgba(1, 178, 178, 0.85)';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
               }}
             >
               ‹
             </button>
-          )}
 
-          {/* Next Button */}
-          {loadedImageArray.length > 1 && (
+            {/* Next Button */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                goToNext();
-              }}
+              onClick={goToNext}
               style={{
                 position: 'absolute',
-                right: 'clamp(20px, 4vw, 30px)',
+                right: 'clamp(12px, 2vw, 20px)',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                width: 'clamp(50px, 8vw, 60px)',
-                height: 'clamp(50px, 8vw, 60px)',
+                width: 'clamp(44px, 6vw, 56px)',
+                height: 'clamp(44px, 6vw, 56px)',
                 borderRadius: '50%',
-                border: '2px solid rgba(255, 255, 255, 0.3)',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                border: '2px solid rgba(255, 255, 255, 0.9)',
+                backgroundColor: 'rgba(1, 178, 178, 0.85)',
                 color: 'white',
-                fontSize: 'clamp(24px, 4vw, 32px)',
+                fontSize: 'clamp(20px, 3vw, 28px)',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 transition: 'all 0.3s ease',
-                zIndex: 10000
+                zIndex: 10,
+                backdropFilter: 'blur(8px)',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                e.currentTarget.style.backgroundColor = 'rgba(1, 178, 178, 1)';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
+                e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.2)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                e.currentTarget.style.backgroundColor = 'rgba(1, 178, 178, 0.85)';
+                e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
               }}
             >
               ›
             </button>
-          )}
+          </>
+        )}
 
-          {/* Image Container */}
+        {/* Image Counter */}
+        {loadedImageArray.length > 1 && (
           <div
-            onClick={(e) => e.stopPropagation()}
             style={{
-              position: 'relative',
-              width: '100%',
-              height: '100%',
-              maxWidth: '90vw',
-              maxHeight: '90vh',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
+              position: 'absolute',
+              bottom: 'clamp(12px, 2vw, 20px)',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              backgroundColor: 'rgba(0, 0, 0, 0.6)',
+              color: 'white',
+              padding: 'clamp(6px, 1.5vw, 10px) clamp(12px, 2.5vw, 18px)',
+              borderRadius: '20px',
+              fontSize: 'clamp(12px, 2vw, 14px)',
+              fontFamily: 'var(--font-inter), Inter, sans-serif',
+              zIndex: 10,
+              backdropFilter: 'blur(8px)',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
             }}
           >
-            <motion.div
-              key={currentImageIndex}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                position: 'relative',
-                width: '100%',
-                height: '100%',
-                maxWidth: '100%',
-                maxHeight: '100%'
-              }}
-            >
-              <Image
-                src={loadedImageArray[currentImageIndex][1]}
-                alt={`${divisionId} album image ${loadedImageArray[currentImageIndex][0]}`}
-                fill
-                className="object-contain"
-                style={{
-                  objectFit: 'contain',
-                  objectPosition: 'center'
-                }}
-                sizes="90vw"
-                priority
-              />
-            </motion.div>
+            {currentImageIndex + 1} / {loadedImageArray.length}
           </div>
-
-          {/* Image Counter */}
-          {loadedImageArray.length > 1 && (
-            <div
-              style={{
-                position: 'absolute',
-                bottom: 'clamp(20px, 4vw, 30px)',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                color: 'white',
-                padding: 'clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px)',
-                borderRadius: '20px',
-                fontSize: 'clamp(14px, 2.5vw, 16px)',
-                fontFamily: 'var(--font-inter), Inter, sans-serif',
-                zIndex: 10000
-              }}
-            >
-              {currentImageIndex + 1} / {loadedImageArray.length}
-            </div>
-          )}
-          </motion.div>
         )}
-      </AnimatePresence>
+      </div>
     </div>
   );
 }
@@ -637,39 +496,6 @@ export default function DivisionsPageClient() {
                       )}
                     </motion.div>
 
-                    {/* Tagline Only - Smaller text size */}
-                    <div style={{ 
-                      width: '100%', 
-                      maxWidth: '100%',
-                      paddingLeft: 'clamp(20px, 4vw, 0px)', 
-                      paddingRight: 'clamp(20px, 4vw, 0px)',
-                      paddingTop: 0,
-                      boxSizing: 'border-box',
-                      marginTop: 0
-                    }}>
-                      <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        style={{
-                          fontFamily: 'var(--font-inter), Inter, sans-serif',
-                          fontSize: 'clamp(12px, 2.2vw, 16px)',
-                          fontStyle: 'italic',
-                          color: '#01B2B2',
-                          fontWeight: 500,
-                          lineHeight: 1.6,
-                          wordWrap: 'break-word',
-                          overflowWrap: 'break-word',
-                          hyphens: 'auto',
-                          margin: 0,
-                          padding: 0,
-                          textAlign: 'center'
-                        }}
-                      >
-                        {division.tagline}
-                      </motion.p>
-                    </div>
                   </motion.div>
 
                   {/* Tabs Content */}

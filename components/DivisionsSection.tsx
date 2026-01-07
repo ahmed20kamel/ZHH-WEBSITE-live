@@ -372,24 +372,6 @@ export default function DivisionsSection() {
                       />
                     </motion.div>
 
-                    {/* Title with consistent spacing - Centered */}
-                    <motion.h3 
-                      className="h3-unified text-teal rhythm-title-content mb-4 text-center" 
-                      style={{ 
-                        lineHeight: '1.3',
-                        fontSize: 'clamp(20px, 2.5vw, 24px)',
-                        fontWeight: 700,
-                        color: '#000000',
-                        minHeight: 'clamp(35px, 4vw, 45px)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginBottom: 'clamp(16px, 2vw, 20px)'
-                      }}
-                    >
-                      {division.subtitle}
-                    </motion.h3>
-
                     {/* Description with fixed height for alignment - Centered */}
                     <motion.div
                       className="flex-grow mb-5 text-center"

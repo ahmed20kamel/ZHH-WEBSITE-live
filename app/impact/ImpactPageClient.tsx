@@ -281,11 +281,46 @@ export default function ImpactPageClient() {
                   className="h-full"
                   style={{ width: '100%', maxWidth: '100%' }}
                 >
-                  <Card className="h-full flex flex-col" style={{ width: '100%', maxWidth: '100%', padding: 'clamp(24px, 4vw, 32px)' }}>
-                    <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
+                  <Card className="h-full flex flex-col relative overflow-hidden group" style={{ width: '100%', maxWidth: '100%', padding: 0, position: 'relative', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', border: '1px solid rgba(229, 231, 235, 0.5)', transition: 'all 0.3s ease' }}>
+                    {/* Background Image with Blur and Overlay */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        zIndex: 0,
+                        overflow: 'hidden',
+                        borderRadius: '16px'
+                      }}
+                      className="group-hover:scale-105 transition-transform duration-500"
+                    >
+                      <Image
+                        src={`/assets/Our Impact/${pillar.title === 'Environment' ? 'Environmental Stewardship' : pillar.title === 'Community' ? 'Community Development' : 'Responsible Gold'}.jpg`}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        style={{
+                          filter: 'blur(4px)',
+                          opacity: 0.4,
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                          transform: 'scale(1.1)'
+                        }}
+                      />
+                      <div
+                        style={{
+                          position: 'absolute',
+                          inset: 0,
+                          backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                          zIndex: 1
+                        }}
+                      />
+                    </div>
+
+                    <div style={{ padding: 'clamp(24px, 4vw, 32px)', display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 2 }}>
+                    <CardBody maxWidth="max-w-none" className="flex flex-col h-full relative z-10">
                       {/* Icon → Title → Divider → Content (strict order) */}
                       
-                      {/* Icon with Visual Anchor - Unified Style */}
+                      {/* Icon with Visual Anchor - Enhanced Style */}
                       <motion.div 
                         className="mb-6 md:mb-8 flex flex-col items-center"
                         initial={{ scale: 0, rotate: -180 }}
@@ -294,13 +329,15 @@ export default function ImpactPageClient() {
                         transition={{ delay: index * 0.2, type: 'spring', stiffness: 200 }}
                       >
                         <motion.div 
-                          className="rounded-lg flex items-center justify-center shadow-sm transition-all duration-300"
+                          className="rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 relative z-10"
                           style={{ 
-                            backgroundColor: '#E0F2F1',
+                            backgroundColor: 'rgba(224, 242, 241, 0.95)',
+                            backdropFilter: 'blur(12px)',
+                            border: '1px solid rgba(13, 148, 136, 0.2)',
                             width: 'clamp(56px, 8vw, 64px)',
                             height: 'clamp(56px, 8vw, 64px)'
                           }}
-                          whileHover={{ rotate: 5, scale: 1.05 }}
+                          whileHover={{ rotate: 5, scale: 1.1, boxShadow: '0 8px 24px rgba(13, 148, 136, 0.3)' }}
                         >
                           <Icon 
                             className="w-7 h-7 md:w-8 md:h-8"
@@ -324,8 +361,8 @@ export default function ImpactPageClient() {
                           className="h3-unified text-primary"
                           style={{
                             fontFamily: 'var(--font-inter), Inter, sans-serif',
-                            fontWeight: 600,
-                            color: 'var(--color-text-primary)',
+                            fontWeight: 700,
+                            color: '#000000',
                             letterSpacing: '-0.01em',
                             lineHeight: 1.3,
                             fontSize: 'clamp(18px, 4vw, 22px)',
@@ -370,6 +407,7 @@ export default function ImpactPageClient() {
                         </Button>
                       </div>
                     </CardBody>
+                    </div>
                   </Card>
                 </motion.div>
               );

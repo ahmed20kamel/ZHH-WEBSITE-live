@@ -437,32 +437,60 @@ export default function AboutZHHPageClient() {
             
             <motion.div
               variants={fadeInUp}
-              className="relative overflow-hidden rounded-2xl"
+              className="relative overflow-hidden rounded-2xl group"
               style={{
                 background: 'rgba(255, 255, 255, 0.8)',
                 padding: 'clamp(32px, 4.5vw, 56px)',
                 border: '1px solid rgba(1, 178, 178, 0.1)',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)'
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
+                position: 'relative'
               }}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.3 }}
             >
-              {/* Decorative orbs */}
+              {/* Background Image */}
               <div
-                className="absolute -top-16 -left-10 w-48 h-48 rounded-full"
-                style={{ background: 'radial-gradient(circle, rgba(1,178,178,0.18), transparent 55%)' }}
-              />
-              <div
-                className="absolute -bottom-20 -right-12 w-56 h-56 rounded-full"
-                style={{ background: 'radial-gradient(circle, rgba(3,45,70,0.12), transparent 60%)' }}
-              />
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  zIndex: 0,
+                  overflow: 'hidden',
+                  borderRadius: '16px'
+                }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              >
+                <Image
+                  src="/assets/About ZHH Group Holding/Company Overview.jpg"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  style={{
+                    filter: 'blur(2px)',
+                    opacity: 0.35,
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    transform: 'scale(1.1)'
+                  }}
+                />
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                    zIndex: 1
+                  }}
+                />
+              </div>
               
-              <div className="relative text-center max-w-4xl mx-auto space-y-4">
+              <div className="relative text-center max-w-4xl mx-auto space-y-4" style={{ position: 'relative', zIndex: 2 }}>
                 <p
                   className="body-large-unified text-secondary-color"
                   style={{
                     fontFamily: 'var(--font-inter), Inter, sans-serif',
                     fontSize: 'clamp(15px, 1.9vw, 18px)',
                     lineHeight: 1.9,
-                    color: '#2F3A45'
+                    color: '#000000',
+                    fontWeight: 600
                   }}
             >
               ZHH Group Holding is a leading Emirati holding company established in 2003, with a diversified portfolio spanning construction, real estate, global trading, and precious metals. Headquartered in Abu Dhabi, we operate across multiple continents, building lasting value through strategic investments and operational excellence.
@@ -542,25 +570,43 @@ export default function AboutZHHPageClient() {
                 <motion.div
                   key={division.name}
                   variants={fadeInUp}
-                  className="card-unified card-hover-lift"
-                  style={{
-                    padding: 'clamp(24px, 3vw, 32px)'
-                  }}
+                  custom={index}
+                  className="h-full"
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <div className="flex flex-col items-center" style={{ marginBottom: 'clamp(20px, 2.5vw, 28px)' }}>
-                    {/* Image Background */}
-                    <div 
-                  style={{
-                        height: 'clamp(80px, 10vw, 120px)',
-                        width: '100%',
-                        position: 'relative',
+                  <div
+                    className="card-unified h-full relative overflow-hidden group"
+                    style={{
+                      padding: 'clamp(24px, 3vw, 32px)',
+                      borderRadius: '16px',
+                      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                      border: '1px solid rgba(229, 231, 235, 0.5)',
+                      transition: 'all 0.3s ease',
+                      position: 'relative'
+                    }}
+                  >
+                    {/* Hover Border Effect */}
+                    <motion.div
+                      className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"
+                      style={{ zIndex: 3 }}
+                      whileHover={{
+                        borderColor: 'rgba(13, 148, 136, 0.3)',
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+
+                    {/* Background Image with Blur and Overlay - Full Card Background */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        zIndex: 0,
                         overflow: 'hidden',
-                        borderRadius: '12px',
-                        marginBottom: 'clamp(16px, 2vw, 24px)',
-                        backgroundColor: '#F5F5F5'
-                  }}
+                        borderRadius: '16px'
+                      }}
+                      className="group-hover:scale-105 transition-transform duration-500"
                     >
-                      {/* Background Image */}
                       {division.name === 'ZHH Construction' && (
                         <Image
                           src="/assets/hero/card/Construction.jpg"
@@ -568,9 +614,11 @@ export default function AboutZHHPageClient() {
                           fill
                           className="object-cover"
                           style={{
-                            filter: 'blur(3px)',
+                            filter: 'blur(2px)',
+                            opacity: 0.35,
                             objectFit: 'cover',
-                            objectPosition: 'center'
+                            objectPosition: 'center',
+                            transform: 'scale(1.1)'
                           }}
                         />
                       )}
@@ -581,9 +629,11 @@ export default function AboutZHHPageClient() {
                           fill
                           className="object-cover"
                           style={{
-                            filter: 'blur(3px)',
+                            filter: 'blur(2px)',
+                            opacity: 0.35,
                             objectFit: 'cover',
-                            objectPosition: 'center'
+                            objectPosition: 'center',
+                            transform: 'scale(1.1)'
                           }}
                         />
                       )}
@@ -594,9 +644,11 @@ export default function AboutZHHPageClient() {
                           fill
                           className="object-cover"
                           style={{
-                            filter: 'blur(3px)',
+                            filter: 'blur(2px)',
+                            opacity: 0.35,
                             objectFit: 'cover',
-                            objectPosition: 'center'
+                            objectPosition: 'center',
+                            transform: 'scale(1.1)'
                           }}
                         />
                       )}
@@ -607,75 +659,120 @@ export default function AboutZHHPageClient() {
                           fill
                           className="object-cover"
                           style={{
-                            filter: 'blur(3px)',
+                            filter: 'blur(2px)',
+                            opacity: 0.35,
                             objectFit: 'cover',
-                            objectPosition: 'center'
+                            objectPosition: 'center',
+                            transform: 'scale(1.1)'
                           }}
                         />
                       )}
-                      {/* Overlay for better text visibility - Lighter background */}
-                      <div 
+                      {/* White Overlay - Reduced for better image visibility */}
+                      <div
                         style={{
                           position: 'absolute',
                           inset: 0,
-                          background: 'linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%)',
+                          backgroundColor: 'rgba(255, 255, 255, 0.25)',
                           zIndex: 1
                         }}
                       />
-                      {/* Logo on top of image */}
-                      <div 
-                        style={{
-                          position: 'relative',
-                          zIndex: 2,
-                          width: '100%',
-                          height: '100%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          padding: 'clamp(10px, 1.5vw, 15px)'
-                  }}
-                >
-                        <img
-                          src={division.logo}
-                          alt={`${division.name} Logo`}
-                          className="h-full w-auto object-contain"
-                          style={{ 
-                            maxWidth: 'min(100%, 250px)',
-                            height: 'auto',
-                            maxHeight: '100%'
-                          }}
-                        />
-                      </div>
                     </div>
-                    {/* Title */}
-                    <h3
-                      style={{
-                        fontFamily: 'var(--font-inter), Inter, sans-serif',
-                        fontSize: 'clamp(20px, 2.2vw, 24px)',
-                        fontWeight: 600,
-                        color: '#032D46',
-                        margin: 0,
-                        marginBottom: 'clamp(12px, 1.5vw, 16px)',
-                        textAlign: 'center',
-                        lineHeight: '1.3'
-                      }}
-                    >
-                      {division.name}
-                    </h3>
+
+                    <div style={{ position: 'relative', zIndex: 2 }}>
+                      <div className="flex flex-col items-center" style={{ marginBottom: 'clamp(20px, 2.5vw, 28px)' }}>
+                        {/* Logo Container with Enhanced Animation */}
+                        <motion.div
+                          style={{
+                            height: 'clamp(80px, 10vw, 120px)',
+                            width: '100%',
+                            position: 'relative',
+                            overflow: 'hidden',
+                            borderRadius: '12px',
+                            marginBottom: 'clamp(16px, 2vw, 24px)',
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            backdropFilter: 'blur(12px)',
+                            border: '1px solid rgba(13, 148, 136, 0.1)',
+                            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
+                          }}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          whileHover={{
+                            scale: 1.05,
+                            boxShadow: '0 8px 24px rgba(13, 148, 136, 0.2)'
+                          }}
+                        >
+                          <div
+                            style={{
+                              position: 'relative',
+                              zIndex: 2,
+                              width: '100%',
+                              height: '100%',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              padding: 'clamp(10px, 1.5vw, 15px)'
+                            }}
+                          >
+                            <motion.img
+                              src={division.logo}
+                              alt={`${division.name} Logo`}
+                              className="h-full w-auto object-contain"
+                              style={{
+                                maxWidth: 'min(100%, 250px)',
+                                height: 'auto',
+                                maxHeight: '100%'
+                              }}
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.3 }}
+                            />
+                          </div>
+                        </motion.div>
+                        
+                        {/* Title with Enhanced Styling */}
+                        <motion.h3
+                          style={{
+                            fontFamily: 'var(--font-inter), Inter, sans-serif',
+                            fontSize: 'clamp(20px, 2.2vw, 24px)',
+                            fontWeight: 700,
+                            color: '#000000',
+                            margin: 0,
+                            marginBottom: 'clamp(12px, 1.5vw, 16px)',
+                            textAlign: 'center',
+                            lineHeight: '1.3',
+                            letterSpacing: '-0.01em'
+                          }}
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                        >
+                          {division.name}
+                        </motion.h3>
+                      </div>
+                      
+                      {/* Description with Enhanced Styling */}
+                      <motion.p
+                        style={{
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
+                          fontSize: 'clamp(15px, 1.7vw, 17px)',
+                          lineHeight: 1.7,
+                          color: '#000000',
+                          margin: 0,
+                          textAlign: 'center',
+                          marginTop: 'clamp(8px, 1vw, 12px)',
+                          fontWeight: 600
+                        }}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                      >
+                        {division.description}
+                      </motion.p>
+                    </div>
                   </div>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-inter), Inter, sans-serif',
-                      fontSize: 'clamp(15px, 1.7vw, 17px)',
-                      lineHeight: 1.7,
-                      color: '#333333',
-                      margin: 0,
-                      textAlign: 'center',
-                      marginTop: 'clamp(8px, 1vw, 12px)'
-                    }}
-                  >
-                    {division.description}
-                  </p>
                 </motion.div>
               ))}
             </div>
@@ -753,7 +850,7 @@ export default function AboutZHHPageClient() {
             
             <motion.div
               variants={fadeInUp}
-              className="relative"
+              className="relative overflow-hidden group"
               style={{
                 maxWidth: '900px',
                 margin: '0 auto',
@@ -761,18 +858,58 @@ export default function AboutZHHPageClient() {
                 background: 'rgba(255, 255, 255, 0.8)',
                 borderRadius: '16px',
                 boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
-                border: '1px solid rgba(1, 178, 178, 0.1)'
+                border: '1px solid rgba(1, 178, 178, 0.1)',
+                position: 'relative'
               }}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.3 }}
             >
+              {/* Background Image */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  zIndex: 0,
+                  overflow: 'hidden',
+                  borderRadius: '16px'
+                }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              >
+                <Image
+                  src="/assets/About ZHH Group Holding/Our Commitment.jpg"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  style={{
+                    filter: 'blur(2px)',
+                    opacity: 0.35,
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    transform: 'scale(1.1)'
+                  }}
+                />
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                    zIndex: 1
+                  }}
+                />
+              </div>
+              
               <div
                 style={{
                   fontFamily: 'var(--font-inter), Inter, sans-serif',
                   fontSize: 'clamp(15px, 1.7vw, 17px)',
                   lineHeight: 1.8,
-                  color: '#333333',
+                  color: '#000000',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: 'clamp(20px, 2.5vw, 24px)'
+                  gap: 'clamp(20px, 2.5vw, 24px)',
+                  position: 'relative',
+                  zIndex: 2,
+                  fontWeight: 600
                 }}
               >
                 <p>
@@ -861,7 +998,7 @@ export default function AboutZHHPageClient() {
             
             <motion.div
               variants={fadeInUp}
-              className="relative"
+              className="relative overflow-hidden group"
               style={{
                 maxWidth: '900px',
                 margin: '0 auto',
@@ -869,17 +1006,57 @@ export default function AboutZHHPageClient() {
                 background: 'rgba(255, 255, 255, 0.8)',
                 borderRadius: '16px',
                 boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
-                border: '1px solid rgba(1, 178, 178, 0.1)'
+                border: '1px solid rgba(1, 178, 178, 0.1)',
+                position: 'relative'
               }}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.3 }}
             >
+              {/* Background Image */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  zIndex: 0,
+                  overflow: 'hidden',
+                  borderRadius: '16px'
+                }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              >
+                <Image
+                  src="/assets/About ZHH Group Holding/Our Vision.jpg"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  style={{
+                    filter: 'blur(2px)',
+                    opacity: 0.35,
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    transform: 'scale(1.1)'
+                  }}
+                />
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                    zIndex: 1
+                  }}
+                />
+              </div>
+              
               <p
                 className="body-large-unified text-secondary text-center"
                 style={{
                   fontFamily: 'var(--font-inter), Inter, sans-serif',
                   fontSize: 'clamp(16px, 1.9vw, 19px)',
                   lineHeight: 1.8,
-                  color: 'var(--color-text-secondary)',
-                  margin: 0
+                  color: '#000000',
+                  margin: 0,
+                  position: 'relative',
+                  zIndex: 2,
+                  fontWeight: 600
                 }}
               >
                 To be a leading Emirati holding group that delivers value-driven excellence in every sector we operate, contributing to economic prosperity and global trade connectivity, while strengthening the UAE's global economic presence.
@@ -961,7 +1138,7 @@ export default function AboutZHHPageClient() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
               <motion.div
                 variants={fadeInUp}
-                className="relative"
+                className="relative overflow-hidden group"
                 style={{
                   padding: 'clamp(32px, 4vw, 48px)',
                   background: 'rgba(255, 255, 255, 0.8)',
@@ -971,8 +1148,45 @@ export default function AboutZHHPageClient() {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 'clamp(17px, 2.1vw, 24px)',
+                  position: 'relative'
                 }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3 }}
               >
+                {/* Background Image */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 0,
+                    overflow: 'hidden',
+                    borderRadius: '16px'
+                  }}
+                  className="group-hover:scale-105 transition-transform duration-500"
+                >
+                  <Image
+                    src="/assets/About ZHH Group Holding/Our Mission1.jpg"
+                    alt=""
+                    fill
+                    className="object-cover"
+                    style={{
+                      filter: 'blur(2px)',
+                      opacity: 0.35,
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      transform: 'scale(1.1)'
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                      zIndex: 1
+                    }}
+                  />
+                </div>
+                
                 <div
                   style={{
                     width: 'clamp(60px, 7vw, 80px)',
@@ -983,7 +1197,9 @@ export default function AboutZHHPageClient() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginBottom: 'clamp(16px, 2vw, 24px)',
-                    boxShadow: '0 4px 12px rgba(1, 178, 178, 0.2)'
+                    boxShadow: '0 4px 12px rgba(1, 178, 178, 0.2)',
+                    position: 'relative',
+                    zIndex: 2
                   }}
                 >
                   <svg width="clamp(32px, 4vw, 40px)" height="clamp(32px, 4vw, 40px)" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -995,7 +1211,10 @@ export default function AboutZHHPageClient() {
                     fontFamily: 'var(--font-inter), Inter, sans-serif',
                     fontSize: 'clamp(17px, 2vw, 21px)',
                     lineHeight: 1.8,
-                    color: '#333333',
+                    color: '#000000',
+                    position: 'relative',
+                    zIndex: 2,
+                    fontWeight: 600
                   }}
                 >
                   We drive success through strategic investments, operational excellence, and innovative solutions across construction, real estate, global trade, and precious metals — while maintaining the highest ethical, compliance, and governance standards.
@@ -1004,7 +1223,7 @@ export default function AboutZHHPageClient() {
 
               <motion.div
                 variants={fadeInUp}
-                className="relative"
+                className="relative overflow-hidden group"
                 style={{
                   padding: 'clamp(32px, 4vw, 48px)',
                   background: 'rgba(255, 255, 255, 0.8)',
@@ -1014,8 +1233,45 @@ export default function AboutZHHPageClient() {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 'clamp(17px, 2.1vw, 24px)',
+                  position: 'relative'
                 }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3 }}
               >
+                {/* Background Image */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 0,
+                    overflow: 'hidden',
+                    borderRadius: '16px'
+                  }}
+                  className="group-hover:scale-105 transition-transform duration-500"
+                >
+                  <Image
+                    src="/assets/About ZHH Group Holding/Our Mission2.jpg"
+                    alt=""
+                    fill
+                    className="object-cover"
+                    style={{
+                      filter: 'blur(2px)',
+                      opacity: 0.35,
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      transform: 'scale(1.1)'
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                      zIndex: 1
+                    }}
+                  />
+                </div>
+                
                 <div
                   style={{
                     width: 'clamp(60px, 7vw, 80px)',
@@ -1026,7 +1282,9 @@ export default function AboutZHHPageClient() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginBottom: 'clamp(16px, 2vw, 24px)',
-                    boxShadow: '0 4px 12px rgba(3, 45, 70, 0.2)'
+                    boxShadow: '0 4px 12px rgba(3, 45, 70, 0.2)',
+                    position: 'relative',
+                    zIndex: 2
                   }}
                 >
                   <svg width="clamp(32px, 4vw, 40px)" height="clamp(32px, 4vw, 40px)" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -1038,7 +1296,10 @@ export default function AboutZHHPageClient() {
                     fontFamily: 'var(--font-inter), Inter, sans-serif',
                     fontSize: 'clamp(17px, 2vw, 21px)',
                     lineHeight: 1.8,
-                    color: '#333333',
+                    color: '#000000',
+                    position: 'relative',
+                    zIndex: 2,
+                    fontWeight: 600
                   }}
                 >
                   We empower our subsidiaries to lead in their markets by providing strong corporate governance, advanced technologies, and collaborative leadership — expanding our footprint, strengthening partnerships, and maximizing long-term stakeholder value.
@@ -1156,64 +1417,124 @@ export default function AboutZHHPageClient() {
                     </svg>
                   )
                 },
-              ].map((value, index) => (
-                <motion.div
-                  key={value.title}
-                  variants={fadeInUp}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card 
-                    className="h-full p-8 text-center relative" 
-                    hover={true}
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.9)',
-                      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06)',
-                      border: '1px solid rgba(1, 178, 178, 0.1)',
-                      transition: 'all 0.3s ease'
-                    }}
+              ].map((value, index) => {
+                // Map value titles to image filenames
+                const imageMap: { [key: string]: string } = {
+                  'Integrity': 'Integrity.jpg',
+                  'Excellence': 'Excellence.jpeg',
+                  'National Pride': 'National Pride.jpg',
+                  'Sustainability': 'Sustainability.jpg',
+                  'Partnership': 'Partnership.jpg'
+                };
+                
+                const imageName = imageMap[value.title];
+                
+                return (
+                  <motion.div
+                    key={value.title}
+                    variants={fadeInUp}
+                    transition={{ delay: index * 0.1 }}
+                    className="h-full"
+                    whileHover={{ y: -8 }}
                   >
-                    <motion.div
-                      whileHover={{ scale: 1.05, rotate: 5 }}
-                      transition={{ type: 'spring', stiffness: 300 }}
+                    <Card 
+                      className="h-full p-8 text-center relative overflow-hidden group" 
+                      hover={true}
                       style={{
-                        width: 'clamp(70px, 8vw, 90px)',
-                        height: 'clamp(70px, 8vw, 90px)',
-                        borderRadius: '16px',
-                        background: 'linear-gradient(135deg, #01B2B2 0%, #00A0A0 100%)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        margin: 'clamp(12px, 1.5vw, 18px) auto clamp(24px, 3vw, 32px)',
-                        color: '#FFFFFF',
-                        boxShadow: '0 4px 12px rgba(1, 178, 178, 0.25)'
+                        background: 'rgba(255, 255, 255, 0.9)',
+                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                        border: '1px solid rgba(1, 178, 178, 0.1)',
+                        transition: 'all 0.3s ease',
+                        position: 'relative',
+                        borderRadius: '16px'
                       }}
                     >
-                      {value.icon}
-                    </motion.div>
-                    <h3
-                      style={{
-                        fontFamily: 'var(--font-inter), Inter, sans-serif',
-                        fontSize: 'clamp(20px, 2.2vw, 24px)',
-                        fontWeight: 600,
-                        color: '#032D46',
-                        marginBottom: 'clamp(10px, 1.3vw, 14px)',
-                      }}
-                    >
-                      {value.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: 'var(--font-inter), Inter, sans-serif',
-                        fontSize: 'clamp(14px, 1.5vw, 15px)',
-                        lineHeight: 1.7,
-                        color: '#666666',
-                      }}
-                    >
-                      {value.desc}
-                    </p>
-                  </Card>
-                </motion.div>
-              ))}
+                      {/* Background Image */}
+                      {imageName && (
+                        <div
+                          style={{
+                            position: 'absolute',
+                            inset: 0,
+                            zIndex: 0,
+                            overflow: 'hidden',
+                            borderRadius: '16px'
+                          }}
+                          className="group-hover:scale-105 transition-transform duration-500"
+                        >
+                          <Image
+                            src={`/assets/About ZHH Group Holding/${imageName}`}
+                            alt=""
+                            fill
+                            className="object-cover"
+                            style={{
+                              filter: 'blur(2px)',
+                              opacity: 0.35,
+                              objectFit: 'cover',
+                              objectPosition: 'center',
+                              transform: 'scale(1.1)'
+                            }}
+                          />
+                          <div
+                            style={{
+                              position: 'absolute',
+                              inset: 0,
+                              backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                              zIndex: 1
+                            }}
+                          />
+                        </div>
+                      )}
+                      
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                        style={{
+                          width: 'clamp(70px, 8vw, 90px)',
+                          height: 'clamp(70px, 8vw, 90px)',
+                          borderRadius: '16px',
+                          background: 'linear-gradient(135deg, #01B2B2 0%, #00A0A0 100%)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          margin: 'clamp(12px, 1.5vw, 18px) auto clamp(24px, 3vw, 32px)',
+                          color: '#FFFFFF',
+                          boxShadow: '0 4px 12px rgba(1, 178, 178, 0.25)',
+                          position: 'relative',
+                          zIndex: 2
+                        }}
+                      >
+                        {value.icon}
+                      </motion.div>
+                      <h3
+                        style={{
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
+                          fontSize: 'clamp(20px, 2.2vw, 24px)',
+                          fontWeight: 700,
+                          color: '#000000',
+                          marginBottom: 'clamp(10px, 1.3vw, 14px)',
+                          position: 'relative',
+                          zIndex: 2
+                        }}
+                      >
+                        {value.title}
+                      </h3>
+                      <p
+                        style={{
+                          fontFamily: 'var(--font-inter), Inter, sans-serif',
+                          fontSize: 'clamp(14px, 1.5vw, 15px)',
+                          lineHeight: 1.7,
+                          color: '#000000',
+                          fontWeight: 600,
+                          position: 'relative',
+                          zIndex: 2
+                        }}
+                      >
+                        {value.desc}
+                      </p>
+                    </Card>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </div>
