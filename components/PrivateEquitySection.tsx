@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 import { fadeInUp, staggerContainer, cardVariants } from '@/lib/animations';
 import { Target, Building2, Globe, Award, BarChart3, Shield, Clock, MapPin, TrendingUp } from 'lucide-react';
 import Card from '@/components/ui/Card';
@@ -168,44 +169,145 @@ export default function PrivateEquitySection() {
             variants={cardVariants}
             custom={0}
             className="h-full"
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
-            <Card className="h-full flex flex-col">
-              <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
-                {/* Icon - Unified Style */}
-                <div 
-                  className="w-14 h-14 rounded-lg flex items-center justify-center mb-6 shadow-sm"
-                  style={{ backgroundColor: '#E0F2F1' }}
+            <Card className="h-full flex flex-col relative overflow-hidden group" style={{ padding: 0, position: 'relative', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', border: '1px solid rgba(229, 231, 235, 0.5)', transition: 'all 0.3s ease' }}>
+              {/* Hover Border Effect */}
+              <motion.div
+                className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"
+                style={{ zIndex: 3 }}
+                whileHover={{
+                  borderColor: 'rgba(13, 148, 136, 0.3)',
+                }}
+                transition={{ duration: 0.3 }}
+              />
+              
+              {/* Background Image with Blur and Overlay */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  zIndex: 0,
+                  overflow: 'hidden',
+                  borderRadius: '16px'
+                }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              >
+                <Image
+                  src="/assets/Private Equity/Private Equity Overview.jpg"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  style={{
+                    filter: 'blur(4px)',
+                    opacity: 0.4,
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    transform: 'scale(1.1)'
+                  }}
+                />
+                {/* White Overlay - Reduced for better image visibility */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    zIndex: 1
+                  }}
+                />
+              </div>
+
+              <div style={{ padding: 'clamp(28px, 3.5vw, 36px)', display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 10 }}>
+              <CardBody maxWidth="max-w-none" className="flex flex-col h-full relative z-10">
+                {/* Icon - Enhanced with Animation */}
+                <motion.div 
+                  className="w-16 h-16 rounded-xl flex items-center justify-center mb-5 shadow-lg relative z-10"
+                  style={{ 
+                    backgroundColor: 'rgba(224, 242, 241, 0.95)', 
+                    backdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(13, 148, 136, 0.2)'
+                  }}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: 5,
+                    boxShadow: '0 8px 24px rgba(13, 148, 136, 0.3)'
+                  }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <BarChart3 className="w-7 h-7" style={{ color: '#0D9488' }} />
-                </div>
+                  <BarChart3 className="w-8 h-8" style={{ color: '#0D9488' }} />
+                </motion.div>
 
                 {/* Title */}
-                <h3 className="h3-unified text-primary rhythm-title-content">
+                <motion.h3 
+                  className="h3-unified text-primary rhythm-title-content" 
+                  style={{ 
+                    color: '#000000', 
+                    fontWeight: 700,
+                    fontSize: 'clamp(20px, 2.5vw, 24px)',
+                    lineHeight: 1.3,
+                    marginBottom: 'clamp(12px, 1.5vw, 16px)'
+                  }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
                   Private Equity Overview
-                </h3>
+                </motion.h3>
 
                 {/* Description */}
-                <p className="body-large-unified text-secondary rhythm-card-internal">
+                <motion.p 
+                  className="body-large-unified text-secondary rhythm-card-internal" 
+                  style={{ 
+                    color: '#000000', 
+                    fontWeight: 600,
+                    fontSize: 'clamp(14px, 1.8vw, 16px)',
+                    lineHeight: 1.7,
+                    marginBottom: 'clamp(20px, 2.5vw, 24px)'
+                  }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   Strategic investments in high-growth sectors across UAE and global markets, 
                   focusing on sustainable value creation.
-                </p>
+                </motion.p>
 
                 {/* Focus Areas - Using BulletList */}
-                <div>
-                  <h4 className="body-small-unified text-tertiary uppercase tracking-wider mb-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <h4 
+                    className="body-small-unified text-tertiary uppercase tracking-wider mb-4" 
+                    style={{ 
+                      color: '#000000', 
+                      fontWeight: 600,
+                      fontSize: 'clamp(12px, 1.4vw, 14px)',
+                      marginBottom: 'clamp(12px, 1.5vw, 16px)'
+                    }}
+                  >
                     Focus Areas:
                   </h4>
-                  <BulletList
-                    bulletColor="#00d4aa"
-                    items={[
-                      'Real Estate',
-                      'Gold Mining',
-                      'Global Trading'
-                    ]}
-                    titleGap="sm"
-                  />
-                </div>
+                  <div style={{ color: '#000000', fontWeight: 600 }}>
+                    <BulletList
+                      bulletColor="#00d4aa"
+                      items={[
+                        'Real Estate',
+                        'Gold Mining',
+                        'Global Trading'
+                      ]}
+                      titleGap="sm"
+                      className="[&_li]:text-black [&_li]:font-semibold"
+                    />
+                  </div>
+                </motion.div>
               </CardBody>
+              </div>
             </Card>
           </motion.div>
 
@@ -214,34 +316,115 @@ export default function PrivateEquitySection() {
             variants={cardVariants}
             custom={1}
             className="h-full"
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
-            <Card className="h-full flex flex-col">
-              <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
-                {/* Icon - Unified Style */}
-                <div 
-                  className="w-14 h-14 rounded-lg flex items-center justify-center mb-6 shadow-sm"
-                  style={{ backgroundColor: '#E0F2F1' }}
+            <Card className="h-full flex flex-col relative overflow-hidden group" style={{ padding: 0, position: 'relative', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', border: '1px solid rgba(229, 231, 235, 0.5)', transition: 'all 0.3s ease' }}>
+              {/* Hover Border Effect */}
+              <motion.div
+                className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"
+                style={{ zIndex: 3 }}
+                whileHover={{
+                  borderColor: 'rgba(13, 148, 136, 0.3)',
+                }}
+                transition={{ duration: 0.3 }}
+              />
+              
+              {/* Background Image with Blur and Overlay */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  zIndex: 0,
+                  overflow: 'hidden',
+                  borderRadius: '16px'
+                }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              >
+                <Image
+                  src="/assets/Private Equity/Investment Strategy.jpg"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  style={{
+                    filter: 'blur(4px)',
+                    opacity: 0.4,
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    transform: 'scale(1.1)'
+                  }}
+                />
+                {/* White Overlay - Reduced for better image visibility */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    zIndex: 1
+                  }}
+                />
+              </div>
+
+              <div style={{ padding: 'clamp(28px, 3.5vw, 36px)', display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 10 }}>
+              <CardBody maxWidth="max-w-none" className="flex flex-col h-full relative z-10">
+                {/* Icon - Enhanced with Animation */}
+                <motion.div 
+                  className="w-16 h-16 rounded-xl flex items-center justify-center mb-5 shadow-lg relative z-10"
+                  style={{ 
+                    backgroundColor: 'rgba(224, 242, 241, 0.95)', 
+                    backdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(13, 148, 136, 0.2)'
+                  }}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: 5,
+                    boxShadow: '0 8px 24px rgba(13, 148, 136, 0.3)'
+                  }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <Target className="w-7 h-7" style={{ color: '#0D9488' }} />
-                </div>
+                  <Target className="w-8 h-8" style={{ color: '#0D9488' }} />
+                </motion.div>
 
                 {/* Title */}
-                <h3 className="h3-unified text-primary rhythm-title-content">
+                <motion.h3 
+                  className="h3-unified text-primary rhythm-title-content" 
+                  style={{ 
+                    color: '#000000', 
+                    fontWeight: 700,
+                    fontSize: 'clamp(20px, 2.5vw, 24px)',
+                    lineHeight: 1.3,
+                    marginBottom: 'clamp(16px, 2vw, 20px)'
+                  }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
                   Investment Strategy
-                </h3>
+                </motion.h3>
 
                 {/* Strategy Items - Using BulletList */}
-                <BulletList
-                  bulletColor="#00d4aa"
-                  items={[
-                    'Target high-growth sectors',
-                    'Governance & transparency',
-                    'Regional expansion',
-                    'Long-term value creation'
-                  ]}
-                  titleGap="sm"
-                />
+                <motion.div 
+                  style={{ color: '#000000', fontWeight: 600 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <BulletList
+                    bulletColor="#00d4aa"
+                    items={[
+                      'Target high-growth sectors',
+                      'Governance & transparency',
+                      'Regional expansion',
+                      'Long-term value creation'
+                    ]}
+                    titleGap="sm"
+                    className="[&_li]:text-black [&_li]:font-semibold"
+                  />
+                </motion.div>
               </CardBody>
+              </div>
             </Card>
           </motion.div>
 
@@ -250,49 +433,150 @@ export default function PrivateEquitySection() {
             variants={cardVariants}
             custom={2}
             className="h-full"
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           >
-            <Card className="h-full flex flex-col">
-              <CardBody maxWidth="max-w-none" className="flex flex-col h-full">
-                {/* Icon - Unified Style */}
-                <div 
-                  className="w-14 h-14 rounded-lg flex items-center justify-center mb-6 shadow-sm"
-                  style={{ backgroundColor: '#E0F2F1' }}
+            <Card className="h-full flex flex-col relative overflow-hidden group" style={{ padding: 0, position: 'relative', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', border: '1px solid rgba(229, 231, 235, 0.5)', transition: 'all 0.3s ease' }}>
+              {/* Hover Border Effect */}
+              <motion.div
+                className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"
+                style={{ zIndex: 3 }}
+                whileHover={{
+                  borderColor: 'rgba(13, 148, 136, 0.3)',
+                }}
+                transition={{ duration: 0.3 }}
+              />
+              
+              {/* Background Image with Blur and Overlay */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  zIndex: 0,
+                  overflow: 'hidden',
+                  borderRadius: '16px'
+                }}
+                className="group-hover:scale-105 transition-transform duration-500"
+              >
+                <Image
+                  src="/assets/Private Equity/UAE Investments.jpg"
+                  alt=""
+                  fill
+                  className="object-cover"
+                  style={{
+                    filter: 'blur(4px)',
+                    opacity: 0.4,
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    transform: 'scale(1.1)'
+                  }}
+                />
+                {/* White Overlay - Reduced for better image visibility */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    zIndex: 1
+                  }}
+                />
+              </div>
+
+              <div style={{ padding: 'clamp(28px, 3.5vw, 36px)', display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 10 }}>
+              <CardBody maxWidth="max-w-none" className="flex flex-col h-full relative z-10">
+                {/* Icon - Enhanced with Animation */}
+                <motion.div 
+                  className="w-16 h-16 rounded-xl flex items-center justify-center mb-5 shadow-lg relative z-10"
+                  style={{ 
+                    backgroundColor: 'rgba(224, 242, 241, 0.95)', 
+                    backdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(13, 148, 136, 0.2)'
+                  }}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: 5,
+                    boxShadow: '0 8px 24px rgba(13, 148, 136, 0.3)'
+                  }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <Building2 className="w-7 h-7" style={{ color: '#0D9488' }} />
-                </div>
+                  <Building2 className="w-8 h-8" style={{ color: '#0D9488' }} />
+                </motion.div>
 
                 {/* Title */}
-                <h3 className="h3-unified text-primary rhythm-title-content">
+                <motion.h3 
+                  className="h3-unified text-primary rhythm-title-content" 
+                  style={{ 
+                    color: '#000000', 
+                    fontWeight: 700,
+                    fontSize: 'clamp(20px, 2.5vw, 24px)',
+                    lineHeight: 1.3,
+                    marginBottom: 'clamp(12px, 1.5vw, 16px)'
+                  }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
                   UAE Investments
-                </h3>
+                </motion.h3>
 
                 {/* Description */}
-                <p className="body-large-unified text-secondary rhythm-card-internal">
+                <motion.p 
+                  className="body-large-unified text-secondary rhythm-card-internal" 
+                  style={{ 
+                    color: '#000000', 
+                    fontWeight: 600,
+                    fontSize: 'clamp(14px, 1.8vw, 16px)',
+                    lineHeight: 1.7,
+                    marginBottom: 'clamp(20px, 2.5vw, 24px)'
+                  }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   Strategic investments in UAE's most promising sectors, 
                   leveraging local expertise and global partnerships.
-                </p>
+                </motion.p>
 
                 {/* Investment Items */}
-                <div>
-                  <h4 className="body-small-unified text-tertiary uppercase tracking-wider mb-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <h4 
+                    className="body-small-unified text-tertiary uppercase tracking-wider mb-4" 
+                    style={{ 
+                      color: '#000000', 
+                      fontWeight: 600,
+                      fontSize: 'clamp(12px, 1.4vw, 14px)',
+                      marginBottom: 'clamp(12px, 1.5vw, 16px)'
+                    }}
+                  >
                     Key Sectors:
                   </h4>
-                  <BulletList
-                    bulletColor="#00d4aa"
-                    items={[
-                      {
-                        title: 'Premium Real Estate',
-                        description: 'Residential & Commercial'
-                      },
-                      {
-                        title: 'Gold Ecosystem',
-                        description: 'Dubai Gold Market'
-                      }
-                    ]}
-                    titleGap="sm"
-                  />
-                </div>
+                  <div style={{ color: '#000000', fontWeight: 600 }}>
+                    <BulletList
+                      bulletColor="#00d4aa"
+                      items={[
+                        {
+                          title: 'Premium Real Estate',
+                          description: 'Residential & Commercial'
+                        },
+                        {
+                          title: 'Gold Ecosystem',
+                          description: 'Dubai Gold Market'
+                        }
+                      ]}
+                      titleGap="sm"
+                      className="[&_li_div]:text-black [&_li_div]:font-semibold [&_li_div_div]:text-black [&_li_div_div]:font-medium"
+                    />
+                  </div>
+                </motion.div>
               </CardBody>
+              </div>
             </Card>
           </motion.div>
         </motion.div>

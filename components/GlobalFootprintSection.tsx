@@ -2,6 +2,7 @@
 
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
+import Image from 'next/image';
 import { fadeInUp, staggerContainer, cardVariants, scaleUp } from '@/lib/animations';
 import Counter from './Counter';
 import { Globe, TrendingUp, Building2, Users, Award, Sparkles, BarChart3, Gem } from 'lucide-react';
@@ -419,80 +420,162 @@ export default function GlobalFootprintSection() {
                   key={stat.label}
                   variants={cardVariants}
                   custom={index}
-                  whileHover={{ y: -4 }}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   className="relative h-full"
                 >
-                  {/* Animated Background on Hover */}
-                  <AnimatePresence>
-                    {isHovered && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        className="absolute inset-0 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl blur-sm"
-                      />
-                    )}
-                  </AnimatePresence>
-
                   {/* Card */}
                   <div 
-                    className={`card-unified relative ${isHovered ? 'shadow-lg' : ''}`} 
+                    className={`card-unified relative group overflow-hidden ${isHovered ? 'shadow-lg' : ''}`} 
                     style={{ 
-                      padding: 'clamp(20px, 3vw, var(--content-spacing-lg))',
+                      padding: 0,
                       height: '100%',
                       display: 'flex',
-                      flexDirection: 'column'
+                      flexDirection: 'column',
+                      borderRadius: '16px',
+                      border: '1px solid rgba(229, 231, 235, 0.5)',
+                      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                      position: 'relative',
+                      transition: 'all 0.3s ease'
                     }}
                   >
-                    {/* Icon with subtle animation - Unified Style */}
-                    <motion.div
-                      whileHover={{ rotate: 5, scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                      className="w-14 h-14 rounded-lg flex items-center justify-center mb-4 shadow-sm flex-shrink-0"
-                      style={{ backgroundColor: stat.iconBgColor }}
+                    {/* Background Image with Blur and Overlay */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        zIndex: 0,
+                        overflow: 'hidden',
+                        borderRadius: '16px'
+                      }}
+                      className="group-hover:scale-105 transition-transform duration-500"
                     >
-                      <Icon className="w-6 h-6" style={{ color: stat.iconColor }} />
+                      <Image
+                        src={`/assets/Our Global Footprint/${stat.label}.jpg`}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        style={{
+                          filter: 'blur(4px)',
+                          opacity: 0.4,
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                          transform: 'scale(1.1)'
+                        }}
+                      />
+                      {/* White Overlay - Reduced for better image visibility */}
+                      <div
+                        style={{
+                          position: 'absolute',
+                          inset: 0,
+                          backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                          zIndex: 1
+                        }}
+                      />
+                    </div>
+
+                    {/* Hover Border Effect */}
+                    <motion.div
+                      className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"
+                      style={{ zIndex: 3 }}
+                      whileHover={{
+                        borderColor: 'rgba(13, 148, 136, 0.3)',
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+
+                    <div style={{ padding: 'clamp(20px, 3vw, var(--content-spacing-lg))', display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 2 }}>
+                    {/* Icon with subtle animation - Enhanced Style */}
+                    <motion.div
+                      whileHover={{ rotate: 5, scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      className="w-16 h-16 rounded-xl flex items-center justify-center mb-5 shadow-lg flex-shrink-0 relative z-10"
+                      style={{ 
+                        backgroundColor: 'rgba(224, 242, 241, 0.95)', 
+                        backdropFilter: 'blur(12px)',
+                        border: '1px solid rgba(13, 148, 136, 0.2)'
+                      }}
+                    >
+                      <Icon className="w-8 h-8" style={{ color: stat.iconColor }} />
                     </motion.div>
 
                     {/* Number */}
-                    <div style={{ marginBottom: 'var(--content-spacing-sm)', flexShrink: 0 }}>
+                    <motion.div 
+                      style={{ marginBottom: 'clamp(12px, 1.5vw, 16px)', flexShrink: 0 }}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                    >
                       <div style={{
                         fontSize: 'clamp(32px, 4vw, 48px)',
                         fontFamily: 'var(--font-inter), Inter, sans-serif',
                         fontWeight: 700,
-                        color: 'var(--color-text-primary)',
+                        color: '#000000',
                         lineHeight: 1.2
                       }}>
                         <Counter value={stat.value} />
                       </div>
-                    </div>
+                    </motion.div>
 
                     {/* Label */}
-                    <h3 className="h4-unified text-primary" style={{ marginBottom: 'var(--content-spacing-xs)', flexShrink: 0 }}>
+                    <motion.h3 
+                      className="h4-unified text-primary" 
+                      style={{ 
+                        marginBottom: 'clamp(12px, 1.5vw, 16px)', 
+                        flexShrink: 0,
+                        color: '#000000',
+                        fontWeight: 700,
+                        fontSize: 'clamp(18px, 2.2vw, 22px)',
+                        lineHeight: 1.3
+                      }}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
                       {stat.label}
-                    </h3>
+                    </motion.h3>
 
                     {/* Description */}
-                    <p 
+                    <motion.p 
                       className="body-regular-unified text-tertiary" 
                       style={{ 
-                        marginBottom: stat.subLabel ? 'var(--content-spacing-sm)' : 0,
+                        marginBottom: stat.subLabel ? 'clamp(12px, 1.5vw, 16px)' : 0,
                         flexGrow: 1,
-                        minHeight: '3em'
+                        minHeight: '3em',
+                        color: '#000000',
+                        fontWeight: 600,
+                        fontSize: 'clamp(14px, 1.7vw, 16px)',
+                        lineHeight: 1.7
                       }}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
                     >
                       {stat.description}
-                    </p>
+                    </motion.p>
 
                     {/* Sub Label */}
                     {stat.subLabel && (
-                      <div style={{ paddingTop: 'var(--content-spacing-sm)', borderTop: '1px solid var(--color-border-light)', flexShrink: 0 }}>
-                        <p className="body-small-unified text-teal" style={{ fontWeight: 500 }}>
+                      <motion.div 
+                        style={{ 
+                          paddingTop: 'clamp(12px, 1.5vw, 16px)', 
+                          borderTop: '1px solid rgba(229, 231, 235, 0.5)', 
+                          flexShrink: 0 
+                        }}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                      >
+                        <p className="body-small-unified text-teal" style={{ fontWeight: 600, color: '#000000' }}>
                           {stat.subLabel}
                         </p>
-                      </div>
+                      </motion.div>
                     )}
 
                     {/* Animated Indicator Line */}
@@ -506,9 +589,11 @@ export default function GlobalFootprintSection() {
                         bottom: 0,
                         left: 0,
                         right: 0,
-                        borderRadius: '0 0 12px 12px'
+                        borderRadius: '0 0 16px 16px',
+                        zIndex: 2
                       }}
                     />
+                    </div>
                   </div>
                 </motion.div>
               );
