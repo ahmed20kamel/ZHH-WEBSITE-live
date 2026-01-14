@@ -445,7 +445,8 @@
                             width: '100%',
                             height: '100%',
                             objectFit: 'contain',
-                            display: 'block'
+                            display: 'block',
+                            filter: 'brightness(0.35)'
                           }}
                         />
                       </div>

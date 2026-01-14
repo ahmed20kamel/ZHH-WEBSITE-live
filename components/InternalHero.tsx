@@ -83,7 +83,7 @@ export default function InternalHero({
             className="relative"
           >
             <img
-              src="/assets/logos/ZHH%20Group%20Holding%20Logo.svg"
+              src="/assets/logos/drawing.svg"
               alt="ZHH Group Holding"
               className="w-20 h-20 md:w-32 md:h-32 object-contain drop-shadow-lg"
               style={{
