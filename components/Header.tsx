@@ -439,14 +439,13 @@
                         justifyContent: 'center'
                       }}>
                         <img
-                          src="/assets/logos/ZHH%20Group%20Holding%20Logo.svg"
-                          alt="ZHH Group Holding"
+                          src="/assets/logos/ZHH%20Construction%20Logo.svg"
+                          alt="ZHH Construction"
                           style={{ 
                             width: '100%',
                             height: '100%',
                             objectFit: 'contain',
-                            display: 'block',
-                            filter: 'brightness(0.35)'
+                            display: 'block'
                           }}
                         />
                       </div>

@@ -19,7 +19,7 @@ const divisions = [
     title: 'ZHH Construction',
     subtitle: 'Construction',
     description: 'Delivering sustainable, world-class infrastructure projects across the UAE and beyond.',
-    logo: '/assets/logos/zhh-construction-logo.svg',
+    logo: '/assets/logos/ZHH%20Construction%20Logo.svg',
     icon: Building2,
     gradient: 'from-blue-50 to-cyan-50',
     iconColor: 'text-teal-600',
@@ -364,10 +364,15 @@ export default function DivisionsSection() {
                           width: 'auto',
                           height: '100%',
                           objectFit: 'contain',
-                          filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.1))'
+                          imageRendering: 'crisp-edges',
+                          WebkitImageRendering: 'crisp-edges',
+                          filter: (division.id === 'jewelust' || division.id === 'construction') ? 'none' : 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.1))',
+                          opacity: 1,
+                          WebkitBackfaceVisibility: 'hidden',
+                          backfaceVisibility: 'hidden'
                         }}
                         whileHover={{ 
-                          filter: 'drop-shadow(0 4px 12px rgba(1, 178, 178, 0.3))'
+                          filter: (division.id === 'jewelust' || division.id === 'construction') ? 'none' : 'drop-shadow(0 4px 12px rgba(1, 178, 178, 0.3))'
                         }}
                       />
                     </motion.div>

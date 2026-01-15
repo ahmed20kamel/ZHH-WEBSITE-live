@@ -15,7 +15,7 @@ export default function Footer() {
     { 
       name: 'ZHH Construction', 
       href: '/divisions#construction',
-      logo: '/assets/logos/zhh-construction-logo.svg',
+      logo: '/assets/logos/ZHH%20Construction%20Logo.svg',
       description: 'Sustainable Infrastructure & Development',
       isExternal: false,
     },
@@ -135,11 +135,19 @@ export default function Footer() {
                 const content = (
                   <div className="group flex items-center gap-4 p-4 rounded-lg hover:bg-gray-800/50 transition-all duration-300 border border-transparent hover:border-teal-500/30">
                     {/* Logo */}
-                    <div className="w-14 h-14 rounded-lg bg-white/95 backdrop-blur-sm border border-gray-200/60 flex items-center justify-center flex-shrink-0 p-2">
+                    <div className="w-14 h-14 rounded-lg bg-white/95 backdrop-blur-sm border border-gray-200/60 flex items-center justify-center flex-shrink-0 p-2" style={{ minWidth: '56px', minHeight: '56px' }}>
                       <img
                         src={division.logo}
                         alt={`${division.name} Logo`}
                         className="w-full h-full object-contain"
+                        style={{ 
+                          imageRendering: 'crisp-edges',
+                          WebkitImageRendering: 'crisp-edges',
+                          maxWidth: '100%',
+                          maxHeight: '100%',
+                          filter: 'none',
+                          opacity: 1
+                        }}
                       />
                     </div>
                     

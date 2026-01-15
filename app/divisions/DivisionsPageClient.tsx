@@ -444,7 +444,7 @@ export default function DivisionsPageClient() {
                     >
                     {division.id === 'construction' && (
                       <img
-                        src="/assets/logos/zhh-construction-logo.svg"
+                        src="/assets/logos/ZHH%20Construction%20Logo.svg"
                         alt="ZHH Construction Logo"
                         className="h-full w-auto object-contain"
                           style={{ 
@@ -490,7 +490,13 @@ export default function DivisionsPageClient() {
                             maxWidth: 'min(100%, 400px)',
                             maxHeight: '100%',
                             width: 'auto',
-                            height: 'auto'
+                            height: 'auto',
+                            imageRendering: 'crisp-edges',
+                            WebkitImageRendering: 'crisp-edges',
+                            filter: 'none',
+                            opacity: 1,
+                            WebkitBackfaceVisibility: 'hidden',
+                            backfaceVisibility: 'hidden'
                           }}
                         />
                       )}

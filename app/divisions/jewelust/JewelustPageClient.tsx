@@ -438,7 +438,20 @@ export default function JewelustPageClient() {
                   onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
                   onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
                 >
-                  <img src="/assets/logos/jewelust-logo.svg" alt="Jewelust Logo" className="h-full w-auto object-contain" style={{ maxWidth: 'min(100%, 350px)' }} />
+                  <img 
+                    src="/assets/logos/jewelust-logo.svg" 
+                    alt="Jewelust Logo" 
+                    className="h-full w-auto object-contain" 
+                    style={{ 
+                      maxWidth: 'min(100%, 350px)',
+                      imageRendering: 'crisp-edges',
+                      WebkitImageRendering: 'crisp-edges',
+                      filter: 'none',
+                      opacity: 1,
+                      WebkitBackfaceVisibility: 'hidden',
+                      backfaceVisibility: 'hidden'
+                    }} 
+                  />
                 </a>
               </div>
             </motion.div>

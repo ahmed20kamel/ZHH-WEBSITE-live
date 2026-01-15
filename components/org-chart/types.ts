@@ -70,7 +70,7 @@ export const subsidiaries: Subsidiary[] = [
     description: 'An Emirati company delivering sustainable, world-class infrastructure that supports the UAE\'s growth and modernization. We combine traditional craftsmanship with cutting-edge technology to create lasting value.',
     goal: 'To be one of the nation\'s leading construction firms known for reliability and innovation.',
     icon: Hammer,
-    logo: '/assets/logos/zhh-construction-logo.svg',
+    logo: '/assets/logos/ZHH%20Construction%20Logo.svg',
     color: 'from-blue-600 to-cyan-500',
     bgGradient: 'bg-gradient-to-br from-blue-50/80 via-cyan-50/40 to-blue-50/80',
     highlights: [

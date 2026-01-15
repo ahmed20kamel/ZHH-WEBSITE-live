@@ -12,7 +12,7 @@ const divisions = [
   {
     name: 'ZHH Construction',
     description: 'As one of the leading entities in the region\'s construction sector, ZHH Construction specializes in delivering high-quality infrastructure, residential, and commercial projects. We build with precision and passion, shaping skylines and creating lasting landmarks.',
-    logo: '/assets/logos/zhh-construction-logo.svg',
+    logo: '/assets/logos/ZHH%20Construction%20Logo.svg',
   },
   {
     name: 'ZHH Real Estate',

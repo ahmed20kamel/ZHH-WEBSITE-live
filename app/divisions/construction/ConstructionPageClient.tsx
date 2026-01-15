@@ -453,7 +453,7 @@ export default function ConstructionPageClient() {
             >
               <div style={{ height: 'clamp(100px, 12vw, 140px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
-                  src="/assets/logos/zhh-construction-logo.svg"
+                  src="/assets/logos/ZHH%20Construction%20Logo.svg"
                   alt="ZHH Construction Logo"
                   className="h-full w-auto object-contain"
                   style={{ maxWidth: 'min(100%, 350px)' }}
