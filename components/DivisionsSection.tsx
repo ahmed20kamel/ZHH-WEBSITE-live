@@ -365,10 +365,12 @@ export default function DivisionsSection() {
                           height: '100%',
                           objectFit: 'contain',
                           imageRendering: 'crisp-edges',
+                          WebkitImageRendering: 'crisp-edges',
                           filter: (division.id === 'jewelust' || division.id === 'construction') ? 'none' : 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.1))',
                           opacity: 1,
+                          WebkitBackfaceVisibility: 'hidden',
                           backfaceVisibility: 'hidden'
-                        } as React.CSSProperties}
+                        }}
                         whileHover={{ 
                           filter: (division.id === 'jewelust' || division.id === 'construction') ? 'none' : 'drop-shadow(0 4px 12px rgba(1, 178, 178, 0.3))'
                         }}

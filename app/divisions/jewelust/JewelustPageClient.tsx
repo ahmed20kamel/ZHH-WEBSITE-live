@@ -445,10 +445,12 @@ export default function JewelustPageClient() {
                     style={{ 
                       maxWidth: 'min(100%, 350px)',
                       imageRendering: 'crisp-edges',
+                      WebkitImageRendering: 'crisp-edges',
                       filter: 'none',
                       opacity: 1,
+                      WebkitBackfaceVisibility: 'hidden',
                       backfaceVisibility: 'hidden'
-                    } as React.CSSProperties}
+                    }} 
                   />
                 </a>
               </div>

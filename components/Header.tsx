@@ -439,8 +439,8 @@
                         justifyContent: 'center'
                       }}>
                         <img
-                          src="/assets/logos/ZHH%20Construction%20Logo.svg"
-                          alt="ZHH Construction"
+                          src="/assets/logos/ZHH%20Group%20Holding%20Logo.svg"
+                          alt="ZHH Group Holding"
                           style={{ 
                             width: '100%',
                             height: '100%',

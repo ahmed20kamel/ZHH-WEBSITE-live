@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   title: "ZHH Group Holding | Building Value Across Industries",
   description: "ZHH Group Holding stands as a proud symbol of Emirati ambition and excellence — operating across construction, real estate, global trading, and precious metals.",
   keywords: "ZHH Group, Construction, Real Estate, Trading, Precious Metals, UAE, Abu Dhabi",
+  icons: {
+    icon: '/assets/logos/ZHH Group Holding Logo.svg',
+    shortcut: '/assets/logos/ZHH Group Holding Logo.svg',
+    apple: '/assets/logos/ZHH Group Holding Logo.svg',
+  },
 };
 
 export default function RootLayout({
