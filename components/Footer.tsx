@@ -142,12 +142,11 @@ export default function Footer() {
                         className="w-full h-full object-contain"
                         style={{ 
                           imageRendering: 'crisp-edges',
-                          WebkitImageRendering: 'crisp-edges',
                           maxWidth: '100%',
                           maxHeight: '100%',
                           filter: 'none',
                           opacity: 1
-                        }}
+                        } as React.CSSProperties}
                       />
                     </div>
                     
