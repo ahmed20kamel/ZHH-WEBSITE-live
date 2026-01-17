@@ -492,12 +492,10 @@ export default function DivisionsPageClient() {
                             width: 'auto',
                             height: 'auto',
                             imageRendering: 'crisp-edges',
-                            WebkitImageRendering: 'crisp-edges',
                             filter: 'none',
                             opacity: 1,
-                            WebkitBackfaceVisibility: 'hidden',
                             backfaceVisibility: 'hidden'
-                          }}
+                          } as React.CSSProperties}
                         />
                       )}
                     </motion.div>
