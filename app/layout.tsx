@@ -20,10 +20,24 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.ico', sizes: '16x16' },
+      { url: '/favicon.ico', sizes: '32x32' },
       { url: '/assets/logos/ZHH Group Holding Logo.svg', type: 'image/svg+xml' },
     ],
     shortcut: '/favicon.ico',
-    apple: '/assets/logos/ZHH Group Holding Logo.svg',
+    apple: [
+      { url: '/assets/logos/ZHH Group Holding Logo.svg', sizes: '180x180', type: 'image/svg+xml' },
+    ],
+    other: [
+      {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/favicon.ico',
+      },
+      {
+        rel: 'manifest',
+        url: '/site.webmanifest',
+      },
+    ],
   },
   openGraph: {
     title: "ZHH Group Holding | Building Value Across Industries",
