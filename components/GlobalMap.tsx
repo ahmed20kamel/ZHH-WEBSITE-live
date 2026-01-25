@@ -1,447 +1,656 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Card from '@/components/ui/Card';
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Marker,
+} from 'react-simple-maps';
 
-interface CountryData {
+type PresenceType = 'headquarters' | 'trading' | 'jewelust';
+
+interface LocationData {
   id: string;
   name: string;
-  hasPresence: boolean;
+  isoCode: string;
+  coordinates: [number, number]; // [lng, lat] for react-simple-maps
   locations?: Array<{
     city: string;
     entities: string[];
   }>;
   entities?: string[];
-  isoCode: string;
+  type: PresenceType[];
 }
 
-const countryData: Record<string, CountryData> = {
-  ARE: {
+// بيانات الدول والمواقع - Array واحدة قابلة للتعديل
+export const globalPresenceData: LocationData[] = [
+  {
     id: 'uae',
-    name: 'UAE',
-    hasPresence: true,
+    name: 'United Arab Emirates',
     isoCode: 'ARE',
+    coordinates: [54.3773, 24.4539],
     locations: [
       {
-        city: 'Abu Dhabi (Main Offices)',
+        city: 'Abu Dhabi',
         entities: ['ZHH Group Holding LLC', 'ZHH Construction LLC', 'ZHH General Trading LLC', 'ZHH Real Estates'],
       },
       {
-        city: 'Dubai (Main Office & Showroom)',
+        city: 'Dubai',
         entities: ['Jewelust Jewelry & Gold Bullion Trading LLC'],
       },
     ],
+    type: ['headquarters', 'trading', 'jewelust'],
   },
-  TUR: {
+  {
     id: 'turkey',
     name: 'Turkey',
-    hasPresence: true,
     isoCode: 'TUR',
+    coordinates: [32.8597, 39.9334],
     entities: ['Jewelust Jewelry'],
+    type: ['jewelust'],
   },
-  MLI: {
+  {
     id: 'mali',
     name: 'Mali',
-    hasPresence: true,
     isoCode: 'MLI',
+    coordinates: [-3.9962, 17.5707],
     entities: ['ZHH General Trading', 'Jewelust Jewelry'],
+    type: ['trading', 'jewelust'],
   },
-  GIN: {
+  {
     id: 'guinea',
     name: 'Guinea',
-    hasPresence: true,
     isoCode: 'GIN',
+    coordinates: [-9.6966, 9.9456],
     entities: ['ZHH General Trading'],
+    type: ['trading'],
   },
-  BFA: {
+  {
     id: 'burkina-faso',
     name: 'Burkina Faso',
-    hasPresence: true,
     isoCode: 'BFA',
+    coordinates: [-1.5616, 12.2383],
     entities: ['ZHH General Trading'],
+    type: ['trading'],
   },
-  SLE: {
+  {
     id: 'sierra-leone',
     name: 'Sierra Leone',
-    hasPresence: true,
     isoCode: 'SLE',
+    coordinates: [-11.7799, 8.4606],
     entities: ['ZHH General Trading'],
+    type: ['trading'],
   },
-  COG: {
+  {
     id: 'congo',
     name: 'Congo',
-    hasPresence: true,
     isoCode: 'COG',
+    coordinates: [15.2429, -4.2634],
     entities: ['ZHH General Trading', 'Jewelust Jewelry'],
+    type: ['trading', 'jewelust'],
   },
-  UGA: {
+  {
     id: 'uganda',
     name: 'Uganda',
-    hasPresence: true,
     isoCode: 'UGA',
+    coordinates: [32.2903, 1.3733],
     entities: ['ZHH General Trading', 'Jewelust Jewelry'],
+    type: ['trading', 'jewelust'],
   },
-  KEN: {
+  {
     id: 'kenya',
     name: 'Kenya',
-    hasPresence: true,
     isoCode: 'KEN',
+    coordinates: [36.8219, -1.2921],
     entities: ['ZHH General Trading', 'Jewelust Jewelry'],
+    type: ['trading', 'jewelust'],
   },
-  TZA: {
+  {
     id: 'tanzania',
     name: 'Tanzania',
-    hasPresence: true,
     isoCode: 'TZA',
+    coordinates: [34.8888, -6.3690],
     entities: ['Jewelust Jewelry'],
+    type: ['jewelust'],
   },
-  ZMB: {
+  {
     id: 'zambia',
     name: 'Zambia',
-    hasPresence: true,
     isoCode: 'ZMB',
+    coordinates: [27.8493, -13.1339],
     entities: ['Jewelust Jewelry'],
+    type: ['jewelust'],
   },
-  ZWE: {
+  {
     id: 'zimbabwe',
     name: 'Zimbabwe',
-    hasPresence: true,
     isoCode: 'ZWE',
+    coordinates: [29.1549, -19.0154],
     entities: ['Jewelust Jewelry'],
+    type: ['jewelust'],
   },
-};
-
-// ISO codes for Africa and Middle East countries
-const africaMiddleEast = [
-  'ARE', 'SAU', 'YEM', 'OMN', 'QAT', 'BHR', 'KWT', 'IRQ', 'IRN', 'SYR', 'LBN', 'JOR', 'ISR', 'PSE',
-  'TUR', 'CYP',
-  'EGY', 'LBY', 'TUN', 'DZA', 'MAR', 'SDN', 'SSD',
-  'SEN', 'GMB', 'GIN', 'GNB', 'SLE', 'LBR', 'CIV', 'GHA', 'TGO', 'BEN', 'NGA', 'NER', 'MLI', 'BFA',
-  'MRT',
-  'CMR', 'TCD', 'CAF', 'GAB', 'COG', 'COD', 'GNQ', 'STP', 'AGO',
-  'ETH', 'ERI', 'DJI', 'SOM', 'KEN', 'UGA', 'TZA', 'RWA', 'BDI', 'SSD',
-  'ZAF', 'ZWE', 'ZMB', 'MWI', 'MOZ', 'BWA', 'NAM', 'LSO', 'SWZ', 'MDG', 'MUS', 'COM', 'SYC',
 ];
 
-// Improved Mercator projection for Africa and Middle East
-function projectPoint(lon: number, lat: number, width: number, height: number) {
-  const centerLon = 30;
-  const centerLat = 10;
-  const scale = 400;
-  
-  // Convert degrees to radians
-  const lonRad = (lon - centerLon) * Math.PI / 180;
-  const latRad = lat * Math.PI / 180;
-  
-  // Mercator projection
-  const x = lonRad * scale + width / 2;
-  const y = -Math.log(Math.tan(Math.PI / 4 + latRad / 2)) * scale + height / 2;
-  
-  return [x, y];
-}
+// World TopoJSON URL
+const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
-function geoPath(feature: any, width: number, height: number): string {
-  if (!feature || !feature.geometry) return '';
-  
-  const { type, coordinates } = feature.geometry;
-  let path = '';
-  
-  const processRing = (ring: number[][]) => {
-    ring.forEach((coord, i) => {
-      const [x, y] = projectPoint(coord[0], coord[1], width, height);
-      path += (i === 0 ? 'M' : 'L') + ` ${x.toFixed(2)},${y.toFixed(2)}`;
-    });
-    path += ' Z';
-  };
-  
-  if (type === 'Polygon') {
-    coordinates.forEach((ring: number[][]) => {
-      processRing(ring);
-    });
-  } else if (type === 'MultiPolygon') {
-    coordinates.forEach((polygon: number[][][]) => {
-      polygon.forEach((ring: number[][]) => {
-        processRing(ring);
-      });
-    });
-  }
-  
-  return path;
-}
+// Get ISO codes for highlighting
+const presenceIsoCodes = globalPresenceData.map(d => d.isoCode);
 
-export default function GlobalMap() {
-  const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
-  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
-  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0, visible: false });
-  const [geographies, setGeographies] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+// Pin Marker Component
+const PinMarker = ({ 
+  color, 
+  isHovered, 
+  isSelected,
+  isHQ = false,
+  label,
+}: { 
+  color: string; 
+  isHovered: boolean; 
+  isSelected: boolean;
+  isHQ?: boolean;
+  label?: string;
+}) => {
+  const scale = isHovered || isSelected ? 1.2 : 1;
+  const pinHeight = isHQ ? 28 : 22;
+  const pinWidth = isHQ ? 18 : 14;
+  
+  return (
+    <g transform={`translate(${-pinWidth / 2}, ${-pinHeight}) scale(${scale})`} style={{ transition: 'transform 0.2s ease' }}>
+      {/* Pin Shadow */}
+      <ellipse
+        cx={pinWidth / 2}
+        cy={pinHeight + 2}
+        rx={pinWidth / 3}
+        ry={3}
+        fill="rgba(0,0,0,0.2)"
+      />
+      
+      {/* Pin Body */}
+      <path
+        d={`M${pinWidth / 2} ${pinHeight} 
+            C${pinWidth / 2} ${pinHeight} 0 ${pinHeight * 0.6} 0 ${pinWidth / 2 + 2}
+            C0 2 ${pinWidth / 2 - 2} 0 ${pinWidth / 2} 0
+            C${pinWidth / 2 + 2} 0 ${pinWidth} 2 ${pinWidth} ${pinWidth / 2 + 2}
+            C${pinWidth} ${pinHeight * 0.6} ${pinWidth / 2} ${pinHeight} ${pinWidth / 2} ${pinHeight}Z`}
+        fill={color}
+        stroke="#FFFFFF"
+        strokeWidth={1.5}
+        style={{
+          filter: isHovered || isSelected 
+            ? 'drop-shadow(0 4px 8px rgba(0,0,0,0.35))' 
+            : 'drop-shadow(0 2px 4px rgba(0,0,0,0.25))',
+        }}
+      />
+      
+      {/* Inner Circle */}
+      <circle
+        cx={pinWidth / 2}
+        cy={pinWidth / 2 + 2}
+        r={pinWidth / 4}
+        fill="#FFFFFF"
+        opacity={0.9}
+      />
+      
+      {/* Label */}
+      {label && (
+        <text
+          x={pinWidth / 2}
+          y={-4}
+          textAnchor="middle"
+          style={{
+            fontFamily: 'var(--font-inter), Inter, sans-serif',
+            fontSize: '9px',
+            fontWeight: 700,
+            fill: color,
+          }}
+        >
+          {label}
+        </text>
+      )}
+    </g>
+  );
+};
+
+function GlobalMap() {
+  const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  const [tooltip, setTooltip] = useState<{ x: number; y: number; data: LocationData | null; activityType?: string }>({ x: 0, y: 0, data: null });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Use a GeoJSON source for Africa and Middle East
-    // For production, use a proper GeoJSON file or convert TopoJSON server-side
-    fetch('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson')
-      .then((response) => response.json())
-      .then((geojson) => {
-        // Filter to show only Africa and Middle East countries
-        const filtered = geojson.features.filter((feature: any) => {
-          const isoCode = feature.properties.ISO_A3 || feature.properties.ISO_A3_EH || feature.properties.ISO_A2;
-          return africaMiddleEast.includes(isoCode);
-        });
-        
-        setGeographies(filtered);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error loading map:', error);
-        // Fallback: use a simpler approach with country shapes
-        setLoading(false);
-      });
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const handleCountryHover = (isoCode: string, event: React.MouseEvent<SVGPathElement>) => {
-    const country = countryData[isoCode];
-    
-    if (country && country.hasPresence) {
-      setHoveredCountry(isoCode);
-      const svg = event.currentTarget.closest('svg');
-      if (svg) {
-        const rect = svg.getBoundingClientRect();
-        const pathRect = event.currentTarget.getBoundingClientRect();
-        setTooltipPosition({
-          x: pathRect.left + pathRect.width / 2 - rect.left,
-          y: pathRect.top - rect.top - 10,
-          visible: true,
+  const handleMarkerHover = (location: LocationData, event: React.MouseEvent, activityType?: string) => {
+    if (isMobile) return;
+    setHoveredLocation(location.id + (activityType || ''));
+    setTooltip({
+      x: event.clientX,
+      y: event.clientY,
+      data: location,
+      activityType,
+    });
+  };
+
+  const handleMarkerLeave = () => {
+    setHoveredLocation(null);
+    setTooltip({ x: 0, y: 0, data: null });
+  };
+
+  const handleMarkerClick = (location: LocationData) => {
+    setSelectedLocation(selectedLocation === location.id ? null : location.id);
+  };
+
+  const selectedData = globalPresenceData.find(l => l.id === selectedLocation);
+
+  // Generate markers - split into multiple for countries with multiple activities
+  const generateMarkers = () => {
+    const markers: Array<{
+      location: LocationData;
+      coordinates: [number, number];
+      color: string;
+      activityType: string;
+      isHQ: boolean;
+      label?: string;
+    }> = [];
+
+    globalPresenceData.forEach(location => {
+      const hasTrading = location.type.includes('trading');
+      const hasJewelust = location.type.includes('jewelust');
+      const isHQ = location.type.includes('headquarters');
+
+      if (isHQ) {
+        // Headquarters gets a single special marker
+        markers.push({
+          location,
+          coordinates: location.coordinates,
+          color: '#032D46',
+          activityType: 'headquarters',
+          isHQ: true,
+          label: 'HQ',
+        });
+      } else if (hasTrading && hasJewelust) {
+        // Country with both activities - create two markers side by side
+        const offset = 1.5; // Longitude offset for separation
+        markers.push({
+          location,
+          coordinates: [location.coordinates[0] - offset, location.coordinates[1]],
+          color: '#01B2B2',
+          activityType: 'trading',
+          isHQ: false,
+        });
+        markers.push({
+          location,
+          coordinates: [location.coordinates[0] + offset, location.coordinates[1]],
+          color: '#D4AF37',
+          activityType: 'jewelust',
+          isHQ: false,
+        });
+      } else if (hasTrading) {
+        markers.push({
+          location,
+          coordinates: location.coordinates,
+          color: '#01B2B2',
+          activityType: 'trading',
+          isHQ: false,
+        });
+      } else if (hasJewelust) {
+        markers.push({
+          location,
+          coordinates: location.coordinates,
+          color: '#D4AF37',
+          activityType: 'jewelust',
+          isHQ: false,
         });
       }
-    }
+    });
+
+    return markers;
   };
 
-  const handleCountryClick = (isoCode: string) => {
-    const country = countryData[isoCode];
-    
-    if (country && country.hasPresence) {
-      setSelectedCountry(selectedCountry === isoCode ? null : isoCode);
-    }
-  };
-
-  const selectedCountryData = selectedCountry ? countryData[selectedCountry] : null;
-
-  // Get fill color for a country
-  const getCountryFill = (isoCode: string) => {
-    const country = countryData[isoCode];
-    if (!country || !country.hasPresence) {
-      return '#E5E5E5';
-    }
-    if (hoveredCountry === isoCode) {
-      return '#00A0A0'; // Darker teal on hover
-    }
-    return '#01B2B2'; // Brand color
-  };
-
-  // Get stroke for a country
-  const getCountryStroke = (isoCode: string) => {
-    const country = countryData[isoCode];
-    if (!country || !country.hasPresence) {
-      return '#CCCCCC';
-    }
-    if (hoveredCountry === isoCode || selectedCountry === isoCode) {
-      return '#032D46'; // Dark outline on hover/select
-    }
-    return '#CCCCCC';
-  };
-
-  // Get stroke width for a country
-  const getCountryStrokeWidth = (isoCode: string) => {
-    if (hoveredCountry === isoCode || selectedCountry === isoCode) {
-      return 2;
-    }
-    return 0.5;
-  };
-
-  // Get cursor style
-  const getCursor = (isoCode: string) => {
-    const country = countryData[isoCode];
-    return country && country.hasPresence ? 'pointer' : 'default';
-  };
-
-  const mapWidth = 1000;
-  const mapHeight = 800;
+  const allMarkers = generateMarkers();
 
   return (
     <div style={{ position: 'relative', width: '100%' }}>
-      {/* SVG Map Container */}
+      {/* Map Container */}
       <div
         style={{
           width: '100%',
           maxWidth: '1200px',
           margin: '0 auto',
-          background: '#FFFFFF',
-          borderRadius: '16px',
-          padding: 'clamp(34px, 4.3vw, 51px)',
-          border: '1px solid #E5E5E5',
-          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
+          background: 'linear-gradient(180deg, #F0F4F8 0%, #E8EEF4 100%)',
+          borderRadius: '20px',
+          padding: 'clamp(8px, 2vw, 16px)',
+          border: '1px solid #D1D9E6',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
           position: 'relative',
+          overflow: 'hidden',
         }}
       >
-        {loading ? (
-          <div
-            style={{
-              width: '100%',
-              height: 'clamp(340px, 42.5vw, 510px)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'var(--font-inter), Inter, sans-serif',
-              fontSize: 'clamp(16px, 1.8vw, 18px)',
-              color: '#666666',
-            }}
-          >
-            Loading map...
-          </div>
-        ) : (
-          <svg
-            viewBox={`0 0 ${mapWidth} ${mapHeight}`}
-            style={{
-              width: '100%',
-              height: 'auto',
-              display: 'block',
-            }}
-            onMouseLeave={() => {
-              setHoveredCountry(null);
-              setTooltipPosition({ x: 0, y: 0, visible: false });
-            }}
-          >
-            {geographies.map((geo, index) => {
-              const isoCode = geo.properties?.ISO_A3 || geo.properties?.ISO_A3_EH || geo.properties?.ISO_A2;
-              if (!isoCode) return null;
-              
-              const pathData = geoPath(geo, mapWidth, mapHeight);
-              
-              if (!pathData) return null;
-              
-              return (
-                <path
-                  key={index}
-                  d={pathData}
-                  fill={getCountryFill(isoCode)}
-                  stroke={getCountryStroke(isoCode)}
-                  strokeWidth={getCountryStrokeWidth(isoCode)}
-                  style={{
-                    cursor: getCursor(isoCode),
-                    transition: 'all 0.3s ease',
-                  }}
-                  onMouseEnter={(e) => handleCountryHover(isoCode, e)}
-                  onClick={() => handleCountryClick(isoCode)}
-                />
-              );
-            })}
-          </svg>
-        )}
+        <ComposableMap
+          projection="geoMercator"
+          projectionConfig={{
+            // Focus on Africa and Middle East
+            scale: 380,
+            center: [25, 5], // Center between Africa and Middle East
+          }}
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+        >
+          <Geographies geography={geoUrl}>
+            {({ geographies }: { geographies: Array<{ rsmKey: string; properties?: { ISO_A3?: string }; id?: string }> }) =>
+              geographies.map((geo: { rsmKey: string; properties?: { ISO_A3?: string }; id?: string }) => {
+                const isoCode = geo.properties?.ISO_A3 || geo.id;
+                const hasPresence = presenceIsoCodes.includes(isoCode || '');
+                
+                return (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    fill={hasPresence ? 'rgba(1, 178, 178, 0.25)' : '#E5E9EF'}
+                    stroke="#FFFFFF"
+                    strokeWidth={0.5}
+                    style={{
+                      default: {
+                        outline: 'none',
+                        transition: 'all 0.3s ease',
+                      },
+                      hover: {
+                        fill: hasPresence ? 'rgba(1, 178, 178, 0.4)' : '#D8DEE6',
+                        outline: 'none',
+                      },
+                      pressed: {
+                        fill: hasPresence ? 'rgba(1, 178, 178, 0.5)' : '#D8DEE6',
+                        outline: 'none',
+                      },
+                    }}
+                  />
+                );
+              })
+            }
+          </Geographies>
 
-        {/* Tooltip */}
-        {hoveredCountry && countryData[hoveredCountry] && tooltipPosition.visible && (
-          <div
-            style={{
-              position: 'absolute',
-              left: `${tooltipPosition.x}px`,
-              top: `${tooltipPosition.y}px`,
-              transform: 'translate(-50%, -100%)',
-              background: '#032D46',
-              color: '#FFFFFF',
-              padding: '8px 16px',
-              borderRadius: '8px',
-              fontFamily: 'var(--font-inter), Inter, sans-serif',
-              fontSize: '14px',
-              fontWeight: 600,
-              whiteSpace: 'nowrap',
-              pointerEvents: 'none',
-              zIndex: 1000,
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-            }}
-          >
-            {countryData[hoveredCountry].name}
+          {/* Pin Markers */}
+          {allMarkers.map((marker, index) => {
+            const markerId = marker.location.id + marker.activityType;
+            const isHovered = hoveredLocation === markerId;
+            const isSelected = selectedLocation === marker.location.id;
+
+            return (
+              <Marker
+                key={`${marker.location.id}-${marker.activityType}-${index}`}
+                coordinates={marker.coordinates}
+                onMouseEnter={(e: React.MouseEvent) => handleMarkerHover(marker.location, e, marker.activityType)}
+                onMouseLeave={handleMarkerLeave}
+                onClick={() => handleMarkerClick(marker.location)}
+              >
+                <PinMarker
+                  color={marker.color}
+                  isHovered={isHovered}
+                  isSelected={isSelected}
+                  isHQ={marker.isHQ}
+                  label={marker.label}
+                />
+              </Marker>
+            );
+          })}
+        </ComposableMap>
+
+        {/* Legend */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          style={{
+            position: 'absolute',
+            bottom: 'clamp(16px, 3vw, 24px)',
+            right: 'clamp(16px, 3vw, 24px)',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(8px)',
+            padding: 'clamp(14px, 2vw, 18px)',
+            borderRadius: '14px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.12)',
+            fontFamily: 'var(--font-inter), Inter, sans-serif',
+            fontSize: 'clamp(11px, 1.2vw, 13px)',
+            zIndex: 10,
+          }}
+        >
+          <div style={{ fontWeight: 700, marginBottom: '12px', color: '#032D46', fontSize: '14px' }}>Legend</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <svg width="16" height="22" viewBox="0 0 16 22">
+                <path
+                  d="M8 22 C8 22 0 14 0 8 C0 3.58 3.58 0 8 0 C12.42 0 16 3.58 16 8 C16 14 8 22 8 22Z"
+                  fill="#032D46"
+                  stroke="#fff"
+                  strokeWidth="1"
+                />
+                <circle cx="8" cy="7" r="3" fill="#fff" />
+              </svg>
+              <span style={{ color: '#333', fontWeight: 500 }}>Headquarters (UAE)</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <svg width="14" height="18" viewBox="0 0 14 18">
+                <path
+                  d="M7 18 C7 18 0 12 0 7 C0 3.13 3.13 0 7 0 C10.87 0 14 3.13 14 7 C14 12 7 18 7 18Z"
+                  fill="#01B2B2"
+                  stroke="#fff"
+                  strokeWidth="1"
+                />
+                <circle cx="7" cy="6" r="2.5" fill="#fff" />
+              </svg>
+              <span style={{ color: '#333', fontWeight: 500 }}>General Trading</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <svg width="14" height="18" viewBox="0 0 14 18">
+                <path
+                  d="M7 18 C7 18 0 12 0 7 C0 3.13 3.13 0 7 0 C10.87 0 14 3.13 14 7 C14 12 7 18 7 18Z"
+                  fill="#D4AF37"
+                  stroke="#fff"
+                  strokeWidth="1"
+                />
+                <circle cx="7" cy="6" r="2.5" fill="#fff" />
+              </svg>
+              <span style={{ color: '#333', fontWeight: 500 }}>Jewelust</span>
+            </div>
           </div>
-        )}
+        </motion.div>
       </div>
 
-      {/* Country Details Card */}
+      {/* Tooltip */}
       <AnimatePresence>
-        {selectedCountryData && (
+        {tooltip.data && !isMobile && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.15 }}
+            style={{
+              position: 'fixed',
+              left: tooltip.x + 15,
+              top: tooltip.y - 10,
+              background: '#032D46',
+              color: '#FFFFFF',
+              padding: '14px 18px',
+              borderRadius: '12px',
+              fontFamily: 'var(--font-inter), Inter, sans-serif',
+              fontSize: '13px',
+              pointerEvents: 'none',
+              zIndex: 9999,
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
+              maxWidth: '280px',
+            }}
+          >
+            <div style={{ fontWeight: 700, fontSize: '11px', color: '#01B2B2', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              ZHH Group
+            </div>
+            <div style={{ fontWeight: 600, fontSize: '16px', marginBottom: '6px' }}>
+              Operations in {tooltip.data.name}
+            </div>
+            <div style={{ opacity: 0.9, fontSize: '12px', lineHeight: 1.5 }}>
+              {tooltip.activityType === 'trading' && 'General Trading'}
+              {tooltip.activityType === 'jewelust' && 'Jewelust Jewelry'}
+              {tooltip.activityType === 'headquarters' && 'Corporate Headquarters'}
+              {!tooltip.activityType && (tooltip.data.entities?.join(' • ') || '')}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Selected Location Details Card */}
+      <AnimatePresence>
+        {selectedData && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             style={{
-              marginTop: 'clamp(34px, 4.3vw, 51px)',
+              marginTop: 'clamp(24px, 3vw, 32px)',
               width: '100%',
               maxWidth: '800px',
               marginLeft: 'auto',
               marginRight: 'auto',
             }}
           >
-            <Card className="p-8">
+            <div
+              style={{
+                background: '#FFFFFF',
+                borderRadius: '16px',
+                padding: 'clamp(24px, 3vw, 32px)',
+                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.08)',
+                border: '1px solid #E5E7EB',
+              }}
+            >
               <div
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'flex-start',
-                  marginBottom: 'clamp(20px, 2.6vw, 27px)',
+                  marginBottom: 'clamp(16px, 2vw, 24px)',
                 }}
               >
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-inter), Inter, sans-serif',
-                    fontSize: 'clamp(20px, 2.6vw, 27px)',
-                    fontWeight: 700,
-                    color: '#032D46',
-                    margin: 0,
-                  }}
-                >
-                  {selectedCountryData.name}
-                </h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <svg width="20" height="26" viewBox="0 0 16 22">
+                    <path
+                      d="M8 22 C8 22 0 14 0 8 C0 3.58 3.58 0 8 0 C12.42 0 16 3.58 16 8 C16 14 8 22 8 22Z"
+                      fill={selectedData.type.includes('headquarters') ? '#032D46' : '#01B2B2'}
+                      stroke="#fff"
+                      strokeWidth="1"
+                    />
+                    <circle cx="8" cy="7" r="3" fill="#fff" />
+                  </svg>
+                  <h3
+                    style={{
+                      fontFamily: 'var(--font-inter), Inter, sans-serif',
+                      fontSize: 'clamp(20px, 2.5vw, 26px)',
+                      fontWeight: 700,
+                      color: '#032D46',
+                      margin: 0,
+                    }}
+                  >
+                    {selectedData.name}
+                  </h3>
+                </div>
                 <button
-                  onClick={() => setSelectedCountry(null)}
+                  onClick={() => setSelectedLocation(null)}
                   style={{
-                    background: 'transparent',
+                    background: '#F3F4F6',
                     border: 'none',
                     cursor: 'pointer',
-                    padding: '8px',
+                    padding: '10px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: '#666666',
-                    transition: 'color 0.2s ease',
+                    transition: 'all 0.2s ease',
+                    borderRadius: '10px',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = '#032D46';
+                    e.currentTarget.style.background = '#E5E7EB';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.color = '#666666';
+                    e.currentTarget.style.background = '#F3F4F6';
                   }}
                 >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="18" y1="6" x2="6" y2="18" />
                     <line x1="6" y1="6" x2="18" y2="18" />
                   </svg>
                 </button>
               </div>
 
-              {selectedCountryData.locations ? (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(24px, 3vw, 32px)' }}>
-                  {selectedCountryData.locations.map((location, index) => (
-                    <div key={index}>
+              {/* Activity Types Badges */}
+              <div style={{ display: 'flex', gap: '8px', marginBottom: '20px', flexWrap: 'wrap' }}>
+                {selectedData.type.includes('headquarters') && (
+                  <span style={{
+                    background: '#032D46',
+                    color: '#fff',
+                    padding: '6px 12px',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  }}>
+                    🏢 Headquarters
+                  </span>
+                )}
+                {selectedData.type.includes('trading') && (
+                  <span style={{
+                    background: '#01B2B2',
+                    color: '#fff',
+                    padding: '6px 12px',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  }}>
+                    📦 General Trading
+                  </span>
+                )}
+                {selectedData.type.includes('jewelust') && (
+                  <span style={{
+                    background: '#D4AF37',
+                    color: '#fff',
+                    padding: '6px 12px',
+                    borderRadius: '20px',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                  }}>
+                    💎 Jewelust
+                  </span>
+                )}
+              </div>
+
+              {selectedData.locations ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(20px, 2.5vw, 28px)' }}>
+                  {selectedData.locations.map((location, index) => (
+                    <motion.div 
+                      key={index}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
                       <h4
                         style={{
                           fontFamily: 'var(--font-inter), Inter, sans-serif',
-                          fontSize: 'clamp(18px, 2vw, 22px)',
+                          fontSize: 'clamp(16px, 1.8vw, 18px)',
                           fontWeight: 600,
                           color: '#01B2B2',
-                          marginBottom: 'clamp(12px, 1.5vw, 16px)',
+                          marginBottom: 'clamp(10px, 1.2vw, 14px)',
                         }}
                       >
-                        {location.city}:
+                        📍 {location.city}
                       </h4>
                       <ul
                         style={{
@@ -450,18 +659,21 @@ export default function GlobalMap() {
                           margin: 0,
                           display: 'flex',
                           flexDirection: 'column',
-                          gap: 'clamp(7px, 0.9vw, 10px)',
+                          gap: '8px',
                         }}
                       >
                         {location.entities.map((entity, eIdx) => (
-                          <li
+                          <motion.li
                             key={eIdx}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 + eIdx * 0.05 }}
                             style={{
                               fontFamily: 'var(--font-inter), Inter, sans-serif',
-                              fontSize: 'clamp(16px, 1.8vw, 18px)',
+                              fontSize: 'clamp(14px, 1.5vw, 16px)',
                               lineHeight: 1.6,
                               color: '#333333',
-                              paddingLeft: 'clamp(24px, 3vw, 32px)',
+                              paddingLeft: '24px',
                               position: 'relative',
                             }}
                           >
@@ -469,7 +681,7 @@ export default function GlobalMap() {
                               style={{
                                 position: 'absolute',
                                 left: 0,
-                                top: '0.6em',
+                                top: '0.55em',
                                 width: '8px',
                                 height: '8px',
                                 borderRadius: '50%',
@@ -477,13 +689,13 @@ export default function GlobalMap() {
                               }}
                             />
                             {entity}
-                          </li>
+                          </motion.li>
                         ))}
                       </ul>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              ) : selectedCountryData.entities ? (
+              ) : selectedData.entities ? (
                 <ul
                   style={{
                     listStyle: 'none',
@@ -491,18 +703,21 @@ export default function GlobalMap() {
                     margin: 0,
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: 'clamp(10px, 1.3vw, 14px)',
+                    gap: '10px',
                   }}
                 >
-                  {selectedCountryData.entities.map((entity, eIdx) => (
-                    <li
+                  {selectedData.entities.map((entity, eIdx) => (
+                    <motion.li
                       key={eIdx}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: eIdx * 0.1 }}
                       style={{
                         fontFamily: 'var(--font-inter), Inter, sans-serif',
-                        fontSize: 'clamp(16px, 1.8vw, 18px)',
+                        fontSize: 'clamp(14px, 1.5vw, 16px)',
                         lineHeight: 1.6,
                         color: '#333333',
-                        paddingLeft: 'clamp(24px, 3vw, 32px)',
+                        paddingLeft: '24px',
                         position: 'relative',
                       }}
                     >
@@ -510,22 +725,52 @@ export default function GlobalMap() {
                         style={{
                           position: 'absolute',
                           left: 0,
-                          top: '0.6em',
+                          top: '0.55em',
                           width: '8px',
                           height: '8px',
                           borderRadius: '50%',
-                          background: '#01B2B2',
+                          background: entity.includes('Jewelust') ? '#D4AF37' : '#01B2B2',
                         }}
                       />
                       {entity}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               ) : null}
-            </Card>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Mobile Instructions */}
+      {isMobile && (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          style={{
+            textAlign: 'center',
+            marginTop: '16px',
+            fontFamily: 'var(--font-inter), Inter, sans-serif',
+            fontSize: '13px',
+            color: '#666666',
+          }}
+        >
+          Tap on a pin to view location details
+        </motion.p>
+      )}
+
+      {/* CSS Styles */}
+      <style jsx global>{`
+        .rsm-marker {
+          cursor: pointer;
+        }
+        .rsm-geography {
+          outline: none;
+        }
+      `}</style>
     </div>
   );
 }
+
+export default memo(GlobalMap);
