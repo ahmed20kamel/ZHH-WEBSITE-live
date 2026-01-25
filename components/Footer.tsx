@@ -254,18 +254,13 @@ export default function Footer() {
               Get In Touch
             </motion.h4>
             
-            <div style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              gap: '28px',
-              margin: 0,
-              padding: 0,
-            }}>
+            <div className="grid grid-cols-1" style={{ gap: 'clamp(20px, 2.5vw, 28px)' }}>
               {/* Address */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                transition={{ delay: 0 }}
                 style={{ 
                   display: 'flex', 
                   alignItems: 'flex-start', 
@@ -322,10 +317,10 @@ export default function Footer() {
 
               {/* Phone */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
+                transition={{ delay: 0.05 }}
                 style={{ 
                   display: 'flex', 
                   alignItems: 'flex-start', 
@@ -383,17 +378,18 @@ export default function Footer() {
                     fontSize: 'clamp(11px, 1.2vw, 12px)',
                     lineHeight: 1.5,
                   }}>
-                    Business Hours: 9AM - 6PM GST
+                    Business Hours: 7AM - 7PM<br />
+                    Sunday - Wednesday
                   </p>
                 </div>
               </motion.div>
 
               {/* Email */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.1 }}
                 style={{ 
                   display: 'flex', 
                   alignItems: 'flex-start', 
@@ -463,12 +459,23 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="mt-6"
+              style={{
+                marginTop: 'clamp(32px, 4vw, 48px)',
+                marginBottom: 0,
+                marginLeft: 0,
+                marginRight: 0,
+              }}
             >
               <p className="body-small-unified text-white mb-2" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>
                 Stay Updated
               </p>
-              <p className="body-small-unified text-gray-200 mb-4" style={{ fontFamily: 'var(--font-primary)' }}>
+              <p className="body-small-unified text-gray-200" style={{ 
+                fontFamily: 'var(--font-primary)',
+                marginBottom: 'clamp(20px, 2.5vw, 24px)',
+                marginTop: 0,
+                marginLeft: 0,
+                marginRight: 0,
+              }}>
                 Subscribe for the latest news & insights
               </p>
               <div className="flex gap-3">
