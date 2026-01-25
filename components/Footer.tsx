@@ -254,20 +254,66 @@ export default function Footer() {
               Get In Touch
             </motion.h4>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--content-spacing-md)' }}>
+            <div style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: '28px',
+              margin: 0,
+              padding: 0,
+            }}>
               {/* Address */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="flex items-start gap-3"
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'flex-start', 
+                  gap: '12px',
+                  margin: 0,
+                  padding: 0,
+                  width: '100%',
+                }}
               >
-                <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center flex-shrink-0">
+                <div style={{ 
+                  width: '40px', 
+                  height: '40px', 
+                  borderRadius: '8px', 
+                  backgroundColor: '#1F2937', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  flexShrink: 0,
+                  margin: 0,
+                  padding: 0,
+                }}>
                   <MapPin className="w-5 h-5 text-teal-400" />
                 </div>
-                <div>
-                  <p className="body-small-unified text-white" style={{ fontFamily: 'var(--font-primary)', fontWeight: 500 }}>Corporate Headquarters</p>
-                  <p className="body-small-unified text-gray-200 mt-1" style={{ fontFamily: 'var(--font-primary)' }}>
+                <div style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: '4px',
+                  margin: 0,
+                  padding: 0,
+                  flex: 1,
+                }}>
+                  <p style={{ 
+                    fontFamily: 'var(--font-primary)', 
+                    fontWeight: 500, 
+                    margin: 0,
+                    padding: 0,
+                    color: '#FFFFFF',
+                    fontSize: 'clamp(13px, 1.4vw, 14px)',
+                    lineHeight: 1.5,
+                  }}>Corporate Headquarters</p>
+                  <p style={{ 
+                    fontFamily: 'var(--font-primary)', 
+                    margin: 0,
+                    padding: 0,
+                    color: '#D1D5DB',
+                    fontSize: 'clamp(13px, 1.4vw, 14px)',
+                    lineHeight: 1.5,
+                  }}>
                     Abu Dhabi Global Market<br />
                     United Arab Emirates
                   </p>
@@ -280,20 +326,63 @@ export default function Footer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="flex items-center gap-3"
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'flex-start', 
+                  gap: '12px',
+                  margin: 0,
+                  padding: 0,
+                  width: '100%',
+                }}
               >
-                <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center flex-shrink-0">
+                <div style={{ 
+                  width: '40px', 
+                  height: '40px', 
+                  borderRadius: '8px', 
+                  backgroundColor: '#1F2937', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  flexShrink: 0,
+                  margin: 0,
+                  padding: 0,
+                }}>
                   <Phone className="w-5 h-5 text-teal-400" />
                 </div>
-                <div>
+                <div style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: '4px',
+                  margin: 0,
+                  padding: 0,
+                  flex: 1,
+                }}>
                   <a
                     href="tel:+971502621050"
-                    className="body-small-unified text-gray-200 hover:text-white transition-colors"
-                    style={{ fontFamily: 'var(--font-primary)' }}
+                    style={{ 
+                      fontFamily: 'var(--font-primary)', 
+                      margin: 0,
+                      padding: 0,
+                      color: '#D1D5DB',
+                      fontSize: 'clamp(13px, 1.4vw, 14px)',
+                      lineHeight: 1.5,
+                      textDecoration: 'none',
+                      transition: 'color 0.2s ease',
+                      display: 'block',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#D1D5DB'}
                   >
                     +971 50 262 1050
                   </a>
-                  <p className="body-small-unified text-gray-200 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
+                  <p style={{ 
+                    fontFamily: 'var(--font-primary)', 
+                    margin: 0,
+                    padding: 0,
+                    color: '#D1D5DB',
+                    fontSize: 'clamp(11px, 1.2vw, 12px)',
+                    lineHeight: 1.5,
+                  }}>
                     Business Hours: 9AM - 6PM GST
                   </p>
                 </div>
@@ -305,20 +394,63 @@ export default function Footer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="flex items-center gap-3"
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'flex-start', 
+                  gap: '12px',
+                  margin: 0,
+                  padding: 0,
+                  width: '100%',
+                }}
               >
-                <div className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center flex-shrink-0">
+                <div style={{ 
+                  width: '40px', 
+                  height: '40px', 
+                  borderRadius: '8px', 
+                  backgroundColor: '#1F2937', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  flexShrink: 0,
+                  margin: 0,
+                  padding: 0,
+                }}>
                   <Mail className="w-5 h-5 text-teal-400" />
                 </div>
-                <div>
+                <div style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: '4px',
+                  margin: 0,
+                  padding: 0,
+                  flex: 1,
+                }}>
                   <a
                     href="mailto:Info@zhhholding.com"
-                    className="body-small-unified text-gray-200 hover:text-white transition-colors"
-                    style={{ fontFamily: 'var(--font-primary)' }}
+                    style={{ 
+                      fontFamily: 'var(--font-primary)', 
+                      margin: 0,
+                      padding: 0,
+                      color: '#D1D5DB',
+                      fontSize: 'clamp(13px, 1.4vw, 14px)',
+                      lineHeight: 1.5,
+                      textDecoration: 'none',
+                      transition: 'color 0.2s ease',
+                      display: 'block',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#D1D5DB'}
                   >
                     Info@zhhholding.com
                   </a>
-                  <p className="body-small-unified text-gray-200 mt-1" style={{ fontFamily: 'var(--font-primary)', fontSize: 'clamp(11px, 1.2vw, 12px)' }}>
+                  <p style={{ 
+                    fontFamily: 'var(--font-primary)', 
+                    margin: 0,
+                    padding: 0,
+                    color: '#D1D5DB',
+                    fontSize: 'clamp(11px, 1.2vw, 12px)',
+                    lineHeight: 1.5,
+                  }}>
                     General Inquiries
                   </p>
                 </div>

@@ -299,7 +299,7 @@ export default function InvestmentHighlightsSection() {
                   <CardBody maxWidth="max-w-none" className="flex flex-col h-full text-center relative z-10">
                     {/* Icon - Enhanced with Animation */}
                     <motion.div 
-                      className="w-16 h-16 rounded-xl flex items-center justify-center mb-5 shadow-lg mx-auto relative z-10"
+                      className="w-16 h-16 rounded-xl flex items-center justify-center mb-5 shadow-lg relative z-10 mobile-center-icon"
                       style={{ 
                         backgroundColor: 'rgba(224, 242, 241, 0.95)', 
                         backdropFilter: 'blur(12px)',

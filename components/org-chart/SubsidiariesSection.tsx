@@ -123,6 +123,7 @@ export default function SubsidiariesSection() {
           >
           {subsidiaries.map((subsidiary, idx) => {
             const isExpanded = expandedCards.has(subsidiary.id);
+            
             return (
               <motion.div
                 key={subsidiary.id}
@@ -134,14 +135,9 @@ export default function SubsidiariesSection() {
                   ease: [0.22, 1, 0.36, 1]
                 }}
                 whileHover={{ y: -6, scale: 1.01 }}
-                className="relative bg-white rounded-2xl overflow-hidden transition-all duration-500"
+                className="relative overflow-hidden transition-all duration-500"
                 style={{ 
-                  border: '1px solid rgba(1, 178, 178, 0.1)',
                   padding: 0,
-                  boxShadow: isExpanded
-                    ? '0 20px 60px rgba(10, 61, 98, 0.12), 0 8px 24px rgba(10, 61, 98, 0.08)'
-                    : '0 4px 20px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04)',
-                  background: 'rgba(255, 255, 255, 0.95)',
                   position: 'relative'
                 }}
               >
@@ -151,8 +147,7 @@ export default function SubsidiariesSection() {
                     position: 'absolute',
                     inset: 0,
                     zIndex: 0,
-                    overflow: 'hidden',
-                    borderRadius: '16px'
+                    overflow: 'hidden'
                   }}
                 >
                   {subsidiary.id === 'construction' && (
@@ -215,15 +210,6 @@ export default function SubsidiariesSection() {
                       }}
                     />
                   )}
-                  {/* White Overlay - Reduced for better image visibility */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                      zIndex: 1
-                    }}
-                  />
                 </div>
 
                 {/* Subtle Background Gradient */}
@@ -241,13 +227,11 @@ export default function SubsidiariesSection() {
                   {/* Enhanced Logo Section */}
                   <div className="flex items-center justify-center" style={{ marginBottom: 'clamp(20px, 2.5vw, 32px)' }}>
                     <motion.div 
-                      className="relative flex items-center justify-center rounded-2xl"
+                      className="relative flex items-center justify-center"
                       style={{
                         width: 'clamp(80px, 10vw, 128px)',
                         height: 'clamp(80px, 10vw, 128px)',
-                        padding: 'clamp(12px, 1.5vw, 16px)',
-                        backgroundColor: premiumColors.lightGray,
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.06)'
+                        padding: 'clamp(12px, 1.5vw, 16px)'
                       }}
                       whileHover={{ scale: 1.05, rotate: 2 }}
                       transition={{ type: 'spring', stiffness: 300 }}

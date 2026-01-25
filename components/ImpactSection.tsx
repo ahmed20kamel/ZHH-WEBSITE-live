@@ -314,7 +314,7 @@ export default function ImpactSection() {
                       transition={{ duration: 0.5, delay: 0.1 }}
                     >
                       <motion.div 
-                        className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 relative z-10"
+                        className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 relative z-10 mobile-center-icon"
                         style={{ 
                           backgroundColor: 'rgba(224, 242, 241, 0.95)',
                           backdropFilter: 'blur(12px)',

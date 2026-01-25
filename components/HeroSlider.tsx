@@ -10,11 +10,10 @@ interface Slide {
   alt?: string;
 }
 
-const slides: Slide[] = [
+const allSlides: Slide[] = [
   { type: 'video', src: '/assets/slider/slider-2.mp4' },
   { type: 'video', src: '/assets/slider/slider-3.mp4' },
   { type: 'video', src: '/assets/slider/slider-4.mp4' },
-  // Only 3 videos as requested
 ];
 
 interface HeroSliderProps {
@@ -24,7 +23,34 @@ interface HeroSliderProps {
 export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [failedSlides, setFailedSlides] = useState<Set<number>>(new Set());
+  const [isMobile, setIsMobile] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  // Detect mobile/desktop
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Filter slides based on device type
+  // Mobile: only slider-3.mp4
+  // Desktop: slider-2.mp4 and slider-4.mp4
+  const slides = isMobile
+    ? allSlides.filter(slide => slide.src === '/assets/slider/slider-3.mp4')
+    : allSlides.filter(slide => 
+        slide.src === '/assets/slider/slider-2.mp4' || 
+        slide.src === '/assets/slider/slider-4.mp4'
+      );
+
+  // Reset current slide when device type changes
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [isMobile]);
 
   // Filter out failed slides
   const validSlides = slides.filter((_, index) => !failedSlides.has(index));
@@ -35,7 +61,8 @@ export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
     
     const currentSlideData = validSlides[currentSlide];
     if (currentSlideData && currentSlideData.type === 'video') {
-      const originalIndex = slides.findIndex(s => s.src === currentSlideData.src);
+      const slideSrc = currentSlideData.src;
+      const originalIndex = allSlides.findIndex(s => s.src === slideSrc);
       const videoRef = videoRefs.current[originalIndex];
       if (videoRef) {
         const playPromise = videoRef.play();
@@ -50,17 +77,18 @@ export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
     // Pause all other videos
     videoRefs.current.forEach((ref, index) => {
       if (ref && !failedSlides.has(index)) {
-        const originalIndex = slides.findIndex((s, i) => i === index);
-        if (originalIndex !== currentSlide) {
+        const currentSlideSrc = validSlides[currentSlide]?.src;
+        const refSlideSrc = allSlides[index]?.src;
+        if (refSlideSrc && refSlideSrc !== currentSlideSrc) {
           ref.pause();
         }
       }
     });
   }, [currentSlide, validSlides, failedSlides]);
 
-  // Auto-advance slides every 5 seconds
+  // Auto-advance slides every 5 seconds (only on desktop with multiple slides)
   useEffect(() => {
-    if (validSlides.length === 0) return;
+    if (validSlides.length === 0 || validSlides.length === 1) return; // Don't auto-advance if only one slide
     
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % validSlides.length);
@@ -77,12 +105,15 @@ export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
   }, [currentSlide, onSlideChange, validSlides.length]);
 
   // Handle video error
-  const handleVideoError = (originalIndex: number) => {
+  const handleVideoError = (slideSrc: string) => {
+    const slideIndex = slides.findIndex(s => s.src === slideSrc);
+    if (slideIndex === -1) return;
+    
     setFailedSlides(prev => {
-      const newSet = new Set([...prev, originalIndex]);
+      const newSet = new Set([...prev, slideIndex]);
       // Check if current slide failed
       const currentSlideData = validSlides[currentSlide];
-      if (currentSlideData && slides.findIndex(s => s.src === currentSlideData.src) === originalIndex) {
+      if (currentSlideData && currentSlideData.src === slideSrc) {
         // Move to next slide if current one failed
         if (validSlides.length > 1) {
           setCurrentSlide((prev) => (prev + 1) % validSlides.length);
@@ -111,7 +142,7 @@ export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
       <div className="relative w-full h-full overflow-hidden">
         <AnimatePresence initial={false}>
           {validSlides.map((slide, validIndex) => {
-            const originalIndex = slides.findIndex(s => s.src === slide.src);
+            const originalIndex = allSlides.findIndex(s => s.src === slide.src);
             if (validIndex !== currentSlide) return null;
 
             return (
@@ -130,7 +161,7 @@ export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
                   scale: 0.98
                 }}
                 transition={{ 
-                  duration: 1.5,
+                  duration: validSlides.length > 1 ? 1.5 : 0, // No transition animation on mobile (single video)
                   ease: [0.25, 0.46, 0.45, 0.94] // Smooth crossfade easing
                 }}
                 className="absolute inset-0 w-full h-full"
@@ -153,12 +184,12 @@ export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
                       objectPosition: 'center',
                       backgroundColor: '#1a1a1a'
                     }}
-                    autoPlay={validIndex === currentSlide}
+                    autoPlay
                     muted
                     loop
                     playsInline
                     preload="auto"
-                    onError={() => handleVideoError(originalIndex)}
+                    onError={() => handleVideoError(slide.src)}
                   >
                     <source src={slide.src} type="video/mp4" />
                     Your browser does not support the video tag.
@@ -176,7 +207,7 @@ export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
                     priority={validIndex === 0}
                     quality={90}
                     sizes="100vw"
-                    onError={() => handleVideoError(originalIndex)}
+                    onError={() => handleVideoError(slide.src)}
                   />
                 )}
               </motion.div>

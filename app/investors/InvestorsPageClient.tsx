@@ -370,7 +370,7 @@ export default function InvestorsPageClient() {
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.1, type: 'spring', stiffness: 200 }}
                         whileHover={{ rotate: 5, scale: 1.1, boxShadow: '0 8px 24px rgba(13, 148, 136, 0.3)' }}
-                        className="rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg mx-auto relative z-10"
+                        className="rounded-xl flex items-center justify-center mb-4 md:mb-6 shadow-lg relative z-10 mobile-center-icon"
                         style={{ 
                           backgroundColor: 'rgba(224, 242, 241, 0.95)',
                           backdropFilter: 'blur(12px)',

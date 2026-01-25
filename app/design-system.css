@@ -790,11 +790,23 @@
   .hide-mobile {
     display: none !important;
   }
+  
+  /* Center icons on mobile */
+  .mobile-center-icon {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 }
 
 @media (min-width: 768px) {
   .hide-desktop {
     display: none !important;
+  }
+  
+  /* Reset icon margin on desktop */
+  .mobile-center-icon {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
 

@@ -136,8 +136,8 @@ export const globalPresenceData: LocationData[] = [
 // World TopoJSON URL
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
-// Get ISO codes for highlighting
-const presenceIsoCodes = globalPresenceData.map(d => d.isoCode);
+// Get country names for highlighting (TopoJSON uses names, not ISO codes)
+const presenceCountryNames = globalPresenceData.map(d => d.name.toLowerCase());
 
 // Pin Marker Component
 const PinMarker = ({ 
@@ -220,8 +220,10 @@ function GlobalMap() {
   const [tooltip, setTooltip] = useState<{ x: number; y: number; data: LocationData | null; activityType?: string }>({ x: 0, y: 0, data: null });
   const [isMobile, setIsMobile] = useState(false);
   const [legendOpen, setLegendOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -319,6 +321,36 @@ function GlobalMap() {
 
   const allMarkers = generateMarkers();
 
+  // Prevent hydration mismatch by only rendering map on client
+  if (!isMounted) {
+    return (
+      <div style={{ position: 'relative', width: '100%' }}>
+        <div
+          style={{
+            width: '100%',
+            maxWidth: '1200px',
+            margin: '0 auto',
+            background: 'linear-gradient(180deg, #F0F4F8 0%, #E8EEF4 100%)',
+            borderRadius: '20px',
+            padding: 'clamp(8px, 2vw, 16px)',
+            border: '1px solid #D1D9E6',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
+            position: 'relative',
+            overflow: 'hidden',
+            minHeight: '400px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <div style={{ color: '#666', fontFamily: 'var(--font-inter), Inter, sans-serif' }}>
+            Loading map...
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{ position: 'relative', width: '100%' }}>
       {/* Map Container */}
@@ -343,35 +375,41 @@ function GlobalMap() {
             scale: 380,
             center: [25, 5], // Center between Africa and Middle East
           }}
-          style={{
-            width: '100%',
+            style={{
+              width: '100%',
             height: 'auto',
           }}
         >
           <Geographies geography={geoUrl}>
-            {({ geographies }: { geographies: Array<{ rsmKey: string; properties?: { ISO_A3?: string }; id?: string }> }) =>
-              geographies.map((geo: { rsmKey: string; properties?: { ISO_A3?: string }; id?: string }) => {
-                const isoCode = geo.properties?.ISO_A3 || geo.id;
-                const hasPresence = presenceIsoCodes.includes(isoCode || '');
+            {({ geographies }: { geographies: Array<{ rsmKey: string; properties?: { name?: string; NAME?: string }; id?: string }> }) =>
+              geographies.map((geo: { rsmKey: string; properties?: { name?: string; NAME?: string }; id?: string }) => {
+                const countryName = (geo.properties?.name || geo.properties?.NAME || '').toLowerCase();
+                const hasPresence = presenceCountryNames.includes(countryName) || 
+                  presenceCountryNames.some(name => countryName.includes(name) || name.includes(countryName));
                 
                 return (
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill={hasPresence ? 'rgba(1, 178, 178, 0.25)' : '#E5E9EF'}
-                    stroke="#FFFFFF"
-                    strokeWidth={0.5}
+                    fill={hasPresence ? '#008080' : '#E8ECEF'}
+                    stroke={hasPresence ? '#006666' : '#D0D5DB'}
+                    strokeWidth={hasPresence ? 2 : 0.4}
                     style={{
                       default: {
                         outline: 'none',
                         transition: 'all 0.3s ease',
                       },
                       hover: {
-                        fill: hasPresence ? 'rgba(1, 178, 178, 0.4)' : '#D8DEE6',
+                        fill: hasPresence ? '#009999' : '#DDE2E7',
+                        stroke: hasPresence ? '#005555' : '#C5CCD3',
+                        strokeWidth: hasPresence ? 2.5 : 0.4,
                         outline: 'none',
+                        cursor: hasPresence ? 'pointer' : 'default',
                       },
                       pressed: {
-                        fill: hasPresence ? 'rgba(1, 178, 178, 0.5)' : '#D8DEE6',
+                        fill: hasPresence ? '#007070' : '#D5DAE0',
+                        stroke: hasPresence ? '#004444' : '#BCC3CA',
+                        strokeWidth: hasPresence ? 2.5 : 0.4,
                         outline: 'none',
                       },
                     }}
@@ -505,7 +543,7 @@ function GlobalMap() {
             </svg>
           </motion.button>
         )}
-      </div>
+          </div>
 
       {/* Mobile Legend Bottom Sheet */}
       <AnimatePresence>
@@ -555,7 +593,7 @@ function GlobalMap() {
               />
               {/* Header */}
               <div
-                style={{
+            style={{
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
@@ -631,7 +669,7 @@ function GlobalMap() {
                       strokeWidth="1"
                     />
                     <circle cx="7" cy="6" r="2.5" fill="#fff" />
-                  </svg>
+          </svg>
                   <span style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: '15px', color: '#333', fontWeight: 500 }}>
                     Jewelust
                   </span>
@@ -642,7 +680,7 @@ function GlobalMap() {
         )}
       </AnimatePresence>
 
-      {/* Tooltip */}
+        {/* Tooltip */}
       <AnimatePresence>
         {tooltip.data && !isMobile && (
           <motion.div
@@ -677,7 +715,7 @@ function GlobalMap() {
               {tooltip.activityType === 'jewelust' && 'Jewelust Jewelry'}
               {tooltip.activityType === 'headquarters' && 'Corporate Headquarters'}
               {!tooltip.activityType && (tooltip.data.entities?.join(' • ') || '')}
-            </div>
+          </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -725,17 +763,17 @@ function GlobalMap() {
                     />
                     <circle cx="8" cy="7" r="3" fill="#fff" />
                   </svg>
-                  <h3
-                    style={{
-                      fontFamily: 'var(--font-inter), Inter, sans-serif',
+                <h3
+                  style={{
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
                       fontSize: 'clamp(20px, 2.5vw, 26px)',
-                      fontWeight: 700,
-                      color: '#032D46',
-                      margin: 0,
-                    }}
-                  >
+                    fontWeight: 700,
+                    color: '#032D46',
+                    margin: 0,
+                  }}
+                >
                     {selectedData.name}
-                  </h3>
+                </h3>
                 </div>
                 <button
                   onClick={() => setSelectedLocation(null)}
@@ -848,21 +886,10 @@ function GlobalMap() {
                               fontSize: 'clamp(14px, 1.5vw, 16px)',
                               lineHeight: 1.6,
                               color: '#333333',
-                              paddingLeft: '24px',
+                              paddingLeft: 0,
                               position: 'relative',
                             }}
                           >
-                            <span
-                              style={{
-                                position: 'absolute',
-                                left: 0,
-                                top: '0.55em',
-                                width: '8px',
-                                height: '8px',
-                                borderRadius: '50%',
-                                background: '#01B2B2',
-                              }}
-                            />
                             {entity}
                           </motion.li>
                         ))}
@@ -892,21 +919,10 @@ function GlobalMap() {
                         fontSize: 'clamp(14px, 1.5vw, 16px)',
                         lineHeight: 1.6,
                         color: '#333333',
-                        paddingLeft: '24px',
+                        paddingLeft: 0,
                         position: 'relative',
                       }}
                     >
-                      <span
-                        style={{
-                          position: 'absolute',
-                          left: 0,
-                          top: '0.55em',
-                          width: '8px',
-                          height: '8px',
-                          borderRadius: '50%',
-                          background: entity.includes('Jewelust') ? '#D4AF37' : '#01B2B2',
-                        }}
-                      />
                       {entity}
                     </motion.li>
                   ))}

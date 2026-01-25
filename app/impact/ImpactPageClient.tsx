@@ -329,7 +329,7 @@ export default function ImpactPageClient() {
                         transition={{ delay: index * 0.2, type: 'spring', stiffness: 200 }}
                       >
                         <motion.div 
-                          className="rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 relative z-10"
+                          className="rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 relative z-10 mobile-center-icon"
                           style={{ 
                             backgroundColor: 'rgba(224, 242, 241, 0.95)',
                             backdropFilter: 'blur(12px)',

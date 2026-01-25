@@ -566,7 +566,11 @@ export default function AboutZHHPageClient() {
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {divisions.map((division, index) => (
+              {divisions.map((division, index) => {
+                // Check if this is one of the three divisions that should be transparent
+                const isTransparent = ['ZHH Construction', 'ZHH Real Estate', 'ZHH General Trading'].includes(division.name);
+                
+                return (
                 <motion.div
                   key={division.name}
                   variants={fadeInUp}
@@ -576,8 +580,11 @@ export default function AboutZHHPageClient() {
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
                   <div
-                    className="card-unified h-full relative overflow-hidden group"
-                    style={{
+                    className={isTransparent ? "h-full relative group" : "card-unified h-full relative overflow-hidden group"}
+                    style={isTransparent ? {
+                      padding: 'clamp(24px, 3vw, 32px)',
+                      position: 'relative'
+                    } : {
                       padding: 'clamp(24px, 3vw, 32px)',
                       borderRadius: '16px',
                       boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
@@ -586,103 +593,71 @@ export default function AboutZHHPageClient() {
                       position: 'relative'
                     }}
                   >
-                    {/* Hover Border Effect */}
-                    <motion.div
-                      className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"
-                      style={{ zIndex: 3 }}
-                      whileHover={{
-                        borderColor: 'rgba(13, 148, 136, 0.3)',
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
+                    {/* Background Image with Blur and Overlay - Only for Jewelust */}
+                    {!isTransparent && (
+                      <>
+                        {/* Hover Border Effect */}
+                        <motion.div
+                          className="absolute inset-0 border-2 border-transparent rounded-2xl pointer-events-none"
+                          style={{ zIndex: 3 }}
+                          whileHover={{
+                            borderColor: 'rgba(13, 148, 136, 0.3)',
+                          }}
+                          transition={{ duration: 0.3 }}
+                        />
 
-                    {/* Background Image with Blur and Overlay - Full Card Background */}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        inset: 0,
-                        zIndex: 0,
-                        overflow: 'hidden',
-                        borderRadius: '16px'
-                      }}
-                      className="group-hover:scale-105 transition-transform duration-500"
-                    >
-                      {division.name === 'ZHH Construction' && (
-                        <Image
-                          src="/assets/hero/card/Construction.jpg"
-                          alt=""
-                          fill
-                          className="object-cover"
+                        {/* Background Image with Blur and Overlay */}
+                        <div
                           style={{
-                            filter: 'blur(2px)',
-                            opacity: 0.35,
-                            objectFit: 'cover',
-                            objectPosition: 'center',
-                            transform: 'scale(1.1)'
+                            position: 'absolute',
+                            inset: 0,
+                            zIndex: 0,
+                            overflow: 'hidden',
+                            borderRadius: '16px'
                           }}
-                        />
-                      )}
-                      {division.name === 'ZHH Real Estate' && (
-                        <Image
-                          src="/assets/hero/card/Real Estates.jpg"
-                          alt=""
-                          fill
-                          className="object-cover"
-                          style={{
-                            filter: 'blur(2px)',
-                            opacity: 0.35,
-                            objectFit: 'cover',
-                            objectPosition: 'center',
-                            transform: 'scale(1.1)'
-                          }}
-                        />
-                      )}
-                      {division.name === 'ZHH General Trading' && (
-                        <Image
-                          src="/assets/hero/card/General Trading.jpg"
-                          alt=""
-                          fill
-                          className="object-cover"
-                          style={{
-                            filter: 'blur(2px)',
-                            opacity: 0.35,
-                            objectFit: 'cover',
-                            objectPosition: 'center',
-                            transform: 'scale(1.1)'
-                          }}
-                        />
-                      )}
-                      {division.name === 'Jewelust' && (
-                        <Image
-                          src="/assets/hero/card/Gold2.JPEG"
-                          alt=""
-                          fill
-                          className="object-cover"
-                          style={{
-                            filter: 'blur(2px)',
-                            opacity: 0.35,
-                            objectFit: 'cover',
-                            objectPosition: 'center',
-                            transform: 'scale(1.1)'
-                          }}
-                        />
-                      )}
-                      {/* White Overlay - Reduced for better image visibility */}
-                      <div
-                        style={{
-                          position: 'absolute',
-                          inset: 0,
-                          backgroundColor: 'rgba(255, 255, 255, 0.25)',
-                          zIndex: 1
-                        }}
-                      />
-                    </div>
+                          className="group-hover:scale-105 transition-transform duration-500"
+                        >
+                          {division.name === 'Jewelust' && (
+                            <Image
+                              src="/assets/hero/card/Gold2.JPEG"
+                              alt=""
+                              fill
+                              className="object-cover"
+                              style={{
+                                filter: 'blur(2px)',
+                                opacity: 0.35,
+                                objectFit: 'cover',
+                                objectPosition: 'center',
+                                transform: 'scale(1.1)'
+                              }}
+                            />
+                          )}
+                          {/* White Overlay */}
+                          <div
+                            style={{
+                              position: 'absolute',
+                              inset: 0,
+                              backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                              zIndex: 1
+                            }}
+                          />
+                        </div>
+                      </>
+                    )}
 
                     <div style={{ position: 'relative', zIndex: 2 }}>
                       <div className="flex flex-col items-center" style={{ marginBottom: 'clamp(20px, 2.5vw, 28px)' }}>
                         {/* Logo Container with Enhanced Animation */}
                         <motion.div
-                          style={{
+                          style={isTransparent ? {
+                            height: 'clamp(80px, 10vw, 120px)',
+                            width: '100%',
+                            position: 'relative',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: 'clamp(16px, 2vw, 24px)'
+                          } : {
                             height: 'clamp(80px, 10vw, 120px)',
                             width: '100%',
                             position: 'relative',
@@ -698,23 +673,14 @@ export default function AboutZHHPageClient() {
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.5, delay: index * 0.1 }}
-                          whileHover={{
+                          whileHover={isTransparent ? {
+                            scale: 1.05
+                          } : {
                             scale: 1.05,
                             boxShadow: '0 8px 24px rgba(13, 148, 136, 0.2)'
                           }}
                         >
-                          <div
-                            style={{
-                              position: 'relative',
-                              zIndex: 2,
-                              width: '100%',
-                              height: '100%',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              padding: 'clamp(10px, 1.5vw, 15px)'
-                            }}
-                          >
+                          {isTransparent ? (
                             <motion.img
                               src={division.logo}
                               alt={`${division.name} Logo`}
@@ -727,7 +693,33 @@ export default function AboutZHHPageClient() {
                               whileHover={{ scale: 1.05 }}
                               transition={{ duration: 0.3 }}
                             />
-                          </div>
+                          ) : (
+                            <div
+                              style={{
+                                position: 'relative',
+                                zIndex: 2,
+                                width: '100%',
+                                height: '100%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                padding: 'clamp(10px, 1.5vw, 15px)'
+                              }}
+                            >
+                              <motion.img
+                                src={division.logo}
+                                alt={`${division.name} Logo`}
+                                className="h-full w-auto object-contain"
+                                style={{
+                                  maxWidth: 'min(100%, 250px)',
+                                  height: 'auto',
+                                  maxHeight: '100%'
+                                }}
+                                whileHover={{ scale: 1.05 }}
+                                transition={{ duration: 0.3 }}
+                              />
+                            </div>
+                          )}
                         </motion.div>
                         
                         {/* Title with Enhanced Styling */}
@@ -774,7 +766,8 @@ export default function AboutZHHPageClient() {
                     </div>
                   </div>
                 </motion.div>
-              ))}
+                );
+              })}
             </div>
           </motion.div>
         </div>

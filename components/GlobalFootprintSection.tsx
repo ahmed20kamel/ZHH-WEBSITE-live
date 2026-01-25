@@ -491,11 +491,12 @@ export default function GlobalFootprintSection() {
                     <motion.div
                       whileHover={{ rotate: 5, scale: 1.1 }}
                       transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                      className="w-16 h-16 rounded-xl flex items-center justify-center mb-5 shadow-lg flex-shrink-0 relative z-10"
+                      className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 relative z-10 mobile-center-icon"
                       style={{ 
                         backgroundColor: 'rgba(224, 242, 241, 0.95)', 
                         backdropFilter: 'blur(12px)',
-                        border: '1px solid rgba(13, 148, 136, 0.2)'
+                        border: '1px solid rgba(13, 148, 136, 0.2)',
+                        marginBottom: 'clamp(24px, 3vw, 32px)'
                       }}
                     >
                       <Icon className="w-8 h-8" style={{ color: stat.iconColor }} />
@@ -508,6 +509,7 @@ export default function GlobalFootprintSection() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: 0.1 }}
+                      className="text-center md:text-left"
                     >
                       <div style={{
                         fontSize: 'clamp(32px, 4vw, 48px)',
@@ -522,7 +524,7 @@ export default function GlobalFootprintSection() {
 
                     {/* Label */}
                     <motion.h3 
-                      className="h4-unified text-primary" 
+                      className="h4-unified text-primary text-center md:text-left" 
                       style={{ 
                         marginBottom: 'clamp(12px, 1.5vw, 16px)', 
                         flexShrink: 0,
