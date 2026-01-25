@@ -407,15 +407,21 @@ export default function AboutPageClient() {
                         >
                           <div className="flex items-center gap-content-md mb-sm">
                             <div 
-                              className="w-10 h-10 rounded-lg flex items-center justify-center bg-primary-dark/8"
+                              className="rounded-lg flex items-center justify-center bg-primary-dark/8 flex-shrink-0"
                               style={{
                                 border: `1px solid ${premiumColors.darkBlue}20`,
+                                width: 'clamp(36px, 4vw, 40px)',
+                                height: 'clamp(36px, 4vw, 40px)',
+                                minWidth: '36px',
+                                minHeight: '36px',
                               }}
                             >
                               <Icon 
-                                className="w-5 h-5 text-primary-dark" 
+                                className="text-primary-dark flex-shrink-0" 
                                 style={{ 
-                                  strokeWidth: 1.5
+                                  strokeWidth: 1.5,
+                                  width: 'clamp(18px, 2vw, 20px)',
+                                  height: 'clamp(18px, 2vw, 20px)',
                                 }} 
                               />
                             </div>

@@ -23,13 +23,20 @@ interface HeroSliderProps {
 
 export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [failedSlides, setFailedSlides] = useState<Set<number>>(new Set());
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  // Filter out failed slides
+  const validSlides = slides.filter((_, index) => !failedSlides.has(index));
 
   // Auto-play video when a video slide is active
   useEffect(() => {
-    const currentSlideData = slides[currentSlide];
-    if (currentSlideData.type === 'video') {
-      const videoRef = videoRefs.current[currentSlide];
+    if (validSlides.length === 0) return;
+    
+    const currentSlideData = validSlides[currentSlide];
+    if (currentSlideData && currentSlideData.type === 'video') {
+      const originalIndex = slides.findIndex(s => s.src === currentSlideData.src);
+      const videoRef = videoRefs.current[originalIndex];
       if (videoRef) {
         const playPromise = videoRef.play();
         if (playPromise !== undefined) {
@@ -42,40 +49,74 @@ export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
     
     // Pause all other videos
     videoRefs.current.forEach((ref, index) => {
-      if (ref && index !== currentSlide) {
-        ref.pause();
+      if (ref && !failedSlides.has(index)) {
+        const originalIndex = slides.findIndex((s, i) => i === index);
+        if (originalIndex !== currentSlide) {
+          ref.pause();
+        }
       }
     });
-  }, [currentSlide]);
+  }, [currentSlide, validSlides, failedSlides]);
 
   // Auto-advance slides every 5 seconds
   useEffect(() => {
+    if (validSlides.length === 0) return;
+    
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide((prev) => (prev + 1) % validSlides.length);
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [validSlides.length]);
 
   // Notify parent component of slide changes
   useEffect(() => {
-    if (onSlideChange) {
+    if (onSlideChange && validSlides.length > 0) {
       onSlideChange(currentSlide);
     }
-  }, [currentSlide, onSlideChange]);
+  }, [currentSlide, onSlideChange, validSlides.length]);
 
+  // Handle video error
+  const handleVideoError = (originalIndex: number) => {
+    setFailedSlides(prev => {
+      const newSet = new Set([...prev, originalIndex]);
+      // Check if current slide failed
+      const currentSlideData = validSlides[currentSlide];
+      if (currentSlideData && slides.findIndex(s => s.src === currentSlideData.src) === originalIndex) {
+        // Move to next slide if current one failed
+        if (validSlides.length > 1) {
+          setCurrentSlide((prev) => (prev + 1) % validSlides.length);
+        }
+      }
+      return newSet;
+    });
+  };
+
+  // If no valid slides, show fallback background
+  if (validSlides.length === 0) {
+    return (
+      <div 
+        className="relative w-full h-full"
+        style={{
+          backgroundColor: '#1a1a1a',
+          backgroundImage: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)'
+        }}
+      />
+    );
+  }
 
   return (
     <div className="relative w-full h-full">
       {/* Slides Container */}
       <div className="relative w-full h-full overflow-hidden">
         <AnimatePresence initial={false}>
-          {slides.map((slide, index) => {
-            if (index !== currentSlide) return null;
+          {validSlides.map((slide, validIndex) => {
+            const originalIndex = slides.findIndex(s => s.src === slide.src);
+            if (validIndex !== currentSlide) return null;
 
             return (
               <motion.div
-                key={index}
+                key={`${originalIndex}-${slide.src}`}
                 initial={{ 
                   opacity: 0,
                   scale: 1.08
@@ -102,20 +143,22 @@ export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
                 {slide.type === 'video' ? (
                   <video
                     ref={(el) => {
-                      videoRefs.current[index] = el;
+                      if (el) videoRefs.current[originalIndex] = el;
                     }}
                     className="w-full h-full"
                     style={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      objectPosition: 'center'
+                      objectPosition: 'center',
+                      backgroundColor: '#1a1a1a'
                     }}
-                    autoPlay={index === currentSlide}
+                    autoPlay={validIndex === currentSlide}
                     muted
                     loop
                     playsInline
                     preload="auto"
+                    onError={() => handleVideoError(originalIndex)}
                   >
                     <source src={slide.src} type="video/mp4" />
                     Your browser does not support the video tag.
@@ -130,9 +173,10 @@ export default function HeroSlider({ onSlideChange }: HeroSliderProps) {
                       objectFit: 'cover',
                       objectPosition: 'center'
                     }}
-                    priority={index === 0}
+                    priority={validIndex === 0}
                     quality={90}
                     sizes="100vw"
+                    onError={() => handleVideoError(originalIndex)}
                   />
                 )}
               </motion.div>

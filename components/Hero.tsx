@@ -99,7 +99,6 @@ export default function Hero() {
                 textTransform: 'uppercase',
                 textShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2)',
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
-                marginBottom: 'clamp(40px, 5vw, 56px)',
                 padding: 0,
                 textAlign: 'left'
               }}
@@ -109,54 +108,6 @@ export default function Hero() {
               <span className="block" style={{ marginTop: 'clamp(4px, 0.8vw, 8px)' }}>Trust</span>
               <span className="block" style={{ marginTop: 'clamp(4px, 0.8vw, 8px)' }}>& Growth</span>
             </motion.h1>
-
-            {/* Play Video Button */}
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              onClick={() => {
-                // Handle play video action
-                const video = document.querySelector('video');
-                if (video) {
-                  video.play();
-                }
-              }}
-              className="flex items-center justify-center gap-4 bg-transparent border border-white/30 rounded-lg hover:bg-white/10 transition-all duration-300"
-              style={{
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                padding: 'clamp(16px, 2.5vw, 20px) clamp(32px, 4vw, 48px)',
-                minHeight: 'clamp(56px, 7vw, 64px)'
-              }}
-            >
-              {/* Play Icon */}
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 16 16"
-                fill="none"
-                className="text-white"
-                style={{ flexShrink: 0 }}
-              >
-                <path
-                  d="M3 2L13 8L3 14V2Z"
-                  fill="currentColor"
-                />
-              </svg>
-              <span
-                className="text-white uppercase tracking-wider"
-                style={{
-                  fontSize: 'clamp(14px, 1.5vw, 16px)',
-                  fontFamily: 'var(--font-inter), Inter, sans-serif',
-                  fontWeight: 400,
-                  letterSpacing: '0.1em',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                Play Video
-              </span>
-            </motion.button>
           </div>
         </div>
       </div>
@@ -192,7 +143,7 @@ export default function Hero() {
         
         {/* Dots for other slides */}
         <div className="flex items-center gap-2">
-          {[0, 1, 2].map((index) => (
+          {Array.from({ length: 3 }).map((_, index) => (
             <div
               key={index}
               className={`rounded-full transition-opacity duration-300 ${
