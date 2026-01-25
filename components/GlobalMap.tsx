@@ -219,6 +219,7 @@ function GlobalMap() {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<{ x: number; y: number; data: LocationData | null; activityType?: string }>({ x: 0, y: 0, data: null });
   const [isMobile, setIsMobile] = useState(false);
+  const [legendOpen, setLegendOpen] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -406,66 +407,240 @@ function GlobalMap() {
           })}
         </ComposableMap>
 
-        {/* Legend */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          style={{
-            position: 'absolute',
-            bottom: 'clamp(16px, 3vw, 24px)',
-            right: 'clamp(16px, 3vw, 24px)',
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(8px)',
-            padding: 'clamp(14px, 2vw, 18px)',
-            borderRadius: '14px',
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.12)',
-            fontFamily: 'var(--font-inter), Inter, sans-serif',
-            fontSize: 'clamp(11px, 1.2vw, 13px)',
-            zIndex: 10,
-          }}
-        >
-          <div style={{ fontWeight: 700, marginBottom: '12px', color: '#032D46', fontSize: '14px' }}>Legend</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <svg width="16" height="22" viewBox="0 0 16 22">
-                <path
-                  d="M8 22 C8 22 0 14 0 8 C0 3.58 3.58 0 8 0 C12.42 0 16 3.58 16 8 C16 14 8 22 8 22Z"
-                  fill="#032D46"
-                  stroke="#fff"
-                  strokeWidth="1"
-                />
-                <circle cx="8" cy="7" r="3" fill="#fff" />
-              </svg>
-              <span style={{ color: '#333', fontWeight: 500 }}>Headquarters (UAE)</span>
+        {/* Legend - Desktop: Full | Mobile: Toggle Button */}
+        {!isMobile ? (
+          // Desktop Legend
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            style={{
+              position: 'absolute',
+              bottom: 'clamp(16px, 3vw, 24px)',
+              right: 'clamp(16px, 3vw, 24px)',
+              background: 'rgba(255, 255, 255, 0.95)',
+              backdropFilter: 'blur(8px)',
+              padding: 'clamp(14px, 2vw, 18px)',
+              borderRadius: '14px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.12)',
+              fontFamily: 'var(--font-inter), Inter, sans-serif',
+              fontSize: 'clamp(11px, 1.2vw, 13px)',
+              zIndex: 10,
+            }}
+          >
+            <div style={{ fontWeight: 700, marginBottom: '12px', color: '#032D46', fontSize: '14px' }}>Legend</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <svg width="16" height="22" viewBox="0 0 16 22">
+                  <path
+                    d="M8 22 C8 22 0 14 0 8 C0 3.58 3.58 0 8 0 C12.42 0 16 3.58 16 8 C16 14 8 22 8 22Z"
+                    fill="#032D46"
+                    stroke="#fff"
+                    strokeWidth="1"
+                  />
+                  <circle cx="8" cy="7" r="3" fill="#fff" />
+                </svg>
+                <span style={{ color: '#333', fontWeight: 500 }}>Headquarters (UAE)</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <svg width="14" height="18" viewBox="0 0 14 18">
+                  <path
+                    d="M7 18 C7 18 0 12 0 7 C0 3.13 3.13 0 7 0 C10.87 0 14 3.13 14 7 C14 12 7 18 7 18Z"
+                    fill="#01B2B2"
+                    stroke="#fff"
+                    strokeWidth="1"
+                  />
+                  <circle cx="7" cy="6" r="2.5" fill="#fff" />
+                </svg>
+                <span style={{ color: '#333', fontWeight: 500 }}>General Trading</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <svg width="14" height="18" viewBox="0 0 14 18">
+                  <path
+                    d="M7 18 C7 18 0 12 0 7 C0 3.13 3.13 0 7 0 C10.87 0 14 3.13 14 7 C14 12 7 18 7 18Z"
+                    fill="#D4AF37"
+                    stroke="#fff"
+                    strokeWidth="1"
+                  />
+                  <circle cx="7" cy="6" r="2.5" fill="#fff" />
+                </svg>
+                <span style={{ color: '#333', fontWeight: 500 }}>Jewelust</span>
+              </div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <svg width="14" height="18" viewBox="0 0 14 18">
-                <path
-                  d="M7 18 C7 18 0 12 0 7 C0 3.13 3.13 0 7 0 C10.87 0 14 3.13 14 7 C14 12 7 18 7 18Z"
-                  fill="#01B2B2"
-                  stroke="#fff"
-                  strokeWidth="1"
-                />
-                <circle cx="7" cy="6" r="2.5" fill="#fff" />
-              </svg>
-              <span style={{ color: '#333', fontWeight: 500 }}>General Trading</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <svg width="14" height="18" viewBox="0 0 14 18">
-                <path
-                  d="M7 18 C7 18 0 12 0 7 C0 3.13 3.13 0 7 0 C10.87 0 14 3.13 14 7 C14 12 7 18 7 18Z"
-                  fill="#D4AF37"
-                  stroke="#fff"
-                  strokeWidth="1"
-                />
-                <circle cx="7" cy="6" r="2.5" fill="#fff" />
-              </svg>
-              <span style={{ color: '#333', fontWeight: 500 }}>Jewelust</span>
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        ) : (
+          // Mobile Legend Toggle Button
+          <motion.button
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5 }}
+            onClick={() => setLegendOpen(true)}
+            style={{
+              position: 'absolute',
+              bottom: '16px',
+              right: '16px',
+              width: '44px',
+              height: '44px',
+              borderRadius: '12px',
+              background: 'rgba(255, 255, 255, 0.95)',
+              backdropFilter: 'blur(8px)',
+              border: '1px solid #E5E7EB',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.12)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              zIndex: 10,
+            }}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#032D46" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/>
+              <path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+              <path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/>
+              <path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/>
+              <path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/>
+              <path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/>
+              <path d="M10 9.5C10 10.33 9.33 11 8.5 11h-5C2.67 11 2 10.33 2 9.5S2.67 8 3.5 8h5c.83 0 1.5.67 1.5 1.5z"/>
+              <path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/>
+            </svg>
+          </motion.button>
+        )}
       </div>
+
+      {/* Mobile Legend Bottom Sheet */}
+      <AnimatePresence>
+        {legendOpen && isMobile && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setLegendOpen(false)}
+              style={{
+                position: 'fixed',
+                inset: 0,
+                background: 'rgba(0, 0, 0, 0.4)',
+                zIndex: 100,
+              }}
+            />
+            {/* Bottom Sheet */}
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              style={{
+                position: 'fixed',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                background: '#FFFFFF',
+                borderRadius: '24px 24px 0 0',
+                padding: '24px',
+                paddingBottom: '40px',
+                boxShadow: '0 -8px 40px rgba(0, 0, 0, 0.15)',
+                zIndex: 101,
+              }}
+            >
+              {/* Handle */}
+              <div
+                style={{
+                  width: '40px',
+                  height: '4px',
+                  background: '#D1D5DB',
+                  borderRadius: '2px',
+                  margin: '0 auto 20px',
+                }}
+              />
+              {/* Header */}
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: '20px',
+                }}
+              >
+                <h3
+                  style={{
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    fontSize: '18px',
+                    fontWeight: 700,
+                    color: '#032D46',
+                    margin: 0,
+                  }}
+                >
+                  Legend
+                </h3>
+                <button
+                  onClick={() => setLegendOpen(false)}
+                  style={{
+                    background: '#F3F4F6',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: '8px',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
+              {/* Legend Items */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <svg width="20" height="28" viewBox="0 0 16 22">
+                    <path
+                      d="M8 22 C8 22 0 14 0 8 C0 3.58 3.58 0 8 0 C12.42 0 16 3.58 16 8 C16 14 8 22 8 22Z"
+                      fill="#032D46"
+                      stroke="#E5E7EB"
+                      strokeWidth="1"
+                    />
+                    <circle cx="8" cy="7" r="3" fill="#fff" />
+                  </svg>
+                  <span style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: '15px', color: '#333', fontWeight: 500 }}>
+                    Headquarters (UAE)
+                  </span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <svg width="18" height="24" viewBox="0 0 14 18">
+                    <path
+                      d="M7 18 C7 18 0 12 0 7 C0 3.13 3.13 0 7 0 C10.87 0 14 3.13 14 7 C14 12 7 18 7 18Z"
+                      fill="#01B2B2"
+                      stroke="#E5E7EB"
+                      strokeWidth="1"
+                    />
+                    <circle cx="7" cy="6" r="2.5" fill="#fff" />
+                  </svg>
+                  <span style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: '15px', color: '#333', fontWeight: 500 }}>
+                    General Trading
+                  </span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <svg width="18" height="24" viewBox="0 0 14 18">
+                    <path
+                      d="M7 18 C7 18 0 12 0 7 C0 3.13 3.13 0 7 0 C10.87 0 14 3.13 14 7 C14 12 7 18 7 18Z"
+                      fill="#D4AF37"
+                      stroke="#E5E7EB"
+                      strokeWidth="1"
+                    />
+                    <circle cx="7" cy="6" r="2.5" fill="#fff" />
+                  </svg>
+                  <span style={{ fontFamily: 'var(--font-inter), Inter, sans-serif', fontSize: '15px', color: '#333', fontWeight: 500 }}>
+                    Jewelust
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Tooltip */}
       <AnimatePresence>
