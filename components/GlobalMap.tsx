@@ -139,6 +139,9 @@ const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 // Get country names for highlighting (TopoJSON uses names, not ISO codes)
 const presenceCountryNames = globalPresenceData.map(d => d.name.toLowerCase());
 
+// Countries to exclude from highlighting (no presence)
+const excludedCountries = ['djibouti', 'somalia', 'somaliland'];
+
 // Pin Marker Component
 const PinMarker = ({ 
   color, 
@@ -250,6 +253,19 @@ function GlobalMap() {
 
   const handleMarkerClick = (location: LocationData) => {
     setSelectedLocation(selectedLocation === location.id ? null : location.id);
+  };
+
+  const handleCountryClick = (countryName: string) => {
+    // Find the location data for this country
+    const location = globalPresenceData.find(l => 
+      l.name.toLowerCase() === countryName.toLowerCase() ||
+      countryName.toLowerCase().includes(l.name.toLowerCase()) ||
+      l.name.toLowerCase().includes(countryName.toLowerCase())
+    );
+    
+    if (location) {
+      setSelectedLocation(selectedLocation === location.id ? null : location.id);
+    }
   };
 
   const selectedData = globalPresenceData.find(l => l.id === selectedLocation);
@@ -384,6 +400,39 @@ function GlobalMap() {
             {({ geographies }: { geographies: Array<{ rsmKey: string; properties?: { name?: string; NAME?: string }; id?: string }> }) =>
               geographies.map((geo: { rsmKey: string; properties?: { name?: string; NAME?: string }; id?: string }) => {
                 const countryName = (geo.properties?.name || geo.properties?.NAME || '').toLowerCase();
+                
+                // Exclude specific countries
+                if (excludedCountries.some(excluded => countryName.includes(excluded) || excluded.includes(countryName))) {
+                  return (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      fill="#E8ECEF"
+                      stroke="#D0D5DB"
+                      strokeWidth={0.4}
+                      style={{
+                        default: {
+                          outline: 'none',
+                          transition: 'all 0.3s ease',
+                        },
+                        hover: {
+                          fill: '#DDE2E7',
+                          stroke: '#C5CCD3',
+                          strokeWidth: 0.4,
+                          outline: 'none',
+                          cursor: 'default',
+                        },
+                        pressed: {
+                          fill: '#D5DAE0',
+                          stroke: '#BCC3CA',
+                          strokeWidth: 0.4,
+                          outline: 'none',
+                        },
+                      }}
+                    />
+                  );
+                }
+                
                 const hasPresence = presenceCountryNames.includes(countryName) || 
                   presenceCountryNames.some(name => countryName.includes(name) || name.includes(countryName));
                 
@@ -391,24 +440,29 @@ function GlobalMap() {
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill={hasPresence ? '#008080' : '#E8ECEF'}
-                    stroke={hasPresence ? '#006666' : '#D0D5DB'}
+                    fill={hasPresence ? '#01B2B2' : '#E8ECEF'}
+                    stroke={hasPresence ? '#009999' : '#D0D5DB'}
                     strokeWidth={hasPresence ? 2 : 0.4}
+                    onClick={() => {
+                      if (hasPresence) {
+                        handleCountryClick(countryName);
+                      }
+                    }}
                     style={{
                       default: {
                         outline: 'none',
                         transition: 'all 0.3s ease',
                       },
                       hover: {
-                        fill: hasPresence ? '#009999' : '#DDE2E7',
-                        stroke: hasPresence ? '#005555' : '#C5CCD3',
+                        fill: hasPresence ? '#00C4C4' : '#DDE2E7',
+                        stroke: hasPresence ? '#008888' : '#C5CCD3',
                         strokeWidth: hasPresence ? 2.5 : 0.4,
                         outline: 'none',
                         cursor: hasPresence ? 'pointer' : 'default',
                       },
                       pressed: {
-                        fill: hasPresence ? '#007070' : '#D5DAE0',
-                        stroke: hasPresence ? '#004444' : '#BCC3CA',
+                        fill: hasPresence ? '#009999' : '#D5DAE0',
+                        stroke: hasPresence ? '#007777' : '#BCC3CA',
                         strokeWidth: hasPresence ? 2.5 : 0.4,
                         outline: 'none',
                       },

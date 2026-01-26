@@ -422,7 +422,7 @@ export default function JewelustPageClient() {
             </div>
 
             <motion.div variants={fadeInUp} style={{ background: 'rgba(255, 255, 255, 0.25)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', padding: 'clamp(40px, 5vw, 56px)', borderBottom: '1px solid rgba(229, 231, 235, 0.25)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'clamp(24px, 3vw, 32px)', textAlign: 'center', position: 'relative', zIndex: 2 }}>
-              <div style={{ height: 'clamp(100px, 12vw, 140px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ height: 'clamp(35px, 5vw, 140px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <a 
                   href="https://jewelust.ae" 
                   target="_blank" 
@@ -443,7 +443,7 @@ export default function JewelustPageClient() {
                     alt="Jewelust Logo" 
                     className="h-full w-auto object-contain" 
                     style={{ 
-                      maxWidth: 'min(100%, 350px)',
+                      maxWidth: 'min(100%, 150px)',
                       imageRendering: 'crisp-edges',
                       filter: 'none',
                       opacity: 1,

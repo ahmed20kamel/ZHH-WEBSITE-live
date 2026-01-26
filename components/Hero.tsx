@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import HeroSlider from './HeroSlider';
 
@@ -9,6 +9,17 @@ export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(heroRef, { once: true });
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section 
@@ -112,13 +123,14 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Pagination Indicator - Bottom Left */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 1, delay: 0.6 }}
-        className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-20 flex items-center gap-3"
-      >
+      {/* Pagination Indicator - Bottom Left (Hidden on Mobile) */}
+      {!isMobile && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-20 flex items-center gap-3"
+        >
         {/* Current Slide Number */}
         <span
           className="text-white"
@@ -157,6 +169,7 @@ export default function Hero() {
           ))}
         </div>
       </motion.div>
+      )}
 
       {/* Custom CSS for Additional Effects */}
       <style jsx>{`

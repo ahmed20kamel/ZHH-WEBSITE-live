@@ -3,7 +3,7 @@
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { subsidiaries, premiumColors } from './types';
+import { subsidiaries } from './types';
 import Button from '@/components/ui/Button';
 import { ChevronDown } from 'lucide-react';
 
@@ -40,10 +40,11 @@ export default function SubsidiariesSection() {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8 }}
-      className="section-unified bg-white"
+      className="section-unified"
       style={{
         paddingTop: 'clamp(50px, 6vw, 70px)',
-        paddingBottom: 'clamp(50px, 6vw, 70px)'
+        paddingBottom: 'clamp(50px, 6vw, 70px)',
+        backgroundColor: 'transparent'
       }}
     >
       <div className="container-unified" style={{ maxWidth: '100%', paddingLeft: 'clamp(16px, 4vw, 24px)', paddingRight: 'clamp(16px, 4vw, 24px)' }}>
@@ -108,10 +109,8 @@ export default function SubsidiariesSection() {
             maxWidth: '1200px',
             margin: '0 auto',
             padding: 'clamp(32px, 4vw, 48px)',
-            background: 'rgba(255, 255, 255, 0.95)',
-            borderRadius: '24px',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-            border: '1px solid rgba(1, 178, 178, 0.1)'
+            background: 'transparent',
+            borderRadius: '24px'
           }}
         >
           <div 
@@ -138,90 +137,100 @@ export default function SubsidiariesSection() {
                 className="relative overflow-hidden transition-all duration-500"
                 style={{ 
                   padding: 0,
-                  position: 'relative'
+                  position: 'relative',
+                  borderRadius: '16px',
+                  minHeight: '400px',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)'
                 }}
               >
-                {/* Background Image with Blur and Overlay */}
+                {/* Background Image - Full card */}
                 <div
                   style={{
                     position: 'absolute',
                     inset: 0,
                     zIndex: 0,
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    borderRadius: '16px',
+                    width: '100%',
+                    height: '100%'
                   }}
                 >
                   {subsidiary.id === 'construction' && (
-                    <Image
+                    <img
                       src="/assets/hero/card/Construction.jpg"
-                      alt=""
-                      fill
-                      className="object-cover"
+                      alt="Construction background"
                       style={{
-                        filter: 'blur(4px)',
-                        opacity: 0.4,
+                        position: 'absolute',
+                        inset: 0,
+                        width: '100%',
+                        height: '100%',
                         objectFit: 'cover',
                         objectPosition: 'center',
-                        transform: 'scale(1.1)'
+                        zIndex: 0,
+                        opacity: 0.25
                       }}
                     />
                   )}
                   {subsidiary.id === 'trading' && (
-                    <Image
+                    <img
                       src="/assets/hero/card/General Trading.jpg"
-                      alt=""
-                      fill
-                      className="object-cover"
+                      alt="Trading background"
                       style={{
-                        filter: 'blur(4px)',
-                        opacity: 0.4,
+                        position: 'absolute',
+                        inset: 0,
+                        width: '100%',
+                        height: '100%',
                         objectFit: 'cover',
                         objectPosition: 'center',
-                        transform: 'scale(1.1)'
+                        zIndex: 0,
+                        opacity: 0.25
                       }}
                     />
                   )}
                   {subsidiary.id === 'real-estate' && (
-                    <Image
+                    <img
                       src="/assets/hero/card/Real Estates.jpg"
-                      alt=""
-                      fill
-                      className="object-cover"
+                      alt="Real Estate background"
                       style={{
-                        filter: 'blur(4px)',
-                        opacity: 0.4,
+                        position: 'absolute',
+                        inset: 0,
+                        width: '100%',
+                        height: '100%',
                         objectFit: 'cover',
                         objectPosition: 'center',
-                        transform: 'scale(1.1)'
+                        zIndex: 0,
+                        opacity: 0.25
                       }}
                     />
                   )}
                   {subsidiary.id === 'jewelust' && (
-                    <Image
+                    <img
                       src="/assets/hero/card/Gold2.JPEG"
-                      alt=""
-                      fill
-                      className="object-cover"
+                      alt="Jewelust background"
                       style={{
-                        filter: 'blur(4px)',
-                        opacity: 0.4,
+                        position: 'absolute',
+                        inset: 0,
+                        width: '100%',
+                        height: '100%',
                         objectFit: 'cover',
                         objectPosition: 'center',
-                        transform: 'scale(1.1)'
+                        zIndex: 0,
+                        opacity: 0.25
                       }}
                     />
                   )}
+                  {/* Light overlay for text readability */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: 'linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 100%)',
+                      zIndex: 1,
+                      borderRadius: '16px'
+                    }}
+                  />
                 </div>
 
-                {/* Subtle Background Gradient */}
-                <motion.div
-                  className="absolute inset-0 opacity-0"
-                  style={{
-                    background: `linear-gradient(135deg, ${premiumColors.darkBlue}08 0%, ${premiumColors.tealBlue}05 100%)`,
-                    zIndex: 1
-                  }}
-                  animate={isExpanded ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                />
 
                 <div className="relative z-10 w-full max-w-full" style={{ padding: 'clamp(28px, 3.5vw, 44px)' }}>
                   {/* Enhanced Logo Section */}
@@ -229,9 +238,9 @@ export default function SubsidiariesSection() {
                     <motion.div 
                       className="relative flex items-center justify-center"
                       style={{
-                        width: 'clamp(80px, 10vw, 128px)',
-                        height: 'clamp(80px, 10vw, 128px)',
-                        padding: 'clamp(12px, 1.5vw, 16px)'
+                        width: 'clamp(140px, 16vw, 200px)',
+                        height: 'clamp(140px, 16vw, 200px)',
+                        padding: 'clamp(16px, 2vw, 24px)'
                       }}
                       whileHover={{ scale: 1.05, rotate: 2 }}
                       transition={{ type: 'spring', stiffness: 300 }}
@@ -268,9 +277,9 @@ export default function SubsidiariesSection() {
 
                   {/* Enhanced Description */}
                   <div style={{ marginBottom: 'clamp(20px, 2.5vw, 32px)' }}>
-                    <p className="font-normal text-left leading-relaxed" style={{ 
+                    <p className="font-normal text-center leading-relaxed" style={{ 
                       color: '#000000',
-                      fontWeight: 600,
+                      fontWeight: 500,
                       lineHeight: '1.7',
                       fontSize: 'clamp(14px, 1.6vw, 18px)'
                     }}>
@@ -289,17 +298,23 @@ export default function SubsidiariesSection() {
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        style={{ overflow: 'hidden' }}
+                        style={{ 
+                          overflow: 'hidden',
+                          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                          borderRadius: '16px',
+                          padding: 'clamp(20px, 2.5vw, 28px)',
+                          marginTop: '20px'
+                        }}
                       >
                         {/* Enhanced Special Note for Jewelust */}
                         {subsidiary.specialNote && (
                           <div className="mb-10 p-6 rounded-2xl border" style={{
-                            backgroundColor: premiumColors.bgGray,
-                            borderColor: premiumColors.borderGray,
+                            backgroundColor: '#F9FAFB',
+                            borderColor: '#E5E7EB',
                             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
                           }}>
                             <p className="text-sm md:text-base font-normal text-left leading-relaxed" style={{ 
-                              color: premiumColors.textGray,
+                              color: '#374151',
                               lineHeight: '1.7'
                             }}>
                               {subsidiary.specialNote}
@@ -311,7 +326,7 @@ export default function SubsidiariesSection() {
                         {subsidiary.highlights && (
                           <div className="mb-10">
                             <h4 className="text-lg md:text-xl font-bold mb-6 text-left" style={{ 
-                              color: premiumColors.textDark,
+                              color: '#111827',
                               lineHeight: '1.4',
                               letterSpacing: '-0.01em'
                             }}>
@@ -320,13 +335,13 @@ export default function SubsidiariesSection() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               {subsidiary.highlights.map((highlight, hIdx) => (
                                 <div key={hIdx} className="flex items-start gap-3 p-3 rounded-xl" style={{
-                                  backgroundColor: premiumColors.lightGray
+                                  backgroundColor: '#F3F4F6'
                                 }}>
                                   <div className="w-2 h-2 rounded-full mt-2 flex-shrink-0" style={{ 
-                                    backgroundColor: premiumColors.darkBlue 
+                                    backgroundColor: '#0D9488' 
                                   }} />
                                   <span className="text-sm font-medium text-left leading-relaxed" style={{ 
-                                    color: premiumColors.textGray,
+                                    color: '#374151',
                                     lineHeight: '1.6'
                                   }}>
                                     {highlight}
@@ -341,7 +356,7 @@ export default function SubsidiariesSection() {
                         {subsidiary.focusAreas && (
                           <div className="mb-10">
                             <h4 className="text-lg md:text-xl font-bold mb-6 text-left" style={{ 
-                              color: premiumColors.textDark,
+                              color: '#111827',
                               lineHeight: '1.4',
                               letterSpacing: '-0.01em'
                             }}>
@@ -353,15 +368,15 @@ export default function SubsidiariesSection() {
                                   key={aIdx}
                                   className="px-4 py-2.5 text-sm font-semibold rounded-xl border"
                                   style={{ 
-                                    backgroundColor: premiumColors.lightGray,
-                                    borderColor: premiumColors.borderGray,
-                                    color: premiumColors.textDark
+                                    backgroundColor: '#F3F4F6',
+                                    borderColor: '#E5E7EB',
+                                    color: '#111827'
                                   }}
                                   whileHover={{ 
                                     scale: 1.05,
-                                    backgroundColor: premiumColors.darkBlue,
+                                    backgroundColor: '#0D9488',
                                     color: 'white',
-                                    borderColor: premiumColors.darkBlue
+                                    borderColor: '#0D9488'
                                   }}
                                   transition={{ duration: 0.2 }}
                                 >
@@ -373,16 +388,16 @@ export default function SubsidiariesSection() {
                         )}
 
                         {/* Enhanced Goal Section */}
-                        <div className="mt-12 pt-12 border-t" style={{ borderColor: premiumColors.borderGray }}>
+                        <div className="mt-12 pt-12 border-t" style={{ borderColor: '#E5E7EB' }}>
                           <div className="text-left">
                             <p className="text-lg md:text-xl font-bold mb-4" style={{ 
-                              color: premiumColors.textDark,
+                              color: '#111827',
                               lineHeight: '1.4'
                             }}>
                               Our Goal
                             </p>
                             <p className="text-base md:text-lg font-normal leading-relaxed" style={{ 
-                              color: premiumColors.textGray,
+                              color: '#374151',
                               lineHeight: '1.7'
                             }}>
                               {subsidiary.goal}
@@ -424,8 +439,10 @@ export default function SubsidiariesSection() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-center"
             style={{
-              paddingTop: 'clamp(32px, 4vw, 48px)',
-              borderTop: '1px solid rgba(1, 178, 178, 0.1)'
+              padding: 'clamp(32px, 4vw, 48px)',
+              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              borderRadius: '16px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)'
             }}
           >
             <p 
@@ -434,7 +451,7 @@ export default function SubsidiariesSection() {
                 fontFamily: 'var(--font-inter), Inter, sans-serif',
                 fontSize: 'clamp(17px, 2vw, 22px)',
                 lineHeight: '1.8',
-                color: 'var(--color-text-secondary)',
+                color: '#374151',
                 margin: 0,
                 textAlign: 'center',
                 whiteSpace: 'normal',
@@ -444,7 +461,7 @@ export default function SubsidiariesSection() {
             >
               <span style={{ 
                 fontWeight: 600,
-                color: 'var(--color-text-primary)',
+                color: '#111827',
                 fontFamily: 'var(--font-inter), Inter, sans-serif'
               }}>
                 ZHH Group Holding

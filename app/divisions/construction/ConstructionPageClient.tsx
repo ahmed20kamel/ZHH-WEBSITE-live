@@ -451,12 +451,12 @@ export default function ConstructionPageClient() {
                 zIndex: 2
               }}
             >
-              <div style={{ height: 'clamp(100px, 12vw, 140px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ height: 'clamp(35px, 5vw, 140px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src="/assets/logos/ZHH%20Construction%20Logo.svg"
                   alt="ZHH Construction Logo"
                   className="h-full w-auto object-contain"
-                  style={{ maxWidth: 'min(100%, 350px)' }}
+                  style={{ maxWidth: 'min(100%, 150px)' }}
                 />
               </div>
             </motion.div>
